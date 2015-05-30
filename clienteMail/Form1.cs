@@ -20,7 +20,6 @@ namespace clienteMail
         public Form1()
         {
             InitializeComponent();
-            
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
