@@ -18,3 +18,5 @@ C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\c
 C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
 C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
 C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.csproj.GenerateResource.Cache
+C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.exe
+C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.pdb
