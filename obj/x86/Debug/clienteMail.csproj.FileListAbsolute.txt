@@ -1,0 +1,20 @@
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.csprojResolveAssemblyReference.cache
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.csproj.GenerateResource.Cache
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\bin\Debug\clienteMail.exe
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\bin\Debug\clienteMail.pdb
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\bin\Debug\Email.NET.dll
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\bin\Debug\Email.NET.xml
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.exe
+c:\users\melanie\documents\visual studio 2010\Projects\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.pdb
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.exe
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.pdb
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\bin\Debug\clienteMail.exe
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\bin\Debug\clienteMail.pdb
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\bin\Debug\Email.NET.dll
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\bin\Debug\Email.NET.xml
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.csprojResolveAssemblyReference.cache
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
+C:\Users\Osvaldo\Downloads\clienteMail2\clienteMail2\clienteMail\obj\x86\Debug\clienteMail.csproj.GenerateResource.Cache
