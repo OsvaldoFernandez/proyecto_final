@@ -17,24 +17,38 @@ namespace clienteMail
     public partial class Form1 : Form
     {
         Pop3Client client;
+        Rfc822Message[] messages;
+
         public Form1()
         {
             InitializeComponent();
         }
 
+        /* Da vuelta el array de mails, para que este con fecha descendiente. */
+        public Rfc822Message[] reverseArray(Rfc822Message[] arr)
+        {
+            for (int i = 0; i < arr.Length / 2; i++)
+            {
+                Rfc822Message tmp = arr[i];
+                arr[i] = arr[arr.Length - i - 1];
+                arr[arr.Length - i - 1] = tmp;
+
+            }
+            return arr;
+        }
+
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
-            this.dataMails.Rows.Clear();
-            Rfc822Message[] messages = client.GetAllMessages().ToArray();
-            
-            int i = 1;
+            this.dataMails.Rows.Clear();            
+            int i = 1, index=0;
 
             foreach (Rfc822Message message in messages)
             {
                 if(message.From.Address != client.Username){
-                    this.dataMails.Rows.Add(i.ToString(), message.From.DisplayName.ToString(), message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                    this.dataMails.Rows.Add(i.ToString(), index,message.From.DisplayName.ToString(), message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                     i++;
                 }
+                index++;
                 
             }
         }
@@ -83,19 +97,32 @@ namespace clienteMail
 
                 client.SSLInteractionType = EInteractionType.SSLPort;
                 // authenticate 
-                client.Login();
-                btnRecibidos_Click(null, EventArgs.Empty);
+                try
+                {
+                    client.Login();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No hay conexión a Internet.");
+                    System.Environment.Exit(1);
+                }
+                
 
+                this.getMails();
+                btnRecibidos_Click(null, e);
+            }
+
+            private void getMails() {
+                messages = this.reverseArray(client.GetAllMessages().ToArray());
             }
 
             private void btnEnviados_Click(object sender, EventArgs e)
             {
                 this.dataMails.Rows.Clear();
 
-                dataMails.Columns[1].HeaderText = "Para";
-                Rfc822MessageCollection messages = client.GetAllMessages();
+                dataMails.Columns[1].HeaderText = "Para";        
 
-                int i = 1;
+                int i = 1, index=0;
                 string para;
                 
                 foreach (Rfc822Message message in messages)
@@ -114,10 +141,21 @@ namespace clienteMail
                             para = message.To[0].DisplayName;
                         }
                         
-                        this.dataMails.Rows.Add(i.ToString(), para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                        this.dataMails.Rows.Add(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                         i++;
                     }
+                    index++;
                     
+                }
+            }
+
+            private void dataMails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            {
+                if (this.dataMails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    int index = Convert.ToInt32(this.dataMails.Rows[e.RowIndex].Cells["index"].Value);
+                    leer_mail form = new leer_mail(messages[index]);
+                    form.Show();
                 }
             }
         

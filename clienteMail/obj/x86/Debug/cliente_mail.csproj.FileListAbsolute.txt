@@ -8,3 +8,14 @@ C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojRes
 C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
 C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
 C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csproj.GenerateResource.Cache
+C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\clienteMail.exe
+C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\clienteMail.pdb
+C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\Email.NET.dll
+C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\Email.NET.xml
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojResolveAssemblyReference.cache
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csproj.GenerateResource.Cache
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.exe
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.pdb
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.leer_mail.resources

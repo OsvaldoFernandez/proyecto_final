@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.dataMails = new System.Windows.Forms.DataGridView();
+            this.btnRecibidos = new System.Windows.Forms.Button();
+            this.btnEnviados = new System.Windows.Forms.Button();
             this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRecibidos = new System.Windows.Forms.Button();
-            this.btnEnviados = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.dataMails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataMails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nro,
+            this.index,
             this.De,
             this.Asunto,
             this.Fecha});
@@ -53,6 +55,27 @@
             this.dataMails.ReadOnly = true;
             this.dataMails.Size = new System.Drawing.Size(622, 225);
             this.dataMails.TabIndex = 1;
+            this.dataMails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMails_CellContentClick);
+            // 
+            // btnRecibidos
+            // 
+            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
+            this.btnRecibidos.Name = "btnRecibidos";
+            this.btnRecibidos.Size = new System.Drawing.Size(75, 23);
+            this.btnRecibidos.TabIndex = 2;
+            this.btnRecibidos.Text = "Recibidos";
+            this.btnRecibidos.UseVisualStyleBackColor = true;
+            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
+            // 
+            // btnEnviados
+            // 
+            this.btnEnviados.Location = new System.Drawing.Point(104, 12);
+            this.btnEnviados.Name = "btnEnviados";
+            this.btnEnviados.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviados.TabIndex = 3;
+            this.btnEnviados.Text = "Enviados";
+            this.btnEnviados.UseVisualStyleBackColor = true;
+            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
             // 
             // Nro
             // 
@@ -61,6 +84,14 @@
             this.Nro.Name = "Nro";
             this.Nro.ReadOnly = true;
             this.Nro.Width = 30;
+            // 
+            // index
+            // 
+            this.index.Frozen = true;
+            this.index.HeaderText = "index";
+            this.index.Name = "index";
+            this.index.ReadOnly = true;
+            this.index.Visible = false;
             // 
             // De
             // 
@@ -86,26 +117,6 @@
             this.Fecha.ReadOnly = true;
             this.Fecha.Width = 150;
             // 
-            // btnRecibidos
-            // 
-            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
-            this.btnRecibidos.Name = "btnRecibidos";
-            this.btnRecibidos.Size = new System.Drawing.Size(75, 23);
-            this.btnRecibidos.TabIndex = 2;
-            this.btnRecibidos.Text = "Recibidos";
-            this.btnRecibidos.UseVisualStyleBackColor = true;
-            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
-            // 
-            // btnEnviados
-            // 
-            this.btnEnviados.Location = new System.Drawing.Point(104, 12);
-            this.btnEnviados.Name = "btnEnviados";
-            this.btnEnviados.Size = new System.Drawing.Size(75, 23);
-            this.btnEnviados.TabIndex = 3;
-            this.btnEnviados.Text = "Enviados";
-            this.btnEnviados.UseVisualStyleBackColor = true;
-            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,11 +137,12 @@
 
         private System.Windows.Forms.DataGridView dataMails;
         private System.Windows.Forms.Button btnRecibidos;
+        private System.Windows.Forms.Button btnEnviados;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn index;
         private System.Windows.Forms.DataGridViewTextBoxColumn De;
         private System.Windows.Forms.DataGridViewTextBoxColumn Asunto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.Button btnEnviados;
     }
 }
 
