@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.dataMails = new System.Windows.Forms.DataGridView();
-            this.btnRecibidos = new System.Windows.Forms.Button();
-            this.btnEnviados = new System.Windows.Forms.Button();
             this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRecibidos = new System.Windows.Forms.Button();
+            this.btnEnviados = new System.Windows.Forms.Button();
+            this.redactar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,26 +57,6 @@
             this.dataMails.Size = new System.Drawing.Size(622, 225);
             this.dataMails.TabIndex = 1;
             this.dataMails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMails_CellContentClick);
-            // 
-            // btnRecibidos
-            // 
-            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
-            this.btnRecibidos.Name = "btnRecibidos";
-            this.btnRecibidos.Size = new System.Drawing.Size(75, 23);
-            this.btnRecibidos.TabIndex = 2;
-            this.btnRecibidos.Text = "Recibidos";
-            this.btnRecibidos.UseVisualStyleBackColor = true;
-            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
-            // 
-            // btnEnviados
-            // 
-            this.btnEnviados.Location = new System.Drawing.Point(104, 12);
-            this.btnEnviados.Name = "btnEnviados";
-            this.btnEnviados.Size = new System.Drawing.Size(75, 23);
-            this.btnEnviados.TabIndex = 3;
-            this.btnEnviados.Text = "Enviados";
-            this.btnEnviados.UseVisualStyleBackColor = true;
-            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
             // 
             // Nro
             // 
@@ -117,11 +98,42 @@
             this.Fecha.ReadOnly = true;
             this.Fecha.Width = 150;
             // 
+            // btnRecibidos
+            // 
+            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
+            this.btnRecibidos.Name = "btnRecibidos";
+            this.btnRecibidos.Size = new System.Drawing.Size(75, 23);
+            this.btnRecibidos.TabIndex = 2;
+            this.btnRecibidos.Text = "Recibidos";
+            this.btnRecibidos.UseVisualStyleBackColor = true;
+            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
+            // 
+            // btnEnviados
+            // 
+            this.btnEnviados.Location = new System.Drawing.Point(104, 12);
+            this.btnEnviados.Name = "btnEnviados";
+            this.btnEnviados.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviados.TabIndex = 3;
+            this.btnEnviados.Text = "Enviados";
+            this.btnEnviados.UseVisualStyleBackColor = true;
+            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
+            // 
+            // redactar
+            // 
+            this.redactar.Location = new System.Drawing.Point(196, 12);
+            this.redactar.Name = "redactar";
+            this.redactar.Size = new System.Drawing.Size(75, 23);
+            this.redactar.TabIndex = 4;
+            this.redactar.Text = "Redactar";
+            this.redactar.UseVisualStyleBackColor = true;
+            this.redactar.Click += new System.EventHandler(this.redactar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 358);
+            this.Controls.Add(this.redactar);
             this.Controls.Add(this.btnEnviados);
             this.Controls.Add(this.btnRecibidos);
             this.Controls.Add(this.dataMails);
@@ -143,6 +155,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn De;
         private System.Windows.Forms.DataGridViewTextBoxColumn Asunto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.Button redactar;
     }
 }
 

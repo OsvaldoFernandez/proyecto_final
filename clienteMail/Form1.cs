@@ -158,6 +158,12 @@ namespace clienteMail
                     form.Show();
                 }
             }
+
+            private void redactar_Click(object sender, EventArgs e)
+            {
+                redactar_email.redactar form = new redactar_email.redactar();
+                form.Show();
+            }
         
     }
 }

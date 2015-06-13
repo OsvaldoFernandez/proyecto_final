@@ -1,12 +1,18 @@
 #Junk Files
 *.DS_Store
 [Tt]humbs.db
+
+/clienteMail/obj
+
  
 #Visual Studio Files
 [Oo]bj
 [Bb]in
 [Dd]ebug
 [Bb]uild/
+Debug/
+*.resources
+*/Debug/
 *.user
 *.suo
 *.exe
