@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtMail = new System.Windows.Forms.RichTextBox();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
-            // txtMail
+            // webBrowser
             // 
-            this.txtMail.Location = new System.Drawing.Point(68, 32);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(380, 133);
-            this.txtMail.TabIndex = 0;
-            this.txtMail.Text = "";
+            this.webBrowser.Location = new System.Drawing.Point(12, 12);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(781, 472);
+            this.webBrowser.TabIndex = 1;
             // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 261);
-            this.Controls.Add(this.txtMail);
+            this.ClientSize = new System.Drawing.Size(805, 496);
+            this.Controls.Add(this.webBrowser);
             this.Name = "leer_mail";
             this.Text = "Leer Email";
-            this.Load += new System.EventHandler(this.leer_mail_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox txtMail;
+        private System.Windows.Forms.WebBrowser webBrowser;
+
     }
 }

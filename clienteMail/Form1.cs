@@ -39,7 +39,10 @@ namespace clienteMail
 
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
-            this.dataMails.Rows.Clear();            
+            this.dataMails.Rows.Clear();
+
+            dataMails.Columns[2].HeaderText = "Para";    
+            
             int i = 1, index=0;
 
             foreach (Rfc822Message message in messages)
@@ -120,7 +123,7 @@ namespace clienteMail
             {
                 this.dataMails.Rows.Clear();
 
-                dataMails.Columns[1].HeaderText = "Para";        
+                dataMails.Columns[2].HeaderText = "Para";        
 
                 int i = 1, index=0;
                 string para;
@@ -141,7 +144,7 @@ namespace clienteMail
                             para = message.To[0].DisplayName;
                         }
                         
-                        this.dataMails.Rows.Add(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                        this.dataMails.Rows.Addt(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                         i++;
                     }
                     index++;

@@ -20,13 +20,8 @@ namespace clienteMail
         public leer_mail(Rfc822Message message)
         {
             InitializeComponent();
-            txtMail.Text = message.Text.ToString();
-            // proximamente: que lea como html!
+            webBrowser.DocumentText = message.Text.ToString();
         }
 
-        private void leer_mail_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
