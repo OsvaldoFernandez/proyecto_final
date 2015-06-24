@@ -11,6 +11,7 @@ using Email.Net.Common;
 using Email.Net.Pop3;
 using Email.Net.Common.Configurations;
 using Email.Net.Common.Collections;
+using Email.Net.Pop3.Exceptions;
 
 namespace clienteMail
 {
@@ -90,6 +91,7 @@ namespace clienteMail
                 // create client and connect 
                 client = new Pop3Client("pop.gmail.com", 995, "proyectofinal512@gmail.com", "proyecto123");
 
+                
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
                 client.Authenticated += new Pop3ClientEventHandler(client_Authenticated);
                 client.MessageReceived += new Pop3MessageEventHandler(client_MessageReceived);
@@ -116,7 +118,20 @@ namespace clienteMail
             }
 
             private void getMails() {
-                messages = this.reverseArray(client.GetAllMessages().ToArray());
+                List<Rfc822Message> list = new List<Rfc822Message>();
+                for (uint i = 1; i < 20; i++)
+                {
+                    try
+                    {
+                        list.Add(client.GetMessage(i));
+                    }
+                    catch (Exception ex) {
+                        Console.WriteLine("no hay mas mensajes");
+                        break;
+                    }
+                }
+                messages = this.reverseArray(list.ToArray());
+
             }
 
             private void btnEnviados_Click(object sender, EventArgs e)
@@ -144,7 +159,7 @@ namespace clienteMail
                             para = message.To[0].DisplayName;
                         }
                         
-                        this.dataMails.Rows.Addt(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                        this.dataMails.Rows.Add(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                         i++;
                     }
                     index++;
