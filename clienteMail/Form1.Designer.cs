@@ -54,7 +54,7 @@
             this.dataMails.Location = new System.Drawing.Point(14, 58);
             this.dataMails.Name = "dataMails";
             this.dataMails.ReadOnly = true;
-            this.dataMails.Size = new System.Drawing.Size(622, 225);
+            this.dataMails.Size = new System.Drawing.Size(622, 288);
             this.dataMails.TabIndex = 1;
             this.dataMails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMails_CellContentClick);
             // 
@@ -100,9 +100,10 @@
             // 
             // btnRecibidos
             // 
-            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
+            this.btnRecibidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecibidos.Location = new System.Drawing.Point(111, 12);
             this.btnRecibidos.Name = "btnRecibidos";
-            this.btnRecibidos.Size = new System.Drawing.Size(75, 23);
+            this.btnRecibidos.Size = new System.Drawing.Size(127, 40);
             this.btnRecibidos.TabIndex = 2;
             this.btnRecibidos.Text = "Recibidos";
             this.btnRecibidos.UseVisualStyleBackColor = true;
@@ -110,9 +111,10 @@
             // 
             // btnEnviados
             // 
-            this.btnEnviados.Location = new System.Drawing.Point(104, 12);
+            this.btnEnviados.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnviados.Location = new System.Drawing.Point(244, 12);
             this.btnEnviados.Name = "btnEnviados";
-            this.btnEnviados.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviados.Size = new System.Drawing.Size(127, 40);
             this.btnEnviados.TabIndex = 3;
             this.btnEnviados.Text = "Enviados";
             this.btnEnviados.UseVisualStyleBackColor = true;
@@ -120,9 +122,10 @@
             // 
             // redactar
             // 
-            this.redactar.Location = new System.Drawing.Point(196, 12);
+            this.redactar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redactar.Location = new System.Drawing.Point(377, 12);
             this.redactar.Name = "redactar";
-            this.redactar.Size = new System.Drawing.Size(75, 23);
+            this.redactar.Size = new System.Drawing.Size(127, 40);
             this.redactar.TabIndex = 4;
             this.redactar.Text = "Redactar";
             this.redactar.UseVisualStyleBackColor = true;

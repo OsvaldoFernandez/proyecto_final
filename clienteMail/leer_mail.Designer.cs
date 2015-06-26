@@ -36,14 +36,14 @@
             this.webBrowser.Location = new System.Drawing.Point(12, 12);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(781, 472);
+            this.webBrowser.Size = new System.Drawing.Size(781, 717);
             this.webBrowser.TabIndex = 1;
             // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 496);
+            this.ClientSize = new System.Drawing.Size(805, 741);
             this.Controls.Add(this.webBrowser);
             this.Name = "leer_mail";
             this.Text = "Leer Email";

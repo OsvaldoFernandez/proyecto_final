@@ -41,12 +41,12 @@ namespace clienteMail.redactar_email
                 mail.Subject = Subject;
                 mail.Body = Body;
                 mail.IsBodyHtml = false;
-
+                /*
                 if (!(adjTxt.Text.Trim() == ""))
                 {
                     Data = new Attachment(adjTxt.Text, MediaTypeNames.Application.Octet);
                     mail.Attachments.Add(Data);
-                }
+                }*/
 
 
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
@@ -64,7 +64,7 @@ namespace clienteMail.redactar_email
         private void adjBtn_Click_1(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            adjTxt.Text = openFileDialog1.FileName;
+            //adjTxt.Text = openFileDialog1.FileName;
             
         }
     }
