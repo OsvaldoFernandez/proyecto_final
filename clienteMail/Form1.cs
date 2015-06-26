@@ -26,7 +26,8 @@ namespace clienteMail
         }
 
         /* Da vuelta el array de mails, para que este con fecha descendiente. */
-        public Rfc822Message[] reverseArray(Rfc822Message[] arr)
+        /* no se usa mas!
+         * public Rfc822Message[] reverseArray(Rfc822Message[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
             {
@@ -36,7 +37,7 @@ namespace clienteMail
 
             }
             return arr;
-        }
+        }*/
 
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
@@ -119,18 +120,25 @@ namespace clienteMail
 
             private void getMails() {
                 List<Rfc822Message> list = new List<Rfc822Message>();
-                for (uint i = 1; i < 20; i++)
+                uint cantMails = Convert.ToUInt32(client.GetStatistic().CountMessages);
+                int index = 0;
+                for (uint i = cantMails; i > 0; i--)
                 {
                     try
                     {
                         list.Add(client.GetMessage(i));
+                        index++;
                     }
                     catch (Exception ex) {
                         Console.WriteLine("no hay mas mensajes");
                         break;
                     }
+                    if (index == 50)
+                    {
+                        break;
+                    }
                 }
-                messages = this.reverseArray(list.ToArray());
+                messages = list.ToArray();
 
             }
 
