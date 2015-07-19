@@ -156,7 +156,6 @@ namespace clienteMail
                         index++;
                     }
                     mailsRenderizados++;
-                    Console.WriteLine(mailsRenderizados.ToString());
                     if (index == 3) //Cambiar por 10
                     {
                         break;
@@ -299,7 +298,12 @@ namespace clienteMail
                 }
                 int lastPage = Convert.ToInt32(messagesRecibidos.Keys.Last());
                 bool lastPageRecibidos = recibidos && pagActual == lastPage;
-                bool lastPageEnviados = !recibidos && pagActual == lastPage;
+                bool lastPageEnviados = false;
+                if (messagesEnviados.ContainsKey(1))
+                {
+                    lastPage = Convert.ToInt32(messagesEnviados.Keys.Last());
+                    lastPageEnviados = !recibidos && pagActual == lastPage;
+                }
                 if (ultimoRender == 0 && (lastPageEnviados || lastPageRecibidos))
                 {
                     btnSiguiente.Enabled = false;
