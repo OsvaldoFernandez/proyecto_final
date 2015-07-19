@@ -23,5 +23,10 @@ namespace clienteMail
             webBrowser.DocumentText = message.Text.ToString();
         }
 
+        private void leer_mail_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

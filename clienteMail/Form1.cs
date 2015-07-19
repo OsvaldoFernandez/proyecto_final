@@ -18,43 +18,42 @@ namespace clienteMail
     public partial class Form1 : Form
     {
         Pop3Client client;
-        Rfc822Message[] messages;
+
+        Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
+        Dictionary<int, Rfc822Message[]> messagesEnviados = new Dictionary<int, Rfc822Message[]>();
+        int pagActual;
+        bool recibidos; //1: recibidos. 0: enviados.
+
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        /* Da vuelta el array de mails, para que este con fecha descendiente. */
-        /* no se usa mas!
-         * public Rfc822Message[] reverseArray(Rfc822Message[] arr)
-        {
-            for (int i = 0; i < arr.Length / 2; i++)
-            {
-                Rfc822Message tmp = arr[i];
-                arr[i] = arr[arr.Length - i - 1];
-                arr[arr.Length - i - 1] = tmp;
-
-            }
-            return arr;
-        }*/
-
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
+            recibidos = true;
             this.dataMails.Rows.Clear();
 
-            dataMails.Columns[2].HeaderText = "Para";    
+            dataMails.Columns[2].HeaderText = "De";    
             
-            int i = 1, index=0;
+            int index=0;
+            this.getMails();
+            string from;
 
-            foreach (Rfc822Message message in messages)
+            foreach (Rfc822Message message in messagesRecibidos[pagActual])
             {
-                if(message.From.Address != client.Username){
-                    this.dataMails.Rows.Add(i.ToString(), index,message.From.DisplayName.ToString(), message.Subject.ToString(), message.Date.AddHours(-3).ToString());
-                    i++;
+                if (message.From.DisplayName.ToString().Length > 0)
+                {
+                    from = message.From.DisplayName.ToString();
                 }
-                index++;
-                
+                else
+                {
+                    from = message.From.Address.ToString();
+                }
+
+                this.dataMails.Rows.Add((index+1).ToString(), index,from, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                index++;                
             }
         }
 
@@ -91,7 +90,6 @@ namespace clienteMail
             {
                 // create client and connect 
                 client = new Pop3Client("pop.gmail.com", 995, "proyectofinal512@gmail.com", "proyecto123");
-
                 
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
                 client.Authenticated += new Pop3ClientEventHandler(client_Authenticated);
@@ -112,46 +110,78 @@ namespace clienteMail
                     MessageBox.Show("No hay conexión a Internet.");
                     System.Environment.Exit(1);
                 }
-                
 
-                this.getMails();
+                recibidos = true;
+                this.actualizar();
                 btnRecibidos_Click(null, e);
             }
 
-            private void getMails() {
+            private void actualizar()
+            {
+                messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
+                messagesEnviados = new Dictionary<int, Rfc822Message[]>();
+                pagActual = 1;
+                this.getMails();
+            }
+
+            private void getMails()
+            {
+                if (recibidos && messagesRecibidos.ContainsKey(pagActual))
+                {
+                    return;
+                }
+                if (!recibidos && messagesEnviados.ContainsKey(pagActual))
+                {
+                    return;
+                }
+
                 List<Rfc822Message> list = new List<Rfc822Message>();
                 uint cantMails = Convert.ToUInt32(client.GetStatistic().CountMessages);
                 int index = 0;
+                Rfc822Message message;
                 for (uint i = cantMails; i > 0; i--)
                 {
                     try
                     {
-                        list.Add(client.GetMessage(i));
-                        index++;
+                        message = client.GetMessage(i);
+                        if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
+                        {
+                            list.Add(message);
+                            index++;
+                        }
                     }
                     catch (Exception ex) {
                         Console.WriteLine("no hay mas mensajes");
                         break;
                     }
-                    if (index == 50)
+                    if (index == 3) //Cambiar por 10
                     {
                         break;
                     }
                 }
-                messages = list.ToArray();
+                if (recibidos)
+                {
+                    messagesRecibidos.Add(pagActual, list.ToArray());
+                }
+                else
+                {
+                    messagesEnviados.Add(pagActual, list.ToArray());   
+                }
 
             }
 
             private void btnEnviados_Click(object sender, EventArgs e)
             {
+                recibidos = false;
                 this.dataMails.Rows.Clear();
 
                 dataMails.Columns[2].HeaderText = "Para";        
 
                 int i = 1, index=0;
                 string para;
+                this.getMails();
                 
-                foreach (Rfc822Message message in messages)
+                foreach (Rfc822Message message in messagesEnviados[pagActual])
                 {
                     if (message.From.Address == client.Username)
                     {
@@ -180,7 +210,17 @@ namespace clienteMail
                 if (this.dataMails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     int index = Convert.ToInt32(this.dataMails.Rows[e.RowIndex].Cells["index"].Value);
-                    leer_mail form = new leer_mail(messages[index]);
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][index];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][index];
+                    }
+
+                    leer_mail form = new leer_mail(message);
                     form.Show();
                 }
             }

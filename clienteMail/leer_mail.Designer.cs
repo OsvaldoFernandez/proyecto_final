@@ -47,6 +47,7 @@
             this.Controls.Add(this.webBrowser);
             this.Name = "leer_mail";
             this.Text = "Leer Email";
+            this.Load += new System.EventHandler(this.leer_mail_Load);
             this.ResumeLayout(false);
 
         }
