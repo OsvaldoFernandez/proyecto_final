@@ -35,8 +35,10 @@ namespace clienteMail
             recibidos = true;
             pagActual = 1;
 
-            ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
-
+            if (!messagesRecibidos.ContainsKey(1))
+            {
+                ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
+            }
             dataMails.Columns[2].HeaderText = "De";
 
             this.showRecibidos();
@@ -181,8 +183,10 @@ namespace clienteMail
 
                 pagActual = 1;
 
-                ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
-
+                if (!messagesEnviados.ContainsKey(1))
+                {
+                    ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
+                }
                 dataMails.Columns[2].HeaderText = "Para";        
 
                 this.showEnviados();
@@ -261,7 +265,6 @@ namespace clienteMail
             private void btnSiguiente_Click(object sender, EventArgs e)
             {
                 pagActual++;
-                this.handlePaginacion();
                 if (recibidos)
                 {
                     this.showRecibidos();
@@ -275,7 +278,6 @@ namespace clienteMail
             private void btnAnterior_Click(object sender, EventArgs e)
             {
                 pagActual--;
-                this.handlePaginacion();
                 if (recibidos)
                 {
                     this.showRecibidos();
