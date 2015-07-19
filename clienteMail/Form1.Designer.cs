@@ -37,6 +37,10 @@
             this.btnRecibidos = new System.Windows.Forms.Button();
             this.btnEnviados = new System.Windows.Forms.Button();
             this.redactar = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.lblPagina = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +105,7 @@
             // btnRecibidos
             // 
             this.btnRecibidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecibidos.Location = new System.Drawing.Point(111, 12);
+            this.btnRecibidos.Location = new System.Drawing.Point(14, 12);
             this.btnRecibidos.Name = "btnRecibidos";
             this.btnRecibidos.Size = new System.Drawing.Size(127, 40);
             this.btnRecibidos.TabIndex = 2;
@@ -112,7 +116,7 @@
             // btnEnviados
             // 
             this.btnEnviados.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnviados.Location = new System.Drawing.Point(244, 12);
+            this.btnEnviados.Location = new System.Drawing.Point(147, 12);
             this.btnEnviados.Name = "btnEnviados";
             this.btnEnviados.Size = new System.Drawing.Size(127, 40);
             this.btnEnviados.TabIndex = 3;
@@ -123,7 +127,7 @@
             // redactar
             // 
             this.redactar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.redactar.Location = new System.Drawing.Point(377, 12);
+            this.redactar.Location = new System.Drawing.Point(280, 12);
             this.redactar.Name = "redactar";
             this.redactar.Size = new System.Drawing.Size(127, 40);
             this.redactar.TabIndex = 4;
@@ -131,11 +135,58 @@
             this.redactar.UseVisualStyleBackColor = true;
             this.redactar.Click += new System.EventHandler(this.redactar_Click);
             // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSiguiente.Location = new System.Drawing.Point(509, 357);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(127, 40);
+            this.btnSiguiente.TabIndex = 5;
+            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnterior.Location = new System.Drawing.Point(14, 357);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(127, 40);
+            this.btnAnterior.TabIndex = 6;
+            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Location = new System.Drawing.Point(509, 12);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(127, 40);
+            this.btnActualizar.TabIndex = 7;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // lblPagina
+            // 
+            this.lblPagina.AutoSize = true;
+            this.lblPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPagina.Location = new System.Drawing.Point(287, 369);
+            this.lblPagina.Name = "lblPagina";
+            this.lblPagina.Size = new System.Drawing.Size(69, 18);
+            this.lblPagina.TabIndex = 8;
+            this.lblPagina.Text = "Página: 1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 358);
+            this.ClientSize = new System.Drawing.Size(648, 409);
+            this.Controls.Add(this.lblPagina);
+            this.Controls.Add(this.btnActualizar);
+            this.Controls.Add(this.btnAnterior);
+            this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.redactar);
             this.Controls.Add(this.btnEnviados);
             this.Controls.Add(this.btnRecibidos);
@@ -145,6 +196,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -159,6 +211,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Asunto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.Button redactar;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnAnterior;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Label lblPagina;
     }
 }
 

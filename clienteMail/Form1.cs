@@ -22,8 +22,8 @@ namespace clienteMail
         Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
         Dictionary<int, Rfc822Message[]> messagesEnviados = new Dictionary<int, Rfc822Message[]>();
         int pagActual;
-        bool recibidos; //1: recibidos. 0: enviados.
-
+        bool recibidos; //true: recibidos. false: enviados.
+        uint ultimoRender; //que mails ya mostré o "renderice"
 
         public Form1()
         {
@@ -33,12 +33,22 @@ namespace clienteMail
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
             recibidos = true;
+            pagActual = 1;
+
+            ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
+
+            dataMails.Columns[2].HeaderText = "De";
+
+            this.showRecibidos();
+        }
+
+        private void showRecibidos()
+        {
             this.dataMails.Rows.Clear();
 
-            dataMails.Columns[2].HeaderText = "De";    
-            
-            int index=0;
+            int index = 0;
             this.getMails();
+            this.handlePaginacion();
             string from;
 
             foreach (Rfc822Message message in messagesRecibidos[pagActual])
@@ -52,8 +62,8 @@ namespace clienteMail
                     from = message.From.Address.ToString();
                 }
 
-                this.dataMails.Rows.Add((index+1).ToString(), index,from, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
-                index++;                
+                this.dataMails.Rows.Add((index + 1).ToString(), index, from, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                index++;
             }
         }
 
@@ -89,7 +99,7 @@ namespace clienteMail
             private void Form1_Load(object sender, EventArgs e)
             {
                 // create client and connect 
-                client = new Pop3Client("pop.gmail.com", 995, "proyectofinal512@gmail.com", "proyecto123");
+                client = new Pop3Client("pop.gmail.com", 995, "proyectofinalgrupo512@gmail.com", "proyecto123");
                 
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
                 client.Authenticated += new Pop3ClientEventHandler(client_Authenticated);
@@ -100,16 +110,6 @@ namespace clienteMail
                 client.MessageDeleted += new Pop3MessageIDHandler(client_MessageDeleted);
 
                 client.SSLInteractionType = EInteractionType.SSLPort;
-                // authenticate 
-                try
-                {
-                    client.Login();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No hay conexión a Internet.");
-                    System.Environment.Exit(1);
-                }
 
                 recibidos = true;
                 this.actualizar();
@@ -120,8 +120,15 @@ namespace clienteMail
             {
                 messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
                 messagesEnviados = new Dictionary<int, Rfc822Message[]>();
-                pagActual = 1;
-                this.getMails();
+                try
+                {
+                    client.Login();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No hay conexión a Internet.");
+                    System.Environment.Exit(1);
+                }
             }
 
             private void getMails()
@@ -136,29 +143,28 @@ namespace clienteMail
                 }
 
                 List<Rfc822Message> list = new List<Rfc822Message>();
-                uint cantMails = Convert.ToUInt32(client.GetStatistic().CountMessages);
+                
                 int index = 0;
                 Rfc822Message message;
-                for (uint i = cantMails; i > 0; i--)
+                uint mailsRenderizados = 0;
+                for (uint i = ultimoRender; i > 0; i--)
                 {
-                    try
+                    message = client.GetMessage(i);
+                    if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
                     {
-                        message = client.GetMessage(i);
-                        if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
-                        {
-                            list.Add(message);
-                            index++;
-                        }
+                        list.Add(message);
+                        index++;
                     }
-                    catch (Exception ex) {
-                        Console.WriteLine("no hay mas mensajes");
-                        break;
-                    }
+                    mailsRenderizados++;
+                    Console.WriteLine(mailsRenderizados.ToString());
                     if (index == 3) //Cambiar por 10
                     {
                         break;
                     }
                 }
+
+                ultimoRender = ultimoRender - mailsRenderizados;
+
                 if (recibidos)
                 {
                     messagesRecibidos.Add(pagActual, list.ToArray());
@@ -167,41 +173,50 @@ namespace clienteMail
                 {
                     messagesEnviados.Add(pagActual, list.ToArray());   
                 }
-
+                
             }
 
             private void btnEnviados_Click(object sender, EventArgs e)
             {
                 recibidos = false;
-                this.dataMails.Rows.Clear();
+
+                pagActual = 1;
+
+                ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
 
                 dataMails.Columns[2].HeaderText = "Para";        
 
-                int i = 1, index=0;
+                this.showEnviados();
+            }
+
+            private void showEnviados()
+            {
+                this.dataMails.Rows.Clear();
+                int index = 0;
                 string para;
                 this.getMails();
-                
+                this.handlePaginacion();
+
                 foreach (Rfc822Message message in messagesEnviados[pagActual])
                 {
-                    if (message.From.Address == client.Username)
+
+                    if (message.To.Count() > 1)
                     {
-                        if (message.To.Count() > 1)
-                        {
-                            //hay mas de un destinatario
-                            para = message.To.Count().ToString() + " destinatarios";
-                        } else
-                        if(string.IsNullOrEmpty(message.To[0].DisplayName)){
-                            para = message.To[0].ToString();
-                        } else 
-                        {
-                            para = message.To[0].DisplayName;
-                        }
-                        
-                        this.dataMails.Rows.Add(i.ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
-                        i++;
+                        //hay mas de un destinatario
+                        para = message.To.Count().ToString() + " destinatarios";
                     }
-                    index++;
+                    else if (string.IsNullOrEmpty(message.To[0].DisplayName))
+                    {
+                        para = message.To[0].ToString();
+                    }
+                    else
+                    {
+                        para = message.To[0].DisplayName;
+                    }
                     
+                    this.dataMails.Rows.Add((index + 1).ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                    index++;
+
                 }
             }
 
@@ -230,6 +245,69 @@ namespace clienteMail
                 redactar_email.redactar form = new redactar_email.redactar();
                 form.Show();
             }
-        
+
+            private void btnActualizar_Click(object sender, EventArgs e)
+            {
+                this.actualizar();
+                if (recibidos)
+                {
+                    btnRecibidos_Click(null, e);
+                }
+                else {
+                    btnEnviados_Click(null, e);
+                }
+
+            }
+
+            private void btnSiguiente_Click(object sender, EventArgs e)
+            {
+                pagActual++;
+                this.handlePaginacion();
+                if (recibidos)
+                {
+                    this.showRecibidos();
+                }
+                else
+                {
+                    this.showEnviados();
+                }
+            }
+
+            private void btnAnterior_Click(object sender, EventArgs e)
+            {
+                pagActual--;
+                this.handlePaginacion();
+                if (recibidos)
+                {
+                    this.showRecibidos();
+                }
+                else
+                {
+                    this.showEnviados();
+                }
+            }
+
+            private void handlePaginacion() //se llama siempre que cambia la variable pagActual
+            {
+                lblPagina.Text = "Página: " + pagActual.ToString();
+                if (pagActual == 1)
+                {
+                    btnAnterior.Enabled = false;
+                }
+                else {
+                    btnAnterior.Enabled = true;
+                }
+                int lastPage = Convert.ToInt32(messagesRecibidos.Keys.Last());
+                bool lastPageRecibidos = recibidos && pagActual == lastPage;
+                bool lastPageEnviados = !recibidos && pagActual == lastPage;
+                if (ultimoRender == 0 && (lastPageEnviados || lastPageRecibidos))
+                {
+                    btnSiguiente.Enabled = false;
+                }
+                else
+                {
+                    btnSiguiente.Enabled = true;
+                }
+            }
     }
 }
