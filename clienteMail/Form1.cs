@@ -21,6 +21,7 @@ namespace clienteMail
 
         Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
         Dictionary<int, Rfc822Message[]> messagesEnviados = new Dictionary<int, Rfc822Message[]>();
+        Dictionary<int, uint> serialNumbers = new Dictionary<int, uint>();
         int pagActual;
         bool recibidos; //true: recibidos. false: enviados.
         uint ultimoRender; //que mails ya mostré o "renderice"
@@ -145,16 +146,19 @@ namespace clienteMail
                 }
 
                 List<Rfc822Message> list = new List<Rfc822Message>();
-                
+                serialNumbers = new Dictionary<int, uint>();
+
                 int index = 0;
                 Rfc822Message message;
                 uint mailsRenderizados = 0;
                 for (uint i = ultimoRender; i > 0; i--)
                 {
                     message = client.GetMessage(i);
+
                     if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
                     {
                         list.Add(message);
+                        serialNumbers.Add(index, client.GetMessageInfo(i).Number);
                         index++;
                     }
                     mailsRenderizados++;
@@ -314,6 +318,22 @@ namespace clienteMail
                 {
                     btnSiguiente.Enabled = true;
                 }
+            }
+
+            private void btnEliminar_Click(object sender, EventArgs e)
+            {
+
+                Int32 selectedRowCount = dataMails.Rows.GetRowCount(DataGridViewElementStates.Selected);
+                if (selectedRowCount > 0)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar el mail?", "Eliminar", MessageBoxButtons.YesNo);
+                    if(dialogResult == DialogResult.Yes)
+                    {
+                        int index = Convert.ToInt32(this.dataMails.SelectedRows[0].Cells["index"].Value);
+                        client.DeleteMessage(serialNumbers[index]);
+                    }
+                }
+                
             }
     }
 }

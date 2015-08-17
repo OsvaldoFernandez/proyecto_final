@@ -41,6 +41,7 @@
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lblPagina = new System.Windows.Forms.Label();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             this.De,
             this.Asunto,
             this.Fecha});
-            this.dataMails.Location = new System.Drawing.Point(14, 58);
+            this.dataMails.Location = new System.Drawing.Point(14, 117);
             this.dataMails.Name = "dataMails";
             this.dataMails.ReadOnly = true;
             this.dataMails.Size = new System.Drawing.Size(622, 288);
@@ -138,7 +139,7 @@
             // btnSiguiente
             // 
             this.btnSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSiguiente.Location = new System.Drawing.Point(509, 357);
+            this.btnSiguiente.Location = new System.Drawing.Point(509, 416);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(127, 40);
             this.btnSiguiente.TabIndex = 5;
@@ -149,7 +150,7 @@
             // btnAnterior
             // 
             this.btnAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnterior.Location = new System.Drawing.Point(14, 357);
+            this.btnAnterior.Location = new System.Drawing.Point(14, 416);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(127, 40);
             this.btnAnterior.TabIndex = 6;
@@ -172,17 +173,29 @@
             // 
             this.lblPagina.AutoSize = true;
             this.lblPagina.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPagina.Location = new System.Drawing.Point(287, 369);
+            this.lblPagina.Location = new System.Drawing.Point(287, 428);
             this.lblPagina.Name = "lblPagina";
             this.lblPagina.Size = new System.Drawing.Size(69, 18);
             this.lblPagina.TabIndex = 8;
             this.lblPagina.Text = "Página: 1";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(509, 64);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(127, 40);
+            this.btnEliminar.TabIndex = 9;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 409);
+            this.ClientSize = new System.Drawing.Size(648, 470);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblPagina);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnAnterior);
@@ -215,6 +228,7 @@
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label lblPagina;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }
 
