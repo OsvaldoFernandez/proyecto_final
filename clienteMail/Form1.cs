@@ -147,6 +147,7 @@ namespace clienteMail
 
                 List<Rfc822Message> list = new List<Rfc822Message>();
                 serialNumbers = new Dictionary<int, uint>();
+                
 
                 int index = 0;
                 Rfc822Message message;
@@ -162,7 +163,7 @@ namespace clienteMail
                         index++;
                     }
                     mailsRenderizados++;
-                    if (index == 3) //Cambiar por 10
+                    if (index == 10) //Cambiar por 10
                     {
                         break;
                     }

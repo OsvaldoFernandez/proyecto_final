@@ -56,7 +56,7 @@ namespace clienteMail.redactar_email
                 client.EnableSsl = true;
                 client.Send(mail);
                 //}
-                MessageBox.Show("Mensaje enviado");
+                MessageBox.Show("Mail enviado exitosamente");
                 this.Close();
             }
         }
@@ -67,6 +67,18 @@ namespace clienteMail.redactar_email
             //adjTxt.Text = openFileDialog1.FileName;
             
         }
+
+        private void toTxt_TextChanged(object sender, EventArgs e)
+        {
+            //contactos form = new contactos();
+            //form.Show();
+        }
+
+        private void redactar_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
 

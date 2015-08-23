@@ -37,20 +37,23 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // toTxt
             // 
             this.toTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toTxt.Location = new System.Drawing.Point(94, 59);
+            this.toTxt.Location = new System.Drawing.Point(156, 57);
             this.toTxt.Name = "toTxt";
             this.toTxt.Size = new System.Drawing.Size(462, 29);
             this.toTxt.TabIndex = 0;
+            this.toTxt.TextChanged += new System.EventHandler(this.toTxt_TextChanged);
             // 
             // asuntoTxt
             // 
             this.asuntoTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.asuntoTxt.Location = new System.Drawing.Point(94, 97);
+            this.asuntoTxt.Location = new System.Drawing.Point(156, 95);
+            this.asuntoTxt.Margin = new System.Windows.Forms.Padding(10);
             this.asuntoTxt.Name = "asuntoTxt";
             this.asuntoTxt.Size = new System.Drawing.Size(462, 29);
             this.asuntoTxt.TabIndex = 1;
@@ -58,18 +61,18 @@
             // cuerpoTxt
             // 
             this.cuerpoTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cuerpoTxt.Location = new System.Drawing.Point(94, 148);
+            this.cuerpoTxt.Location = new System.Drawing.Point(156, 146);
             this.cuerpoTxt.Multiline = true;
             this.cuerpoTxt.Name = "cuerpoTxt";
-            this.cuerpoTxt.Size = new System.Drawing.Size(462, 130);
+            this.cuerpoTxt.Size = new System.Drawing.Size(462, 239);
             this.cuerpoTxt.TabIndex = 4;
             // 
             // enviarBtn
             // 
             this.enviarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enviarBtn.Location = new System.Drawing.Point(177, 308);
+            this.enviarBtn.Location = new System.Drawing.Point(244, 401);
             this.enviarBtn.Name = "enviarBtn";
-            this.enviarBtn.Size = new System.Drawing.Size(257, 49);
+            this.enviarBtn.Size = new System.Drawing.Size(124, 49);
             this.enviarBtn.TabIndex = 5;
             this.enviarBtn.Text = "Enviar";
             this.enviarBtn.UseVisualStyleBackColor = true;
@@ -79,7 +82,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 62);
+            this.label1.Location = new System.Drawing.Point(87, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 24);
             this.label1.TabIndex = 6;
@@ -89,7 +92,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 97);
+            this.label2.Location = new System.Drawing.Point(66, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 24);
             this.label2.TabIndex = 7;
@@ -113,17 +116,28 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 148);
+            this.label4.Location = new System.Drawing.Point(53, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 24);
             this.label4.TabIndex = 9;
             this.label4.Text = "Mensaje";
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(383, 401);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(124, 49);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // redactar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 409);
+            this.ClientSize = new System.Drawing.Size(704, 482);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -134,6 +148,7 @@
             this.Controls.Add(this.toTxt);
             this.Name = "redactar";
             this.Text = "Redactar";
+            this.Load += new System.EventHandler(this.redactar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,5 +165,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

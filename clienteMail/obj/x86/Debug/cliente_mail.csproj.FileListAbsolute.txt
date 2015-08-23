@@ -23,3 +23,4 @@ C:\Users\Osvaldo\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.redactar_e
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.redactar_email.redactar.resources
 C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\Email.NET.dll
 C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\System.Data.SQLite.xml
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.contactos.resources
