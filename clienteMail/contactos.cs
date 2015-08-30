@@ -54,6 +54,11 @@ namespace clienteMail
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if(selectedRowCount != 1){
+                MessageBox.Show("Debe seleccionar UN contacto a modificar.");   
+                return;
+            }
             int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
             var form = new frmContacto(id);
             DialogResult vr = form.ShowDialog(this);

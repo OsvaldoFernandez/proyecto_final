@@ -16,7 +16,7 @@ namespace clienteMail
             G.conexion_principal = G.abrir_conexion("clienteMail.db3", false);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new crear_cuenta.crear_cuenta());
         }
     }
 }
