@@ -49,10 +49,10 @@ namespace clienteMail.redactar_email
                 }*/
 
 
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
                 //using (client)
                 //{
-                client.Credentials = new System.Net.NetworkCredential("proyectofinal512@gmail.com", "proyecto123");
+                client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
                 client.EnableSsl = true;
                 client.Send(mail);
                 //}

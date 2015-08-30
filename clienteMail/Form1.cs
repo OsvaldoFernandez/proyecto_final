@@ -102,7 +102,10 @@ namespace clienteMail
             private void Form1_Load(object sender, EventArgs e)
             {
                 // create client and connect 
-                client = new Pop3Client("pop.gmail.com", 995, "proyectofinalgrupo512@gmail.com", "proyecto123");
+                G.user = new User(1);
+
+
+                client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
                 
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
                 client.Authenticated += new Pop3ClientEventHandler(client_Authenticated);
@@ -335,6 +338,12 @@ namespace clienteMail
                     }
                 }
                 
+            }
+
+            private void btnContactos_Click(object sender, EventArgs e)
+            {
+                var form = new contactos();
+                form.Show();
             }
     }
 }
