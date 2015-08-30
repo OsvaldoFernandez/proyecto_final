@@ -5,6 +5,8 @@ public static class G
 {
     public static SQLiteConnection conexion_principal = null;
 
+    public static User user = null;
+
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {
         var conexion = new SQLiteConnection(String.Format("Data Source={0}; FailIfMissing=true; Read Only={1}", ubicacion,

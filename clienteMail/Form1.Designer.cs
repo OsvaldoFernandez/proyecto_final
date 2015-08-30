@@ -42,6 +42,7 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.lblPagina = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnContactos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -190,11 +191,23 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnContactos
+            // 
+            this.btnContactos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContactos.Location = new System.Drawing.Point(12, 58);
+            this.btnContactos.Name = "btnContactos";
+            this.btnContactos.Size = new System.Drawing.Size(127, 40);
+            this.btnContactos.TabIndex = 10;
+            this.btnContactos.Text = "Contactos";
+            this.btnContactos.UseVisualStyleBackColor = true;
+            this.btnContactos.Click += new System.EventHandler(this.btnContactos_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 470);
+            this.Controls.Add(this.btnContactos);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblPagina);
             this.Controls.Add(this.btnActualizar);
@@ -229,6 +242,7 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label lblPagina;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnContactos;
     }
 }
 
