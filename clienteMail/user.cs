@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 public class User
@@ -41,5 +43,122 @@ public class User
             dr.Dispose();
             cmd.Dispose();
         }
+    }
+
+    public Contacto getContacto(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT nombre, apellido, mail, cant_enviados, cant_recibidos FROM Contacto WHERE id = ?";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = id;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        Contacto contacto = new Contacto();
+
+        try
+        {
+            if (!dr.Read()) throw new Exception("...");
+            
+            contacto.__nombre = dr.GetString(0);
+            contacto.__apellido = dr.GetString(1);
+            contacto.__mail = dr.GetString(2);
+            contacto.__cant_enviados = dr.GetInt32(3);
+            contacto.__cant_recibidos = dr.GetInt32(4);
+            contacto.__id = id;
+        }
+        finally
+        {
+            dr.Close();
+            dr.Dispose();
+            cmd.Dispose();
+            
+        }
+
+        return contacto;
+    }
+
+    public Contacto[] contactos()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT nombre, apellido, mail, cant_enviados, cant_recibidos, id FROM Contacto WHERE usuario_id = ? order by cant_enviados desc, cant_recibidos desc, fecha_creacion desc";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = this.ID;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        List<Contacto> lista_contactos = new List<Contacto>();
+
+        while (dr.Read())
+        {
+            Contacto contacto = new Contacto();
+            contacto.__nombre = dr.GetString(0);
+            contacto.__apellido = dr.GetString(1);
+            contacto.__mail = dr.GetString(2);
+            contacto.__cant_enviados = dr.GetInt32(3);
+            contacto.__cant_recibidos = dr.GetInt32(4);
+            contacto.__id = dr.GetInt32(5);
+            lista_contactos.Add(contacto);
+        }
+
+        dr.Close();
+        dr.Dispose();
+        cmd.Dispose();
+
+        return lista_contactos.ToArray();
+    }
+
+    public void agregar_contacto(Contacto contacto)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "insert into Contacto(usuario_id, nombre, apellido, mail, cant_enviados, cant_recibidos, fecha_creacion) values(?, ? , ?, ?, 0,0, date('now'))";
+        
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = this.ID;
+        
+        SQLiteParameter paramNombre = new SQLiteParameter();
+        cmd.Parameters.Add(paramNombre);
+        paramNombre.Value = contacto.Nombre;
+
+        SQLiteParameter paramApellido = new SQLiteParameter();
+        cmd.Parameters.Add(paramApellido);
+        paramApellido.Value = contacto.Apellido;
+
+        SQLiteParameter paramMail = new SQLiteParameter();
+        cmd.Parameters.Add(paramMail);
+        paramMail.Value = contacto.Mail;
+
+        cmd.ExecuteNonQuery();
+        
+        cmd.Dispose();
+
+    }
+
+    public void modificar_contacto(Contacto contacto)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Contacto set nombre = ?, apellido = ?, mail = ? where id = ?";
+
+        SQLiteParameter paramNombre = new SQLiteParameter();
+        cmd.Parameters.Add(paramNombre);
+        paramNombre.Value = contacto.Nombre;
+
+        SQLiteParameter paramApellido = new SQLiteParameter();
+        cmd.Parameters.Add(paramApellido);
+        paramApellido.Value = contacto.Apellido;
+
+        SQLiteParameter paramMail = new SQLiteParameter();
+        cmd.Parameters.Add(paramMail);
+        paramMail.Value = contacto.Mail;
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = contacto.ID;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+
     }
 }

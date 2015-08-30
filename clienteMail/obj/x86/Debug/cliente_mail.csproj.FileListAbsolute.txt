@@ -37,3 +37,4 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.redactar_email.redactar.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csproj.GenerateResource.Cache
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmContacto.resources
