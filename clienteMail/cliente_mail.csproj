@@ -58,6 +58,11 @@
     <Compile Include="contactos.Designer.cs">
       <DependentUpon>contactos.cs</DependentUpon>
     </Compile>
+    <Compile Include="crear_cuenta\crear_cuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="crear_cuenta\crear_cuenta.Designer.cs">
+      <DependentUpon>crear_cuenta.cs</DependentUpon>
     <Compile Include="contacto_new_update.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +91,8 @@
       <DependentUpon>redactar.cs</DependentUpon>
     </Compile>
     <Compile Include="user.cs" />
+    <EmbeddedResource Include="crear_cuenta\crear_cuenta.resx">
+      <DependentUpon>crear_cuenta.cs</DependentUpon>
     <EmbeddedResource Include="contacto_new_update.resx">
       <DependentUpon>contacto_new_update.cs</DependentUpon>
     </EmbeddedResource>
