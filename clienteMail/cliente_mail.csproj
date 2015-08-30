@@ -33,6 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Email.NET, Version=1.0.0.33423, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -63,6 +67,7 @@
     </Compile>
     <Compile Include="crear_cuenta\crear_cuenta.Designer.cs">
       <DependentUpon>crear_cuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="contacto_new_update.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +98,7 @@
     <Compile Include="user.cs" />
     <EmbeddedResource Include="crear_cuenta\crear_cuenta.resx">
       <DependentUpon>crear_cuenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="contacto_new_update.resx">
       <DependentUpon>contacto_new_update.cs</DependentUpon>
     </EmbeddedResource>
