@@ -18,17 +18,49 @@ namespace clienteMail
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //se agregan contactos para la presentacion comercial.
-            this.dataContactos.Rows.Add(1, "Federico Dopino", "fededopi@gmail.com");
-            this.dataContactos.Rows.Add(2, "Osvaldo Fernandez", "osvaldo.fernandez@gmail.com");
-            this.dataContactos.Rows.Add(3, "Melanie Guterman", "melanie.guterman@gmail.com");
-            this.dataContactos.Rows.Add(4, "Julián Raspanti", "juli_raspanti@hotmail.com");
-            this.dataContactos.Rows.Add(5, "Ale Taboada", "alejandro@taboada.com");
+            this.actualizarContactos();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            var form = new frmContacto(0);
+            DialogResult vr = form.ShowDialog(this);
+            if (vr == System.Windows.Forms.DialogResult.OK)
+            {
+                this.actualizarContactos();
+            }
+        }
+
+        private void actualizarContactos()
+        {
+            this.dataContactos.Rows.Clear();
+            int i = 1;
+            foreach (Contacto con in G.user.contactos())
+            {
+                this.dataContactos.Rows.Add(i, con.Mail, con.Nombre + " " + con.Apellido, con.ID);
+                i++;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
+            var form = new frmContacto(id);
+            DialogResult vr = form.ShowDialog(this);
+            if (vr == System.Windows.Forms.DialogResult.OK)
+            {
+                this.actualizarContactos();
+            }
         }
     }
 }

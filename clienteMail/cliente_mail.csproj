@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="contacto.cs" />
     <Compile Include="contactos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,6 +63,11 @@
     </Compile>
     <Compile Include="crear_cuenta\crear_cuenta.Designer.cs">
       <DependentUpon>crear_cuenta.cs</DependentUpon>
+    <Compile Include="contacto_new_update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="contacto_new_update.Designer.cs">
+      <DependentUpon>contacto_new_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Globales.cs" />
     <Compile Include="Form1.cs">
@@ -87,6 +93,8 @@
     <Compile Include="user.cs" />
     <EmbeddedResource Include="crear_cuenta\crear_cuenta.resx">
       <DependentUpon>crear_cuenta.cs</DependentUpon>
+    <EmbeddedResource Include="contacto_new_update.resx">
+      <DependentUpon>contacto_new_update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
