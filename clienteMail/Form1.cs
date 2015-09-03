@@ -102,7 +102,6 @@ namespace clienteMail
             private void Form1_Load(object sender, EventArgs e)
             {
                 // create client and connect 
-                G.user = new User(1);
 
                 client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
                 

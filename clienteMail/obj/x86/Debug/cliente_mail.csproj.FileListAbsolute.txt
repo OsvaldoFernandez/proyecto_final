@@ -15,7 +15,6 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\bin\Debug\clienteMail.exe
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\bin\Debug\clienteMail.pdb
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\bin\Debug\Email.NET.xml
-C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\bin\Debug\System.Data.SQLite.xml
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojResolveAssemblyReference.cache
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.contactos.resources
@@ -38,3 +37,5 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.redactar_em
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csproj.GenerateResource.Cache
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.pdb
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmContacto.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
