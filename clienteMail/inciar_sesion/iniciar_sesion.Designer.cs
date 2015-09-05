@@ -42,6 +42,7 @@
             this.usertxt.Name = "usertxt";
             this.usertxt.Size = new System.Drawing.Size(229, 20);
             this.usertxt.TabIndex = 0;
+            this.usertxt.Text = "proyectofinalgrupo512@gmail.com";
             // 
             // passtxt
             // 
@@ -50,6 +51,7 @@
             this.passtxt.PasswordChar = '*';
             this.passtxt.Size = new System.Drawing.Size(229, 20);
             this.passtxt.TabIndex = 1;
+            this.passtxt.Text = "proyecto123";
             // 
             // button1
             // 

@@ -21,10 +21,6 @@ namespace clienteMail
             this.actualizarContactos();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
@@ -50,6 +46,21 @@ namespace clienteMail
                 this.dataContactos.Rows.Add(i, con.Mail, con.Nombre + " " + con.Apellido, con.ID);
                 i++;
             }
+            renderView();
+        }
+
+        private void renderView()
+        {
+            int i = 1;
+            foreach (Contacto con in G.user.contactos())
+            {
+                string labelName = "contacto" + i.ToString();
+                string containerName = "panel" + i.ToString();
+                Control container = this.Controls[containerName];
+                Control ctn = container.Controls[labelName];
+                ctn.Text = con.Mail;
+                i++;
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -67,5 +78,7 @@ namespace clienteMail
                 this.actualizarContactos();
             }
         }
+
+
     }
 }
