@@ -11,6 +11,8 @@ namespace clienteMail
 {
     public partial class contactos : Form
     {
+        int pagActual = 1;
+
         public contactos()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace clienteMail
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.actualizarContactos();
+            this.handlePaginacion();
         }
 
 
@@ -41,7 +43,7 @@ namespace clienteMail
         {
             this.dataContactos.Rows.Clear();
             int i = 1;
-            foreach (Contacto con in G.user.contactos())
+            foreach (Contacto con in G.user.contactosPag(pagActual))
             {
                 this.dataContactos.Rows.Add(i, con.Mail, con.Nombre + " " + con.Apellido, con.ID);
                 i++;
@@ -52,7 +54,7 @@ namespace clienteMail
         private void renderView()
         {
             int i = 1;
-            foreach (Contacto con in G.user.contactos())
+            foreach (Contacto con in G.user.contactosPag(pagActual))
             {
                 string labelName = "contacto" + i.ToString();
                 string containerName = "panel" + i.ToString();
@@ -79,9 +81,45 @@ namespace clienteMail
             }
         }
 
-        private void panel7_Paint(object sender, PaintEventArgs e)
+        private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
+            int cantPaginas = (int) G.user.contactos().Length/8;
 
+            if(G.user.contactos().Length % 8 > 0){
+                cantPaginas++;
+            }
+
+            lblPagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
+            if (pagActual == 1)
+            {
+                btnAnterior.Enabled = false;
+            }
+            else
+            {
+                btnAnterior.Enabled = true;
+            }
+            
+            if (pagActual == cantPaginas)
+            {
+                btnSiguiente.Enabled = false;
+            }
+            else
+            {
+                btnSiguiente.Enabled = true;
+            }
+            this.actualizarContactos();
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            pagActual--;
+            this.handlePaginacion();
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            pagActual++;
+            this.handlePaginacion();
         }
 
 

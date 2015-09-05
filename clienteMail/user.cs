@@ -108,6 +108,33 @@ public class User
         return lista_contactos.ToArray();
     }
 
+    public Contacto[] contactosPag(int nro)
+    {
+        List<Contacto> lista_contactos_pag = new List<Contacto>();
+        Contacto[] arrayContactos = this.contactos();
+
+        int contacto_desde = (nro - 1) * 8;
+        int contacto_hasta;
+        if (nro * 8 < arrayContactos.Length)
+        {
+            contacto_hasta = nro * 8 -1;
+        }
+        else
+        {
+            contacto_hasta = arrayContactos.Length-1;
+        }
+
+        for (int i = contacto_desde; i <= contacto_hasta; i++)
+        {
+
+            lista_contactos_pag.Add(arrayContactos[i]);
+        }
+
+
+        return lista_contactos_pag.ToArray();
+
+    }
+
     public void agregar_contacto(Contacto contacto)
     {
         SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
