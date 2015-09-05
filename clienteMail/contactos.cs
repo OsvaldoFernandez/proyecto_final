@@ -79,6 +79,11 @@ namespace clienteMail
             }
         }
 
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
     }
 }

@@ -39,3 +39,5 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmContacto.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojResolveAssemblyReference.cache
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
