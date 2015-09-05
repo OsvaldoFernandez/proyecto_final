@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnPara = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // toTxt
@@ -84,9 +85,8 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(87, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 24);
+            this.label1.Size = new System.Drawing.Size(0, 24);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Para";
             // 
             // label2
             // 
@@ -132,11 +132,22 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // btnPara
+            // 
+            this.btnPara.Location = new System.Drawing.Point(70, 57);
+            this.btnPara.Name = "btnPara";
+            this.btnPara.Size = new System.Drawing.Size(75, 23);
+            this.btnPara.TabIndex = 11;
+            this.btnPara.Text = "Para";
+            this.btnPara.UseVisualStyleBackColor = true;
+            this.btnPara.Click += new System.EventHandler(this.btnPara_Click);
+            // 
             // redactar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 482);
+            this.Controls.Add(this.btnPara);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -166,5 +177,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnPara;
     }
 }

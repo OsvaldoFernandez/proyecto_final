@@ -79,6 +79,16 @@ namespace clienteMail.redactar_email
 
         }
 
+        private void btnPara_Click(object sender, EventArgs e)
+        {
+            var form = new contactos("redactar");
+            DialogResult res = form.ShowDialog(this);
+            if (res != System.Windows.Forms.DialogResult.Cancel)
+            {
+                toTxt.Text = form.mailSelected;
+            }
+        }
+
     }
 }
 

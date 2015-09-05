@@ -340,7 +340,7 @@ namespace clienteMail
 
             private void btnContactos_Click(object sender, EventArgs e)
             {
-                var form = new contactos();
+                var form = new contactos("home");
                 form.Show();
             }
     }

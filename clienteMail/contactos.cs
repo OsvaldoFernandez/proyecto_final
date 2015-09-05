@@ -12,10 +12,21 @@ namespace clienteMail
     public partial class contactos : Form
     {
         int pagActual = 1;
+        string formAnterior;
+        public string mailSelected { get; set; } 
 
-        public contactos()
+        public contactos(string llamadoDesde)
         {
             InitializeComponent();
+            formAnterior = llamadoDesde;
+            if (llamadoDesde == "home")
+            {
+                btnAceptar.Visible = false;
+            }
+            else
+            {
+                btnAceptar.Visible = true;
+            }
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -24,9 +35,14 @@ namespace clienteMail
         }
 
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
+            //ACA PREGUNTO SI HAY ALGUN CONTACTO SELECCIONADO. SINO MUESTRO ERROR
+            //HARDCODEO MAIL QUE DEVUELVE
 
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.mailSelected = "meliguter@gmail.com";
+            this.Close();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -120,6 +136,15 @@ namespace clienteMail
         {
             pagActual++;
             this.handlePaginacion();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            if (formAnterior != "home")
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            }
+            this.Close();
         }
 
 
