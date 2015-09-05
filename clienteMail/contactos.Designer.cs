@@ -47,35 +47,43 @@
             this.lblPagina = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
+            this.contactoNombre1 = new System.Windows.Forms.Label();
+            this.index1 = new System.Windows.Forms.Label();
             this.contacto1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
+            this.contactoNombre2 = new System.Windows.Forms.Label();
+            this.index2 = new System.Windows.Forms.Label();
             this.contacto2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
+            this.contactoNombre3 = new System.Windows.Forms.Label();
+            this.index3 = new System.Windows.Forms.Label();
             this.contacto3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
+            this.contactoNombre4 = new System.Windows.Forms.Label();
+            this.index4 = new System.Windows.Forms.Label();
             this.contacto4 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
+            this.contactoNombre5 = new System.Windows.Forms.Label();
+            this.index5 = new System.Windows.Forms.Label();
             this.contacto5 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
+            this.contactoNombre6 = new System.Windows.Forms.Label();
+            this.index6 = new System.Windows.Forms.Label();
             this.contacto6 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
+            this.contactoNombre7 = new System.Windows.Forms.Label();
+            this.index7 = new System.Windows.Forms.Label();
             this.contacto7 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
+            this.contactoNombre8 = new System.Windows.Forms.Label();
+            this.index8 = new System.Windows.Forms.Label();
             this.contacto8 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -86,7 +94,6 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataContactos)).BeginInit();
             this.panel0.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -133,7 +140,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataContactos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataContactos.Location = new System.Drawing.Point(407, 12);
+            this.dataContactos.Location = new System.Drawing.Point(615, 60);
             this.dataContactos.Name = "dataContactos";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -145,7 +152,7 @@
             this.dataContactos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataContactos.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataContactos.Size = new System.Drawing.Size(365, 133);
+            this.dataContactos.Size = new System.Drawing.Size(249, 133);
             this.dataContactos.TabIndex = 0;
             // 
             // nro
@@ -155,6 +162,7 @@
             this.nro.HeaderText = "Nro";
             this.nro.Name = "nro";
             this.nro.ReadOnly = true;
+            this.nro.Width = 30;
             // 
             // Email
             // 
@@ -183,7 +191,7 @@
             this.btnVolver.ForeColor = System.Drawing.Color.White;
             this.btnVolver.Location = new System.Drawing.Point(17, 60);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(78, 25);
+            this.btnVolver.Size = new System.Drawing.Size(193, 25);
             this.btnVolver.TabIndex = 7;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = false;
@@ -196,9 +204,9 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnAgregar.Location = new System.Drawing.Point(27, 31);
+            this.btnAgregar.Location = new System.Drawing.Point(17, 35);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(280, 25);
+            this.btnAgregar.Size = new System.Drawing.Size(193, 25);
             this.btnAgregar.TabIndex = 8;
             this.btnAgregar.Text = "Agregar Nuevo";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -211,9 +219,9 @@
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnModificar.Location = new System.Drawing.Point(27, 62);
+            this.btnModificar.Location = new System.Drawing.Point(17, 73);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(140, 25);
+            this.btnModificar.Size = new System.Drawing.Size(193, 25);
             this.btnModificar.TabIndex = 9;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
@@ -226,9 +234,9 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.Location = new System.Drawing.Point(173, 62);
+            this.btnEliminar.Location = new System.Drawing.Point(17, 110);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(134, 25);
+            this.btnEliminar.Size = new System.Drawing.Size(193, 25);
             this.btnEliminar.TabIndex = 10;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -240,7 +248,7 @@
             this.panel0.Controls.Add(this.label1);
             this.panel0.Location = new System.Drawing.Point(0, 0);
             this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(385, 60);
+            this.panel0.Size = new System.Drawing.Size(609, 60);
             this.panel0.TabIndex = 11;
             // 
             // lblPagina
@@ -268,25 +276,40 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel1.Controls.Add(this.label13);
+            this.panel1.Controls.Add(this.contactoNombre1);
+            this.panel1.Controls.Add(this.index1);
             this.panel1.Controls.Add(this.contacto1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(385, 60);
             this.panel1.TabIndex = 12;
+            this.panel1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
-            // label13
+            // contactoNombre1
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label13.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(22, 13);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(30, 32);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "1";
+            this.contactoNombre1.AutoSize = true;
+            this.contactoNombre1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contactoNombre1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre1.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre1.Name = "contactoNombre1";
+            this.contactoNombre1.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre1.TabIndex = 3;
+            this.contactoNombre1.Text = "-emptylabel-";
+            this.contactoNombre1.Click += new System.EventHandler(this.seleccionarContacto1);
+            // 
+            // index1
+            // 
+            this.index1.AutoSize = true;
+            this.index1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index1.ForeColor = System.Drawing.Color.White;
+            this.index1.Location = new System.Drawing.Point(22, 13);
+            this.index1.Name = "index1";
+            this.index1.Size = new System.Drawing.Size(30, 32);
+            this.index1.TabIndex = 2;
+            this.index1.Text = "1";
+            this.index1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // contacto1
             // 
@@ -298,6 +321,7 @@
             this.contacto1.Size = new System.Drawing.Size(124, 25);
             this.contacto1.TabIndex = 1;
             this.contacto1.Text = "-emptylabel-";
+            this.contacto1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // pictureBox1
             // 
@@ -308,29 +332,45 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.contactoNombre2);
+            this.panel2.Controls.Add(this.index2);
             this.panel2.Controls.Add(this.contacto2);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Location = new System.Drawing.Point(0, 120);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(385, 60);
             this.panel2.TabIndex = 13;
+            this.panel2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
-            // label14
+            // contactoNombre2
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label14.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(22, 13);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(30, 32);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "2";
+            this.contactoNombre2.AutoSize = true;
+            this.contactoNombre2.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre2.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre2.Name = "contactoNombre2";
+            this.contactoNombre2.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre2.TabIndex = 4;
+            this.contactoNombre2.Text = "-emptylabel-";
+            this.contactoNombre2.Click += new System.EventHandler(this.seleccionarContacto2);
+            // 
+            // index2
+            // 
+            this.index2.AutoSize = true;
+            this.index2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index2.ForeColor = System.Drawing.Color.White;
+            this.index2.Location = new System.Drawing.Point(22, 13);
+            this.index2.Name = "index2";
+            this.index2.Size = new System.Drawing.Size(30, 32);
+            this.index2.TabIndex = 3;
+            this.index2.Text = "2";
+            this.index2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // contacto2
             // 
@@ -342,6 +382,7 @@
             this.contacto2.Size = new System.Drawing.Size(124, 25);
             this.contacto2.TabIndex = 2;
             this.contacto2.Text = "-emptylabel-";
+            this.contacto2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // pictureBox2
             // 
@@ -352,29 +393,45 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.contactoNombre3);
+            this.panel3.Controls.Add(this.index3);
             this.panel3.Controls.Add(this.contacto3);
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Location = new System.Drawing.Point(0, 180);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(385, 60);
             this.panel3.TabIndex = 13;
+            this.panel3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
-            // label15
+            // contactoNombre3
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label15.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(22, 13);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(30, 32);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "3";
+            this.contactoNombre3.AutoSize = true;
+            this.contactoNombre3.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre3.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre3.Name = "contactoNombre3";
+            this.contactoNombre3.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre3.TabIndex = 5;
+            this.contactoNombre3.Text = "-emptylabel-";
+            this.contactoNombre3.Click += new System.EventHandler(this.seleccionarContacto3);
+            // 
+            // index3
+            // 
+            this.index3.AutoSize = true;
+            this.index3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index3.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index3.ForeColor = System.Drawing.Color.White;
+            this.index3.Location = new System.Drawing.Point(22, 13);
+            this.index3.Name = "index3";
+            this.index3.Size = new System.Drawing.Size(30, 32);
+            this.index3.TabIndex = 4;
+            this.index3.Text = "3";
+            this.index3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // contacto3
             // 
@@ -386,6 +443,7 @@
             this.contacto3.Size = new System.Drawing.Size(124, 25);
             this.contacto3.TabIndex = 3;
             this.contacto3.Text = "-emptylabel-";
+            this.contacto3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // pictureBox3
             // 
@@ -396,29 +454,45 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.label16);
+            this.panel4.Controls.Add(this.contactoNombre4);
+            this.panel4.Controls.Add(this.index4);
             this.panel4.Controls.Add(this.contacto4);
             this.panel4.Controls.Add(this.pictureBox4);
             this.panel4.Location = new System.Drawing.Point(0, 240);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(385, 60);
             this.panel4.TabIndex = 14;
+            this.panel4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
-            // label16
+            // contactoNombre4
             // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label16.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(22, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 32);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "4";
+            this.contactoNombre4.AutoSize = true;
+            this.contactoNombre4.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre4.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre4.Name = "contactoNombre4";
+            this.contactoNombre4.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre4.TabIndex = 4;
+            this.contactoNombre4.Text = "-emptylabel-";
+            this.contactoNombre4.Click += new System.EventHandler(this.seleccionarContacto4);
+            // 
+            // index4
+            // 
+            this.index4.AutoSize = true;
+            this.index4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index4.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index4.ForeColor = System.Drawing.Color.White;
+            this.index4.Location = new System.Drawing.Point(22, 13);
+            this.index4.Name = "index4";
+            this.index4.Size = new System.Drawing.Size(30, 32);
+            this.index4.TabIndex = 4;
+            this.index4.Text = "4";
+            this.index4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // contacto4
             // 
@@ -430,6 +504,7 @@
             this.contacto4.Size = new System.Drawing.Size(124, 25);
             this.contacto4.TabIndex = 2;
             this.contacto4.Text = "-emptylabel-";
+            this.contacto4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // pictureBox4
             // 
@@ -440,29 +515,45 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel5.Controls.Add(this.label17);
+            this.panel5.Controls.Add(this.contactoNombre5);
+            this.panel5.Controls.Add(this.index5);
             this.panel5.Controls.Add(this.contacto5);
             this.panel5.Controls.Add(this.pictureBox5);
             this.panel5.Location = new System.Drawing.Point(0, 300);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(385, 60);
             this.panel5.TabIndex = 14;
+            this.panel5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
-            // label17
+            // contactoNombre5
             // 
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label17.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(21, 13);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(30, 32);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "5";
+            this.contactoNombre5.AutoSize = true;
+            this.contactoNombre5.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre5.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre5.Name = "contactoNombre5";
+            this.contactoNombre5.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre5.TabIndex = 5;
+            this.contactoNombre5.Text = "-emptylabel-";
+            this.contactoNombre5.Click += new System.EventHandler(this.seleccionarContacto5);
+            // 
+            // index5
+            // 
+            this.index5.AutoSize = true;
+            this.index5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index5.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index5.ForeColor = System.Drawing.Color.White;
+            this.index5.Location = new System.Drawing.Point(21, 13);
+            this.index5.Name = "index5";
+            this.index5.Size = new System.Drawing.Size(30, 32);
+            this.index5.TabIndex = 4;
+            this.index5.Text = "5";
+            this.index5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // contacto5
             // 
@@ -474,6 +565,7 @@
             this.contacto5.Size = new System.Drawing.Size(124, 25);
             this.contacto5.TabIndex = 3;
             this.contacto5.Text = "-emptylabel-";
+            this.contacto5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // pictureBox5
             // 
@@ -484,29 +576,45 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.label18);
+            this.panel6.Controls.Add(this.contactoNombre6);
+            this.panel6.Controls.Add(this.index6);
             this.panel6.Controls.Add(this.contacto6);
             this.panel6.Controls.Add(this.pictureBox6);
             this.panel6.Location = new System.Drawing.Point(0, 360);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(385, 60);
             this.panel6.TabIndex = 15;
+            this.panel6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
-            // label18
+            // contactoNombre6
             // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label18.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(21, 13);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 32);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "6";
+            this.contactoNombre6.AutoSize = true;
+            this.contactoNombre6.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre6.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre6.Name = "contactoNombre6";
+            this.contactoNombre6.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre6.TabIndex = 6;
+            this.contactoNombre6.Text = "-emptylabel-";
+            this.contactoNombre6.Click += new System.EventHandler(this.seleccionarContacto6);
+            // 
+            // index6
+            // 
+            this.index6.AutoSize = true;
+            this.index6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index6.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index6.ForeColor = System.Drawing.Color.White;
+            this.index6.Location = new System.Drawing.Point(21, 13);
+            this.index6.Name = "index6";
+            this.index6.Size = new System.Drawing.Size(30, 32);
+            this.index6.TabIndex = 5;
+            this.index6.Text = "6";
+            this.index6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // contacto6
             // 
@@ -518,6 +626,7 @@
             this.contacto6.Size = new System.Drawing.Size(124, 25);
             this.contacto6.TabIndex = 4;
             this.contacto6.Text = "-emptylabel-";
+            this.contacto6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // pictureBox6
             // 
@@ -528,29 +637,45 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 1;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.panel7.Controls.Add(this.label19);
+            this.panel7.Controls.Add(this.contactoNombre7);
+            this.panel7.Controls.Add(this.index7);
             this.panel7.Controls.Add(this.contacto7);
             this.panel7.Controls.Add(this.pictureBox7);
             this.panel7.Location = new System.Drawing.Point(0, 420);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(385, 60);
             this.panel7.TabIndex = 15;
+            this.panel7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
-            // label19
+            // contactoNombre7
             // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label19.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(23, 14);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(30, 32);
-            this.label19.TabIndex = 4;
-            this.label19.Text = "7";
+            this.contactoNombre7.AutoSize = true;
+            this.contactoNombre7.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre7.Location = new System.Drawing.Point(62, 25);
+            this.contactoNombre7.Name = "contactoNombre7";
+            this.contactoNombre7.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre7.TabIndex = 7;
+            this.contactoNombre7.Text = "-emptylabel-";
+            this.contactoNombre7.Click += new System.EventHandler(this.seleccionarContacto7);
+            // 
+            // index7
+            // 
+            this.index7.AutoSize = true;
+            this.index7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index7.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index7.ForeColor = System.Drawing.Color.White;
+            this.index7.Location = new System.Drawing.Point(23, 14);
+            this.index7.Name = "index7";
+            this.index7.Size = new System.Drawing.Size(30, 32);
+            this.index7.TabIndex = 4;
+            this.index7.Text = "7";
+            this.index7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // contacto7
             // 
@@ -562,6 +687,7 @@
             this.contacto7.Size = new System.Drawing.Size(124, 25);
             this.contacto7.TabIndex = 2;
             this.contacto7.Text = "-emptylabel-";
+            this.contacto7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // pictureBox7
             // 
@@ -572,29 +698,45 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 1;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Controls.Add(this.label20);
+            this.panel8.Controls.Add(this.contactoNombre8);
+            this.panel8.Controls.Add(this.index8);
             this.panel8.Controls.Add(this.contacto8);
             this.panel8.Controls.Add(this.pictureBox8);
             this.panel8.Location = new System.Drawing.Point(0, 480);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(385, 60);
             this.panel8.TabIndex = 16;
+            this.panel8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
-            // label20
+            // contactoNombre8
             // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.label20.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(22, 13);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(30, 32);
-            this.label20.TabIndex = 4;
-            this.label20.Text = "8";
+            this.contactoNombre8.AutoSize = true;
+            this.contactoNombre8.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.contactoNombre8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(170)))), ((int)(((byte)(174)))));
+            this.contactoNombre8.Location = new System.Drawing.Point(62, 26);
+            this.contactoNombre8.Name = "contactoNombre8";
+            this.contactoNombre8.Size = new System.Drawing.Size(121, 25);
+            this.contactoNombre8.TabIndex = 8;
+            this.contactoNombre8.Text = "-emptylabel-";
+            this.contactoNombre8.Click += new System.EventHandler(this.seleccionarContacto8);
+            // 
+            // index8
+            // 
+            this.index8.AutoSize = true;
+            this.index8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.index8.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.index8.ForeColor = System.Drawing.Color.White;
+            this.index8.Location = new System.Drawing.Point(22, 13);
+            this.index8.Name = "index8";
+            this.index8.Size = new System.Drawing.Size(30, 32);
+            this.index8.TabIndex = 4;
+            this.index8.Text = "8";
+            this.index8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // contacto8
             // 
@@ -606,6 +748,7 @@
             this.contacto8.Size = new System.Drawing.Size(124, 25);
             this.contacto8.TabIndex = 3;
             this.contacto8.Text = "-emptylabel-";
+            this.contacto8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // pictureBox8
             // 
@@ -616,6 +759,7 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // panel10
             // 
@@ -626,9 +770,9 @@
             this.panel10.Controls.Add(this.btnVolver);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.btnAceptar);
-            this.panel10.Location = new System.Drawing.Point(407, 175);
+            this.panel10.Location = new System.Drawing.Point(385, 60);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(324, 90);
+            this.panel10.Size = new System.Drawing.Size(224, 240);
             this.panel10.TabIndex = 16;
             // 
             // button3
@@ -638,7 +782,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(114, 60);
+            this.button3.Location = new System.Drawing.Point(17, 131);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -654,11 +798,11 @@
             this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiguiente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiguiente.ForeColor = System.Drawing.Color.White;
-            this.btnSiguiente.Location = new System.Drawing.Point(212, 29);
+            this.btnSiguiente.Location = new System.Drawing.Point(122, 96);
             this.btnSiguiente.Margin = new System.Windows.Forms.Padding(0);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnSiguiente.Size = new System.Drawing.Size(95, 25);
+            this.btnSiguiente.Size = new System.Drawing.Size(88, 25);
             this.btnSiguiente.TabIndex = 9;
             this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = false;
@@ -671,11 +815,11 @@
             this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnterior.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnterior.ForeColor = System.Drawing.Color.White;
-            this.btnAnterior.Location = new System.Drawing.Point(114, 29);
+            this.btnAnterior.Location = new System.Drawing.Point(17, 96);
             this.btnAnterior.Margin = new System.Windows.Forms.Padding(0);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAnterior.Size = new System.Drawing.Size(78, 25);
+            this.btnAnterior.Size = new System.Drawing.Size(95, 25);
             this.btnAnterior.TabIndex = 8;
             this.btnAnterior.Text = "Anterior";
             this.btnAnterior.UseVisualStyleBackColor = false;
@@ -686,7 +830,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 3);
+            this.label3.Location = new System.Drawing.Point(17, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(164, 25);
             this.label3.TabIndex = 0;
@@ -699,11 +843,11 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.ForeColor = System.Drawing.Color.White;
-            this.btnAceptar.Location = new System.Drawing.Point(17, 29);
+            this.btnAceptar.Location = new System.Drawing.Point(17, 165);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(0);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAceptar.Size = new System.Drawing.Size(78, 25);
+            this.btnAceptar.Size = new System.Drawing.Size(193, 25);
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = false;
@@ -716,9 +860,9 @@
             this.panel11.Controls.Add(this.btnAgregar);
             this.panel11.Controls.Add(this.btnModificar);
             this.panel11.Controls.Add(this.btnEliminar);
-            this.panel11.Location = new System.Drawing.Point(407, 271);
+            this.panel11.Location = new System.Drawing.Point(385, 300);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(324, 92);
+            this.panel11.Size = new System.Drawing.Size(224, 240);
             this.panel11.TabIndex = 17;
             // 
             // label4
@@ -732,21 +876,11 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Otras acciones";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(549, 420);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "label5";
-            // 
             // contactos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 543);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(846, 540);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel8);
@@ -796,7 +930,6 @@
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -807,10 +940,6 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hidden_id;
         private System.Windows.Forms.Panel panel0;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -837,23 +966,34 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label index1;
         private System.Windows.Forms.Label contacto1;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label index2;
         private System.Windows.Forms.Label contacto2;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label index3;
         private System.Windows.Forms.Label contacto3;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label index4;
         private System.Windows.Forms.Label contacto4;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label index5;
         private System.Windows.Forms.Label contacto5;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label index6;
         private System.Windows.Forms.Label contacto6;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label index7;
         private System.Windows.Forms.Label contacto7;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label index8;
         private System.Windows.Forms.Label contacto8;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblPagina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hidden_id;
+        private System.Windows.Forms.Label contactoNombre1;
+        private System.Windows.Forms.Label contactoNombre2;
+        private System.Windows.Forms.Label contactoNombre3;
+        private System.Windows.Forms.Label contactoNombre4;
+        private System.Windows.Forms.Label contactoNombre5;
+        private System.Windows.Forms.Label contactoNombre6;
+        private System.Windows.Forms.Label contactoNombre7;
+        private System.Windows.Forms.Label contactoNombre8;
     }
 }

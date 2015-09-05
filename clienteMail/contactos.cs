@@ -67,19 +67,7 @@ namespace clienteMail
             renderView();
         }
 
-        private void renderView()
-        {
-            int i = 1;
-            foreach (Contacto con in G.user.contactosPag(pagActual))
-            {
-                string labelName = "contacto" + i.ToString();
-                string containerName = "panel" + i.ToString();
-                Control container = this.Controls[containerName];
-                Control ctn = container.Controls[labelName];
-                ctn.Text = con.Mail;
-                i++;
-            }
-        }
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -145,6 +133,149 @@ namespace clienteMail
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
             this.Close();
+        }
+
+        // METODOS PARA LA VISTA. OSVALDO
+
+        private void renderView()
+        {
+            //clear labels 
+            int i = 1;
+            for (i = 1; i <= 8; i++)
+            {
+                string labelName = "contacto" + i.ToString();
+                string label2Name = "contactoNombre" + i.ToString();
+                string containerName = "panel" + i.ToString();
+                string indexName = "pictureBox" + i.ToString();
+                string labelIndexName = "index" + i.ToString();
+                Control container = this.Controls[containerName];
+                Control ctn = container.Controls[labelName];
+                Control ctn2 = container.Controls[label2Name];
+                Control ctn3 = container.Controls[indexName];
+                Control ctn4 = container.Controls[labelIndexName];
+                ctn.Text = "";
+                ctn2.Text = "";
+                ctn3.Hide();
+                ctn4.Hide();
+            }
+            resetPanels();
+            //rewrite labels
+            i = 1;
+            foreach (Contacto con in G.user.contactosPag(pagActual))
+            {
+                string labelName = "contacto" + i.ToString();
+                string label2Name = "contactoNombre" + i.ToString();
+                string containerName = "panel" + i.ToString();
+                string indexName = "pictureBox" + i.ToString();
+                string labelIndexName = "index" + i.ToString();
+                Control container = this.Controls[containerName];
+                Control ctn = container.Controls[labelName];
+                Control ctn2 = container.Controls[label2Name];
+                Control ctn3 = container.Controls[indexName];
+                Control ctn4 = container.Controls[labelIndexName];
+                ctn.Text = con.Mail;
+                ctn2.Text = con.Nombre + " " + con.Apellido;
+                ctn3.Show();
+                ctn4.Show();
+                i++;
+            }
+        }
+
+        private void resetPanels()
+        {
+            panel1.BackColor = Color.FromArgb(241, 255, 255);
+            panel2.BackColor = Color.White;
+            panel3.BackColor = Color.FromArgb(241, 255, 255);
+            panel4.BackColor = Color.White;
+            panel5.BackColor = Color.FromArgb(241, 255, 255);
+            panel6.BackColor = Color.White;
+            panel7.BackColor = Color.FromArgb(241, 255, 255);
+            panel8.BackColor = Color.White;
+            int i = 0;
+            for (i = 0; i <= (dataContactos.RowCount - 2); i++)
+            {
+                dataContactos.Rows[i].Selected = false;
+            }
+        }
+
+        private void seleccionarContacto1(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index1.Visible)
+            {
+                panel1.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[0].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto2(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index2.Visible)
+            {
+                panel2.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[1].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto3(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index3.Visible)
+            {
+                panel3.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[2].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto4(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index4.Visible)
+            {
+                panel4.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[3].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto5(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index5.Visible)
+            {
+                panel5.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[4].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto6(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index6.Visible)
+            {
+                panel6.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[5].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto7(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index7.Visible)
+            {
+                panel7.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[6].Selected = true;
+            }
+        }
+
+        private void seleccionarContacto8(object sender, EventArgs e)
+        {
+            resetPanels();
+            if (index8.Visible)
+            {
+                panel8.BackColor = Color.FromArgb(208, 238, 248);
+                dataContactos.Rows[7].Selected = true;
+            }
         }
 
 
