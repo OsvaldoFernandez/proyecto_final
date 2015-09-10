@@ -343,5 +343,11 @@ namespace clienteMail
                 var form = new contactos("home");
                 form.Show();
             }
+
+            private void btnAsuntos_Click(object sender, EventArgs e)
+            {
+                var form = new asuntos("home");
+                form.Show();
+            }
     }
 }

@@ -19,7 +19,6 @@ namespace clienteMail.redactar_email
         private string Body;
 
         private MailMessage mail;
-        private Attachment Data;
 
         public redactar()
         {
@@ -86,6 +85,16 @@ namespace clienteMail.redactar_email
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
                 toTxt.Text = form.mailSelected;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var form = new asuntos("redactar");
+            DialogResult res = form.ShowDialog(this);
+            if (res != System.Windows.Forms.DialogResult.Cancel)
+            {
+                asuntoTxt.Text = form.textoSelected;
             }
         }
 

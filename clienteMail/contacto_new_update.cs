@@ -22,6 +22,8 @@ namespace clienteMail
                 txtNombre.Text = contacto.Nombre;
                 txtApellido.Text = contacto.Apellido;
                 txtMail.Text = contacto.Mail;
+
+                this.Text = "Modificar contacto";
             }
             ID = id;
         }
@@ -47,5 +49,16 @@ namespace clienteMail
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

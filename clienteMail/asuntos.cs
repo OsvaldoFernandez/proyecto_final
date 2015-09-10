@@ -9,20 +9,22 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class contactos : Form
+    public partial class asuntos : Form
     {
         int pagActual = 1;
         string formAnterior;
-        public string mailSelected { get; set; }
+        public string textoSelected { get; set; }
         Color varcolor = Color.FromArgb(255, 255, 224);
 
-        public contactos(string llamadoDesde)
+        public asuntos(string llamadoDesde)
         {
             InitializeComponent();
+
             formAnterior = llamadoDesde;
             if (llamadoDesde == "home")
             {
                 btnAceptar.Visible = false;
+            
             }
             else
             {
@@ -30,16 +32,16 @@ namespace clienteMail
             }
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void asuntos_Load(object sender, EventArgs e)
         {
-            this.handlePaginacion();
+           this.handlePaginacion();
         }
 
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
                 //no seleccionó a nadie.
@@ -47,28 +49,29 @@ namespace clienteMail
                 return;
             }
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.mailSelected = this.dataContactos.SelectedRows[0].Cells[1].Value.ToString();
-            
+            this.textoSelected = this.dataAsuntos.SelectedRows[0].Cells[1].Value.ToString();
+
             this.Close();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var form = new frmContacto(0);
+            MessageBox.Show("AA");
+            var form = new asunto_new_update(0);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
-                this.actualizarContactos();
+                this.actualizarAsuntos();
             }
         }
 
-        private void actualizarContactos()
+        private void actualizarAsuntos()
         {
-            this.dataContactos.Rows.Clear();
+            this.dataAsuntos.Rows.Clear();
             int i = 1;
-            foreach (Contacto con in G.user.contactosPag(pagActual))
+            foreach (Asunto asunto in G.user.asuntosPag(pagActual))
             {
-                this.dataContactos.Rows.Add(i, con.Mail, con.Nombre + " " + con.Apellido, con.ID);
+                this.dataAsuntos.Rows.Add(i, asunto.Texto, asunto.ID);
                 i++;
             }
             renderView();
@@ -78,42 +81,45 @@ namespace clienteMail
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if(selectedRowCount != 1){
-                MessageBox.Show("Debe seleccionar un contacto a modificar.");   
+            MessageBox.Show("BB");
+            Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount != 1)
+            {
+                MessageBox.Show("Debe seleccionar un asunto a modificar.");
                 return;
             }
-            int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
-            var form = new frmContacto(id);
+            int id = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
+            var form = new asunto_new_update(id);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
-                this.actualizarContactos();
+                this.actualizarAsuntos();
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un contacto para eliminar.");
+                MessageBox.Show("Debe seleccionar un asunto para eliminar.");
                 return;
             }
-            int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
-            DialogResult rta = MessageBox.Show("Está seguro que desea eliminar el contacto?","",MessageBoxButtons.YesNo);
+            int id = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
+            DialogResult rta = MessageBox.Show("Está seguro que desea eliminar el asunto?", "", MessageBoxButtons.YesNo);
             if (rta == DialogResult.Yes)
             {
-                G.user.eliminar_contacto(id);
-                this.actualizarContactos();
+                G.user.eliminar_asunto(id);
+                this.actualizarAsuntos();
             }
         }
 
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
-            int cantPaginas = (int) G.user.contactos().Length/8;
+            int cantPaginas = (int)G.user.asuntos().Length / 8;
 
-            if(G.user.contactos().Length % 8 > 0){
+            if (G.user.asuntos().Length % 8 > 0)
+            {
                 cantPaginas++;
             }
 
@@ -126,7 +132,7 @@ namespace clienteMail
             {
                 btnAnterior.Enabled = true;
             }
-            
+
             if (pagActual == cantPaginas)
             {
                 btnSiguiente.Enabled = false;
@@ -135,7 +141,7 @@ namespace clienteMail
             {
                 btnSiguiente.Enabled = true;
             }
-            this.actualizarContactos();
+            this.actualizarAsuntos();
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -167,38 +173,32 @@ namespace clienteMail
             int i = 1;
             for (i = 1; i <= 8; i++)
             {
-                string labelName = "contacto" + i.ToString();
-                string label2Name = "contactoNombre" + i.ToString();
+                string labelName = "asunto" + i.ToString();
                 string containerName = "panel" + i.ToString();
                 string indexName = "pictureBox" + i.ToString();
                 string labelIndexName = "index" + i.ToString();
                 Control container = this.Controls[containerName];
                 Control ctn = container.Controls[labelName];
-                Control ctn2 = container.Controls[label2Name];
                 Control ctn3 = container.Controls[indexName];
                 Control ctn4 = container.Controls[labelIndexName];
                 ctn.Text = "";
-                ctn2.Text = "";
                 ctn3.Hide();
                 ctn4.Hide();
             }
             resetPanels();
             //rewrite labels
             i = 1;
-            foreach (Contacto con in G.user.contactosPag(pagActual))
+            foreach (Asunto asunto in G.user.asuntosPag(pagActual))
             {
-                string labelName = "contacto" + i.ToString();
-                string label2Name = "contactoNombre" + i.ToString();
+                string labelName = "asunto" + i.ToString();
                 string containerName = "panel" + i.ToString();
                 string indexName = "pictureBox" + i.ToString();
                 string labelIndexName = "index" + i.ToString();
                 Control container = this.Controls[containerName];
                 Control ctn = container.Controls[labelName];
-                Control ctn2 = container.Controls[label2Name];
                 Control ctn3 = container.Controls[indexName];
                 Control ctn4 = container.Controls[labelIndexName];
-                ctn.Text = con.Mail;
-                ctn2.Text = con.Nombre + " " + con.Apellido;
+                ctn.Text = asunto.Texto;
                 ctn3.Show();
                 ctn4.Show();
                 i++;
@@ -216,92 +216,92 @@ namespace clienteMail
             panel7.BackColor = Color.FromArgb(241, 255, 255);
             panel8.BackColor = Color.White;
             int i = 0;
-            for (i = 0; i <= (dataContactos.RowCount - 2); i++)
+            for (i = 0; i <= (dataAsuntos.RowCount - 2); i++)
             {
-                dataContactos.Rows[i].Selected = false;
+                dataAsuntos.Rows[i].Selected = false;
             }
         }
 
-        private void seleccionarContacto1(object sender, EventArgs e)
+        private void seleccionarAsunto1(object sender, EventArgs e)
         {
             resetPanels();
             if (index1.Visible)
             {
                 panel1.BackColor = varcolor;
-                dataContactos.Rows[0].Selected = true;
+                dataAsuntos.Rows[0].Selected = true;
             }
         }
 
-        private void seleccionarContacto2(object sender, EventArgs e)
+        private void seleccionarAsunto2(object sender, EventArgs e)
         {
             resetPanels();
             if (index2.Visible)
             {
                 panel2.BackColor = varcolor;
-                dataContactos.Rows[1].Selected = true;
+                dataAsuntos.Rows[1].Selected = true;
             }
         }
 
-        private void seleccionarContacto3(object sender, EventArgs e)
+        private void seleccionarAsunto3(object sender, EventArgs e)
         {
             resetPanels();
             if (index3.Visible)
             {
                 panel3.BackColor = varcolor;
-                dataContactos.Rows[2].Selected = true;
+                dataAsuntos.Rows[2].Selected = true;
             }
         }
 
-        private void seleccionarContacto4(object sender, EventArgs e)
+        private void seleccionarAsunto4(object sender, EventArgs e)
         {
             resetPanels();
             if (index4.Visible)
             {
                 panel4.BackColor = varcolor;
-                dataContactos.Rows[3].Selected = true;
+                dataAsuntos.Rows[3].Selected = true;
             }
         }
 
-        private void seleccionarContacto5(object sender, EventArgs e)
+        private void seleccionarAsunto5(object sender, EventArgs e)
         {
             resetPanels();
             if (index5.Visible)
             {
-                panel5.BackColor =  varcolor;
-                dataContactos.Rows[4].Selected = true;
+                panel5.BackColor = varcolor;
+                dataAsuntos.Rows[4].Selected = true;
             }
         }
 
-        private void seleccionarContacto6(object sender, EventArgs e)
+        private void seleccionarAsunto6(object sender, EventArgs e)
         {
             resetPanels();
             if (index6.Visible)
             {
                 panel6.BackColor = varcolor;
-                dataContactos.Rows[5].Selected = true;
+                dataAsuntos.Rows[5].Selected = true;
             }
         }
 
-        private void seleccionarContacto7(object sender, EventArgs e)
+        private void seleccionarAsunto7(object sender, EventArgs e)
         {
             resetPanels();
             if (index7.Visible)
             {
                 panel7.BackColor = varcolor;
-                dataContactos.Rows[6].Selected = true;
+                dataAsuntos.Rows[6].Selected = true;
             }
         }
 
-        private void seleccionarContacto8(object sender, EventArgs e)
+        private void seleccionarAsunto8(object sender, EventArgs e)
         {
             resetPanels();
             if (index8.Visible)
             {
                 panel8.BackColor = varcolor;
-                dataContactos.Rows[7].Selected = true;
+                dataAsuntos.Rows[7].Selected = true;
             }
         }
-
+        
 
     }
 }

@@ -188,4 +188,153 @@ public class User
         cmd.Dispose();
 
     }
+
+    public void eliminar_contacto(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "delete from Contacto  where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+
+    }
+
+    public Asunto getAsunto(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT usuario_id, texto, cant_veces_usado FROM Asunto WHERE id = ?";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = id;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        Asunto asunto = new Asunto();
+
+        try
+        {
+            if (!dr.Read()) throw new Exception("...");
+
+            asunto.__id = dr.GetInt32(0);
+            asunto.__texto = dr.GetString(1);
+            asunto.__cant_veces_usado = dr.GetInt32(2);
+            asunto.__id = id;
+        }
+        finally
+        {
+            dr.Close();
+            dr.Dispose();
+            cmd.Dispose();
+
+        }
+
+        return asunto;
+    }
+
+    public Asunto[] asuntos()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT texto, id FROM Asunto WHERE usuario_id = ? order by cant_veces_usado desc, fecha_creacion desc";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = this.ID;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        List<Asunto> lista_asuntos = new List<Asunto>();
+
+        while (dr.Read())
+        {
+            Asunto asunto = new Asunto();
+            asunto.__texto = dr.GetString(0);
+            asunto.__id = dr.GetInt32(1);
+            lista_asuntos.Add(asunto);
+        }
+
+        dr.Close();
+        dr.Dispose();
+        cmd.Dispose();
+
+        return lista_asuntos.ToArray();
+    }
+
+    public Asunto[] asuntosPag(int nro)
+    {
+        List<Asunto> lista_asuntos_pag = new List<Asunto>();
+        Asunto[] arrayAsuntos = this.asuntos();
+
+        int asunto_desde = (nro - 1) * 8;
+        int asunto_hasta;
+        if (nro * 8 < arrayAsuntos.Length)
+        {
+            asunto_hasta = nro * 8 - 1;
+        }
+        else
+        {
+            asunto_hasta = arrayAsuntos.Length - 1;
+        }
+
+        for (int i = asunto_desde; i <= asunto_hasta; i++)
+        {
+            lista_asuntos_pag.Add(arrayAsuntos[i]);
+        }
+
+
+        return lista_asuntos_pag.ToArray();
+
+    }
+
+    public void agregar_asunto(Asunto asunto)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "insert into Asunto(usuario_id, texto, cant_veces_usado, fecha_creacion) values(?, ? , 0, date('now'))";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = this.ID;
+
+        SQLiteParameter paramNombre = new SQLiteParameter();
+        cmd.Parameters.Add(paramNombre);
+        paramNombre.Value = asunto.Texto;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public void modificar_asunto(Asunto asunto)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Asunto set texto= ? where id = ?";
+
+        SQLiteParameter paramNombre = new SQLiteParameter();
+        cmd.Parameters.Add(paramNombre);
+        paramNombre.Value = asunto.Texto;
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = asunto.ID;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+
+    }
+
+    public void eliminar_asunto(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "delete from Asunto  where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
 }

@@ -56,6 +56,7 @@
             this.label1.Size = new System.Drawing.Size(79, 24);
             this.label1.TabIndex = 10;
             this.label1.Text = "Nombre";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtApellido
             // 
@@ -73,6 +74,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(462, 29);
             this.txtNombre.TabIndex = 8;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label3
             // 
