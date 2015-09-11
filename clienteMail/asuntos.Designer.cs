@@ -304,6 +304,7 @@
             this.index4.Size = new System.Drawing.Size(30, 32);
             this.index4.TabIndex = 4;
             this.index4.Text = "4";
+            this.index4.Click += new System.EventHandler(this.seleccionarAsunto4);
             // 
             // asunto4
             // 
@@ -315,6 +316,7 @@
             this.asunto4.Size = new System.Drawing.Size(124, 25);
             this.asunto4.TabIndex = 2;
             this.asunto4.Text = "-emptylabel-";
+            this.asunto4.Click += new System.EventHandler(this.seleccionarAsunto4);
             // 
             // pictureBox4
             // 
@@ -325,6 +327,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.seleccionarAsunto4);
             // 
             // panel3
             // 
@@ -349,6 +352,7 @@
             this.index3.Size = new System.Drawing.Size(30, 32);
             this.index3.TabIndex = 4;
             this.index3.Text = "3";
+            this.index3.Click += new System.EventHandler(this.seleccionarAsunto3);
             // 
             // asunto3
             // 
@@ -360,6 +364,7 @@
             this.asunto3.Size = new System.Drawing.Size(124, 25);
             this.asunto3.TabIndex = 3;
             this.asunto3.Text = "-emptylabel-";
+            this.asunto3.Click += new System.EventHandler(this.seleccionarAsunto3);
             // 
             // pictureBox3
             // 
@@ -370,6 +375,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.seleccionarAsunto3);
             // 
             // panel2
             // 
@@ -394,6 +400,7 @@
             this.index2.Size = new System.Drawing.Size(30, 32);
             this.index2.TabIndex = 3;
             this.index2.Text = "2";
+            this.index2.Click += new System.EventHandler(this.seleccionarAsunto2);
             // 
             // asunto2
             // 
@@ -405,6 +412,7 @@
             this.asunto2.Size = new System.Drawing.Size(124, 25);
             this.asunto2.TabIndex = 2;
             this.asunto2.Text = "-emptylabel-";
+            this.asunto2.Click += new System.EventHandler(this.seleccionarAsunto2);
             // 
             // pictureBox2
             // 
@@ -415,6 +423,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.seleccionarAsunto2);
             // 
             // panel1
             // 
@@ -439,6 +448,7 @@
             this.index1.Size = new System.Drawing.Size(30, 32);
             this.index1.TabIndex = 2;
             this.index1.Text = "1";
+            this.index1.Click += new System.EventHandler(this.seleccionarAsunto1);
             // 
             // asunto1
             // 
@@ -450,6 +460,7 @@
             this.asunto1.Size = new System.Drawing.Size(124, 25);
             this.asunto1.TabIndex = 1;
             this.asunto1.Text = "-emptylabel-";
+            this.asunto1.Click += new System.EventHandler(this.seleccionarAsunto1);
             // 
             // pictureBox1
             // 
@@ -460,6 +471,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.seleccionarAsunto1);
             // 
             // panel0
             // 
@@ -575,6 +587,7 @@
             this.index8.Size = new System.Drawing.Size(30, 32);
             this.index8.TabIndex = 4;
             this.index8.Text = "8";
+            this.index8.Click += new System.EventHandler(this.seleccionarAsunto8);
             // 
             // asunto8
             // 
@@ -586,6 +599,7 @@
             this.asunto8.Size = new System.Drawing.Size(124, 25);
             this.asunto8.TabIndex = 3;
             this.asunto8.Text = "-emptylabel-";
+            this.asunto8.Click += new System.EventHandler(this.seleccionarAsunto8);
             // 
             // pictureBox8
             // 
@@ -596,6 +610,7 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.seleccionarAsunto8);
             // 
             // panel7
             // 
@@ -620,6 +635,7 @@
             this.index7.Size = new System.Drawing.Size(30, 32);
             this.index7.TabIndex = 4;
             this.index7.Text = "7";
+            this.index7.Click += new System.EventHandler(this.seleccionarAsunto7);
             // 
             // asunto7
             // 
@@ -631,6 +647,7 @@
             this.asunto7.Size = new System.Drawing.Size(124, 25);
             this.asunto7.TabIndex = 2;
             this.asunto7.Text = "-emptylabel-";
+            this.asunto7.Click += new System.EventHandler(this.seleccionarAsunto7);
             // 
             // pictureBox7
             // 
@@ -641,6 +658,7 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 1;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.seleccionarAsunto7);
             // 
             // panel6
             // 
@@ -665,6 +683,7 @@
             this.index6.Size = new System.Drawing.Size(30, 32);
             this.index6.TabIndex = 5;
             this.index6.Text = "6";
+            this.index6.Click += new System.EventHandler(this.seleccionarAsunto6);
             // 
             // asunto6
             // 
@@ -676,6 +695,7 @@
             this.asunto6.Size = new System.Drawing.Size(124, 25);
             this.asunto6.TabIndex = 4;
             this.asunto6.Text = "-emptylabel-";
+            this.asunto6.Click += new System.EventHandler(this.seleccionarAsunto6);
             // 
             // pictureBox6
             // 
@@ -686,6 +706,7 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 1;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.seleccionarAsunto6);
             // 
             // panel5
             // 
@@ -710,6 +731,7 @@
             this.index5.Size = new System.Drawing.Size(30, 32);
             this.index5.TabIndex = 4;
             this.index5.Text = "5";
+            this.index5.Click += new System.EventHandler(this.seleccionarAsunto5);
             // 
             // asunto5
             // 
@@ -721,6 +743,7 @@
             this.asunto5.Size = new System.Drawing.Size(124, 25);
             this.asunto5.TabIndex = 3;
             this.asunto5.Text = "-emptylabel-";
+            this.asunto5.Click += new System.EventHandler(this.seleccionarAsunto5);
             // 
             // pictureBox5
             // 
@@ -731,6 +754,7 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.seleccionarAsunto5);
             // 
             // asuntos
             // 

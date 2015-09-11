@@ -43,3 +43,5 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojReso
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
