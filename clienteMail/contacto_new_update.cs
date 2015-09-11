@@ -28,7 +28,67 @@ namespace clienteMail
             ID = id;
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNombre.Text == "")
+            {
+                clear1.Visible = false;
+            }
+            else
+            {
+                clear1.Visible = true;
+            }
+        }
+
+        private void clear1_Click(object sender, EventArgs e)
+        {
+            txtNombre.Text = "";
+            clear1.Visible = false;
+        }
+
+        private void txtApellido_TextChanged(object sender, EventArgs e)
+        {
+            if (txtApellido.Text == "")
+            {
+                clear2.Visible = false;
+            }
+            else
+            {
+                clear2.Visible = true;
+            }
+        }
+
+        private void clear2_Click(object sender, EventArgs e)
+        {
+            txtApellido.Text = "";
+            clear2.Visible = false;
+        }
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {
+            if (txtMail.Text == "")
+            {
+                clear3.Visible = false;
+            }
+            else
+            {
+                clear3.Visible = true;
+            }
+        }
+
+        private void clear3_Click(object sender, EventArgs e)
+        {
+            txtMail.Text = "";
+            clear3.Visible = false;
+        }
+
+        private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             //validar.
             Contacto contacto = new Contacto();
@@ -50,15 +110,8 @@ namespace clienteMail
             this.Close();
         }
 
-        private void txtNombre_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
     }
 }
