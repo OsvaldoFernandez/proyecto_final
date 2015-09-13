@@ -17,6 +17,7 @@ namespace clienteMail.redactar_email
         private string To;
         private string Subject;
         private string Body;
+        private int asuntoID = 0, mensajeID = 0, contactoID = 0;
 
         private MailMessage mail;
 
@@ -40,22 +41,27 @@ namespace clienteMail.redactar_email
                 mail.Subject = Subject;
                 mail.Body = Body;
                 mail.IsBodyHtml = false;
-                /*
-                if (!(adjTxt.Text.Trim() == ""))
-                {
-                    Data = new Attachment(adjTxt.Text, MediaTypeNames.Application.Octet);
-                    mail.Attachments.Add(Data);
-                }*/
-
 
                 SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
-                //using (client)
-                //{
+                
                 client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
                 client.EnableSsl = true;
                 client.Send(mail);
-                //}
                 MessageBox.Show("Mail enviado exitosamente");
+
+                if (contactoID > 0)
+                {
+                    G.user.contacto_enviado(contactoID);
+                }
+                if (asuntoID > 0)
+                {
+                    G.user.asunto_usado(asuntoID);
+                }
+                if (mensajeID > 0)
+                {
+                    G.user.mensaje_usado(mensajeID);
+                }
+
                 this.Close();
             }
         }
@@ -84,17 +90,30 @@ namespace clienteMail.redactar_email
             DialogResult res = form.ShowDialog(this);
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
-                toTxt.Text = form.mailSelected;
+                contactoID = form.idSelected;
+                toTxt.Text = G.user.getContacto(contactoID).Mail;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAsunto_Click(object sender, EventArgs e)
         {
             var form = new asuntos("redactar");
             DialogResult res = form.ShowDialog(this);
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
-                asuntoTxt.Text = form.textoSelected;
+                asuntoID = form.idSelected;
+                asuntoTxt.Text = G.user.getAsunto(asuntoID).Texto;
+            }
+        }
+
+        private void btnMensaje_Click(object sender, EventArgs e)
+        {
+            var form = new mensajes("redactar");
+            DialogResult res = form.ShowDialog(this);
+            if (res != System.Windows.Forms.DialogResult.Cancel)
+            {
+                mensajeID = form.idSelected;
+                cuerpoTxt.Text = G.user.getMensaje(mensajeID).Texto;
             }
         }
 

@@ -13,7 +13,7 @@ namespace clienteMail
     {
         int pagActual = 1;
         string formAnterior;
-        public string textoSelected { get; set; }
+        public int idSelected { get; set; }
         Color varcolor = Color.FromArgb(255, 255, 224);
 
         public asuntos(string llamadoDesde)
@@ -49,7 +49,7 @@ namespace clienteMail
                 return;
             }
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.textoSelected = this.dataAsuntos.SelectedRows[0].Cells[1].Value.ToString();
+            this.idSelected = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
 
             this.Close();
         }

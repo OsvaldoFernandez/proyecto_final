@@ -19,7 +19,6 @@ namespace clienteMail.inciar_sesion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Attempt");
             SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
             cmd.CommandText = "select id, servidor_smtp, servidor_pop3, puerto_smtp, puerto_pop3 from usuario where mail == ? and contrasena == ? ";
             SQLiteParameter paramMail = new SQLiteParameter();
@@ -31,9 +30,7 @@ namespace clienteMail.inciar_sesion
             SQLiteDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
-                MessageBox.Show("Exito");
                 G.user = new User(dr.GetInt16(0));
-                MessageBox.Show(G.user.POP3server);
                 new Form1().Show();
                 this.Hide();
             }

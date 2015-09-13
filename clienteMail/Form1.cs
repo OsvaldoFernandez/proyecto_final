@@ -349,5 +349,11 @@ namespace clienteMail
                 var form = new asuntos("home");
                 form.Show();
             }
+
+            private void btnMensajes_Click(object sender, EventArgs e)
+            {
+                var form = new mensajes("home");
+                form.Show();
+            }
     }
 }

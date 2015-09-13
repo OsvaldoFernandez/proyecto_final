@@ -74,7 +74,7 @@
             this.txtApellido.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApellido.ForeColor = System.Drawing.Color.White;
             this.txtApellido.Location = new System.Drawing.Point(132, 80);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(10);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(373, 26);
             this.txtApellido.TabIndex = 9;
@@ -177,11 +177,11 @@
             // clear1
             // 
             this.clear1.AutoSize = true;
-            this.clear1.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear1.ForeColor = System.Drawing.Color.White;
             this.clear1.Location = new System.Drawing.Point(536, 30);
             this.clear1.Name = "clear1";
-            this.clear1.Size = new System.Drawing.Size(25, 25);
+            this.clear1.Size = new System.Drawing.Size(25, 24);
             this.clear1.TabIndex = 17;
             this.clear1.Text = "X";
             this.clear1.Visible = false;
@@ -190,11 +190,11 @@
             // clear2
             // 
             this.clear2.AutoSize = true;
-            this.clear2.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear2.ForeColor = System.Drawing.Color.White;
             this.clear2.Location = new System.Drawing.Point(536, 80);
             this.clear2.Name = "clear2";
-            this.clear2.Size = new System.Drawing.Size(25, 25);
+            this.clear2.Size = new System.Drawing.Size(25, 24);
             this.clear2.TabIndex = 18;
             this.clear2.Text = "X";
             this.clear2.Visible = false;
@@ -203,11 +203,11 @@
             // clear3
             // 
             this.clear3.AutoSize = true;
-            this.clear3.Font = new System.Drawing.Font("Segoe UI Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear3.ForeColor = System.Drawing.Color.White;
             this.clear3.Location = new System.Drawing.Point(536, 130);
             this.clear3.Name = "clear3";
-            this.clear3.Size = new System.Drawing.Size(25, 25);
+            this.clear3.Size = new System.Drawing.Size(25, 24);
             this.clear3.TabIndex = 19;
             this.clear3.Text = "X";
             this.clear3.Visible = false;

@@ -337,4 +337,180 @@ public class User
 
         cmd.Dispose();
     }
+
+    public Mensaje getMensaje(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT usuario_id, texto, cant_veces_usado FROM Mensaje WHERE id = ?";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = id;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        Mensaje mensaje = new Mensaje();
+
+        try
+        {
+            if (!dr.Read()) throw new Exception("...");
+
+            mensaje.__id = dr.GetInt32(0);
+            mensaje.__texto = dr.GetString(1);
+            mensaje.__cant_veces_usado = dr.GetInt32(2);
+            mensaje.__id = id;
+        }
+        finally
+        {
+            dr.Close();
+            dr.Dispose();
+            cmd.Dispose();
+
+        }
+
+        return mensaje;
+    }
+
+    public Mensaje[] mensajes()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT texto, id FROM Mensaje WHERE usuario_id = ? order by cant_veces_usado desc, fecha_creacion desc";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = this.ID;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        List<Mensaje> lista_mensajes = new List<Mensaje>();
+
+        while (dr.Read())
+        {
+            Mensaje mensaje = new Mensaje();
+            mensaje.__texto = dr.GetString(0);
+            mensaje.__id = dr.GetInt32(1);
+            lista_mensajes.Add(mensaje);
+        }
+
+        dr.Close();
+        dr.Dispose();
+        cmd.Dispose();
+
+        return lista_mensajes.ToArray();
+    }
+
+    public Mensaje[] mensajesPag(int nro)
+    {
+        List<Mensaje> lista_mensajes_pag = new List<Mensaje>();
+        Mensaje[] arrayMensajes = this.mensajes();
+
+        int mensaje_desde = (nro - 1) * 8;
+        int mensaje_hasta;
+        if (nro * 8 < arrayMensajes.Length)
+        {
+            mensaje_hasta = nro * 8 - 1;
+        }
+        else
+        {
+            mensaje_hasta = arrayMensajes.Length - 1;
+        }
+
+        for (int i = mensaje_desde; i <= mensaje_hasta; i++)
+        {
+            lista_mensajes_pag.Add(arrayMensajes[i]);
+        }
+
+
+        return lista_mensajes_pag.ToArray();
+
+    }
+
+    public void agregar_mensaje(Mensaje mensaje)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "insert into Mensaje(usuario_id, texto, cant_veces_usado, fecha_creacion) values(?, ? , 0, date('now'))";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = this.ID;
+
+        SQLiteParameter paramTexto = new SQLiteParameter();
+        cmd.Parameters.Add(paramTexto);
+        paramTexto.Value = mensaje.Texto;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public void modificar_mensaje(Mensaje mensaje)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Mensaje set texto= ? where id = ?";
+
+        SQLiteParameter paramTexto = new SQLiteParameter();
+        cmd.Parameters.Add(paramTexto);
+        paramTexto.Value = mensaje.Texto;
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = mensaje.ID;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+
+    }
+
+    public void eliminar_mensaje(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "delete from Mensaje where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public void contacto_enviado(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Contacto set cant_enviados = cant_enviados + 1 where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public void asunto_usado(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Asunto set cant_veces_usado = cant_veces_usado + 1 where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public void mensaje_usado(int id)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "update Mensaje set cant_veces_usado = cant_veces_usado + 1 where id = ?";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = id;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
 }

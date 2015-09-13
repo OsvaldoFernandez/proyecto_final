@@ -45,3 +45,5 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.res
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensajes.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensaje_new_update.resources
