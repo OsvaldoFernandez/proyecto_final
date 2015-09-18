@@ -46,5 +46,23 @@ namespace clienteMail
             this.Close();
         }
 
+        private void clear1_Click(object sender, EventArgs e)
+        {
+            txtTexto.Text = "";
+            clear1.Visible = false;
+        }
+
+        private void txtTexto_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTexto.Text == "")
+            {
+                clear1.Visible = false;
+            }
+            else
+            {
+                clear1.Visible = true;
+            }
+        }
+
     }
 }

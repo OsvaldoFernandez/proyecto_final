@@ -25,6 +25,7 @@ namespace clienteMail
         int pagActual;
         bool recibidos; //true: recibidos. false: enviados.
         uint ultimoRender; //que mails ya mostré o "renderice"
+        Color varcolor = Color.FromArgb(255, 255, 224);
 
         public Form1()
         {
@@ -68,6 +69,7 @@ namespace clienteMail
                 this.dataMails.Rows.Add((index + 1).ToString(), index, from, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                 index++;
             }
+            renderView();
         }
 
             void client_Connected(Pop3Client sender)
@@ -164,7 +166,7 @@ namespace clienteMail
                         index++;
                     }
                     mailsRenderizados++;
-                    if (index == 10) //Cambiar por 10
+                    if (index == 8) //Cambiar por 8
                     {
                         break;
                     }
@@ -226,7 +228,8 @@ namespace clienteMail
                     this.dataMails.Rows.Add((index + 1).ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
                     index++;
 
-                }
+                };
+                renderView();
             }
 
             private void dataMails_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -296,7 +299,7 @@ namespace clienteMail
 
             private void handlePaginacion() //se llama siempre que cambia la variable pagActual
             {
-                lblPagina.Text = "Página: " + pagActual.ToString();
+                lblPagina.Text = "Página " + pagActual.ToString();
                 if (pagActual == 1)
                 {
                     btnAnterior.Enabled = false;
@@ -354,6 +357,327 @@ namespace clienteMail
             {
                 var form = new mensajes("home");
                 form.Show();
+            }
+
+        // METODOS PARA LA VISTA
+
+            private void renderView()
+            {
+                //clear labels 
+                int i = 1;
+                for (i = 1; i <= 8; i++)
+                {
+                    string labelName = "mailRte" + i.ToString();
+                    string label2Name = "mailSub" + i.ToString();
+                    string containerName = "panel" + i.ToString();
+                    string indexName = "pictureBox" + i.ToString();
+                    string labelIndexName = "index" + i.ToString();
+                    Control container = this.Controls[containerName];
+                    Control ctn = container.Controls[labelName];
+                    Control ctn2 = container.Controls[label2Name];
+                    Control ctn3 = container.Controls[indexName];
+                    Control ctn4 = container.Controls[labelIndexName];
+                    ctn.Text = "";
+                    ctn2.Text = "";
+                    ctn3.Hide();
+                    ctn4.Hide();
+                }
+
+                resetPanels();
+                //rewrite labels
+                int index = 1;
+                string from;
+                Dictionary<int, Rfc822Message[]> viewSource = new Dictionary<int, Rfc822Message[]>();
+                if (recibidos)
+                {
+                    viewSource = messagesRecibidos;
+                }
+                else
+                {
+                    viewSource = messagesEnviados;
+                }
+
+
+                foreach (Rfc822Message message in viewSource[pagActual])
+                {
+                    if (message.From.DisplayName.ToString().Length > 0)
+                    {
+                        from = message.From.DisplayName.ToString();
+                    }
+                    else
+                    {
+                        from = message.From.Address.ToString();
+                    }
+
+                    string labelName = "mailRte" + index.ToString();
+                    string label2Name = "mailSub" + index.ToString();
+                    string containerName = "panel" + index.ToString();
+                    string indexName = "pictureBox" + index.ToString();
+                    string labelIndexName = "index" + index.ToString();
+                    Control container = this.Controls[containerName];
+                    Control ctn = container.Controls[labelName];
+                    Control ctn2 = container.Controls[label2Name];
+                    Control ctn3 = container.Controls[indexName];
+                    Control ctn4 = container.Controls[labelIndexName];
+                    ctn.Text = from;
+                    ctn2.Text = message.Subject.ToString();
+                    ctn3.Show();
+                    ctn4.Show();      
+                    index++;
+                }
+            }
+
+            private void resetPanels()
+            {
+                panel1.BackColor = Color.FromArgb(241, 255, 255);
+                panel2.BackColor = Color.White;
+                panel3.BackColor = Color.FromArgb(241, 255, 255);
+                panel4.BackColor = Color.White;
+                panel5.BackColor = Color.FromArgb(241, 255, 255);
+                panel6.BackColor = Color.White;
+                panel7.BackColor = Color.FromArgb(241, 255, 255);
+                panel8.BackColor = Color.White;
+                int i = 0;
+                for (i = 0; i <= (dataMails.RowCount - 1); i++)
+                {
+                    dataMails.Rows[i].Selected = false;
+                }
+            }
+
+            private void seleccionarMail1(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index1.Visible)
+                {
+                    panel1.BackColor = varcolor;
+                    dataMails.Rows[0].Selected = true;
+                }
+            }
+
+            private void seleccionarMail2(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index2.Visible)
+                {
+                    panel2.BackColor = varcolor;
+                    dataMails.Rows[1].Selected = true;
+                }
+            }
+
+            private void seleccionarMail3(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index3.Visible)
+                {
+                    panel3.BackColor = varcolor;
+                    dataMails.Rows[2].Selected = true;
+                }
+            }
+
+            private void seleccionarMail4(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index4.Visible)
+                {
+                    panel4.BackColor = varcolor;
+                    dataMails.Rows[3].Selected = true;
+                }
+            }
+
+            private void seleccionarMail5(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index5.Visible)
+                {
+                    panel5.BackColor = varcolor;
+                    dataMails.Rows[4].Selected = true;
+                }
+            }
+
+            private void seleccionarMail6(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index6.Visible)
+                {
+                    panel6.BackColor = varcolor;
+                    dataMails.Rows[5].Selected = true;
+                }
+            }
+
+            private void seleccionarMail7(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index7.Visible)
+                {
+                    panel7.BackColor = varcolor;
+                    dataMails.Rows[6].Selected = true;
+                }
+            }
+
+            private void seleccionarMail8(object sender, EventArgs e)
+            {
+                resetPanels();
+                if (index8.Visible)
+                {
+                    panel8.BackColor = varcolor;
+                    dataMails.Rows[7].Selected = true;
+                }
+            }
+
+
+
+
+            private void leerMail1(object sender, EventArgs e)
+            {
+                if (index1.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][0];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][0];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail2(object sender, EventArgs e)
+            {
+                if (index3.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][1];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][1];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+
+            private void leerMail3(object sender, EventArgs e)
+            {
+                if (index3.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][2];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][2];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail4(object sender, EventArgs e)
+            {
+                if (index4.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][3];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][3];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail5(object sender, EventArgs e)
+            {
+                if (index5.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][4];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][4];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail6(object sender, EventArgs e)
+            {
+                if (index6.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][5];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][5];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail7(object sender, EventArgs e)
+            {
+                if (index7.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][6];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][6];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
+            }
+
+            private void leerMail8(object sender, EventArgs e)
+            {
+                if (index8.Visible)
+                {
+                    Rfc822Message message;
+                    if (recibidos)
+                    {
+                        message = messagesRecibidos[pagActual][7];
+                    }
+                    else
+                    {
+                        message = messagesEnviados[pagActual][7];
+                    }
+
+                    leer_mail form = new leer_mail(message);
+                    form.Show();
+                }
             }
     }
 }
