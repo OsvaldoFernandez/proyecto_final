@@ -111,6 +111,8 @@ namespace clienteMail.crear_cuenta
                 puertosmtp.Enabled = true;
                 servidorpop3.Enabled = true;
                 servidorsmtp.Enabled = true;
+                this.Width = 820;
+                logoPic.Location = new Point(316, -35);
             }
             else
             {
@@ -118,7 +120,10 @@ namespace clienteMail.crear_cuenta
                 puertosmtp.Enabled = false;
                 servidorpop3.Enabled = false;
                 servidorsmtp.Enabled = false;
+                this.Width = 420;
+                logoPic.Location = new Point(116, -35);
             }
         }
+
     }
 }

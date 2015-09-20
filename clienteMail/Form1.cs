@@ -372,15 +372,18 @@ namespace clienteMail
                     string containerName = "panel" + i.ToString();
                     string indexName = "pictureBox" + i.ToString();
                     string labelIndexName = "index" + i.ToString();
+                    string labelDateName = "mailDate" + i.ToString();
                     Control container = this.Controls[containerName];
                     Control ctn = container.Controls[labelName];
                     Control ctn2 = container.Controls[label2Name];
                     Control ctn3 = container.Controls[indexName];
                     Control ctn4 = container.Controls[labelIndexName];
+                    Control ctn5 = container.Controls[labelDateName];
                     ctn.Text = "";
                     ctn2.Text = "";
                     ctn3.Hide();
                     ctn4.Hide();
+                    ctn5.Text = "";
                 }
 
                 resetPanels();
@@ -414,15 +417,18 @@ namespace clienteMail
                     string containerName = "panel" + index.ToString();
                     string indexName = "pictureBox" + index.ToString();
                     string labelIndexName = "index" + index.ToString();
+                    string labelDateName = "mailDate" + index.ToString();
                     Control container = this.Controls[containerName];
                     Control ctn = container.Controls[labelName];
                     Control ctn2 = container.Controls[label2Name];
                     Control ctn3 = container.Controls[indexName];
                     Control ctn4 = container.Controls[labelIndexName];
+                    Control ctn5 = container.Controls[labelDateName];
                     ctn.Text = from;
                     ctn2.Text = message.Subject.ToString();
                     ctn3.Show();
-                    ctn4.Show();      
+                    ctn4.Show();
+                    ctn5.Text = message.Date.AddHours(-3).ToString();
                     index++;
                 }
             }
