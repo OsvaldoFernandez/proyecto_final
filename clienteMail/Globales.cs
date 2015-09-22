@@ -1,11 +1,22 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Windows.Forms;
+
+public partial class RichForm : Form
+{
+    public virtual void manejar_comando(string comando)
+    {
+        MessageBox.Show(comando);
+    }
+}
+
 
 public static class G
 {
     public static SQLiteConnection conexion_principal = null;
 
     public static User user = null;
+    public static RichForm formulario_activo = null;
 
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {

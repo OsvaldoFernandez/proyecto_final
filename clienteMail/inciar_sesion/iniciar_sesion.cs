@@ -31,7 +31,9 @@ namespace clienteMail.inciar_sesion
             if (dr.Read())
             {
                 G.user = new User(dr.GetInt16(0));
-                new Form1().Show();
+                G.formulario_activo = new Form1();
+                G.formulario_activo.Show();
+                new comando.comando().Show();
                 this.Hide();
             }
             else

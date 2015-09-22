@@ -15,7 +15,7 @@ using Email.Net.Pop3.Exceptions;
 
 namespace clienteMail
 {
-    public partial class Form1 : Form
+    public partial class Form1 : RichForm
     {
         Pop3Client client;
 
@@ -30,6 +30,40 @@ namespace clienteMail
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public override void manejar_comando(string comando)
+        {
+            switch (comando)
+            {
+                case "uno":
+                    leerMail1(null,null);
+                    break;
+                case "dos":
+                    leerMail2(null, null);
+                    break;
+                case "tres":
+                    leerMail3(null,null);
+                    break;
+                case "cuatro":
+                    leerMail4(null,null);;
+                    break;
+                case "cinco":
+                    leerMail5(null,null);
+                    break;
+                case "seis":
+                    leerMail6(null,null);;
+                    break;
+                case "siete":
+                    leerMail7(null,null);
+                    break;
+                case "ocho":
+                    leerMail8(null,null);
+                    break;
+                case "nueve":
+                    // DO NOTHING
+                    break;
+            }
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)

@@ -49,3 +49,5 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensajes.re
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensaje_new_update.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensaje_new_update.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensajes.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
