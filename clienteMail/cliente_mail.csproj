@@ -84,6 +84,7 @@
     <Compile Include="contactos.Designer.cs">
       <DependentUpon>contactos.cs</DependentUpon>
     </Compile>
+    <Compile Include="mail_enviado.cs" />
     <Compile Include="mensaje_new_update.cs">
       <SubType>Form</SubType>
     </Compile>

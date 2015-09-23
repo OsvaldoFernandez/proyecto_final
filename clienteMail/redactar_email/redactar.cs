@@ -62,6 +62,13 @@ namespace clienteMail.redactar_email
                     G.user.mensaje_usado(mensajeID);
                 }
 
+                mail_enviado mailEnviado = new mail_enviado();
+                mailEnviado.__para = To;
+                mailEnviado.__asunto = Subject;
+                mailEnviado.__mensaje = Body;
+
+                G.user.guardarMail(mailEnviado);
+
                 this.Close();
             }
         }

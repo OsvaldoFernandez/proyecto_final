@@ -513,4 +513,87 @@ public class User
 
         cmd.Dispose();
     }
+
+    public void guardarMail(mail_enviado mail)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "insert into Mails_enviados(usuario_id, para, asunto, mensaje, fecha_creacion) values(?, ?, ?, ?, datetime('now'))";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = this.ID;
+
+        SQLiteParameter paramPara = new SQLiteParameter();
+        cmd.Parameters.Add(paramPara);
+        paramPara.Value = mail.Para;
+
+        SQLiteParameter paramAsunto = new SQLiteParameter();
+        cmd.Parameters.Add(paramAsunto);
+        paramAsunto.Value = mail.Asunto;
+
+        SQLiteParameter paramMensaje = new SQLiteParameter();
+        cmd.Parameters.Add(paramMensaje);
+        paramMensaje.Value = mail.Mensaje;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+
+    public mail_enviado[] mailsEnviados()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT mensaje, asunto, para, id FROM Mails_enviados WHERE usuario_id = ? order by fecha_creacion desc";
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = this.ID;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        List<mail_enviado> lista_mails = new List<mail_enviado>();
+
+        while (dr.Read())
+        {
+            mail_enviado mail = new mail_enviado();
+            mail.__mensaje = dr.GetString(0);
+            mail.__asunto = dr.GetString(1);
+            mail.__para = dr.GetString(2);
+            mail.__id = dr.GetInt32(3);
+            lista_mails.Add(mail);
+        }
+
+        dr.Close();
+        dr.Dispose();
+        cmd.Dispose();
+
+        return lista_mails.ToArray();
+    }
+
+
+    public mail_enviado[] mailEnviadoPag(int nro)
+    {
+        List<mail_enviado> lista_mails_pag = new List<mail_enviado>();
+        mail_enviado[] arrayMails = this.mailsEnviados();
+
+        int mail_desde = (nro - 1) * 8;
+        int mail_hasta;
+        if (nro * 8 < arrayMails.Length)
+        {
+            mail_hasta = nro * 8 - 1;
+        }
+        else
+        {
+            mail_hasta = arrayMails.Length - 1;
+        }
+
+        for (int i = mail_desde; i <= mail_hasta; i++)
+        {
+
+            lista_mails_pag.Add(arrayMails[i]);
+        }
+
+
+        return lista_mails_pag.ToArray();
+
+    }
 }

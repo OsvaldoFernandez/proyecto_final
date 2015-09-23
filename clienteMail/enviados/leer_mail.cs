@@ -17,10 +17,10 @@ namespace clienteMail
 {
     public partial class leer_mail : Form
     {
-        public leer_mail(Rfc822Message message)
+        public leer_mail(mail_enviado message)
         {
             InitializeComponent();
-            webBrowser.DocumentText = message.Text.ToString();
+            webBrowser.DocumentText = message.Mensaje;
         }
 
         private void leer_mail_Load(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace clienteMail
         Pop3Client client;
 
         Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
-        Dictionary<int, Rfc822Message[]> messagesEnviados = new Dictionary<int, Rfc822Message[]>();
+        mail_enviado[] messagesEnviados = new mail_enviado[8];
         Dictionary<int, uint> serialNumbers = new Dictionary<int, uint>();
         int pagActual;
         bool recibidos; //true: recibidos. false: enviados.
@@ -159,7 +159,6 @@ namespace clienteMail
             private void actualizar()
             {
                 messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
-                messagesEnviados = new Dictionary<int, Rfc822Message[]>();
                 try
                 {
                     client.Login();
@@ -177,44 +176,36 @@ namespace clienteMail
                 {
                     return;
                 }
-                if (!recibidos && messagesEnviados.ContainsKey(pagActual))
-                {
-                    return;
-                }
-
-                List<Rfc822Message> list = new List<Rfc822Message>();
-                serialNumbers = new Dictionary<int, uint>();
-                
-
-                int index = 0;
-                Rfc822Message message;
-                uint mailsRenderizados = 0;
-                for (uint i = ultimoRender; i > 0; i--)
-                {
-                    message = client.GetMessage(i);
-
-                    if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
-                    {
-                        list.Add(message);
-                        serialNumbers.Add(index, client.GetMessageInfo(i).Number);
-                        index++;
-                    }
-                    mailsRenderizados++;
-                    if (index == 8) //Cambiar por 8
-                    {
-                        break;
-                    }
-                }
-
-                ultimoRender = ultimoRender - mailsRenderizados;
-
                 if (recibidos)
                 {
+                    List<Rfc822Message> list = new List<Rfc822Message>();
+                    serialNumbers = new Dictionary<int, uint>();
+                
+
+                    int index = 0;
+                    Rfc822Message message;
+                    uint mailsRenderizados = 0;
+                    for (uint i = ultimoRender; i > 0; i--)
+                    {
+                        message = client.GetMessage(i);
+
+                        if ((message.From.Address == client.Username && !recibidos) || (message.From.Address != client.Username && recibidos))
+                        {
+                            list.Add(message);
+                            serialNumbers.Add(index, client.GetMessageInfo(i).Number);
+                            index++;
+                        }
+                        mailsRenderizados++;
+                        if (index == 8)
+                        {
+                            break;
+                        }
+                    }
+
+                    ultimoRender = ultimoRender - mailsRenderizados;
+
+                
                     messagesRecibidos.Add(pagActual, list.ToArray());
-                }
-                else
-                {
-                    messagesEnviados.Add(pagActual, list.ToArray());   
                 }
                 
             }
@@ -224,11 +215,6 @@ namespace clienteMail
                 recibidos = false;
 
                 pagActual = 1;
-
-                if (!messagesEnviados.ContainsKey(1))
-                {
-                    ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
-                }
                 dataMails.Columns[2].HeaderText = "Para";        
 
                 this.showEnviados();
@@ -238,28 +224,13 @@ namespace clienteMail
             {
                 this.dataMails.Rows.Clear();
                 int index = 0;
-                string para;
-                this.getMails();
                 this.handlePaginacion();
 
-                foreach (Rfc822Message message in messagesEnviados[pagActual])
-                {
+                messagesEnviados = G.user.mailEnviadoPag(pagActual);
 
-                    if (message.To.Count() > 1)
-                    {
-                        //hay mas de un destinatario
-                        para = message.To.Count().ToString() + " destinatarios";
-                    }
-                    else if (string.IsNullOrEmpty(message.To[0].DisplayName))
-                    {
-                        para = message.To[0].ToString();
-                    }
-                    else
-                    {
-                        para = message.To[0].DisplayName;
-                    }
-                    
-                    this.dataMails.Rows.Add((index + 1).ToString(), index, para, message.Subject.ToString(), message.Date.AddHours(-3).ToString());
+                foreach (mail_enviado message in messagesEnviados)
+                {
+                    this.dataMails.Rows.Add((index + 1).ToString(), index, message.Para, message.Asunto, message.Fecha_creacion);
                     index++;
 
                 };
@@ -271,14 +242,17 @@ namespace clienteMail
                 if (this.dataMails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
                 {
                     int index = Convert.ToInt32(this.dataMails.Rows[e.RowIndex].Cells["index"].Value);
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][index];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][index];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__from = message_rfc.From.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][index];
+                        message = messagesEnviados[index];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -331,7 +305,18 @@ namespace clienteMail
                 }
             }
 
-            private void handlePaginacion() //se llama siempre que cambia la variable pagActual
+            private void handlePaginacion()
+            { //se llama siempre que cambia la variable pagActual
+                if (recibidos)
+                {
+                    handlePaginacionRecibidos();
+                }
+                else
+                {
+                    handlePaginacionEnviados();
+                }
+            }
+            private void handlePaginacionRecibidos()
             {
                 lblPagina.Text = "Página " + pagActual.ToString();
                 if (pagActual == 1)
@@ -342,14 +327,38 @@ namespace clienteMail
                     btnAnterior.Enabled = true;
                 }
                 int lastPage = Convert.ToInt32(messagesRecibidos.Keys.Last());
-                bool lastPageRecibidos = recibidos && pagActual == lastPage;
-                bool lastPageEnviados = false;
-                if (messagesEnviados.ContainsKey(1))
+                bool lastPageRecibidos = pagActual == lastPage;
+                if (ultimoRender == 0 && lastPageRecibidos)
                 {
-                    lastPage = Convert.ToInt32(messagesEnviados.Keys.Last());
-                    lastPageEnviados = !recibidos && pagActual == lastPage;
+                    btnSiguiente.Enabled = false;
                 }
-                if (ultimoRender == 0 && (lastPageEnviados || lastPageRecibidos))
+                else
+                {
+                    btnSiguiente.Enabled = true;
+                }
+            }
+
+            private void handlePaginacionEnviados() 
+            {
+                
+                int cantPaginas = (int)G.user.mailsEnviados().Length / 8;
+
+                if (G.user.mailsEnviados().Length % 8 > 0)
+                {
+                    cantPaginas++;
+                }
+
+                lblPagina.Text = "Página " + pagActual.ToString();
+                if (pagActual == 1)
+                {
+                    btnAnterior.Enabled = false;
+                }
+                else
+                {
+                    btnAnterior.Enabled = true;
+                }
+
+                if (pagActual == cantPaginas)
                 {
                     btnSiguiente.Enabled = false;
                 }
@@ -424,47 +433,70 @@ namespace clienteMail
                 //rewrite labels
                 int index = 1;
                 string from;
-                Dictionary<int, Rfc822Message[]> viewSource = new Dictionary<int, Rfc822Message[]>();
+                
                 if (recibidos)
                 {
-                    viewSource = messagesRecibidos;
+                    Dictionary<int, Rfc822Message[]> viewSource = messagesRecibidos;
+                    foreach (Rfc822Message message in viewSource[pagActual])
+                    {
+                        if (message.From.DisplayName.ToString().Length > 0)
+                        {
+                            from = message.From.DisplayName.ToString();
+                        }
+                        else
+                        {
+                            from = message.From.Address.ToString();
+                        }
+
+                        string labelName = "mailRte" + index.ToString();
+                        string label2Name = "mailSub" + index.ToString();
+                        string containerName = "panel" + index.ToString();
+                        string indexName = "pictureBox" + index.ToString();
+                        string labelIndexName = "index" + index.ToString();
+                        string labelDateName = "mailDate" + index.ToString();
+                        Control container = this.Controls[containerName];
+                        Control ctn = container.Controls[labelName];
+                        Control ctn2 = container.Controls[label2Name];
+                        Control ctn3 = container.Controls[indexName];
+                        Control ctn4 = container.Controls[labelIndexName];
+                        Control ctn5 = container.Controls[labelDateName];
+                        ctn.Text = from;
+                        ctn2.Text = message.Subject.ToString();
+                        ctn3.Show();
+                        ctn4.Show();
+                        ctn5.Text = message.Date.AddHours(-3).ToString();
+                        index++;
+                    }
                 }
                 else
                 {
-                    viewSource = messagesEnviados;
+                    mail_enviado[] viewSource = messagesEnviados;
+                    foreach (mail_enviado message in viewSource)
+                    {
+                        
+                        string to = message.Para;
+
+                        string labelName = "mailRte" + index.ToString();
+                        string label2Name = "mailSub" + index.ToString();
+                        string containerName = "panel" + index.ToString();
+                        string indexName = "pictureBox" + index.ToString();
+                        string labelIndexName = "index" + index.ToString();
+                        string labelDateName = "mailDate" + index.ToString();
+                        Control container = this.Controls[containerName];
+                        Control ctn = container.Controls[labelName];
+                        Control ctn2 = container.Controls[label2Name];
+                        Control ctn3 = container.Controls[indexName];
+                        Control ctn4 = container.Controls[labelIndexName];
+                        Control ctn5 = container.Controls[labelDateName];
+                        ctn.Text = to;
+                        ctn2.Text = message.Asunto.ToString();
+                        ctn3.Show();
+                        ctn4.Show();
+                        ctn5.Text = message.Fecha_creacion.ToString();
+                        index++;
+                    }
                 }
 
-
-                foreach (Rfc822Message message in viewSource[pagActual])
-                {
-                    if (message.From.DisplayName.ToString().Length > 0)
-                    {
-                        from = message.From.DisplayName.ToString();
-                    }
-                    else
-                    {
-                        from = message.From.Address.ToString();
-                    }
-
-                    string labelName = "mailRte" + index.ToString();
-                    string label2Name = "mailSub" + index.ToString();
-                    string containerName = "panel" + index.ToString();
-                    string indexName = "pictureBox" + index.ToString();
-                    string labelIndexName = "index" + index.ToString();
-                    string labelDateName = "mailDate" + index.ToString();
-                    Control container = this.Controls[containerName];
-                    Control ctn = container.Controls[labelName];
-                    Control ctn2 = container.Controls[label2Name];
-                    Control ctn3 = container.Controls[indexName];
-                    Control ctn4 = container.Controls[labelIndexName];
-                    Control ctn5 = container.Controls[labelDateName];
-                    ctn.Text = from;
-                    ctn2.Text = message.Subject.ToString();
-                    ctn3.Show();
-                    ctn4.Show();
-                    ctn5.Text = message.Date.AddHours(-3).ToString();
-                    index++;
-                }
             }
 
             private void resetPanels()
@@ -571,14 +603,17 @@ namespace clienteMail
             {
                 if (index1.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][0];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][0];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][0];
+                        message = messagesEnviados[0];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -590,14 +625,17 @@ namespace clienteMail
             {
                 if (index3.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][1];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][1];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][1];
+                        message = messagesEnviados[1];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -610,14 +648,17 @@ namespace clienteMail
             {
                 if (index3.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][2];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][2];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][2];
+                        message = messagesEnviados[2];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -629,14 +670,17 @@ namespace clienteMail
             {
                 if (index4.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][3];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][3];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][3];
+                        message = messagesEnviados[3];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -648,14 +692,17 @@ namespace clienteMail
             {
                 if (index5.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][4];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][4];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][4];
+                        message = messagesEnviados[4];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -667,14 +714,17 @@ namespace clienteMail
             {
                 if (index6.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][5];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][5];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][5];
+                        message = messagesEnviados[5];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -686,14 +736,17 @@ namespace clienteMail
             {
                 if (index7.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][6];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][6];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][6];
+                        message = messagesEnviados[6];
                     }
 
                     leer_mail form = new leer_mail(message);
@@ -705,14 +758,17 @@ namespace clienteMail
             {
                 if (index8.Visible)
                 {
-                    Rfc822Message message;
+                    mail_enviado message = new mail_enviado();
                     if (recibidos)
                     {
-                        message = messagesRecibidos[pagActual][7];
+                        Rfc822Message message_rfc = messagesRecibidos[pagActual][7];
+                        message.__mensaje = message_rfc.Text.ToString();
+                        message.__para = message_rfc.To.ToString();
+                        message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
                     {
-                        message = messagesEnviados[pagActual][7];
+                        message = messagesEnviados[7];
                     }
 
                     leer_mail form = new leer_mail(message);
