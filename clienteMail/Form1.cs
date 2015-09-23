@@ -340,8 +340,8 @@ namespace clienteMail
 
             private void handlePaginacionEnviados() 
             {
-                
-                int cantPaginas = (int)G.user.mailsEnviados().Length / 8;
+                int cant = (int)G.user.mailsEnviados().Length;
+                int cantPaginas = cant / 8;
 
                 if (G.user.mailsEnviados().Length % 8 > 0)
                 {
@@ -358,7 +358,7 @@ namespace clienteMail
                     btnAnterior.Enabled = true;
                 }
 
-                if (pagActual == cantPaginas)
+                if (pagActual == cantPaginas || cant == 0)
                 {
                     btnSiguiente.Enabled = false;
                 }

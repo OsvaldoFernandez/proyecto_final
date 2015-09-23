@@ -114,7 +114,8 @@ namespace clienteMail
 
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
-            int cantPaginas = (int)G.user.mensajes().Length / 8;
+            int cant = (int)G.user.mensajes().Length;
+            int cantPaginas = cant/ 8;
 
             if (G.user.mensajes().Length % 8 > 0 || cantPaginas == 0)
             {
@@ -131,7 +132,7 @@ namespace clienteMail
                 btnAnterior.Enabled = true;
             }
 
-            if (pagActual == cantPaginas)
+            if (pagActual == cantPaginas || cant == 0)
             {
                 btnSiguiente.Enabled = false;
             }
