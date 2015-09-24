@@ -374,12 +374,14 @@ namespace clienteMail
                 Int32 selectedRowCount = dataMails.Rows.GetRowCount(DataGridViewElementStates.Selected);
                 if (selectedRowCount > 0)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar el mail?", "Eliminar", MessageBoxButtons.YesNo);
-                    if(dialogResult == DialogResult.Yes)
+                    var form = new frmAlert("Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
+                    DialogResult vr = form.ShowDialog(this);
+                    if (vr == System.Windows.Forms.DialogResult.OK)
                     {
                         int index = Convert.ToInt32(this.dataMails.SelectedRows[0].Cells["index"].Value);
                         client.DeleteMessage(serialNumbers[index]);
-                    }
+                    } 
+                    
                 }
                 
             }

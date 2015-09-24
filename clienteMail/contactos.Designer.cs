@@ -294,7 +294,7 @@
             this.panel1.Controls.Add(this.index1);
             this.panel1.Controls.Add(this.contacto1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 60);
+            this.panel1.Location = new System.Drawing.Point(224, 61);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(385, 60);
             this.panel1.TabIndex = 12;
@@ -355,7 +355,7 @@
             this.panel2.Controls.Add(this.index2);
             this.panel2.Controls.Add(this.contacto2);
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(0, 120);
+            this.panel2.Location = new System.Drawing.Point(224, 121);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(385, 60);
             this.panel2.TabIndex = 13;
@@ -416,7 +416,7 @@
             this.panel3.Controls.Add(this.index3);
             this.panel3.Controls.Add(this.contacto3);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(0, 180);
+            this.panel3.Location = new System.Drawing.Point(224, 181);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(385, 60);
             this.panel3.TabIndex = 13;
@@ -477,7 +477,7 @@
             this.panel4.Controls.Add(this.index4);
             this.panel4.Controls.Add(this.contacto4);
             this.panel4.Controls.Add(this.pictureBox4);
-            this.panel4.Location = new System.Drawing.Point(0, 240);
+            this.panel4.Location = new System.Drawing.Point(224, 241);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(385, 60);
             this.panel4.TabIndex = 14;
@@ -538,7 +538,7 @@
             this.panel5.Controls.Add(this.index5);
             this.panel5.Controls.Add(this.contacto5);
             this.panel5.Controls.Add(this.pictureBox5);
-            this.panel5.Location = new System.Drawing.Point(0, 300);
+            this.panel5.Location = new System.Drawing.Point(224, 301);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(385, 60);
             this.panel5.TabIndex = 14;
@@ -599,7 +599,7 @@
             this.panel6.Controls.Add(this.index6);
             this.panel6.Controls.Add(this.contacto6);
             this.panel6.Controls.Add(this.pictureBox6);
-            this.panel6.Location = new System.Drawing.Point(0, 360);
+            this.panel6.Location = new System.Drawing.Point(224, 361);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(385, 60);
             this.panel6.TabIndex = 15;
@@ -660,7 +660,7 @@
             this.panel7.Controls.Add(this.index7);
             this.panel7.Controls.Add(this.contacto7);
             this.panel7.Controls.Add(this.pictureBox7);
-            this.panel7.Location = new System.Drawing.Point(0, 420);
+            this.panel7.Location = new System.Drawing.Point(224, 421);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(385, 60);
             this.panel7.TabIndex = 15;
@@ -721,7 +721,7 @@
             this.panel8.Controls.Add(this.index8);
             this.panel8.Controls.Add(this.contacto8);
             this.panel8.Controls.Add(this.pictureBox8);
-            this.panel8.Location = new System.Drawing.Point(0, 480);
+            this.panel8.Location = new System.Drawing.Point(224, 481);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(385, 60);
             this.panel8.TabIndex = 16;
@@ -784,7 +784,7 @@
             this.panel10.Controls.Add(this.btnVolver);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.btnAceptar);
-            this.panel10.Location = new System.Drawing.Point(385, 60);
+            this.panel10.Location = new System.Drawing.Point(0, 61);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(224, 240);
             this.panel10.TabIndex = 16;
@@ -874,7 +874,7 @@
             this.panel11.Controls.Add(this.btnAgregar);
             this.panel11.Controls.Add(this.btnModificar);
             this.panel11.Controls.Add(this.btnEliminar);
-            this.panel11.Location = new System.Drawing.Point(385, 300);
+            this.panel11.Location = new System.Drawing.Point(0, 301);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(224, 240);
             this.panel11.TabIndex = 17;
@@ -894,7 +894,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 540);
+            this.ClientSize = new System.Drawing.Size(609, 540);
             this.Controls.Add(this.panel11);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel8);

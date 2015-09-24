@@ -27,50 +27,56 @@ namespace clienteMail.redactar_email
         }
        
 
-        private void enviarBtn_Click_1(object sender, EventArgs e)
+        private void enviarBtn_Click(object sender, EventArgs e)
         {
-            if (!(toTxt.Text.Trim() == ""))
+            if (toTxt.Text.Trim() == "")
             {
-                To = toTxt.Text;
-                Subject = asuntoTxt.Text;
-                Body = cuerpoTxt.Text;
-
-                mail = new MailMessage();
-                mail.To.Add(new MailAddress(this.To));
-                mail.From = new MailAddress("proyectofinal512@gmail.com", "Grupo 512 - Proyecto final");
-                mail.Subject = Subject;
-                mail.Body = Body;
-                mail.IsBodyHtml = false;
-
-                SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
-                
-                client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
-                client.EnableSsl = true;
-                client.Send(mail);
-                MessageBox.Show("Mail enviado exitosamente");
-
-                if (contactoID > 0)
-                {
-                    G.user.contacto_enviado(contactoID);
-                }
-                if (asuntoID > 0)
-                {
-                    G.user.asunto_usado(asuntoID);
-                }
-                if (mensajeID > 0)
-                {
-                    G.user.mensaje_usado(mensajeID);
-                }
-
-                mail_enviado mailEnviado = new mail_enviado();
-                mailEnviado.__para = To;
-                mailEnviado.__asunto = Subject;
-                mailEnviado.__mensaje = Body;
-
-                G.user.guardarMail(mailEnviado);
-
-                this.Close();
+                var form = new frmAlert("Ingresar destinatario", "Debe agregar un destinatario en el campo Para", "close");
+                DialogResult vr = form.ShowDialog(this);
+                return;
             }
+            To = toTxt.Text;
+            Subject = asuntoTxt.Text;
+            Body = cuerpoTxt.Text;
+
+            mail = new MailMessage();
+            mail.To.Add(new MailAddress(this.To));
+            mail.From = new MailAddress(G.user.Mail, G.user.Mail);
+            mail.Subject = Subject;
+            mail.Body = Body;
+            mail.IsBodyHtml = false;
+
+            SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
+                
+            client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
+            client.EnableSsl = true;
+            client.Send(mail);
+
+            if (contactoID > 0)
+            {
+                G.user.contacto_enviado(contactoID);
+            }
+            if (asuntoID > 0)
+            {
+                G.user.asunto_usado(asuntoID);
+            }
+            if (mensajeID > 0)
+            {
+                G.user.mensaje_usado(mensajeID);
+            }
+
+            mail_enviado mailEnviado = new mail_enviado();
+            mailEnviado.__para = To;
+            mailEnviado.__asunto = Subject;
+            mailEnviado.__mensaje = Body;
+
+            G.user.guardarMail(mailEnviado);
+
+            var form2 = new frmAlert("Mail enviado", "El mail ha sido enviado exitosamente", "close");
+            DialogResult vr2 = form2.ShowDialog(this);
+
+            this.Close();
+            
         }
 
         private void adjBtn_Click_1(object sender, EventArgs e)
@@ -121,6 +127,16 @@ namespace clienteMail.redactar_email
             {
                 mensajeID = form.idSelected;
                 cuerpoTxt.Text = G.user.getMensaje(mensajeID).Texto;
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            var form = new frmAlert("Cancelar", "Está seguro que desea cancelar el mail y descartar los cambios?", "yesno");
+            DialogResult vr = form.ShowDialog(this);
+            if (vr == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
             }
         }
 

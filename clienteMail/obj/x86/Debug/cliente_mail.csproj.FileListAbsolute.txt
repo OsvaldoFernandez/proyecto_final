@@ -52,3 +52,4 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
