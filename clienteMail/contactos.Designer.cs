@@ -206,7 +206,7 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnAgregar.Location = new System.Drawing.Point(17, 35);
+            this.btnAgregar.Location = new System.Drawing.Point(17, 45);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(193, 25);
             this.btnAgregar.TabIndex = 8;
@@ -221,7 +221,7 @@
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnModificar.Location = new System.Drawing.Point(17, 73);
+            this.btnModificar.Location = new System.Drawing.Point(17, 83);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(193, 25);
             this.btnModificar.TabIndex = 9;
@@ -231,12 +231,12 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.Location = new System.Drawing.Point(17, 110);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(17, 168);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(193, 25);
             this.btnEliminar.TabIndex = 10;
@@ -781,12 +781,13 @@
             this.panel10.Controls.Add(this.button3);
             this.panel10.Controls.Add(this.btnSiguiente);
             this.panel10.Controls.Add(this.btnAnterior);
+            this.panel10.Controls.Add(this.btnEliminar);
             this.panel10.Controls.Add(this.btnVolver);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.btnAceptar);
             this.panel10.Location = new System.Drawing.Point(0, 61);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 240);
+            this.panel10.Size = new System.Drawing.Size(224, 300);
             this.panel10.TabIndex = 16;
             // 
             // button3
@@ -857,7 +858,7 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.ForeColor = System.Drawing.Color.White;
-            this.btnAceptar.Location = new System.Drawing.Point(17, 165);
+            this.btnAceptar.Location = new System.Drawing.Point(17, 205);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(0);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -873,10 +874,9 @@
             this.panel11.Controls.Add(this.label4);
             this.panel11.Controls.Add(this.btnAgregar);
             this.panel11.Controls.Add(this.btnModificar);
-            this.panel11.Controls.Add(this.btnEliminar);
-            this.panel11.Location = new System.Drawing.Point(0, 301);
+            this.panel11.Location = new System.Drawing.Point(0, 361);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(224, 240);
+            this.panel11.Size = new System.Drawing.Size(224, 180);
             this.panel11.TabIndex = 17;
             // 
             // label4
@@ -884,7 +884,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(12, 3);
+            this.label4.Location = new System.Drawing.Point(12, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 25);
             this.label4.TabIndex = 9;

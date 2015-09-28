@@ -28,7 +28,7 @@ namespace clienteMail.comando
         private void comando_Load(object sender, EventArgs e)
         {
             Choices comandos = new Choices();
-            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve" });
+            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "leer", "redactar", "anterior", "siguiente", "volver", "aceptar", "para", "enviar", "cancelar" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
             Grammar grammar = new Grammar(gBuilder);
@@ -68,6 +68,51 @@ namespace clienteMail.comando
                     break;
                 case "nueve":
                     richTextBox1.Text += "\nNueve";
+                    break;
+                case "contactos":
+                    richTextBox1.Text += "\nContactos";
+                    break;
+                case "asuntos":
+                    richTextBox1.Text += "\nAsuntos";
+                    break;
+                case "mensajes":
+                    richTextBox1.Text += "\nMensajes";
+                    break;
+                case "recibidos":
+                    richTextBox1.Text += "\nRecibidos";
+                    break;
+                case "enviados":
+                    richTextBox1.Text += "\nEnviados";
+                    break;
+                case "eliminar":
+                    richTextBox1.Text += "\nEliminar";
+                    break;
+                case "leer":
+                    richTextBox1.Text += "\nLeer";
+                    break;
+                case "redactar":
+                    richTextBox1.Text += "\nRedactar";
+                    break;
+                case "anterior":
+                    richTextBox1.Text += "\nAnterior";
+                    break;
+                case "siguiente":
+                    richTextBox1.Text += "\nSiguiente";
+                    break;
+                case "volver":
+                    richTextBox1.Text += "\nVolver";
+                    break;
+                case "aceptar":
+                    richTextBox1.Text += "\nAceptar";
+                    break;
+                case "para":
+                    richTextBox1.Text += "\nPara";
+                    break;
+                case "enviar":
+                    richTextBox1.Text += "\nEnviar";
+                    break;
+                case "cancelar":
+                    richTextBox1.Text += "\nCancelar";
                     break;
             }
             G.formulario_activo.manejar_comando(e.Result.Text);

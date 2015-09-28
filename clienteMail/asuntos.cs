@@ -9,17 +9,17 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class asuntos : Form
+    public partial class asuntos : RichForm
     {
         int pagActual = 1;
         string formAnterior;
         public int idSelected { get; set; }
         Color varcolor = Color.FromArgb(255, 255, 224);
+        public RichForm form_padre;
 
-        public asuntos(string llamadoDesde)
+        public asuntos(string llamadoDesde, RichForm formulario_padre)
         {
             InitializeComponent();
-
             formAnterior = llamadoDesde;
             if (llamadoDesde == "home")
             {
@@ -30,6 +30,8 @@ namespace clienteMail
             {
                 btnAceptar.Visible = true;
             }
+            G.formulario_activo = this;
+            form_padre = formulario_padre;
         }
 
         private void asuntos_Load(object sender, EventArgs e)
@@ -163,6 +165,7 @@ namespace clienteMail
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
+            G.formulario_activo = form_padre;
             this.Close();
         }
 
@@ -300,6 +303,61 @@ namespace clienteMail
             {
                 panel8.BackColor = varcolor;
                 dataAsuntos.Rows[7].Selected = true;
+            }
+        }
+
+        public override void manejar_comando(string comando)
+        {
+
+            switch (comando)
+            {
+                case "uno":
+                    seleccionarAsunto1(null, null);
+                    break;
+                case "dos":
+                    seleccionarAsunto2(null, null);
+                    break;
+                case "tres":
+                    seleccionarAsunto3(null, null);
+                    break;
+                case "cuatro":
+                    seleccionarAsunto4(null, null);
+                    break;
+                case "cinco":
+                    seleccionarAsunto5(null, null);
+                    break;
+                case "seis":
+                    seleccionarAsunto6(null, null);
+                    break;
+                case "siete":
+                    seleccionarAsunto7(null, null);
+                    break;
+                case "ocho":
+                    seleccionarAsunto8(null, null);
+                    break;
+                case "volver":
+                    btnVolver_Click(null, null);
+                    break;
+                case "aceptar":
+                    btnAceptar_Click(null, null);
+                    break;
+                case "eliminar":
+                    btnEliminar_Click(null, null);
+                    break;
+                case "anterior":
+                    if (btnAnterior.Enabled)
+                    {
+                        btnAnterior_Click(null, null);
+                    }
+                    break;
+                case "siguiente":
+                    if (btnSiguiente.Enabled)
+                    {
+                        btnSiguiente_Click(null, null);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         

@@ -115,10 +115,9 @@
             this.panel11.Controls.Add(this.label4);
             this.panel11.Controls.Add(this.btnAgregar);
             this.panel11.Controls.Add(this.btnModificar);
-            this.panel11.Controls.Add(this.btnEliminar);
-            this.panel11.Location = new System.Drawing.Point(1, 300);
+            this.panel11.Location = new System.Drawing.Point(1, 360);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(224, 240);
+            this.panel11.Size = new System.Drawing.Size(224, 180);
             this.panel11.TabIndex = 25;
             // 
             // label4
@@ -164,12 +163,12 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.Location = new System.Drawing.Point(17, 110);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(17, 168);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(193, 25);
             this.btnEliminar.TabIndex = 10;
@@ -183,12 +182,13 @@
             this.panel10.Controls.Add(this.button3);
             this.panel10.Controls.Add(this.btnSiguiente);
             this.panel10.Controls.Add(this.btnAnterior);
+            this.panel10.Controls.Add(this.btnAceptar);
+            this.panel10.Controls.Add(this.btnEliminar);
             this.panel10.Controls.Add(this.btnVolver);
             this.panel10.Controls.Add(this.label3);
-            this.panel10.Controls.Add(this.btnAceptar);
             this.panel10.Location = new System.Drawing.Point(1, 60);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 240);
+            this.panel10.Size = new System.Drawing.Size(224, 300);
             this.panel10.TabIndex = 24;
             // 
             // button3
@@ -274,7 +274,7 @@
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAceptar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.ForeColor = System.Drawing.Color.White;
-            this.btnAceptar.Location = new System.Drawing.Point(17, 165);
+            this.btnAceptar.Location = new System.Drawing.Point(17, 205);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(0);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.RightToLeft = System.Windows.Forms.RightToLeft.No;

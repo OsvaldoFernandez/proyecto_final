@@ -12,6 +12,7 @@ using Email.Net.Pop3;
 using Email.Net.Common.Configurations;
 using Email.Net.Common.Collections;
 using Email.Net.Pop3.Exceptions;
+using System.Reflection;
 
 namespace clienteMail
 {
@@ -23,6 +24,7 @@ namespace clienteMail
         mail_enviado[] messagesEnviados = new mail_enviado[8];
         Dictionary<int, uint> serialNumbers = new Dictionary<int, uint>();
         int pagActual;
+        int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
         uint ultimoRender; //que mails ya mostré o "renderice"
         Color varcolor = Color.FromArgb(255, 255, 224);
@@ -34,34 +36,84 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
+
             switch (comando)
             {
                 case "uno":
-                    leerMail1(null,null);
+                    seleccionarMail1(null,null);
+                    mailSelected = 1;
                     break;
                 case "dos":
-                    leerMail2(null, null);
+                    seleccionarMail2(null, null);
+                    mailSelected = 2;
                     break;
                 case "tres":
-                    leerMail3(null,null);
+                    seleccionarMail3(null,null);
+                    mailSelected = 3;
                     break;
                 case "cuatro":
-                    leerMail4(null,null);;
+                    seleccionarMail4(null,null);
+                    mailSelected = 4;
                     break;
                 case "cinco":
-                    leerMail5(null,null);
+                    seleccionarMail5(null,null);
+                    mailSelected = 5;
                     break;
                 case "seis":
-                    leerMail6(null,null);;
+                    seleccionarMail6(null,null);
+                    mailSelected = 6;
                     break;
                 case "siete":
-                    leerMail7(null,null);
+                    seleccionarMail7(null,null);
+                    mailSelected = 7;
                     break;
                 case "ocho":
-                    leerMail8(null,null);
+                    seleccionarMail8(null,null);
+                    mailSelected = 8;
                     break;
                 case "nueve":
                     // DO NOTHING
+                    break;
+                case "contactos":
+                    btnContactos_Click(null, null);
+                    break;
+                case "asuntos":
+                    btnAsuntos_Click(null, null);
+                    break;
+                case "mensajes":
+                    btnMensajes_Click(null, null);
+                    break;
+                case "recibidos":
+                    btnRecibidos_Click(null, null);
+                    break;
+                case "enviados":
+                    btnEnviados_Click(null, null);
+                    break;
+                case "eliminar":
+                    btnEliminar_Click(null, null);
+                    break;
+                case "redactar":
+                    redactar_Click(null, null);
+                    break; 
+                case "leer":
+                    Type thisType = this.GetType();
+                    ParameterInfo[] parameters = {null,null};
+                    MethodInfo theMethod = thisType.GetMethod("leerMail"+mailSelected.ToString());
+                    theMethod.Invoke(this, parameters);
+                    break;
+                case "anterior":
+                    if (btnAnterior.Enabled)
+                    {
+                        btnAnterior_Click(null, null);
+                    }
+                    break;
+                case "siguiente":
+                    if (btnSiguiente.Enabled)
+                    {
+                        btnSiguiente_Click(null, null);
+                    }
+                    break; 
+                default:
                     break;
             }
         }
@@ -262,7 +314,7 @@ namespace clienteMail
 
             private void redactar_Click(object sender, EventArgs e)
             {
-                redactar_email.redactar form = new redactar_email.redactar();
+                redactar_email.redactar form = new redactar_email.redactar(this);
                 form.Show();
             }
 
@@ -388,19 +440,19 @@ namespace clienteMail
 
             private void btnContactos_Click(object sender, EventArgs e)
             {
-                var form = new contactos("home");
+                var form = new contactos("home", this);
                 form.Show();
             }
 
             private void btnAsuntos_Click(object sender, EventArgs e)
             {
-                var form = new asuntos("home");
+                var form = new asuntos("home", this);
                 form.Show();
             }
 
             private void btnMensajes_Click(object sender, EventArgs e)
             {
-                var form = new mensajes("home");
+                var form = new mensajes("home", this);
                 form.Show();
             }
 
@@ -601,7 +653,7 @@ namespace clienteMail
 
 
 
-            private void leerMail1(object sender, EventArgs e)
+            public void leerMail1(object sender, EventArgs e)
             {
                 if (index1.Visible)
                 {
@@ -623,7 +675,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail2(object sender, EventArgs e)
+            public void leerMail2(object sender, EventArgs e)
             {
                 if (index3.Visible)
                 {
@@ -646,7 +698,7 @@ namespace clienteMail
             }
 
 
-            private void leerMail3(object sender, EventArgs e)
+            public void leerMail3(object sender, EventArgs e)
             {
                 if (index3.Visible)
                 {
@@ -668,7 +720,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail4(object sender, EventArgs e)
+            public void leerMail4(object sender, EventArgs e)
             {
                 if (index4.Visible)
                 {
@@ -690,7 +742,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail5(object sender, EventArgs e)
+            public void leerMail5(object sender, EventArgs e)
             {
                 if (index5.Visible)
                 {
@@ -712,7 +764,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail6(object sender, EventArgs e)
+            public void leerMail6(object sender, EventArgs e)
             {
                 if (index6.Visible)
                 {
@@ -734,7 +786,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail7(object sender, EventArgs e)
+            public void leerMail7(object sender, EventArgs e)
             {
                 if (index7.Visible)
                 {
@@ -756,7 +808,7 @@ namespace clienteMail
                 }
             }
 
-            private void leerMail8(object sender, EventArgs e)
+            public void leerMail8(object sender, EventArgs e)
             {
                 if (index8.Visible)
                 {

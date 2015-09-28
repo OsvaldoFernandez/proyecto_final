@@ -12,18 +12,21 @@ using System.Net.Mime;
 
 namespace clienteMail.redactar_email
 {
-    public partial class redactar : Form
+    public partial class redactar : RichForm
     {
         private string To;
         private string Subject;
         private string Body;
         private int asuntoID = 0, mensajeID = 0, contactoID = 0;
+        public RichForm form_padre;
 
         private MailMessage mail;
 
-        public redactar()
+        public redactar(RichForm formulario_padre)
         {
             InitializeComponent();
+            G.formulario_activo = this;
+            form_padre = formulario_padre;
         }
        
 
@@ -99,7 +102,7 @@ namespace clienteMail.redactar_email
 
         private void btnPara_Click(object sender, EventArgs e)
         {
-            var form = new contactos("redactar");
+            var form = new contactos("redactar", this);
             DialogResult res = form.ShowDialog(this);
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
@@ -110,7 +113,7 @@ namespace clienteMail.redactar_email
 
         private void btnAsunto_Click(object sender, EventArgs e)
         {
-            var form = new asuntos("redactar");
+            var form = new asuntos("redactar", this);
             DialogResult res = form.ShowDialog(this);
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
@@ -121,7 +124,7 @@ namespace clienteMail.redactar_email
 
         private void btnMensaje_Click(object sender, EventArgs e)
         {
-            var form = new mensajes("redactar");
+            var form = new mensajes("redactar", this);
             DialogResult res = form.ShowDialog(this);
             if (res != System.Windows.Forms.DialogResult.Cancel)
             {
@@ -136,7 +139,33 @@ namespace clienteMail.redactar_email
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
+                G.formulario_activo = form_padre;
                 this.Close();
+            }
+        }
+
+        public override void manejar_comando(string comando)
+        {
+
+            switch (comando)
+            {
+                case "para":
+                    btnPara_Click(null, null);
+                    break;
+                case "asuntos":
+                    btnAsunto_Click(null, null);
+                    break;
+                case "mensajes":
+                    btnMensaje_Click(null, null);
+                    break;
+                case "enviar":
+                    enviarBtn_Click(null, null);
+                    break;
+                case "cancelar":
+                    btnCancelar_Click(null, null);
+                    break;
+                default:
+                    break;
             }
         }
 

@@ -262,7 +262,7 @@
             this.btnAsunto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsunto.Font = new System.Drawing.Font("Arial", 12F);
             this.btnAsunto.ForeColor = System.Drawing.Color.White;
-            this.btnAsunto.Location = new System.Drawing.Point(12, 95);
+            this.btnAsunto.Location = new System.Drawing.Point(12, 97);
             this.btnAsunto.Name = "btnAsunto";
             this.btnAsunto.Size = new System.Drawing.Size(193, 25);
             this.btnAsunto.TabIndex = 2;
@@ -292,7 +292,7 @@
             this.btnMensaje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMensaje.Font = new System.Drawing.Font("Arial", 12F);
             this.btnMensaje.ForeColor = System.Drawing.Color.White;
-            this.btnMensaje.Location = new System.Drawing.Point(12, 146);
+            this.btnMensaje.Location = new System.Drawing.Point(12, 135);
             this.btnMensaje.Name = "btnMensaje";
             this.btnMensaje.Size = new System.Drawing.Size(193, 25);
             this.btnMensaje.TabIndex = 3;

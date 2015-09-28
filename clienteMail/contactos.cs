@@ -9,14 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class contactos : Form
+    public partial class contactos : RichForm
     {
         int pagActual = 1;
         string formAnterior;
         public int idSelected { get; set; }
         Color varcolor = Color.FromArgb(255, 255, 224);
+        public RichForm form_padre;
 
-        public contactos(string llamadoDesde)
+        public contactos(string llamadoDesde, RichForm formulario_padre)
         {
             InitializeComponent();
             formAnterior = llamadoDesde;
@@ -28,6 +29,8 @@ namespace clienteMail
             {
                 btnAceptar.Visible = true;
             }
+            G.formulario_activo = this;
+            form_padre = formulario_padre;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -158,7 +161,9 @@ namespace clienteMail
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
 
+            G.formulario_activo = form_padre;
             this.Close();
+
         }
 
         // METODOS PARA LA VISTA. OSVALDO
@@ -301,6 +306,61 @@ namespace clienteMail
             {
                 panel8.BackColor = varcolor;
                 dataContactos.Rows[7].Selected = true;
+            }
+        }
+
+        public override void manejar_comando(string comando)
+        {
+
+            switch (comando)
+            {
+                case "uno":
+                    seleccionarContacto1(null, null);
+                    break;
+                case "dos":
+                    seleccionarContacto2(null, null);
+                    break;
+                case "tres":
+                    seleccionarContacto3(null, null);
+                    break;
+                case "cuatro":
+                    seleccionarContacto4(null, null);
+                    break;
+                case "cinco":
+                    seleccionarContacto5(null, null);
+                    break;
+                case "seis":
+                    seleccionarContacto6(null, null);
+                    break;
+                case "siete":
+                    seleccionarContacto7(null, null);
+                    break;
+                case "ocho":
+                    seleccionarContacto8(null, null);
+                    break;
+                case "volver":
+                    btnVolver_Click(null, null);
+                    break;
+                case "aceptar":
+                    btnAceptar_Click(null, null);
+                    break;
+                case "eliminar":
+                    btnEliminar_Click(null, null);
+                    break;
+                case "anterior":
+                    if (btnAnterior.Enabled)
+                    {
+                        btnAnterior_Click(null, null);
+                    }
+                    break;
+                case "siguiente":
+                    if (btnSiguiente.Enabled)
+                    {
+                        btnSiguiente_Click(null, null);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
