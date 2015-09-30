@@ -22,11 +22,22 @@ namespace clienteMail.redactar_email
 
         private MailMessage mail;
 
-        public redactar(RichForm formulario_padre)
+        public redactar(RichForm formulario_padre, string asunto = "", string para = "", string mensaje = "")
         {
             InitializeComponent();
             G.formulario_activo = this;
             form_padre = formulario_padre;
+            asuntoTxt.Text = asunto;
+            toTxt.Text = para;
+            webBrowser.DocumentText = mensaje;
+            if (mensaje != "")
+            {
+                webBrowser.Visible = true;
+            }
+            else
+            {
+                webBrowser.Visible = false;
+            }
         }
        
 
@@ -40,14 +51,14 @@ namespace clienteMail.redactar_email
             }
             To = toTxt.Text;
             Subject = asuntoTxt.Text;
-            Body = cuerpoTxt.Text;
+            Body = cuerpoTxt.Text + "<br><br>" + webBrowser.DocumentText;
 
             mail = new MailMessage();
             mail.To.Add(new MailAddress(this.To));
             mail.From = new MailAddress(G.user.Mail, G.user.Mail);
             mail.Subject = Subject;
             mail.Body = Body;
-            mail.IsBodyHtml = false;
+            mail.IsBodyHtml = true;
 
             SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
                 

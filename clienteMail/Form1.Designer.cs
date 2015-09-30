@@ -47,6 +47,7 @@
             this.btnAsuntos = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -341,13 +342,25 @@
             // panel0
             // 
             this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
+            this.panel0.Controls.Add(this.lblTitle);
             this.panel0.Controls.Add(this.pictureBox9);
             this.panel0.Controls.Add(this.label2);
             this.panel0.Controls.Add(this.lblPagina);
             this.panel0.Location = new System.Drawing.Point(0, 0);
             this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(799, 60);
+            this.panel0.Size = new System.Drawing.Size(1009, 60);
             this.panel0.TabIndex = 13;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(528, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(104, 30);
+            this.lblTitle.TabIndex = 9;
+            this.lblTitle.Text = "Recibidos";
             // 
             // pictureBox9
             // 
@@ -427,7 +440,7 @@
             this.panel8.Controls.Add(this.pictureBox8);
             this.panel8.Location = new System.Drawing.Point(224, 480);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(575, 60);
+            this.panel8.Size = new System.Drawing.Size(785, 60);
             this.panel8.TabIndex = 25;
             this.panel8.Click += new System.EventHandler(this.seleccionarMail8);
             this.panel8.DoubleClick += new System.EventHandler(this.leerMail8);
@@ -437,7 +450,7 @@
             this.mailDate8.AutoSize = true;
             this.mailDate8.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate8.Location = new System.Drawing.Point(350, 0);
+            this.mailDate8.Location = new System.Drawing.Point(531, 3);
             this.mailDate8.Name = "mailDate8";
             this.mailDate8.Size = new System.Drawing.Size(124, 25);
             this.mailDate8.TabIndex = 9;
@@ -507,7 +520,7 @@
             this.panel7.Controls.Add(this.pictureBox7);
             this.panel7.Location = new System.Drawing.Point(224, 420);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(575, 60);
+            this.panel7.Size = new System.Drawing.Size(785, 60);
             this.panel7.TabIndex = 23;
             this.panel7.Click += new System.EventHandler(this.seleccionarMail7);
             this.panel7.DoubleClick += new System.EventHandler(this.leerMail7);
@@ -517,7 +530,7 @@
             this.mailDate7.AutoSize = true;
             this.mailDate7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate7.Location = new System.Drawing.Point(350, 0);
+            this.mailDate7.Location = new System.Drawing.Point(531, 5);
             this.mailDate7.Name = "mailDate7";
             this.mailDate7.Size = new System.Drawing.Size(124, 25);
             this.mailDate7.TabIndex = 8;
@@ -587,7 +600,7 @@
             this.panel6.Controls.Add(this.pictureBox6);
             this.panel6.Location = new System.Drawing.Point(224, 360);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(575, 60);
+            this.panel6.Size = new System.Drawing.Size(785, 60);
             this.panel6.TabIndex = 24;
             this.panel6.Click += new System.EventHandler(this.seleccionarMail6);
             this.panel6.DoubleClick += new System.EventHandler(this.leerMail6);
@@ -597,7 +610,7 @@
             this.mailDate6.AutoSize = true;
             this.mailDate6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate6.Location = new System.Drawing.Point(350, 0);
+            this.mailDate6.Location = new System.Drawing.Point(531, 0);
             this.mailDate6.Name = "mailDate6";
             this.mailDate6.Size = new System.Drawing.Size(124, 25);
             this.mailDate6.TabIndex = 7;
@@ -666,7 +679,7 @@
             this.panel5.Controls.Add(this.pictureBox5);
             this.panel5.Location = new System.Drawing.Point(224, 300);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(575, 60);
+            this.panel5.Size = new System.Drawing.Size(785, 60);
             this.panel5.TabIndex = 21;
             this.panel5.Click += new System.EventHandler(this.seleccionarMail5);
             this.panel5.DoubleClick += new System.EventHandler(this.leerMail5);
@@ -676,7 +689,7 @@
             this.mailDate5.AutoSize = true;
             this.mailDate5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate5.Location = new System.Drawing.Point(350, 0);
+            this.mailDate5.Location = new System.Drawing.Point(531, 4);
             this.mailDate5.Name = "mailDate5";
             this.mailDate5.Size = new System.Drawing.Size(124, 25);
             this.mailDate5.TabIndex = 6;
@@ -746,7 +759,7 @@
             this.panel4.Controls.Add(this.pictureBox4);
             this.panel4.Location = new System.Drawing.Point(224, 240);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(575, 60);
+            this.panel4.Size = new System.Drawing.Size(785, 60);
             this.panel4.TabIndex = 22;
             this.panel4.Click += new System.EventHandler(this.seleccionarMail4);
             this.panel4.DoubleClick += new System.EventHandler(this.leerMail4);
@@ -756,7 +769,7 @@
             this.mailDate4.AutoSize = true;
             this.mailDate4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate4.Location = new System.Drawing.Point(350, 0);
+            this.mailDate4.Location = new System.Drawing.Point(531, 0);
             this.mailDate4.Name = "mailDate4";
             this.mailDate4.Size = new System.Drawing.Size(124, 25);
             this.mailDate4.TabIndex = 5;
@@ -826,7 +839,7 @@
             this.panel3.Controls.Add(this.pictureBox3);
             this.panel3.Location = new System.Drawing.Point(224, 180);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(575, 60);
+            this.panel3.Size = new System.Drawing.Size(785, 60);
             this.panel3.TabIndex = 19;
             this.panel3.Click += new System.EventHandler(this.seleccionarMail3);
             this.panel3.DoubleClick += new System.EventHandler(this.leerMail3);
@@ -836,7 +849,7 @@
             this.mailDate3.AutoSize = true;
             this.mailDate3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate3.Location = new System.Drawing.Point(350, 0);
+            this.mailDate3.Location = new System.Drawing.Point(531, 4);
             this.mailDate3.Name = "mailDate3";
             this.mailDate3.Size = new System.Drawing.Size(124, 25);
             this.mailDate3.TabIndex = 6;
@@ -906,7 +919,7 @@
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Location = new System.Drawing.Point(224, 120);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(575, 60);
+            this.panel2.Size = new System.Drawing.Size(785, 60);
             this.panel2.TabIndex = 20;
             this.panel2.Click += new System.EventHandler(this.seleccionarMail2);
             this.panel2.DoubleClick += new System.EventHandler(this.leerMail2);
@@ -916,7 +929,7 @@
             this.mailDate2.AutoSize = true;
             this.mailDate2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate2.Location = new System.Drawing.Point(350, 0);
+            this.mailDate2.Location = new System.Drawing.Point(531, 4);
             this.mailDate2.Name = "mailDate2";
             this.mailDate2.Size = new System.Drawing.Size(124, 25);
             this.mailDate2.TabIndex = 5;
@@ -986,7 +999,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(224, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(575, 60);
+            this.panel1.Size = new System.Drawing.Size(785, 60);
             this.panel1.TabIndex = 18;
             this.panel1.Click += new System.EventHandler(this.seleccionarMail1);
             this.panel1.DoubleClick += new System.EventHandler(this.leerMail1);
@@ -996,7 +1009,7 @@
             this.mailDate1.AutoSize = true;
             this.mailDate1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mailDate1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
-            this.mailDate1.Location = new System.Drawing.Point(350, 0);
+            this.mailDate1.Location = new System.Drawing.Point(531, 4);
             this.mailDate1.Name = "mailDate1";
             this.mailDate1.Size = new System.Drawing.Size(124, 25);
             this.mailDate1.TabIndex = 4;
@@ -1059,7 +1072,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 538);
+            this.ClientSize = new System.Drawing.Size(1006, 538);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -1073,6 +1086,7 @@
             this.Controls.Add(this.dataMails);
             this.Name = "Form1";
             this.Text = "Cliente mail";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataMails)).EndInit();
             this.panel0.ResumeLayout(false);
@@ -1181,6 +1195,7 @@
         private System.Windows.Forms.Label mailDate3;
         private System.Windows.Forms.Label mailDate2;
         private System.Windows.Forms.Label mailDate1;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 

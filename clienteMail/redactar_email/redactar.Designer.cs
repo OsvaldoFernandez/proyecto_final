@@ -49,6 +49,7 @@
             this.btnAsunto = new System.Windows.Forms.Button();
             this.enviarBtn = new System.Windows.Forms.Button();
             this.btnMensaje = new System.Windows.Forms.Button();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             this.toTxt.ForeColor = System.Drawing.Color.White;
             this.toTxt.Location = new System.Drawing.Point(353, 58);
             this.toTxt.Name = "toTxt";
-            this.toTxt.Size = new System.Drawing.Size(395, 26);
+            this.toTxt.Size = new System.Drawing.Size(584, 26);
             this.toTxt.TabIndex = 15;
             // 
             // shapeContainer1
@@ -84,7 +85,7 @@
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1,
             this.lineShape2});
-            this.shapeContainer1.Size = new System.Drawing.Size(824, 385);
+            this.shapeContainer1.Size = new System.Drawing.Size(981, 741);
             this.shapeContainer1.TabIndex = 16;
             this.shapeContainer1.TabStop = false;
             // 
@@ -94,9 +95,9 @@
             this.lineShape1.BorderWidth = 2;
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.X1 = 271;
-            this.lineShape1.X2 = 791;
+            this.lineShape1.X2 = 964;
             this.lineShape1.Y1 = 90;
-            this.lineShape1.Y2 = 90;
+            this.lineShape1.Y2 = 91;
             // 
             // lineShape2
             // 
@@ -104,16 +105,16 @@
             this.lineShape2.BorderWidth = 2;
             this.lineShape2.Name = "lineShape2";
             this.lineShape2.X1 = 271;
-            this.lineShape2.X2 = 791;
+            this.lineShape2.X2 = 967;
             this.lineShape2.Y1 = 132;
-            this.lineShape2.Y2 = 132;
+            this.lineShape2.Y2 = 131;
             // 
             // clear1
             // 
             this.clear1.AutoSize = true;
             this.clear1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear1.ForeColor = System.Drawing.Color.White;
-            this.clear1.Location = new System.Drawing.Point(768, 55);
+            this.clear1.Location = new System.Drawing.Point(943, 54);
             this.clear1.Name = "clear1";
             this.clear1.Size = new System.Drawing.Size(25, 24);
             this.clear1.TabIndex = 18;
@@ -147,7 +148,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(768, 100);
+            this.label5.Location = new System.Drawing.Point(944, 100);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 24);
             this.label5.TabIndex = 21;
@@ -162,7 +163,7 @@
             this.asuntoTxt.ForeColor = System.Drawing.Color.White;
             this.asuntoTxt.Location = new System.Drawing.Point(353, 103);
             this.asuntoTxt.Name = "asuntoTxt";
-            this.asuntoTxt.Size = new System.Drawing.Size(395, 26);
+            this.asuntoTxt.Size = new System.Drawing.Size(585, 26);
             this.asuntoTxt.TabIndex = 20;
             // 
             // label6
@@ -194,7 +195,7 @@
             this.cuerpoTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(183)))));
             this.cuerpoTxt.Location = new System.Drawing.Point(273, 197);
             this.cuerpoTxt.Name = "cuerpoTxt";
-            this.cuerpoTxt.Size = new System.Drawing.Size(520, 174);
+            this.cuerpoTxt.Size = new System.Drawing.Size(696, 174);
             this.cuerpoTxt.TabIndex = 26;
             this.cuerpoTxt.Text = "";
             // 
@@ -209,7 +210,7 @@
             this.panel10.Controls.Add(this.btnMensaje);
             this.panel10.Location = new System.Drawing.Point(14, 13);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 358);
+            this.panel10.Size = new System.Drawing.Size(224, 679);
             this.panel10.TabIndex = 27;
             // 
             // btnPara
@@ -300,12 +301,21 @@
             this.btnMensaje.UseVisualStyleBackColor = false;
             this.btnMensaje.Click += new System.EventHandler(this.btnMensaje_Click);
             // 
+            // webBrowser
+            // 
+            this.webBrowser.Location = new System.Drawing.Point(271, 377);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(698, 352);
+            this.webBrowser.TabIndex = 28;
+            // 
             // redactar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(824, 385);
+            this.ClientSize = new System.Drawing.Size(981, 741);
+            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.cuerpoTxt);
             this.Controls.Add(this.label3);
@@ -320,6 +330,7 @@
             this.Controls.Add(this.shapeContainer1);
             this.Name = "redactar";
             this.Text = "Redactar";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.redactar_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
@@ -351,5 +362,6 @@
         private System.Windows.Forms.Button btnAsunto;
         private System.Windows.Forms.Button enviarBtn;
         private System.Windows.Forms.Button btnMensaje;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }

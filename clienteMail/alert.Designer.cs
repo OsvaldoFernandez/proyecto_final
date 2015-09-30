@@ -53,7 +53,7 @@
             this.panel10.Controls.Add(this.btnAceptar);
             this.panel10.Controls.Add(this.label7);
             this.panel10.Controls.Add(this.btnCancelar);
-            this.panel10.Location = new System.Drawing.Point(12, 90);
+            this.panel10.Location = new System.Drawing.Point(166, 86);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(488, 105);
             this.panel10.TabIndex = 29;
@@ -106,7 +106,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(512, 212);
+            this.ClientSize = new System.Drawing.Size(826, 212);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.lblMensaje);
             this.Name = "frmAlert";

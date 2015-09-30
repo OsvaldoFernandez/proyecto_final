@@ -122,6 +122,7 @@ namespace clienteMail
         {
             recibidos = true;
             pagActual = 1;
+            lblTitle.Text = "Recibidos";
 
             if (!messagesRecibidos.ContainsKey(1))
             {
@@ -265,6 +266,7 @@ namespace clienteMail
             private void btnEnviados_Click(object sender, EventArgs e)
             {
                 recibidos = false;
+                lblTitle.Text = "Enviados";
 
                 pagActual = 1;
                 dataMails.Columns[2].HeaderText = "Para";        
@@ -299,7 +301,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][index];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__from = message_rfc.From.ToString();
+                        message.__from = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -662,7 +664,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][0];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -684,7 +686,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][1];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -707,7 +709,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][2];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -729,7 +731,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][3];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -751,7 +753,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][4];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<","").Replace(">","");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -773,7 +775,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][5];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -795,7 +797,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][6];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
@@ -817,7 +819,7 @@ namespace clienteMail
                     {
                         Rfc822Message message_rfc = messagesRecibidos[pagActual][7];
                         message.__mensaje = message_rfc.Text.ToString();
-                        message.__para = message_rfc.To.ToString();
+                        message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
                     }
                     else
