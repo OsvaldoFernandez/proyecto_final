@@ -37,13 +37,13 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(25, 13);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(288, 153);
+            this.richTextBox1.Size = new System.Drawing.Size(288, 438);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "- Log - ";
             // 
             // enableBtn
             // 
-            this.enableBtn.Location = new System.Drawing.Point(25, 185);
+            this.enableBtn.Location = new System.Drawing.Point(25, 469);
             this.enableBtn.Name = "enableBtn";
             this.enableBtn.Size = new System.Drawing.Size(140, 23);
             this.enableBtn.TabIndex = 1;
@@ -54,7 +54,7 @@
             // disableBtn
             // 
             this.disableBtn.Enabled = false;
-            this.disableBtn.Location = new System.Drawing.Point(173, 185);
+            this.disableBtn.Location = new System.Drawing.Point(173, 469);
             this.disableBtn.Name = "disableBtn";
             this.disableBtn.Size = new System.Drawing.Size(140, 23);
             this.disableBtn.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 225);
+            this.ClientSize = new System.Drawing.Size(342, 522);
             this.Controls.Add(this.disableBtn);
             this.Controls.Add(this.enableBtn);
             this.Controls.Add(this.richTextBox1);

@@ -100,7 +100,7 @@ namespace clienteMail
                     Type thisType = this.GetType();
                     ParameterInfo[] parameters = {null,null};
                     MethodInfo theMethod = thisType.GetMethod("leerMail"+mailSelected.ToString());
-                    theMethod.Invoke(this, parameters);
+                    // theMethod.Invoke(this, parameters);
                     break;
                 case "anterior":
                     if (btnAnterior.Enabled)

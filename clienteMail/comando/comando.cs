@@ -20,6 +20,9 @@ namespace clienteMail.comando
         public comando()
         {
             InitializeComponent();
+#if !DEBUG
+            Visible = false;
+#endif
         }
 
         private void enableBtn_Click(object sender, EventArgs e)
@@ -39,12 +42,22 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            // int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
-            // if (rv != 0) MessageBox.Show(rv.ToString());
+            int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
+            if (rv != 0) MessageBox.Show(rv.ToString("X"));
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            int pos = -1;
+            for (int linea = 0; linea < 15; linea++)
+            {
+                if (pos < 0)
+                    pos = richTextBox1.Text.LastIndexOf('\n');
+                else if (pos > 0)
+                    pos = richTextBox1.Text.LastIndexOf('\n', pos - 1);
+                if (pos < 0) break;
+            }
+            if (pos > 0) richTextBox1.Text = richTextBox1.Text.Substring(pos + 1);
             switch (e.Result.Text)
             {
                 case "uno":
@@ -120,22 +133,23 @@ namespace clienteMail.comando
                     richTextBox1.Text += "\nCancelar";
                     break;
             }
-
+            richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
+            // filtrar por e.Result.Confidence
             RecognizedAudio audio = e.Result.Audio;
             TimeSpan duration = audio.Duration;
-            // ATENCION!! PARA QUE ANDE CREAR LA CARPETA temporalproyecto en el disco C
-            string path = @"C:\temporalproyecto\nameAudio.wav";
+            // Osvaldo hace cosas muy raras
+            string path = Path.GetTempFileName();
             using (Stream outputStream = new FileStream(path, FileMode.Create))
             {
                 RecognizedAudio nameAudio = audio;
                 nameAudio.WriteToWaveStream(outputStream);
                 outputStream.Close();
             }
-            string nombre_archivo = "C:\\temporalproyecto\\nameAudio.wav";
-            int res = AV.avf_autenticar_WAV(autenticador, nombre_archivo);
+            int res = AV.avf_autenticar_WAV(autenticador, path);
+            File.Delete(path);
             if (res < -10000)
             {
-                richTextBox1.Text += " - error - " + res.ToString();
+                richTextBox1.Text += " - error - " + res.ToString("X");
                 return;
             }
             if (res > 0)
