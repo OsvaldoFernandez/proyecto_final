@@ -39,8 +39,8 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
-            if (rv != 0) MessageBox.Show(rv.ToString());
+            // int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
+            // if (rv != 0) MessageBox.Show(rv.ToString());
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)

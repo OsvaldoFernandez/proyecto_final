@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Threading;
 
 public partial class RichForm : Form
 {

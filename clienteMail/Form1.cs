@@ -19,6 +19,7 @@ namespace clienteMail
     public partial class Form1 : RichForm
     {
         Pop3Client client;
+        bool authenticated = false;
 
         Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
         mail_enviado[] messagesEnviados = new mail_enviado[8];
@@ -126,6 +127,10 @@ namespace clienteMail
 
             if (!messagesRecibidos.ContainsKey(1))
             {
+                while (!authenticated)
+                {
+                    System.Threading.Thread.Sleep(50);
+                }
                 ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
             }
             dataMails.Columns[2].HeaderText = "De";
@@ -166,6 +171,7 @@ namespace clienteMail
             void client_Authenticated(Pop3Client sender)
             {
                 Console.WriteLine("Client authentificated");
+                authenticated = true;
             }
             void client_MessageReceived(Pop3Client sender, Rfc822Message message)
             {
@@ -216,7 +222,7 @@ namespace clienteMail
                 {
                     client.Login();
                 }
-                catch (Exception)
+                catch
                 {
                     MessageBox.Show("No hay conexión a Internet.");
                     System.Environment.Exit(1);
@@ -231,6 +237,10 @@ namespace clienteMail
                 }
                 if (recibidos)
                 {
+                    while (!authenticated)
+                    {
+                        System.Threading.Thread.Sleep(50);
+                    }
                     List<Rfc822Message> list = new List<Rfc822Message>();
                     serialNumbers = new Dictionary<int, uint>();
                 

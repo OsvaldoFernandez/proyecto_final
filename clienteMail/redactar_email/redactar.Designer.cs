@@ -31,9 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toTxt = new System.Windows.Forms.TextBox();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.clear1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,38 +73,6 @@
             this.toTxt.Name = "toTxt";
             this.toTxt.Size = new System.Drawing.Size(584, 26);
             this.toTxt.TabIndex = 15;
-            // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.lineShape1,
-            this.lineShape2});
-            this.shapeContainer1.Size = new System.Drawing.Size(981, 741);
-            this.shapeContainer1.TabIndex = 16;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // lineShape1
-            // 
-            this.lineShape1.BorderColor = System.Drawing.Color.White;
-            this.lineShape1.BorderWidth = 2;
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 271;
-            this.lineShape1.X2 = 964;
-            this.lineShape1.Y1 = 90;
-            this.lineShape1.Y2 = 91;
-            // 
-            // lineShape2
-            // 
-            this.lineShape2.BorderColor = System.Drawing.Color.White;
-            this.lineShape2.BorderWidth = 2;
-            this.lineShape2.Name = "lineShape2";
-            this.lineShape2.X1 = 271;
-            this.lineShape2.X2 = 967;
-            this.lineShape2.Y1 = 132;
-            this.lineShape2.Y2 = 131;
             // 
             // clear1
             // 
@@ -327,7 +292,6 @@
             this.Controls.Add(this.clear1);
             this.Controls.Add(this.toTxt);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.shapeContainer1);
             this.Name = "redactar";
             this.Text = "Redactar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -344,17 +308,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox toTxt;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private System.Windows.Forms.Label clear1;
         private System.Windows.Forms.Label label2;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox asuntoTxt;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox cuerpoTxt;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnPara;
         private System.Windows.Forms.Label label7;
