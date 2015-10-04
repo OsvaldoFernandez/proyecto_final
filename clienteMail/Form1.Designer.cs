@@ -29,30 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.dataMails = new System.Windows.Forms.DataGridView();
-            this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRecibidos = new System.Windows.Forms.Button();
-            this.btnEnviados = new System.Windows.Forms.Button();
-            this.redactar = new System.Windows.Forms.Button();
-            this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnAnterior = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.lblPagina = new System.Windows.Forms.Label();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnContactos = new System.Windows.Forms.Button();
-            this.btnAsuntos = new System.Windows.Forms.Button();
-            this.btnMensajes = new System.Windows.Forms.Button();
-            this.panel0 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.mailDate8 = new System.Windows.Forms.Label();
             this.mailSub8 = new System.Windows.Forms.Label();
@@ -101,10 +77,30 @@
             this.index1 = new System.Windows.Forms.Label();
             this.mailRte1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
-            this.panel0.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            this.panel10.SuspendLayout();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnAnterior = new System.Windows.Forms.Button();
+            this.btnMensajes = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnAsuntos = new System.Windows.Forms.Button();
+            this.btnRecibidos = new System.Windows.Forms.Button();
+            this.btnContactos = new System.Windows.Forms.Button();
+            this.redactar = new System.Windows.Forms.Button();
+            this.btnEnviados = new System.Windows.Forms.Button();
+            this.panel0 = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblPagina = new System.Windows.Forms.Label();
+            this.dataMails = new System.Windows.Forms.DataGridView();
+            this.Nro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel7.SuspendLayout();
@@ -121,314 +117,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel10.SuspendLayout();
+            this.panel0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMails)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataMails
-            // 
-            this.dataMails.AllowUserToAddRows = false;
-            this.dataMails.AllowUserToDeleteRows = false;
-            this.dataMails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataMails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nro,
-            this.index,
-            this.De,
-            this.Asunto,
-            this.Fecha});
-            this.dataMails.Location = new System.Drawing.Point(800, 64);
-            this.dataMails.Name = "dataMails";
-            this.dataMails.ReadOnly = true;
-            this.dataMails.Size = new System.Drawing.Size(366, 261);
-            this.dataMails.TabIndex = 1;
-            this.dataMails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMails_CellContentClick);
-            // 
-            // Nro
-            // 
-            this.Nro.Frozen = true;
-            this.Nro.HeaderText = "Nº";
-            this.Nro.Name = "Nro";
-            this.Nro.ReadOnly = true;
-            this.Nro.Width = 30;
-            // 
-            // index
-            // 
-            this.index.Frozen = true;
-            this.index.HeaderText = "index";
-            this.index.Name = "index";
-            this.index.ReadOnly = true;
-            this.index.Visible = false;
-            // 
-            // De
-            // 
-            this.De.Frozen = true;
-            this.De.HeaderText = "De";
-            this.De.Name = "De";
-            this.De.ReadOnly = true;
-            // 
-            // Asunto
-            // 
-            this.Asunto.Frozen = true;
-            this.Asunto.HeaderText = "Asunto";
-            this.Asunto.Name = "Asunto";
-            this.Asunto.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.Frozen = true;
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // btnRecibidos
-            // 
-            this.btnRecibidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnRecibidos.FlatAppearance.BorderSize = 0;
-            this.btnRecibidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecibidos.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnRecibidos.ForeColor = System.Drawing.Color.White;
-            this.btnRecibidos.Location = new System.Drawing.Point(12, 111);
-            this.btnRecibidos.Name = "btnRecibidos";
-            this.btnRecibidos.Size = new System.Drawing.Size(193, 25);
-            this.btnRecibidos.TabIndex = 2;
-            this.btnRecibidos.Text = "Recibidos";
-            this.btnRecibidos.UseVisualStyleBackColor = false;
-            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
-            // 
-            // btnEnviados
-            // 
-            this.btnEnviados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEnviados.FlatAppearance.BorderSize = 0;
-            this.btnEnviados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnviados.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnEnviados.ForeColor = System.Drawing.Color.White;
-            this.btnEnviados.Location = new System.Drawing.Point(12, 142);
-            this.btnEnviados.Name = "btnEnviados";
-            this.btnEnviados.Size = new System.Drawing.Size(193, 25);
-            this.btnEnviados.TabIndex = 3;
-            this.btnEnviados.Text = "Enviados";
-            this.btnEnviados.UseVisualStyleBackColor = false;
-            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
-            // 
-            // redactar
-            // 
-            this.redactar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.redactar.FlatAppearance.BorderSize = 0;
-            this.redactar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.redactar.Font = new System.Drawing.Font("Arial", 12F);
-            this.redactar.ForeColor = System.Drawing.Color.White;
-            this.redactar.Location = new System.Drawing.Point(12, 274);
-            this.redactar.Name = "redactar";
-            this.redactar.Size = new System.Drawing.Size(193, 25);
-            this.redactar.TabIndex = 4;
-            this.redactar.Text = "Redactar";
-            this.redactar.UseVisualStyleBackColor = false;
-            this.redactar.Click += new System.EventHandler(this.redactar_Click);
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnSiguiente.FlatAppearance.BorderSize = 0;
-            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiguiente.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnSiguiente.ForeColor = System.Drawing.Color.White;
-            this.btnSiguiente.Location = new System.Drawing.Point(117, 222);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(88, 25);
-            this.btnSiguiente.TabIndex = 5;
-            this.btnSiguiente.Text = "Siguiente";
-            this.btnSiguiente.UseVisualStyleBackColor = false;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnAnterior.FlatAppearance.BorderSize = 0;
-            this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnterior.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnAnterior.ForeColor = System.Drawing.Color.White;
-            this.btnAnterior.Location = new System.Drawing.Point(12, 222);
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(88, 25);
-            this.btnAnterior.TabIndex = 6;
-            this.btnAnterior.Text = "Anterior";
-            this.btnAnterior.UseVisualStyleBackColor = false;
-            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnActualizar.FlatAppearance.BorderSize = 0;
-            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(12, 305);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(193, 25);
-            this.btnActualizar.TabIndex = 7;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = false;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
-            // 
-            // lblPagina
-            // 
-            this.lblPagina.AutoSize = true;
-            this.lblPagina.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPagina.ForeColor = System.Drawing.Color.White;
-            this.lblPagina.Location = new System.Drawing.Point(68, 30);
-            this.lblPagina.Name = "lblPagina";
-            this.lblPagina.Size = new System.Drawing.Size(68, 21);
-            this.lblPagina.TabIndex = 8;
-            this.lblPagina.Text = "Página 1";
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(12, 191);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(193, 25);
-            this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnContactos
-            // 
-            this.btnContactos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnContactos.FlatAppearance.BorderSize = 0;
-            this.btnContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnContactos.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnContactos.ForeColor = System.Drawing.Color.White;
-            this.btnContactos.Location = new System.Drawing.Point(12, 360);
-            this.btnContactos.Name = "btnContactos";
-            this.btnContactos.Size = new System.Drawing.Size(193, 25);
-            this.btnContactos.TabIndex = 10;
-            this.btnContactos.Text = "Contactos";
-            this.btnContactos.UseVisualStyleBackColor = false;
-            this.btnContactos.Click += new System.EventHandler(this.btnContactos_Click);
-            // 
-            // btnAsuntos
-            // 
-            this.btnAsuntos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnAsuntos.FlatAppearance.BorderSize = 0;
-            this.btnAsuntos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAsuntos.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnAsuntos.ForeColor = System.Drawing.Color.White;
-            this.btnAsuntos.Location = new System.Drawing.Point(12, 391);
-            this.btnAsuntos.Name = "btnAsuntos";
-            this.btnAsuntos.Size = new System.Drawing.Size(193, 25);
-            this.btnAsuntos.TabIndex = 11;
-            this.btnAsuntos.Text = "Asuntos";
-            this.btnAsuntos.UseVisualStyleBackColor = false;
-            this.btnAsuntos.Click += new System.EventHandler(this.btnAsuntos_Click);
-            // 
-            // btnMensajes
-            // 
-            this.btnMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnMensajes.FlatAppearance.BorderSize = 0;
-            this.btnMensajes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMensajes.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnMensajes.ForeColor = System.Drawing.Color.White;
-            this.btnMensajes.Location = new System.Drawing.Point(12, 422);
-            this.btnMensajes.Name = "btnMensajes";
-            this.btnMensajes.Size = new System.Drawing.Size(193, 25);
-            this.btnMensajes.TabIndex = 12;
-            this.btnMensajes.Text = "Mensajes";
-            this.btnMensajes.UseVisualStyleBackColor = false;
-            this.btnMensajes.Click += new System.EventHandler(this.btnMensajes_Click);
-            // 
-            // panel0
-            // 
-            this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
-            this.panel0.Controls.Add(this.lblTitle);
-            this.panel0.Controls.Add(this.pictureBox9);
-            this.panel0.Controls.Add(this.label2);
-            this.panel0.Controls.Add(this.lblPagina);
-            this.panel0.Location = new System.Drawing.Point(0, 0);
-            this.panel0.Name = "panel0";
-            this.panel0.Size = new System.Drawing.Size(1009, 60);
-            this.panel0.TabIndex = 13;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(528, 23);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(104, 30);
-            this.lblTitle.TabIndex = 9;
-            this.lblTitle.Text = "Recibidos";
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(12, 4);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 3;
-            this.pictureBox9.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(63, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 30);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Bienvenido";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(225)))), ((int)(((byte)(242)))));
-            this.panel10.Controls.Add(this.button3);
-            this.panel10.Controls.Add(this.label3);
-            this.panel10.Controls.Add(this.btnAnterior);
-            this.panel10.Controls.Add(this.btnMensajes);
-            this.panel10.Controls.Add(this.btnSiguiente);
-            this.panel10.Controls.Add(this.btnEliminar);
-            this.panel10.Controls.Add(this.btnActualizar);
-            this.panel10.Controls.Add(this.btnAsuntos);
-            this.panel10.Controls.Add(this.btnRecibidos);
-            this.panel10.Controls.Add(this.btnContactos);
-            this.panel10.Controls.Add(this.redactar);
-            this.panel10.Controls.Add(this.btnEnviados);
-            this.panel10.Location = new System.Drawing.Point(0, 60);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 480);
-            this.panel10.TabIndex = 17;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(12, 60);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(193, 25);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "1 al 8 (Elegir un correo)";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(17, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 25);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Comandos de voz";
             // 
             // panel8
             // 
@@ -1068,6 +761,313 @@
             this.pictureBox1.Click += new System.EventHandler(this.seleccionarMail1);
             this.pictureBox1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(225)))), ((int)(((byte)(242)))));
+            this.panel10.Controls.Add(this.button3);
+            this.panel10.Controls.Add(this.label3);
+            this.panel10.Controls.Add(this.btnAnterior);
+            this.panel10.Controls.Add(this.btnMensajes);
+            this.panel10.Controls.Add(this.btnSiguiente);
+            this.panel10.Controls.Add(this.btnEliminar);
+            this.panel10.Controls.Add(this.btnActualizar);
+            this.panel10.Controls.Add(this.btnAsuntos);
+            this.panel10.Controls.Add(this.btnRecibidos);
+            this.panel10.Controls.Add(this.btnContactos);
+            this.panel10.Controls.Add(this.redactar);
+            this.panel10.Controls.Add(this.btnEnviados);
+            this.panel10.Location = new System.Drawing.Point(0, 60);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(224, 480);
+            this.panel10.TabIndex = 17;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(12, 60);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button3.Size = new System.Drawing.Size(193, 25);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "1 al 8 (Elegir un correo)";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(17, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(164, 25);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Comandos de voz";
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnAnterior.FlatAppearance.BorderSize = 0;
+            this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnterior.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnAnterior.ForeColor = System.Drawing.Color.White;
+            this.btnAnterior.Location = new System.Drawing.Point(12, 222);
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(88, 25);
+            this.btnAnterior.TabIndex = 6;
+            this.btnAnterior.Text = "Anterior";
+            this.btnAnterior.UseVisualStyleBackColor = false;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
+            // 
+            // btnMensajes
+            // 
+            this.btnMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnMensajes.FlatAppearance.BorderSize = 0;
+            this.btnMensajes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMensajes.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnMensajes.ForeColor = System.Drawing.Color.White;
+            this.btnMensajes.Location = new System.Drawing.Point(12, 422);
+            this.btnMensajes.Name = "btnMensajes";
+            this.btnMensajes.Size = new System.Drawing.Size(193, 25);
+            this.btnMensajes.TabIndex = 12;
+            this.btnMensajes.Text = "Mensajes";
+            this.btnMensajes.UseVisualStyleBackColor = false;
+            this.btnMensajes.Click += new System.EventHandler(this.btnMensajes_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnSiguiente.FlatAppearance.BorderSize = 0;
+            this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSiguiente.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnSiguiente.ForeColor = System.Drawing.Color.White;
+            this.btnSiguiente.Location = new System.Drawing.Point(117, 222);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(88, 25);
+            this.btnSiguiente.TabIndex = 5;
+            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.UseVisualStyleBackColor = false;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(12, 191);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(193, 25);
+            this.btnEliminar.TabIndex = 9;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnActualizar.FlatAppearance.BorderSize = 0;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.Location = new System.Drawing.Point(12, 305);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(193, 25);
+            this.btnActualizar.TabIndex = 7;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // btnAsuntos
+            // 
+            this.btnAsuntos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnAsuntos.FlatAppearance.BorderSize = 0;
+            this.btnAsuntos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsuntos.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnAsuntos.ForeColor = System.Drawing.Color.White;
+            this.btnAsuntos.Location = new System.Drawing.Point(12, 391);
+            this.btnAsuntos.Name = "btnAsuntos";
+            this.btnAsuntos.Size = new System.Drawing.Size(193, 25);
+            this.btnAsuntos.TabIndex = 11;
+            this.btnAsuntos.Text = "Asuntos";
+            this.btnAsuntos.UseVisualStyleBackColor = false;
+            this.btnAsuntos.Click += new System.EventHandler(this.btnAsuntos_Click);
+            // 
+            // btnRecibidos
+            // 
+            this.btnRecibidos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnRecibidos.FlatAppearance.BorderSize = 0;
+            this.btnRecibidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecibidos.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnRecibidos.ForeColor = System.Drawing.Color.White;
+            this.btnRecibidos.Location = new System.Drawing.Point(12, 111);
+            this.btnRecibidos.Name = "btnRecibidos";
+            this.btnRecibidos.Size = new System.Drawing.Size(193, 25);
+            this.btnRecibidos.TabIndex = 2;
+            this.btnRecibidos.Text = "Recibidos";
+            this.btnRecibidos.UseVisualStyleBackColor = false;
+            this.btnRecibidos.Click += new System.EventHandler(this.btnRecibidos_Click);
+            // 
+            // btnContactos
+            // 
+            this.btnContactos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnContactos.FlatAppearance.BorderSize = 0;
+            this.btnContactos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContactos.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnContactos.ForeColor = System.Drawing.Color.White;
+            this.btnContactos.Location = new System.Drawing.Point(12, 360);
+            this.btnContactos.Name = "btnContactos";
+            this.btnContactos.Size = new System.Drawing.Size(193, 25);
+            this.btnContactos.TabIndex = 10;
+            this.btnContactos.Text = "Contactos";
+            this.btnContactos.UseVisualStyleBackColor = false;
+            this.btnContactos.Click += new System.EventHandler(this.btnContactos_Click);
+            // 
+            // redactar
+            // 
+            this.redactar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.redactar.FlatAppearance.BorderSize = 0;
+            this.redactar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.redactar.Font = new System.Drawing.Font("Arial", 12F);
+            this.redactar.ForeColor = System.Drawing.Color.White;
+            this.redactar.Location = new System.Drawing.Point(12, 274);
+            this.redactar.Name = "redactar";
+            this.redactar.Size = new System.Drawing.Size(193, 25);
+            this.redactar.TabIndex = 4;
+            this.redactar.Text = "Redactar";
+            this.redactar.UseVisualStyleBackColor = false;
+            this.redactar.Click += new System.EventHandler(this.redactar_Click);
+            // 
+            // btnEnviados
+            // 
+            this.btnEnviados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnEnviados.FlatAppearance.BorderSize = 0;
+            this.btnEnviados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnviados.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnEnviados.ForeColor = System.Drawing.Color.White;
+            this.btnEnviados.Location = new System.Drawing.Point(12, 142);
+            this.btnEnviados.Name = "btnEnviados";
+            this.btnEnviados.Size = new System.Drawing.Size(193, 25);
+            this.btnEnviados.TabIndex = 3;
+            this.btnEnviados.Text = "Enviados";
+            this.btnEnviados.UseVisualStyleBackColor = false;
+            this.btnEnviados.Click += new System.EventHandler(this.btnEnviados_Click);
+            // 
+            // panel0
+            // 
+            this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
+            this.panel0.Controls.Add(this.lblTitle);
+            this.panel0.Controls.Add(this.pictureBox9);
+            this.panel0.Controls.Add(this.label2);
+            this.panel0.Controls.Add(this.lblPagina);
+            this.panel0.Location = new System.Drawing.Point(0, 0);
+            this.panel0.Name = "panel0";
+            this.panel0.Size = new System.Drawing.Size(1009, 60);
+            this.panel0.TabIndex = 13;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(528, 23);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(104, 30);
+            this.lblTitle.TabIndex = 9;
+            this.lblTitle.Text = "Recibidos";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(12, 4);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 3;
+            this.pictureBox9.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(63, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 30);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Bienvenido";
+            // 
+            // lblPagina
+            // 
+            this.lblPagina.AutoSize = true;
+            this.lblPagina.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblPagina.ForeColor = System.Drawing.Color.White;
+            this.lblPagina.Location = new System.Drawing.Point(68, 30);
+            this.lblPagina.Name = "lblPagina";
+            this.lblPagina.Size = new System.Drawing.Size(68, 21);
+            this.lblPagina.TabIndex = 8;
+            this.lblPagina.Text = "Página 1";
+            // 
+            // dataMails
+            // 
+            this.dataMails.AllowUserToAddRows = false;
+            this.dataMails.AllowUserToDeleteRows = false;
+            this.dataMails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataMails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nro,
+            this.index,
+            this.De,
+            this.Asunto,
+            this.Fecha});
+            this.dataMails.Location = new System.Drawing.Point(800, 64);
+            this.dataMails.Name = "dataMails";
+            this.dataMails.ReadOnly = true;
+            this.dataMails.Size = new System.Drawing.Size(366, 261);
+            this.dataMails.TabIndex = 1;
+            this.dataMails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMails_CellContentClick);
+            // 
+            // Nro
+            // 
+            this.Nro.Frozen = true;
+            this.Nro.HeaderText = "Nº";
+            this.Nro.Name = "Nro";
+            this.Nro.ReadOnly = true;
+            this.Nro.Width = 30;
+            // 
+            // index
+            // 
+            this.index.Frozen = true;
+            this.index.HeaderText = "index";
+            this.index.Name = "index";
+            this.index.ReadOnly = true;
+            this.index.Visible = false;
+            // 
+            // De
+            // 
+            this.De.Frozen = true;
+            this.De.HeaderText = "De";
+            this.De.Name = "De";
+            this.De.ReadOnly = true;
+            // 
+            // Asunto
+            // 
+            this.Asunto.Frozen = true;
+            this.Asunto.HeaderText = "Asunto";
+            this.Asunto.Name = "Asunto";
+            this.Asunto.ReadOnly = true;
+            // 
+            // Fecha
+            // 
+            this.Fecha.Frozen = true;
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1084,16 +1084,10 @@
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel0);
             this.Controls.Add(this.dataMails);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Cliente mail";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataMails)).EndInit();
-            this.panel0.ResumeLayout(false);
-            this.panel0.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
@@ -1118,6 +1112,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel0.ResumeLayout(false);
+            this.panel0.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataMails)).EndInit();
             this.ResumeLayout(false);
 
         }

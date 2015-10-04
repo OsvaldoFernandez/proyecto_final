@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Speech.Recognition;
+using System.IO;
+using System.Threading;
 
 namespace clienteMail.comando
 {
     public partial class comando : Form
     {
         SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
+        IntPtr autenticador;
 
         public comando()
         {
@@ -36,6 +39,8 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
+            int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
+            if (rv != 0) MessageBox.Show(rv.ToString());
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -115,7 +120,34 @@ namespace clienteMail.comando
                     richTextBox1.Text += "\nCancelar";
                     break;
             }
-            G.formulario_activo.manejar_comando(e.Result.Text);
+
+            RecognizedAudio audio = e.Result.Audio;
+            TimeSpan duration = audio.Duration;
+            // ATENCION!! PARA QUE ANDE CREAR LA CARPETA temporalproyecto en el disco C
+            string path = @"C:\temporalproyecto\nameAudio.wav";
+            using (Stream outputStream = new FileStream(path, FileMode.Create))
+            {
+                RecognizedAudio nameAudio = audio;
+                nameAudio.WriteToWaveStream(outputStream);
+                outputStream.Close();
+            }
+            string nombre_archivo = "C:\\temporalproyecto\\nameAudio.wav";
+            int res = AV.avf_autenticar_WAV(autenticador, nombre_archivo);
+            if (res < -10000)
+            {
+                richTextBox1.Text += " - error - " + res.ToString();
+                return;
+            }
+            if (res > 0)
+            {
+                richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
+                G.formulario_activo.manejar_comando(e.Result.Text);
+            }
+            else
+            {
+                res = -res;
+                richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
+            }
 
         }
 

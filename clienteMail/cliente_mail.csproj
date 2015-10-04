@@ -77,6 +77,7 @@
     <Compile Include="asunto_new_update.Designer.cs">
       <DependentUpon>asunto_new_update.cs</DependentUpon>
     </Compile>
+    <Compile Include="autvoz.cs" />
     <Compile Include="comando\comando.cs">
       <SubType>Form</SubType>
     </Compile>

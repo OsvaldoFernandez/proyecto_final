@@ -787,6 +787,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel0);
             this.Controls.Add(this.dataMensajes);
+            this.MaximizeBox = false;
             this.Name = "mensajes";
             this.Text = "Mensajes";
             this.Load += new System.EventHandler(this.mensajes_Load);
