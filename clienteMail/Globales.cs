@@ -7,7 +7,6 @@ public partial class RichForm : Form
 {
     public virtual void manejar_comando(string comando)
     {
-        MessageBox.Show(comando);
     }
 }
 

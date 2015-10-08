@@ -35,16 +35,21 @@
             this.btnResponder = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnReenviar = new System.Windows.Forms.Button();
+            this.lblFrom = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblAsunto = new System.Windows.Forms.Label();
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(224, 3);
+            this.webBrowser.Location = new System.Drawing.Point(224, 100);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(742, 717);
+            this.webBrowser.Size = new System.Drawing.Size(742, 620);
             this.webBrowser.TabIndex = 1;
+            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
             // 
             // panel10
             // 
@@ -129,12 +134,60 @@
             this.btnReenviar.UseVisualStyleBackColor = false;
             this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click);
             // 
+            // lblFrom
+            // 
+            this.lblFrom.AutoSize = true;
+            this.lblFrom.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFrom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblFrom.Location = new System.Drawing.Point(242, 3);
+            this.lblFrom.Name = "lblFrom";
+            this.lblFrom.Size = new System.Drawing.Size(41, 25);
+            this.lblFrom.TabIndex = 19;
+            this.lblFrom.Text = "De:";
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.AutoSize = true;
+            this.lblFecha.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFecha.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblFecha.Location = new System.Drawing.Point(242, 72);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(67, 25);
+            this.lblFecha.TabIndex = 20;
+            this.lblFecha.Text = "Fecha:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(456, 358);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 25);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Fecha:";
+            // 
+            // lblAsunto
+            // 
+            this.lblAsunto.AutoSize = true;
+            this.lblAsunto.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblAsunto.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblAsunto.Location = new System.Drawing.Point(242, 38);
+            this.lblAsunto.Name = "lblAsunto";
+            this.lblAsunto.Size = new System.Drawing.Size(64, 25);
+            this.lblAsunto.TabIndex = 22;
+            this.lblAsunto.Text = "label2";
+            // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(978, 741);
+            this.Controls.Add(this.lblAsunto);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFecha);
+            this.Controls.Add(this.lblFrom);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.webBrowser);
             this.Name = "leer_mail";
@@ -144,6 +197,7 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -156,6 +210,10 @@
         private System.Windows.Forms.Button btnResponder;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnReenviar;
+        private System.Windows.Forms.Label lblFrom;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAsunto;
 
     }
 }

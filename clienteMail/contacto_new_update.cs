@@ -9,13 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class frmContacto : Form
+    public partial class frmContacto : RichForm
     {
         private int ID = 0;
-        public frmContacto(int id)
+        RichForm form_padre;
+        public frmContacto(int id, RichForm form_padre_actual)
         {
             InitializeComponent();
-
+            form_padre = form_padre_actual;
+            G.formulario_activo = this;
             if (id > 0)
             {
                 Contacto contacto = G.user.getContacto(id);
@@ -108,9 +110,13 @@ namespace clienteMail
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+            G.formulario_activo = form_padre;
         }
 
-
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            G.formulario_activo = form_padre;
+        }
 
 
     }

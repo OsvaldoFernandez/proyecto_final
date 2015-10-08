@@ -101,6 +101,7 @@
             this.contrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(135)))), ((int)(((byte)(138)))));
             this.contrasena.Location = new System.Drawing.Point(12, 286);
             this.contrasena.Name = "contrasena";
+            this.contrasena.PasswordChar = '*';
             this.contrasena.Size = new System.Drawing.Size(375, 28);
             this.contrasena.TabIndex = 4;
             // 
@@ -244,7 +245,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "crear_cuenta";
-            this.Text = "crear_cuenta";
+            this.Text = "Registrarme";
             this.Load += new System.EventHandler(this.crear_cuenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).EndInit();
             this.ResumeLayout(false);

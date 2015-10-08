@@ -23,6 +23,7 @@ namespace clienteMail.comando
 #if !DEBUG
             Visible = false;
 #endif
+            
         }
 
         private void enableBtn_Click(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace clienteMail.comando
         private void comando_Load(object sender, EventArgs e)
         {
             Choices comandos = new Choices();
-            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "leer", "redactar", "anterior", "siguiente", "volver", "aceptar", "para", "enviar", "cancelar" });
+            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "leer", "redactar", "anterior", "siguiente", "volver", "aceptar", "para", "enviar", "cerrar" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
             Grammar grammar = new Grammar(gBuilder);
@@ -48,6 +49,7 @@ namespace clienteMail.comando
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            txtFormActivo.Text += G.formulario_activo.Name + '\n';
             int pos = -1;
             for (int linea = 0; linea < 15; linea++)
             {

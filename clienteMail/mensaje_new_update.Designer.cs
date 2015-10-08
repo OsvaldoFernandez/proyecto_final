@@ -41,7 +41,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnGuardar.Location = new System.Drawing.Point(220, 232);
+            this.btnGuardar.Location = new System.Drawing.Point(224, 398);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(213, 47);
             this.btnGuardar.TabIndex = 17;
@@ -72,7 +72,7 @@
             this.txtTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(183)))));
             this.txtTexto.Location = new System.Drawing.Point(26, 71);
             this.txtTexto.Name = "txtTexto";
-            this.txtTexto.Size = new System.Drawing.Size(596, 142);
+            this.txtTexto.Size = new System.Drawing.Size(596, 304);
             this.txtTexto.TabIndex = 19;
             this.txtTexto.Text = "";
             // 
@@ -81,7 +81,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(658, 305);
+            this.ClientSize = new System.Drawing.Size(658, 457);
             this.Controls.Add(this.txtTexto);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);

@@ -13,6 +13,7 @@ using Email.Net.Common.Configurations;
 using Email.Net.Common.Collections;
 using Email.Net.Pop3.Exceptions;
 using System.Reflection;
+using System.Globalization;
 
 namespace clienteMail
 {
@@ -313,6 +314,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__from = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -438,7 +440,7 @@ namespace clienteMail
                 Int32 selectedRowCount = dataMails.Rows.GetRowCount(DataGridViewElementStates.Selected);
                 if (selectedRowCount > 0)
                 {
-                    var form = new frmAlert("Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
+                    var form = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
                     DialogResult vr = form.ShowDialog(this);
                     if (vr == System.Windows.Forms.DialogResult.OK)
                     {
@@ -676,6 +678,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -698,6 +701,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -721,6 +725,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -743,6 +748,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -765,6 +771,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<","").Replace(">","");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -787,6 +794,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -809,6 +817,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {
@@ -831,6 +840,7 @@ namespace clienteMail
                         message.__mensaje = message_rfc.Text.ToString();
                         message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                         message.__asunto = message_rfc.Subject.ToString();
+                        message.__fecha_creacion = message_rfc.Date.AddHours(-3);
                     }
                     else
                     {

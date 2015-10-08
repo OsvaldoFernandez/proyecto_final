@@ -45,7 +45,7 @@ namespace clienteMail.redactar_email
         {
             if (toTxt.Text.Trim() == "")
             {
-                var form = new frmAlert("Ingresar destinatario", "Debe agregar un destinatario en el campo Para", "close");
+                var form = new frmAlert(this, "Ingresar destinatario", "Debe agregar un destinatario en el campo Para", "close");
                 DialogResult vr = form.ShowDialog(this);
                 return;
             }
@@ -86,7 +86,7 @@ namespace clienteMail.redactar_email
 
             G.user.guardarMail(mailEnviado);
 
-            var form2 = new frmAlert("Mail enviado", "El mail ha sido enviado exitosamente", "close");
+            var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
             DialogResult vr2 = form2.ShowDialog(this);
 
             this.Close();
@@ -146,7 +146,7 @@ namespace clienteMail.redactar_email
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            var form = new frmAlert("Cancelar", "Está seguro que desea cancelar el mail y descartar los cambios?", "yesno");
+            var form = new frmAlert(this, "Cancelar", "Está seguro que desea cancelar el mail y descartar los cambios?", "yesno");
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {

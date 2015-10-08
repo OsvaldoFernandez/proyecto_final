@@ -19,6 +19,10 @@ namespace clienteMail
             InitializeComponent();
             webBrowser.DocumentText = message.Mensaje;
             message_actual = message;
+
+            lblFrom.Text = "De: " + message.__para;
+            lblAsunto.Text = "Asunto: " + message.__asunto;
+            lblFecha.Text = "Fecha: " + message.__fecha_creacion.ToString();
         }
 
         private void leer_mail_Load(object sender, EventArgs e)
@@ -46,6 +50,11 @@ namespace clienteMail
             string mensaje = message_actual.Mensaje;
             redactar_email.redactar form = new redactar_email.redactar(this, asunto, "", mensaje);
             form.Show();
+        }
+
+        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
         }
 
     }

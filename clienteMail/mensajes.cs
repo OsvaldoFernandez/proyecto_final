@@ -58,7 +58,7 @@ namespace clienteMail
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var form = new mensaje_new_update(0);
+            var form = new mensaje_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -85,11 +85,12 @@ namespace clienteMail
             Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un mensaje a modificar.");
+                var form2 = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
+                DialogResult vr2 = form2.ShowDialog(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
-            var form = new mensaje_new_update(id);
+            var form = new mensaje_new_update(id, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -102,12 +103,14 @@ namespace clienteMail
             Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un mensaje para eliminar.");
+                var form = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
+                DialogResult vr = form.ShowDialog(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
-            DialogResult rta = MessageBox.Show("Está seguro que desea eliminar el mensaje?", "", MessageBoxButtons.YesNo);
-            if (rta == DialogResult.Yes)
+            var form3 = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el contacto?", "yesno");
+            DialogResult vr3 = form3.ShowDialog(this);
+            if (vr3 == System.Windows.Forms.DialogResult.OK)
             {
                 G.user.eliminar_mensaje(id);
                 this.actualizarMensajes();

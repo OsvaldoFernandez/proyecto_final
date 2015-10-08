@@ -57,7 +57,7 @@ namespace clienteMail
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            var form = new frmContacto(0);
+            var form = new frmContacto(0, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -83,11 +83,12 @@ namespace clienteMail
         {
             Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if(selectedRowCount != 1){
-                MessageBox.Show("Debe seleccionar un contacto a modificar.");   
+                var form2 = new frmAlert(this, "Seleccionar contacto", "Debe seleccionar un contacto para modificar", "close");
+                DialogResult vr2 = form2.ShowDialog(this); 
                 return;
             }
             int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
-            var form = new frmContacto(id);
+            var form = new frmContacto(id, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -100,12 +101,14 @@ namespace clienteMail
             Int32 selectedRowCount = dataContactos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un contacto para eliminar.");
+                var form = new frmAlert(this, "Seleccionar contacto", "Debe seleccionar un contacto para eliminar", "close");
+                DialogResult vr = form.ShowDialog(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
-            DialogResult rta = MessageBox.Show("Está seguro que desea eliminar el contacto?","",MessageBoxButtons.YesNo);
-            if (rta == DialogResult.Yes)
+            var form3 = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el contacto?", "yesno");
+            DialogResult vr3 = form3.ShowDialog(this);
+            if (vr3 == System.Windows.Forms.DialogResult.OK)
             {
                 G.user.eliminar_contacto(id);
                 this.actualizarContactos();

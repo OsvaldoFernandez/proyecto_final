@@ -53,7 +53,6 @@ namespace clienteMail.crear_cuenta
             }
             else if ((string) proveedor.SelectedItem == "Otro")
             {
-                MessageBox.Show("Seleccionaste otro");
                 servidorPOP3 = servidorpop3.Text;
                 servidorSMTP = servidorsmtp.Text;
                 puertoPOP3 = ushort.Parse(puertopop3.Text);
@@ -61,16 +60,13 @@ namespace clienteMail.crear_cuenta
             }
             else
             {
-                MessageBox.Show("Seleccionaste un proveedor de la lista");
                 cmd = new SQLiteCommand(G.conexion_principal);
                 cmd.CommandText = "select id, proveedor, servidor_pop3, puerto_pop3, servidor_smtp, puerto_smtp from Proveedor_mail where proveedor==?;";
                 SQLiteParameter param = new SQLiteParameter();
                 cmd.Parameters.Add(param);
                 param.Value = proveedor.SelectedItem.ToString();
-                MessageBox.Show(param.Value.ToString());
                 SQLiteDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                MessageBox.Show(dr.GetString(2));
                 servidorPOP3 = dr.GetString(2);
                 servidorSMTP = dr.GetString(4);
                 puertoPOP3 = (ushort) dr.GetInt16(3);

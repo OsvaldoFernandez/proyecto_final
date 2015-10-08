@@ -69,7 +69,7 @@
             this.toTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.toTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toTxt.ForeColor = System.Drawing.Color.White;
-            this.toTxt.Location = new System.Drawing.Point(353, 58);
+            this.toTxt.Location = new System.Drawing.Point(349, 51);
             this.toTxt.Name = "toTxt";
             this.toTxt.Size = new System.Drawing.Size(584, 26);
             this.toTxt.TabIndex = 15;
@@ -126,7 +126,7 @@
             this.asuntoTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.asuntoTxt.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.asuntoTxt.ForeColor = System.Drawing.Color.White;
-            this.asuntoTxt.Location = new System.Drawing.Point(353, 103);
+            this.asuntoTxt.Location = new System.Drawing.Point(353, 97);
             this.asuntoTxt.Name = "asuntoTxt";
             this.asuntoTxt.Size = new System.Drawing.Size(585, 26);
             this.asuntoTxt.TabIndex = 20;

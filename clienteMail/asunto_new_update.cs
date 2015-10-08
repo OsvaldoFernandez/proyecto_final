@@ -9,12 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class asunto_new_update : Form
+    public partial class asunto_new_update : RichForm
     {
         private int ID = 0;
-        public asunto_new_update(int id)
+        RichForm form_padre;
+        public asunto_new_update(int id, RichForm form_padre_actual)
         {
             InitializeComponent();
+            form_padre = form_padre_actual;
+            G.formulario_activo = this;
 
             if (id > 0)
             {
@@ -62,6 +65,11 @@ namespace clienteMail
             {
                 clear1.Visible = true;
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            G.formulario_activo = form_padre;
         }
 
     }

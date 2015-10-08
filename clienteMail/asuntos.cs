@@ -58,8 +58,7 @@ namespace clienteMail
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("AA");
-            var form = new asunto_new_update(0);
+            var form = new asunto_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -83,15 +82,15 @@ namespace clienteMail
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("BB");
             Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un asunto a modificar.");
+                var form2 = new frmAlert(this, "Seleccionar asunto", "Debe seleccionar un asunto para modificar", "close");
+                DialogResult vr2 = form2.ShowDialog(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
-            var form = new asunto_new_update(id);
+            var form = new asunto_new_update(id, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
@@ -104,12 +103,14 @@ namespace clienteMail
             Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
             {
-                MessageBox.Show("Debe seleccionar un asunto para eliminar.");
+                var form = new frmAlert(this, "Seleccionar asunto", "Debe seleccionar un asunto para eliminar", "close");
+                DialogResult vr = form.ShowDialog(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
-            DialogResult rta = MessageBox.Show("Está seguro que desea eliminar el asunto?", "", MessageBoxButtons.YesNo);
-            if (rta == DialogResult.Yes)
+            var form3 = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el asunto?", "yesno");
+            DialogResult vr3 = form3.ShowDialog(this);
+            if (vr3 == System.Windows.Forms.DialogResult.OK)
             {
                 G.user.eliminar_asunto(id);
                 this.actualizarAsuntos();

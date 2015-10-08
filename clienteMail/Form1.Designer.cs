@@ -83,7 +83,6 @@
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnAsuntos = new System.Windows.Forms.Button();
             this.btnRecibidos = new System.Windows.Forms.Button();
@@ -769,7 +768,6 @@
             this.panel10.Controls.Add(this.btnAnterior);
             this.panel10.Controls.Add(this.btnMensajes);
             this.panel10.Controls.Add(this.btnSiguiente);
-            this.panel10.Controls.Add(this.btnEliminar);
             this.panel10.Controls.Add(this.btnActualizar);
             this.panel10.Controls.Add(this.btnAsuntos);
             this.panel10.Controls.Add(this.btnRecibidos);
@@ -816,7 +814,7 @@
             this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAnterior.Font = new System.Drawing.Font("Arial", 12F);
             this.btnAnterior.ForeColor = System.Drawing.Color.White;
-            this.btnAnterior.Location = new System.Drawing.Point(12, 222);
+            this.btnAnterior.Location = new System.Drawing.Point(12, 207);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(88, 25);
             this.btnAnterior.TabIndex = 6;
@@ -846,28 +844,13 @@
             this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiguiente.Font = new System.Drawing.Font("Arial", 12F);
             this.btnSiguiente.ForeColor = System.Drawing.Color.White;
-            this.btnSiguiente.Location = new System.Drawing.Point(117, 222);
+            this.btnSiguiente.Location = new System.Drawing.Point(117, 207);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(88, 25);
             this.btnSiguiente.TabIndex = 5;
             this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = false;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(12, 191);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(193, 25);
-            this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnActualizar
             // 
@@ -976,7 +959,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(528, 23);
+            this.lblTitle.Location = new System.Drawing.Point(425, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(104, 30);
             this.lblTitle.TabIndex = 9;
@@ -997,7 +980,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(63, 0);
+            this.label2.Location = new System.Drawing.Point(68, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 30);
             this.label2.TabIndex = 0;
@@ -1008,7 +991,7 @@
             this.lblPagina.AutoSize = true;
             this.lblPagina.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblPagina.ForeColor = System.Drawing.Color.White;
-            this.lblPagina.Location = new System.Drawing.Point(68, 30);
+            this.lblPagina.Location = new System.Drawing.Point(632, 30);
             this.lblPagina.Name = "lblPagina";
             this.lblPagina.Size = new System.Drawing.Size(68, 21);
             this.lblPagina.TabIndex = 8;
@@ -1133,7 +1116,6 @@
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Label lblPagina;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnContactos;
         private System.Windows.Forms.Button btnAsuntos;
         private System.Windows.Forms.Button btnMensajes;

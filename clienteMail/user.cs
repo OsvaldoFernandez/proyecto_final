@@ -544,7 +544,7 @@ public class User
     public mail_enviado[] mailsEnviados()
     {
         SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
-        cmd.CommandText = "SELECT mensaje, asunto, para, id FROM Mails_enviados WHERE usuario_id = ? order by fecha_creacion desc";
+        cmd.CommandText = "SELECT mensaje, asunto, para, id, fecha_creacion FROM Mails_enviados WHERE usuario_id = ? order by fecha_creacion desc";
         SQLiteParameter param = new SQLiteParameter();
         cmd.Parameters.Add(param);
         param.Value = this.ID;
@@ -559,6 +559,7 @@ public class User
             mail.__asunto = dr.GetString(1);
             mail.__para = dr.GetString(2);
             mail.__id = dr.GetInt32(3);
+            mail.__fecha_creacion = dr.GetDateTime(4);
             lista_mails.Add(mail);
         }
 

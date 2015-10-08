@@ -9,11 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class frmAlert : Form
+    public partial class frmAlert : RichForm
     {
-        public frmAlert(string titulo, string mensaje, string type)
+        RichForm form_padre;
+        public frmAlert(RichForm form_padre_actual, string titulo, string mensaje, string type)
         {
             InitializeComponent();
+            form_padre = form_padre_actual;
+            G.formulario_activo = this;
+
             this.Text = titulo;
             lblMensaje.Text = mensaje;
             if (type == "yesno")
@@ -34,10 +38,31 @@ namespace clienteMail
             this.Close();
         }
 
-        private void btnAsunto_Click(object sender, EventArgs e)
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.No;
             this.Close();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            G.formulario_activo = form_padre;
+        }
+
+        public override void manejar_comando(string comando)
+        {
+
+            switch (comando)
+            {
+                case "aceptar":
+                    btnAceptar_Click(null, null);
+                    break;
+                case "cerrar":
+                    btnCerrar_Click(null, null);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
