@@ -114,34 +114,20 @@ namespace clienteMail.redactar_email
         private void btnPara_Click(object sender, EventArgs e)
         {
             var form = new contactos("redactar", this);
-            DialogResult res = form.ShowDialog(this);
-            if (res != System.Windows.Forms.DialogResult.Cancel)
-            {
-                contactoID = form.idSelected;
-                toTxt.Text = G.user.getContacto(contactoID).Mail;
-            }
+            form.Show();
         }
 
         private void btnAsunto_Click(object sender, EventArgs e)
         {
             var form = new asuntos("redactar", this);
-            DialogResult res = form.ShowDialog(this);
-            if (res != System.Windows.Forms.DialogResult.Cancel)
-            {
-                asuntoID = form.idSelected;
-                asuntoTxt.Text = G.user.getAsunto(asuntoID).Texto;
-            }
+            form.Show();
+
         }
 
         private void btnMensaje_Click(object sender, EventArgs e)
         {
             var form = new mensajes("redactar", this);
-            DialogResult res = form.ShowDialog(this);
-            if (res != System.Windows.Forms.DialogResult.Cancel)
-            {
-                mensajeID = form.idSelected;
-                cuerpoTxt.Text = G.user.getMensaje(mensajeID).Texto;
-            }
+            form.Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -178,6 +164,24 @@ namespace clienteMail.redactar_email
                 default:
                     break;
             }
+        }
+
+        public override void agregar_contacto(int id_contacto)
+        {
+                contactoID = id_contacto;
+                toTxt.Text = G.user.getContacto(id_contacto).Mail;
+        }
+
+        public override void agregar_asunto(int id_asunto)
+        {
+            contactoID = id_asunto;
+            asuntoTxt.Text = G.user.getAsunto(id_asunto).Texto;
+        }
+
+        public override void agregar_mensaje(int id_mensaje)
+        {
+            contactoID = id_mensaje;
+            cuerpoTxt.Text = G.user.getMensaje(id_mensaje).Texto;
         }
 
     }

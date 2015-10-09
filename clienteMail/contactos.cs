@@ -46,12 +46,14 @@ namespace clienteMail
             if (selectedRowCount != 1)
             {
                 //no seleccionó a nadie.
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                return;
+                G.formulario_activo = form_padre;
+                this.Close();
             }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
             this.idSelected = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
-            
+
+            form_padre.agregar_contacto(this.idSelected);
+            G.formulario_activo = form_padre;
             this.Close();
         }
 

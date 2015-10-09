@@ -135,6 +135,7 @@ namespace clienteMail.comando
                     richTextBox1.Text += "\nCancelar";
                     break;
             }
+            float confidence = e.Result.Confidence * 100;
             richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
             // filtrar por e.Result.Confidence
             RecognizedAudio audio = e.Result.Audio;
@@ -149,20 +150,26 @@ namespace clienteMail.comando
             }
             int res = AV.avf_autenticar_WAV(autenticador, path);
             File.Delete(path);
-            if (res < -10000)
+
+            if (confidence > 69)
             {
-                richTextBox1.Text += " - error - " + res.ToString("X");
-                return;
-            }
-            if (res > 0)
-            {
-                richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
-                G.formulario_activo.manejar_comando(e.Result.Text);
-            }
-            else
-            {
-                res = -res;
-                richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
+                if (res < -10000)
+                {
+                    richTextBox1.Text += " - error - " + res.ToString("X");
+                    G.formulario_activo.manejar_comando(e.Result.Text);
+                    return;
+                }
+                if (res > 0)
+                {
+                    richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
+                    G.formulario_activo.manejar_comando(e.Result.Text);
+                }
+                else
+                {
+                    res = -res;
+                    richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
+                    G.formulario_activo.manejar_comando(e.Result.Text);
+                }
             }
 
         }

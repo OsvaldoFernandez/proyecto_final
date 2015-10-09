@@ -160,7 +160,7 @@
             this.cuerpoTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(152)))), ((int)(((byte)(183)))));
             this.cuerpoTxt.Location = new System.Drawing.Point(273, 197);
             this.cuerpoTxt.Name = "cuerpoTxt";
-            this.cuerpoTxt.Size = new System.Drawing.Size(696, 174);
+            this.cuerpoTxt.Size = new System.Drawing.Size(696, 120);
             this.cuerpoTxt.TabIndex = 26;
             this.cuerpoTxt.Text = "";
             // 
@@ -175,7 +175,7 @@
             this.panel10.Controls.Add(this.btnMensaje);
             this.panel10.Location = new System.Drawing.Point(14, 13);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 679);
+            this.panel10.Size = new System.Drawing.Size(224, 425);
             this.panel10.TabIndex = 27;
             // 
             // btnPara
@@ -268,10 +268,10 @@
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(271, 377);
+            this.webBrowser.Location = new System.Drawing.Point(270, 323);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(698, 352);
+            this.webBrowser.Size = new System.Drawing.Size(698, 115);
             this.webBrowser.TabIndex = 28;
             // 
             // redactar
@@ -279,7 +279,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(981, 741);
+            this.ClientSize = new System.Drawing.Size(981, 465);
             this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.cuerpoTxt);
@@ -292,9 +292,9 @@
             this.Controls.Add(this.clear1);
             this.Controls.Add(this.toTxt);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "redactar";
             this.Text = "Redactar";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.redactar_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();

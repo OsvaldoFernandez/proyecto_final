@@ -8,6 +8,16 @@ public partial class RichForm : Form
     public virtual void manejar_comando(string comando)
     {
     }
+
+    public virtual void agregar_contacto(int id)
+    {
+    }
+    public virtual void agregar_asunto(int id)
+    {
+    }
+    public virtual void agregar_mensaje(int id)
+    {
+    }
 }
 
 

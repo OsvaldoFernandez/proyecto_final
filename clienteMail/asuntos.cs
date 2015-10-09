@@ -47,11 +47,13 @@ namespace clienteMail
             if (selectedRowCount != 1)
             {
                 //no seleccionó a nadie.
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                return;
+                G.formulario_activo = form_padre;
+                this.Close();
             }
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
             this.idSelected = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
+            form_padre.agregar_asunto(this.idSelected);
+            G.formulario_activo = form_padre;
 
             this.Close();
         }
