@@ -216,6 +216,7 @@
             this.MaximizeBox = false;
             this.Name = "frmContacto";
             this.Text = "Nuevo Contacto";
+            this.Load += new System.EventHandler(this.frmContacto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

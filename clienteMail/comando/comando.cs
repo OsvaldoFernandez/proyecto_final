@@ -9,10 +9,11 @@ using System.Windows.Forms;
 using System.Speech.Recognition;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 namespace clienteMail.comando
 {
-    public partial class comando : Form
+    public partial class comando : RichForm
     {
         SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
         IntPtr autenticador;
@@ -32,10 +33,15 @@ namespace clienteMail.comando
             disableBtn.Enabled = true;
         }
 
+        public override void manejar_comando(string comando)
+        {
+           //NADA
+        }
+
         private void comando_Load(object sender, EventArgs e)
         {
             Choices comandos = new Choices();
-            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "leer", "redactar", "anterior", "siguiente", "volver", "aceptar", "para", "enviar", "cerrar" });
+            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "leer", "redactar", "anterior", "siguiente", "aceptar", "para", "enviar", "cerrar", "cancelar" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
             Grammar grammar = new Grammar(gBuilder);
@@ -49,7 +55,8 @@ namespace clienteMail.comando
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            txtFormActivo.Text += G.formulario_activo.Name + '\n';
+            RichForm currentForm = (RichForm)Form.ActiveForm;
+            txtFormActivo.Text += currentForm.Text + '\n';
             int pos = -1;
             for (int linea = 0; linea < 15; linea++)
             {
@@ -119,8 +126,8 @@ namespace clienteMail.comando
                 case "siguiente":
                     richTextBox1.Text += "\nSiguiente";
                     break;
-                case "volver":
-                    richTextBox1.Text += "\nVolver";
+                case "cerrar":
+                    richTextBox1.Text += "\nCerrar";
                     break;
                 case "aceptar":
                     richTextBox1.Text += "\nAceptar";
@@ -135,8 +142,10 @@ namespace clienteMail.comando
                     richTextBox1.Text += "\nCancelar";
                     break;
             }
+
             float confidence = e.Result.Confidence * 100;
             richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
+
             // filtrar por e.Result.Confidence
             RecognizedAudio audio = e.Result.Audio;
             TimeSpan duration = audio.Duration;
@@ -151,26 +160,33 @@ namespace clienteMail.comando
             int res = AV.avf_autenticar_WAV(autenticador, path);
             File.Delete(path);
 
-            if (confidence > 69)
+
+
+            if (confidence > 50)
             {
                 if (res < -10000)
                 {
                     richTextBox1.Text += " - error - " + res.ToString("X");
-                    G.formulario_activo.manejar_comando(e.Result.Text);
+                    //G.formulario_activo.manejar_comando(e.Result.Text);
+                    currentForm.manejar_comando(e.Result.Text);
                     return;
                 }
                 if (res > 0)
                 {
                     richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
-                    G.formulario_activo.manejar_comando(e.Result.Text);
+                    currentForm.manejar_comando(e.Result.Text);
+                    //G.formulario_activo.manejar_comando(e.Result.Text);
                 }
                 else
                 {
                     res = -res;
                     richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
-                    G.formulario_activo.manejar_comando(e.Result.Text);
+                    currentForm.manejar_comando(e.Result.Text);
+                    //G.formulario_activo.manejar_comando(e.Result.Text);
                 }
             }
+
+
 
         }
 

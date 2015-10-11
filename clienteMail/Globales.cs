@@ -8,7 +8,6 @@ public partial class RichForm : Form
     public virtual void manejar_comando(string comando)
     {
     }
-
     public virtual void agregar_contacto(int id)
     {
     }
@@ -18,6 +17,13 @@ public partial class RichForm : Form
     public virtual void agregar_mensaje(int id)
     {
     }
+    public virtual void manejar_aceptar(string contexto)
+    {
+    }
+    public virtual void manejar_cerrar(string contexto)
+    {
+    }
+    public RichForm form_padre;
 }
 
 
@@ -26,7 +32,6 @@ public static class G
     public static SQLiteConnection conexion_principal = null;
 
     public static User user = null;
-    public static RichForm formulario_activo = null;
 
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {

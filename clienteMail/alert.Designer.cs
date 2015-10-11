@@ -50,12 +50,12 @@
             this.lblMensaje.AutoSize = true;
             this.lblMensaje.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMensaje.ForeColor = System.Drawing.Color.White;
-            this.lblMensaje.Location = new System.Drawing.Point(234, 58);
+            this.lblMensaje.Location = new System.Drawing.Point(21, 71);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(85, 25);
             this.lblMensaje.TabIndex = 24;
             this.lblMensaje.Text = "Mensaje";
-            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel10
             // 
@@ -165,6 +165,7 @@
             this.Controls.Add(this.lblMensaje);
             this.Name = "frmAlert";
             this.Text = "alert";
+            this.Load += new System.EventHandler(this.frmAlert_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();

@@ -9,15 +9,16 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
+
     public partial class frmContacto : RichForm
     {
+        public string contexto;
         private int ID = 0;
-        RichForm form_padre;
         public frmContacto(int id, RichForm form_padre_actual)
         {
             InitializeComponent();
             form_padre = form_padre_actual;
-            G.formulario_activo = this;
+            contexto = "Agregar contacto";
             if (id > 0)
             {
                 Contacto contacto = G.user.getContacto(id);
@@ -25,7 +26,8 @@ namespace clienteMail
                 txtApellido.Text = contacto.Apellido;
                 txtMail.Text = contacto.Mail;
 
-                this.Text = "Modificar contacto";
+                contexto = "Modificar contacto";
+                this.Text = contexto;
             }
             ID = id;
         }
@@ -110,12 +112,15 @@ namespace clienteMail
 
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
-            G.formulario_activo = form_padre;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            G.formulario_activo = form_padre;
+        }
+
+        private void frmContacto_Load(object sender, EventArgs e)
+        {
+
         }
 
 

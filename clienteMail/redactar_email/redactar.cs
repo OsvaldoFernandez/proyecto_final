@@ -18,14 +18,12 @@ namespace clienteMail.redactar_email
         private string Subject;
         private string Body;
         private int asuntoID = 0, mensajeID = 0, contactoID = 0;
-        public RichForm form_padre;
 
         private MailMessage mail;
 
         public redactar(RichForm formulario_padre, string asunto = "", string para = "", string mensaje = "")
         {
             InitializeComponent();
-            G.formulario_activo = this;
             form_padre = formulario_padre;
             asuntoTxt.Text = asunto;
             toTxt.Text = para;
@@ -87,23 +85,17 @@ namespace clienteMail.redactar_email
             G.user.guardarMail(mailEnviado);
 
             var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
-            DialogResult vr2 = form2.ShowDialog(this);
-
-            this.Close();
-            
+            form2.Show();
         }
 
         private void adjBtn_Click_1(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            //adjTxt.Text = openFileDialog1.FileName;
             
         }
 
         private void toTxt_TextChanged(object sender, EventArgs e)
         {
-            //contactos form = new contactos();
-            //form.Show();
         }
 
         private void redactar_Load(object sender, EventArgs e)
@@ -132,13 +124,8 @@ namespace clienteMail.redactar_email
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            var form = new frmAlert(this, "Cancelar", "Está seguro que desea cancelar el mail y descartar los cambios?", "yesno");
-            DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                G.formulario_activo = form_padre;
-                this.Close();
-            }
+            var form = new frmAlert(this, "Descartar", "Está seguro que desea descartar los cambios?", "yesno");
+            form.Show(this);
         }
 
         public override void manejar_comando(string comando)
@@ -182,6 +169,33 @@ namespace clienteMail.redactar_email
         {
             contactoID = id_mensaje;
             cuerpoTxt.Text = G.user.getMensaje(id_mensaje).Texto;
+        }
+
+        public override void manejar_aceptar(string contexto)
+        {
+            if (contexto == "Descartar")
+            {
+                //Cuando se oprime aceptar en el alert de Descartar, esta ventana debería cerrarse
+                this.Close();
+            }
+        }
+
+        public override void manejar_cerrar(string contexto)
+        {
+            if (contexto == "Mail enviado")
+            {
+                //Cuando se oprime cerrar en el alert de mail enviado, esta ventana debería cerrarse
+                this.Close();
+            }
+            if (contexto == "Descartar")
+            {
+                //Cuando se oprime cerrar en el alert de Descartar no debería pasar nada
+            }
+           
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
         }
 
     }

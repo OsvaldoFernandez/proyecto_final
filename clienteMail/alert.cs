@@ -11,12 +11,13 @@ namespace clienteMail
 {
     public partial class frmAlert : RichForm
     {
-        RichForm form_padre;
+        public string res;
+        public string contexto;
         public frmAlert(RichForm form_padre_actual, string titulo, string mensaje, string type)
         {
             InitializeComponent();
             form_padre = form_padre_actual;
-            G.formulario_activo = this;
+            contexto = titulo;
 
             this.Text = titulo;
             lblMensaje.Text = mensaje;
@@ -28,25 +29,25 @@ namespace clienteMail
             else
             {
                 btnAceptar.Hide();
+                btnCancelar.Location = new Point(150, 60);
                 btnCancelar.Text = "Cerrar";
             }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            form_padre.manejar_aceptar(contexto);
             this.Close();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.No;
+            form_padre.manejar_cerrar(contexto);
             this.Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            G.formulario_activo = form_padre;
         }
 
         public override void manejar_comando(string comando)
@@ -60,9 +61,17 @@ namespace clienteMail
                 case "cerrar":
                     btnCerrar_Click(null, null);
                     break;
+                case "cancelar":
+                    btnCerrar_Click(null, null);
+                    break;
                 default:
                     break;
             }
+        }
+
+        private void frmAlert_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

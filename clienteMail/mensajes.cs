@@ -14,8 +14,7 @@ namespace clienteMail
         int pagActual = 1;
         string formAnterior;
         public int idSelected { get; set; }
-        Color varcolor = Color.FromArgb(255, 255, 224);
-        public RichForm form_padre;
+        Color varcolor = Color.FromArgb(174, 225, 242);
 
         public mensajes(string llamadoDesde, RichForm formulario_padre)
         {
@@ -30,7 +29,6 @@ namespace clienteMail
             {
                 btnAceptar.Visible = true;
             }
-            G.formulario_activo = this;
             form_padre = formulario_padre;
         }
 
@@ -47,15 +45,29 @@ namespace clienteMail
             if (selectedRowCount != 1)
             {
                 //no seleccionó nada.
-                G.formulario_activo = form_padre;
                 this.Close();
             }
 
             this.idSelected = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
             form_padre.agregar_mensaje(this.idSelected);
-            G.formulario_activo = form_padre;
 
             this.Close();
+        }
+
+        public override void manejar_aceptar(string contexto)
+        {
+            if (contexto == "Eliminar")
+            {
+                int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
+                G.user.eliminar_mensaje(id);
+                this.actualizarMensajes();
+            }
+
+        }
+
+        public override void manejar_cerrar(string contexto)
+        {
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -88,7 +100,7 @@ namespace clienteMail
             if (selectedRowCount != 1)
             {
                 var form2 = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
-                DialogResult vr2 = form2.ShowDialog(this);
+                form2.Show();
                 return;
             }
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
@@ -106,17 +118,12 @@ namespace clienteMail
             if (selectedRowCount != 1)
             {
                 var form = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
-                DialogResult vr = form.ShowDialog(this);
+                form.Show(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
             var form3 = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el contacto?", "yesno");
-            DialogResult vr3 = form3.ShowDialog(this);
-            if (vr3 == System.Windows.Forms.DialogResult.OK)
-            {
-                G.user.eliminar_mensaje(id);
-                this.actualizarMensajes();
-            }
+            form3.Show();
         }
 
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
@@ -168,7 +175,6 @@ namespace clienteMail
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
-            G.formulario_activo = form_padre;
             this.Close();
         }
 
@@ -338,7 +344,7 @@ namespace clienteMail
                 case "ocho":
                     seleccionarMensaje8(null, null);
                     break;
-                case "volver":
+                case "cerrar":
                     btnVolver_Click(null, null);
                     break;
                 case "aceptar":
