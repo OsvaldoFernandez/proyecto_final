@@ -14,6 +14,7 @@ using Email.Net.Common.Collections;
 using Email.Net.Pop3.Exceptions;
 using System.Reflection;
 using System.Globalization;
+using System.Threading;
 
 namespace clienteMail
 {
@@ -121,21 +122,22 @@ namespace clienteMail
 
         private void btnRecibidos_Click(object sender, EventArgs e)
         {
+            loading loading_form = new loading();
+            loading_form.Show();
+            
             recibidos = true;
             pagActual = 1;
             lblTitle.Text = "Recibidos";
 
             if (!messagesRecibidos.ContainsKey(1))
             {
-                while (!authenticated)
-                {
-                    System.Threading.Thread.Sleep(50);
-                }
                 ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
             }
             dataMails.Columns[2].HeaderText = "De";
 
             this.showRecibidos();
+            
+            loading_form.Close();
         }
 
         private void showRecibidos()
@@ -220,7 +222,10 @@ namespace clienteMail
                 messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
                 try
                 {
+                    loading loading_form = new loading();
+                    loading_form.Show();
                     client.Login();
+                    loading_form.Close();
                 }
                 catch
                 {

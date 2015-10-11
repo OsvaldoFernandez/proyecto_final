@@ -88,5 +88,18 @@ namespace clienteMail
             }
         }
 
+        public override void manejar_aceptar(string contexto)
+        {
+            if (contexto == "Eliminar")
+            {
+                btnEliminar_Click(null, null);
+            }
+        }
+
+        public override void manejar_cerrar(string contexto)
+        {
+            //Cuando se oprime cerrar en el alert de Eliminar no debería pasar nada
+        }
+
     }
 }
