@@ -143,6 +143,8 @@ namespace clienteMail.comando
                     break;
             }
 
+            Console.WriteLine(e.Result.Confidence.ToString());
+
             float confidence = e.Result.Confidence * 100;
             richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
 
@@ -161,8 +163,7 @@ namespace clienteMail.comando
             File.Delete(path);
 
 
-
-            if (confidence > 50)
+            if (confidence > G.sensibilidad)
             {
                 if (res < -10000)
                 {
@@ -194,6 +195,11 @@ namespace clienteMail.comando
         {
             recEngine.RecognizeAsyncStop();
             disableBtn.Enabled = false;
+        }
+
+        private void btnActualizarSensibilidad_Click(object sender, EventArgs e)
+        {
+            G.sensibilidad = Convert.ToInt32(txtSensibilidad.Text.ToString());
         }
     }
 }

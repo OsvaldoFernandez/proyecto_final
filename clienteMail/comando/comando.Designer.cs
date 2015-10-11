@@ -33,6 +33,9 @@
             this.disableBtn = new System.Windows.Forms.Button();
             this.txtFormActivo = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtSensibilidad = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnActualizarSensibilidad = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -82,11 +85,40 @@
             this.label1.Text = "Form activo";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // txtSensibilidad
+            // 
+            this.txtSensibilidad.Location = new System.Drawing.Point(342, 472);
+            this.txtSensibilidad.Name = "txtSensibilidad";
+            this.txtSensibilidad.Size = new System.Drawing.Size(100, 20);
+            this.txtSensibilidad.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(339, 456);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Sensibilidad:";
+            // 
+            // btnActualizarSensibilidad
+            // 
+            this.btnActualizarSensibilidad.Location = new System.Drawing.Point(367, 498);
+            this.btnActualizarSensibilidad.Name = "btnActualizarSensibilidad";
+            this.btnActualizarSensibilidad.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarSensibilidad.TabIndex = 7;
+            this.btnActualizarSensibilidad.Text = "Actualizar";
+            this.btnActualizarSensibilidad.UseVisualStyleBackColor = true;
+            this.btnActualizarSensibilidad.Click += new System.EventHandler(this.btnActualizarSensibilidad_Click);
+            // 
             // comando
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 522);
+            this.Controls.Add(this.btnActualizarSensibilidad);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtSensibilidad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFormActivo);
             this.Controls.Add(this.disableBtn);
@@ -107,5 +139,8 @@
         private System.Windows.Forms.Button disableBtn;
         private System.Windows.Forms.RichTextBox txtFormActivo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSensibilidad;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnActualizarSensibilidad;
     }
 }

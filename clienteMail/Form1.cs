@@ -111,6 +111,9 @@ namespace clienteMail
                         btnSiguiente_Click(null, null);
                     }
                     break; 
+                case "actualizar":
+                    btnActualizar_Click(null, null);
+                    break;
                 default:
                     break;
             }

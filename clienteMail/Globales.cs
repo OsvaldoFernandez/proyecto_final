@@ -32,6 +32,7 @@ public static class G
     public static SQLiteConnection conexion_principal = null;
 
     public static User user = null;
+    public static int sensibilidad = 50;
 
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {
