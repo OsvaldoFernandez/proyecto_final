@@ -29,7 +29,7 @@ namespace clienteMail
         int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
         uint ultimoRender; //que mails ya mostré o "renderice"
-        Color varcolor = Color.FromArgb(255, 255, 224);
+        Color varcolor = Color.FromArgb(174, 225, 242);
 
         public Form1()
         {
@@ -532,7 +532,7 @@ namespace clienteMail
                         ctn2.Text = message.Subject.ToString();
                         ctn3.Show();
                         ctn4.Show();
-                        ctn5.Text = message.Date.AddHours(-3).ToString();
+                        ctn5.Text = message.Date.AddHours(-3).ToString("dd/MM/yyyy, hh:mm");
                         index++;
                     }
                 }
@@ -850,6 +850,11 @@ namespace clienteMail
                     leer_mail form = new leer_mail(message);
                     form.Show();
                 }
+            }
+
+            private void btnAnterior_EnabledChanged(object sender, System.EventArgs e)
+            {
+                btnAnterior.ForeColor = sender.Equals(false) ? Color.Blue : Color.Red;
             }
     }
 }

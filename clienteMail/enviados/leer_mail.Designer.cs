@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leer_mail));
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,17 +38,24 @@
             this.btnReenviar = new System.Windows.Forms.Button();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblAsunto = new System.Windows.Forms.Label();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // webBrowser
             // 
-            this.webBrowser.Location = new System.Drawing.Point(224, 100);
+            this.webBrowser.Location = new System.Drawing.Point(247, 158);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(742, 620);
+            this.webBrowser.Size = new System.Drawing.Size(715, 542);
             this.webBrowser.TabIndex = 1;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
             // 
@@ -59,32 +67,32 @@
             this.panel10.Controls.Add(this.btnResponder);
             this.panel10.Controls.Add(this.btnEliminar);
             this.panel10.Controls.Add(this.btnReenviar);
-            this.panel10.Location = new System.Drawing.Point(0, 3);
+            this.panel10.Location = new System.Drawing.Point(0, -9);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 717);
+            this.panel10.Size = new System.Drawing.Size(224, 729);
             this.panel10.TabIndex = 18;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(17, 14);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(96)))), ((int)(((byte)(113)))));
+            this.label3.Location = new System.Drawing.Point(12, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 25);
+            this.label3.Size = new System.Drawing.Size(187, 30);
             this.label3.TabIndex = 0;
             this.label3.Text = "Comandos de voz";
             // 
             // btnCerrar
             // 
             this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.BorderSize = 2;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnCerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnCerrar.ForeColor = System.Drawing.Color.White;
             this.btnCerrar.Location = new System.Drawing.Point(12, 186);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(193, 25);
+            this.btnCerrar.Size = new System.Drawing.Size(193, 30);
             this.btnCerrar.TabIndex = 12;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -93,13 +101,13 @@
             // btnResponder
             // 
             this.btnResponder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnResponder.FlatAppearance.BorderSize = 0;
+            this.btnResponder.FlatAppearance.BorderSize = 2;
             this.btnResponder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResponder.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnResponder.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnResponder.ForeColor = System.Drawing.Color.White;
             this.btnResponder.Location = new System.Drawing.Point(12, 62);
             this.btnResponder.Name = "btnResponder";
-            this.btnResponder.Size = new System.Drawing.Size(193, 25);
+            this.btnResponder.Size = new System.Drawing.Size(193, 30);
             this.btnResponder.TabIndex = 2;
             this.btnResponder.Text = "Responder";
             this.btnResponder.UseVisualStyleBackColor = false;
@@ -108,13 +116,13 @@
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatAppearance.BorderSize = 2;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Location = new System.Drawing.Point(12, 145);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(193, 25);
+            this.btnEliminar.Size = new System.Drawing.Size(193, 30);
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -122,13 +130,13 @@
             // btnReenviar
             // 
             this.btnReenviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnReenviar.FlatAppearance.BorderSize = 0;
+            this.btnReenviar.FlatAppearance.BorderSize = 2;
             this.btnReenviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReenviar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnReenviar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnReenviar.ForeColor = System.Drawing.Color.White;
             this.btnReenviar.Location = new System.Drawing.Point(12, 105);
             this.btnReenviar.Name = "btnReenviar";
-            this.btnReenviar.Size = new System.Drawing.Size(193, 25);
+            this.btnReenviar.Size = new System.Drawing.Size(193, 30);
             this.btnReenviar.TabIndex = 3;
             this.btnReenviar.Text = "Reenviar";
             this.btnReenviar.UseVisualStyleBackColor = false;
@@ -137,55 +145,87 @@
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFrom.Font = new System.Drawing.Font("Segoe UI", 15.25F, System.Drawing.FontStyle.Bold);
             this.lblFrom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblFrom.Location = new System.Drawing.Point(242, 3);
+            this.lblFrom.Location = new System.Drawing.Point(242, 51);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(41, 25);
+            this.lblFrom.Size = new System.Drawing.Size(45, 30);
             this.lblFrom.TabIndex = 19;
             this.lblFrom.Text = "De:";
             // 
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblFecha.Font = new System.Drawing.Font("Segoe UI", 15.25F, System.Drawing.FontStyle.Bold);
             this.lblFecha.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblFecha.Location = new System.Drawing.Point(242, 72);
+            this.lblFecha.Location = new System.Drawing.Point(242, 115);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(67, 25);
+            this.lblFecha.Size = new System.Drawing.Size(75, 30);
             this.lblFecha.TabIndex = 20;
             this.lblFecha.Text = "Fecha:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(456, 358);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 25);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Fecha:";
             // 
             // lblAsunto
             // 
             this.lblAsunto.AutoSize = true;
-            this.lblAsunto.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblAsunto.Font = new System.Drawing.Font("Segoe UI", 15.25F, System.Drawing.FontStyle.Bold);
             this.lblAsunto.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAsunto.Location = new System.Drawing.Point(242, 38);
+            this.lblAsunto.Location = new System.Drawing.Point(242, 86);
             this.lblAsunto.Name = "lblAsunto";
-            this.lblAsunto.Size = new System.Drawing.Size(64, 25);
+            this.lblAsunto.Size = new System.Drawing.Size(72, 30);
             this.lblAsunto.TabIndex = 22;
             this.lblAsunto.Text = "label2";
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(781, 12);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 26;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(827, 12);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 25;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(873, 12);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 24;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(919, 12);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 23;
+            this.pictureBox10.TabStop = false;
             // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(978, 741);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.ClientSize = new System.Drawing.Size(973, 713);
+            this.Controls.Add(this.pictureBox13);
+            this.Controls.Add(this.pictureBox12);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.lblAsunto);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblFrom);
             this.Controls.Add(this.panel10);
@@ -196,6 +236,10 @@
             this.Load += new System.EventHandler(this.leer_mail_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,8 +256,11 @@
         private System.Windows.Forms.Button btnReenviar;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblAsunto;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox10;
 
     }
 }

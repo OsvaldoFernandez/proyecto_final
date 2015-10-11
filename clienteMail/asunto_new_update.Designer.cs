@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTexto = new System.Windows.Forms.TextBox();
             this.clear1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -84,12 +85,21 @@
             this.clear1.Visible = false;
             this.clear1.Click += new System.EventHandler(this.clear1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(40, 57);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(620, 1);
+            this.panel1.TabIndex = 21;
+            // 
             // asunto_new_update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(706, 171);
+            this.ClientSize = new System.Drawing.Size(701, 153);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.clear1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
@@ -109,5 +119,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTexto;
         private System.Windows.Forms.Label clear1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -38,6 +38,9 @@
             this.clear1 = new System.Windows.Forms.Label();
             this.clear2 = new System.Windows.Forms.Label();
             this.clear3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label2
@@ -166,12 +169,39 @@
             this.clear3.Visible = false;
             this.clear3.Click += new System.EventHandler(this.clear3_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(45, 57);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(520, 1);
+            this.panel1.TabIndex = 20;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Location = new System.Drawing.Point(45, 108);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(520, 1);
+            this.panel2.TabIndex = 21;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Location = new System.Drawing.Point(45, 157);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(520, 1);
+            this.panel3.TabIndex = 21;
+            // 
             // frmContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(613, 260);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.clear3);
             this.Controls.Add(this.clear2);
             this.Controls.Add(this.clear1);
@@ -203,5 +233,8 @@
         private System.Windows.Forms.Label clear1;
         private System.Windows.Forms.Label clear2;
         private System.Windows.Forms.Label clear3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

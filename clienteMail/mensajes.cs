@@ -364,6 +364,16 @@ namespace clienteMail
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPagina_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

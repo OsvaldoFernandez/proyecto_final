@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(redactar));
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toTxt = new System.Windows.Forms.TextBox();
@@ -47,7 +48,15 @@
             this.enviarBtn = new System.Windows.Forms.Button();
             this.btnMensaje = new System.Windows.Forms.Button();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -173,23 +182,23 @@
             this.panel10.Controls.Add(this.btnAsunto);
             this.panel10.Controls.Add(this.enviarBtn);
             this.panel10.Controls.Add(this.btnMensaje);
-            this.panel10.Location = new System.Drawing.Point(14, 13);
+            this.panel10.Location = new System.Drawing.Point(-8, -8);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(224, 425);
+            this.panel10.Size = new System.Drawing.Size(247, 486);
             this.panel10.TabIndex = 27;
             // 
             // btnPara
             // 
             this.btnPara.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnPara.FlatAppearance.BorderSize = 0;
+            this.btnPara.FlatAppearance.BorderSize = 2;
             this.btnPara.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPara.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPara.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnPara.ForeColor = System.Drawing.Color.White;
-            this.btnPara.Location = new System.Drawing.Point(12, 60);
+            this.btnPara.Location = new System.Drawing.Point(22, 68);
             this.btnPara.Margin = new System.Windows.Forms.Padding(0);
             this.btnPara.Name = "btnPara";
             this.btnPara.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnPara.Size = new System.Drawing.Size(193, 25);
+            this.btnPara.Size = new System.Drawing.Size(193, 30);
             this.btnPara.TabIndex = 10;
             this.btnPara.Text = "Para";
             this.btnPara.UseVisualStyleBackColor = false;
@@ -198,24 +207,24 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(17, 13);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 15.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(96)))), ((int)(((byte)(113)))));
+            this.label7.Location = new System.Drawing.Point(20, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(164, 25);
+            this.label7.Size = new System.Drawing.Size(187, 30);
             this.label7.TabIndex = 0;
             this.label7.Text = "Comandos de voz";
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatAppearance.BorderSize = 2;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(12, 298);
+            this.btnCancelar.Location = new System.Drawing.Point(22, 306);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(193, 25);
+            this.btnCancelar.Size = new System.Drawing.Size(193, 30);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -224,13 +233,13 @@
             // btnAsunto
             // 
             this.btnAsunto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnAsunto.FlatAppearance.BorderSize = 0;
+            this.btnAsunto.FlatAppearance.BorderSize = 2;
             this.btnAsunto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAsunto.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnAsunto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnAsunto.ForeColor = System.Drawing.Color.White;
-            this.btnAsunto.Location = new System.Drawing.Point(12, 97);
+            this.btnAsunto.Location = new System.Drawing.Point(22, 105);
             this.btnAsunto.Name = "btnAsunto";
-            this.btnAsunto.Size = new System.Drawing.Size(193, 25);
+            this.btnAsunto.Size = new System.Drawing.Size(193, 30);
             this.btnAsunto.TabIndex = 2;
             this.btnAsunto.Text = "Asunto";
             this.btnAsunto.UseVisualStyleBackColor = false;
@@ -239,13 +248,13 @@
             // enviarBtn
             // 
             this.enviarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.enviarBtn.FlatAppearance.BorderSize = 0;
+            this.enviarBtn.FlatAppearance.BorderSize = 2;
             this.enviarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.enviarBtn.Font = new System.Drawing.Font("Arial", 12F);
+            this.enviarBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.enviarBtn.ForeColor = System.Drawing.Color.White;
-            this.enviarBtn.Location = new System.Drawing.Point(12, 254);
+            this.enviarBtn.Location = new System.Drawing.Point(22, 262);
             this.enviarBtn.Name = "enviarBtn";
-            this.enviarBtn.Size = new System.Drawing.Size(193, 25);
+            this.enviarBtn.Size = new System.Drawing.Size(193, 30);
             this.enviarBtn.TabIndex = 10;
             this.enviarBtn.Text = "Enviar";
             this.enviarBtn.UseVisualStyleBackColor = false;
@@ -254,13 +263,13 @@
             // btnMensaje
             // 
             this.btnMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnMensaje.FlatAppearance.BorderSize = 0;
+            this.btnMensaje.FlatAppearance.BorderSize = 2;
             this.btnMensaje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMensaje.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnMensaje.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnMensaje.ForeColor = System.Drawing.Color.White;
-            this.btnMensaje.Location = new System.Drawing.Point(12, 135);
+            this.btnMensaje.Location = new System.Drawing.Point(22, 143);
             this.btnMensaje.Name = "btnMensaje";
-            this.btnMensaje.Size = new System.Drawing.Size(193, 25);
+            this.btnMensaje.Size = new System.Drawing.Size(193, 30);
             this.btnMensaje.TabIndex = 3;
             this.btnMensaje.Text = "Mensaje";
             this.btnMensaje.UseVisualStyleBackColor = false;
@@ -274,12 +283,56 @@
             this.webBrowser.Size = new System.Drawing.Size(698, 115);
             this.webBrowser.TabIndex = 28;
             // 
+            // pictureBox13
+            // 
+            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
+            this.pictureBox13.Location = new System.Drawing.Point(799, 5);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox13.TabIndex = 32;
+            this.pictureBox13.TabStop = false;
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
+            this.pictureBox12.Location = new System.Drawing.Point(845, 5);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox12.TabIndex = 31;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(891, 5);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox11.TabIndex = 30;
+            this.pictureBox11.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(937, 5);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 29;
+            this.pictureBox10.TabStop = false;
+            // 
             // redactar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(981, 465);
+            this.Controls.Add(this.pictureBox13);
+            this.Controls.Add(this.pictureBox12);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.cuerpoTxt);
@@ -298,6 +351,10 @@
             this.Load += new System.EventHandler(this.redactar_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +381,9 @@
         private System.Windows.Forms.Button enviarBtn;
         private System.Windows.Forms.Button btnMensaje;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.PictureBox pictureBox10;
     }
 }
