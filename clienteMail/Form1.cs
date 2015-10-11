@@ -44,37 +44,42 @@ namespace clienteMail
                 case "uno":
                     seleccionarMail1(null,null);
                     mailSelected = 1;
+                    leerMail1(null, null);
                     break;
                 case "dos":
                     seleccionarMail2(null, null);
                     mailSelected = 2;
+                    leerMail2(null, null);
                     break;
                 case "tres":
                     seleccionarMail3(null,null);
                     mailSelected = 3;
+                    leerMail3(null, null);
                     break;
                 case "cuatro":
                     seleccionarMail4(null,null);
                     mailSelected = 4;
+                    leerMail4(null, null);
                     break;
                 case "cinco":
                     seleccionarMail5(null,null);
                     mailSelected = 5;
+                    leerMail5(null, null);
                     break;
                 case "seis":
                     seleccionarMail6(null,null);
                     mailSelected = 6;
+                    leerMail6(null, null);
                     break;
                 case "siete":
                     seleccionarMail7(null,null);
                     mailSelected = 7;
+                    leerMail7(null, null);
                     break;
                 case "ocho":
                     seleccionarMail8(null,null);
                     mailSelected = 8;
-                    break;
-                case "nueve":
-                    // DO NOTHING
+                    leerMail8(null, null);
                     break;
                 case "contactos":
                     btnContactos_Click(null, null);
@@ -91,18 +96,9 @@ namespace clienteMail
                 case "enviados":
                     btnEnviados_Click(null, null);
                     break;
-                case "eliminar":
-                    btnEliminar_Click(null, null);
-                    break;
                 case "redactar":
                     redactar_Click(null, null);
                     break; 
-                case "leer":
-                    Type thisType = this.GetType();
-                    ParameterInfo[] parameters = {null,null};
-                    MethodInfo theMethod = thisType.GetMethod("leerMail"+mailSelected.ToString());
-                    // theMethod.Invoke(this, parameters);
-                    break;
                 case "anterior":
                     if (btnAnterior.Enabled)
                     {
@@ -432,25 +428,7 @@ namespace clienteMail
                 {
                     btnSiguiente.Enabled = true;
                 }
-            }
-
-            private void btnEliminar_Click(object sender, EventArgs e)
-            {
-
-                Int32 selectedRowCount = dataMails.Rows.GetRowCount(DataGridViewElementStates.Selected);
-                if (selectedRowCount > 0)
-                {
-                    var form = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
-                    DialogResult vr = form.ShowDialog(this);
-                    if (vr == System.Windows.Forms.DialogResult.OK)
-                    {
-                        int index = Convert.ToInt32(this.dataMails.SelectedRows[0].Cells["index"].Value);
-                        client.DeleteMessage(serialNumbers[index]);
-                    } 
-                    
-                }
-                
-            }
+            }       
 
             private void btnContactos_Click(object sender, EventArgs e)
             {
@@ -663,8 +641,6 @@ namespace clienteMail
                     dataMails.Rows[7].Selected = true;
                 }
             }
-
-
 
 
             public void leerMail1(object sender, EventArgs e)

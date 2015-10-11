@@ -52,9 +52,40 @@ namespace clienteMail
             form.Show();
         }
 
-        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            
+            var form = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
+            DialogResult vr = form.ShowDialog(this);
+            if (vr == System.Windows.Forms.DialogResult.OK)
+            {
+                //BORRA MAIL
+            } 
+                
+        }
+
+
+
+        public override void manejar_comando(string comando)
         {
 
+            switch (comando)
+            {
+                case "responder":
+                    btnResponder_Click(null, null);
+                    break;
+                case "reenviar":
+                    btnReenviar_Click(null, null);
+                    break;
+                case "eliminar":
+                    btnEliminar_Click(null, null);
+                    break;
+                case "cerrar":
+                    btnCerrar_Click(null, null);
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
