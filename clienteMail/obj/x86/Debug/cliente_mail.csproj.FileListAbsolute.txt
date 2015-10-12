@@ -54,4 +54,4 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.com
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
-C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.loading.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.splashScreen.resources

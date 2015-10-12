@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
+using System.Threading;
 
 namespace clienteMail.redactar_email
 {
@@ -37,7 +38,11 @@ namespace clienteMail.redactar_email
                 webBrowser.Visible = false;
             }
         }
-       
+
+        public void SplashScreen()
+        {
+            Application.Run(new splashScreen());
+        }
 
         private void enviarBtn_Click(object sender, EventArgs e)
         {
@@ -47,6 +52,9 @@ namespace clienteMail.redactar_email
                 DialogResult vr = form.ShowDialog(this);
                 return;
             }
+
+            Thread t = new Thread(new ThreadStart(SplashScreen));
+            t.Start();
             To = toTxt.Text;
             Subject = asuntoTxt.Text;
             Body = cuerpoTxt.Text + "<br><br>" + webBrowser.DocumentText;
@@ -83,6 +91,8 @@ namespace clienteMail.redactar_email
             mailEnviado.__mensaje = Body;
 
             G.user.guardarMail(mailEnviado);
+            
+            t.Abort();
 
             var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
             form2.Show();

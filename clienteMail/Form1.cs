@@ -37,6 +37,11 @@ namespace clienteMail
             InitializeComponent();
         }
 
+        public void SplashScreen()
+        {
+            Application.Run(new splashScreen());
+        }
+
         public override void manejar_comando(string comando)
         {
 
@@ -121,10 +126,7 @@ namespace clienteMail
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
-        {
-            loading loading_form = new loading();
-            loading_form.Show();
-            
+        {           
             recibidos = true;
             pagActual = 1;
             lblTitle.Text = "Recibidos";
@@ -136,8 +138,6 @@ namespace clienteMail
             dataMails.Columns[2].HeaderText = "De";
 
             this.showRecibidos();
-            
-            loading_form.Close();
         }
 
         private void showRecibidos()
@@ -200,6 +200,9 @@ namespace clienteMail
             {
                 // create client and connect 
 
+                Thread t = new Thread(new ThreadStart(SplashScreen));
+                t.Start();
+
                 client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
                 
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
@@ -215,6 +218,7 @@ namespace clienteMail
                 recibidos = true;
                 this.actualizar();
                 btnRecibidos_Click(null, e);
+                t.Abort();
             }
 
             private void actualizar()
@@ -222,10 +226,12 @@ namespace clienteMail
                 messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
                 try
                 {
-                    loading loading_form = new loading();
+                    /*loading loading_form = new loading();
                     loading_form.Show();
                     client.Login();
-                    loading_form.Close();
+                    loading_form.Close();*/
+
+                    client.Login();
                 }
                 catch
                 {
@@ -341,7 +347,10 @@ namespace clienteMail
                 this.actualizar();
                 if (recibidos)
                 {
+                    Thread t = new Thread(new ThreadStart(SplashScreen));
+                    t.Start();
                     btnRecibidos_Click(null, e);
+                    t.Abort();
                 }
                 else {
                     btnEnviados_Click(null, e);
