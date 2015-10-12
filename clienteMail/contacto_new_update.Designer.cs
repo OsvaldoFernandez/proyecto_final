@@ -41,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblMailIncorrecto = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -96,7 +97,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(50, 130);
+            this.label3.Location = new System.Drawing.Point(50, 131);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 25);
             this.label3.TabIndex = 13;
@@ -122,7 +123,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnGuardar.Location = new System.Drawing.Point(197, 187);
+            this.btnGuardar.Location = new System.Drawing.Point(198, 201);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(213, 47);
             this.btnGuardar.TabIndex = 16;
@@ -193,12 +194,25 @@
             this.panel3.Size = new System.Drawing.Size(520, 1);
             this.panel3.TabIndex = 21;
             // 
+            // lblMailIncorrecto
+            // 
+            this.lblMailIncorrecto.AutoSize = true;
+            this.lblMailIncorrecto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMailIncorrecto.ForeColor = System.Drawing.Color.Red;
+            this.lblMailIncorrecto.Location = new System.Drawing.Point(341, 166);
+            this.lblMailIncorrecto.Name = "lblMailIncorrecto";
+            this.lblMailIncorrecto.Size = new System.Drawing.Size(224, 21);
+            this.lblMailIncorrecto.TabIndex = 22;
+            this.lblMailIncorrecto.Text = "Debe ingresar un mail correcto";
+            this.lblMailIncorrecto.Visible = false;
+            // 
             // frmContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(613, 260);
+            this.Controls.Add(this.lblMailIncorrecto);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -237,5 +251,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblMailIncorrecto;
     }
 }

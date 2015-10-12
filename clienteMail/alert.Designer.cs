@@ -164,6 +164,7 @@
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.lblMensaje);
             this.Name = "frmAlert";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "alert";
             this.Load += new System.EventHandler(this.frmAlert_Load);
             this.panel10.ResumeLayout(false);

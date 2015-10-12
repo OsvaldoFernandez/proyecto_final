@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.txtTexto = new System.Windows.Forms.RichTextBox();
+            this.lblMensajeVacio = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -41,9 +42,9 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
-            this.btnGuardar.Location = new System.Drawing.Point(224, 398);
+            this.btnGuardar.Location = new System.Drawing.Point(224, 409);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(213, 47);
+            this.btnGuardar.Size = new System.Drawing.Size(213, 36);
             this.btnGuardar.TabIndex = 17;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -76,12 +77,25 @@
             this.txtTexto.TabIndex = 19;
             this.txtTexto.Text = "";
             // 
+            // lblMensajeVacio
+            // 
+            this.lblMensajeVacio.AutoSize = true;
+            this.lblMensajeVacio.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensajeVacio.ForeColor = System.Drawing.Color.Red;
+            this.lblMensajeVacio.Location = new System.Drawing.Point(378, 378);
+            this.lblMensajeVacio.Name = "lblMensajeVacio";
+            this.lblMensajeVacio.Size = new System.Drawing.Size(244, 21);
+            this.lblMensajeVacio.TabIndex = 23;
+            this.lblMensajeVacio.Text = "Debe ingresar texto en el mensaje";
+            this.lblMensajeVacio.Visible = false;
+            // 
             // mensaje_new_update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(658, 457);
+            this.Controls.Add(this.lblMensajeVacio);
             this.Controls.Add(this.txtTexto);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
@@ -98,5 +112,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.RichTextBox txtTexto;
+        private System.Windows.Forms.Label lblMensajeVacio;
     }
 }

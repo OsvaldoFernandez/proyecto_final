@@ -29,7 +29,15 @@ namespace clienteMail
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //validar.
+            if (txtTexto.Text.Length == 0)
+            {
+                lblAsuntoVacio.Visible = true;
+                panel1.BackColor = Color.Red;
+                return;
+            }
+            lblAsuntoVacio.Visible = false;
+            panel1.BackColor = Color.White;
+
             Asunto asunto = new Asunto();
             asunto.__texto = txtTexto.Text;
 

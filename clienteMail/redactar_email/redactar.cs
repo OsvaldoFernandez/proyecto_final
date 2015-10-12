@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace clienteMail.redactar_email
 {
@@ -46,9 +47,11 @@ namespace clienteMail.redactar_email
 
         private void enviarBtn_Click(object sender, EventArgs e)
         {
-            if (toTxt.Text.Trim() == "")
+            Regex reg = new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
+
+            if (!reg.IsMatch(toTxt.Text))
             {
-                var form = new frmAlert(this, "Ingresar destinatario", "Debe agregar un destinatario en el campo Para", "close");
+                var form = new frmAlert(this, "Ingresar destinatario", "Debe agregar un destinatario correcto en el campo Para", "close");
                 DialogResult vr = form.ShowDialog(this);
                 return;
             }

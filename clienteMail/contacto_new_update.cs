@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace clienteMail
 {
@@ -94,7 +95,16 @@ namespace clienteMail
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
-            //validar.
+            Regex reg = new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
+            if (!reg.IsMatch(txtMail.Text))
+            {
+                panel3.BackColor = Color.Red;
+                lblMailIncorrecto.Visible = true;
+                return;
+            }
+            panel3.BackColor = Color.White;
+            lblMailIncorrecto.Visible = false;
+
             Contacto contacto = new Contacto();
             contacto.__nombre = txtNombre.Text;
             contacto.__apellido = txtApellido.Text;

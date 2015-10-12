@@ -30,7 +30,12 @@ namespace clienteMail
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //validar.
+            if (txtTexto.Text.Length == 0)
+            {
+                lblMensajeVacio.Visible = true;
+                return;
+            }
+            lblMensajeVacio.Visible = false;
             Mensaje mensaje = new Mensaje();
             mensaje.__texto = txtTexto.Text;
 
