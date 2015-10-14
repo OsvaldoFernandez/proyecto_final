@@ -2,10 +2,14 @@
 using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Threading;
+using System.Speech.Recognition;
 
 public partial class RichForm : Form
 {
     public virtual void manejar_comando(string comando)
+    {
+    }
+    public virtual void manejar_comando_entrenamiento(SpeechRecognizedEventArgs e)
     {
     }
     public virtual void agregar_contacto(int id)
@@ -33,6 +37,7 @@ public static class G
 
     public static User user = null;
     public static int sensibilidad = 50;
+    public static RichForm comando_form; 
 
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {

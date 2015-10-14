@@ -41,7 +41,7 @@ namespace clienteMail.comando
         private void comando_Load(object sender, EventArgs e)
         {
             Choices comandos = new Choices();
-            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente", "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar" });
+            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente", "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
             Grammar grammar = new Grammar(gBuilder);
@@ -151,42 +151,47 @@ namespace clienteMail.comando
             float confidence = e.Result.Confidence * 100;
             richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
 
-            // filtrar por e.Result.Confidence
-            RecognizedAudio audio = e.Result.Audio;
-            TimeSpan duration = audio.Duration;
-            // Osvaldo hace cosas muy raras
-            string path = Path.GetTempFileName();
-            using (Stream outputStream = new FileStream(path, FileMode.Create))
+            if (currentForm.Name == "entrenamiento_1")
+            //Está en modo entrenamiento, no autenticar y mandar el SpeechRecognized entero
             {
-                RecognizedAudio nameAudio = audio;
-                nameAudio.WriteToWaveStream(outputStream);
-                outputStream.Close();
+                currentForm.manejar_comando_entrenamiento(e);
             }
-            int res = AV.avf_autenticar_WAV(autenticador, path);
-            File.Delete(path);
-
-
-            if (confidence > G.sensibilidad)
+            else
             {
-                if (res < -10000)
+                // filtrar por e.Result.Confidence
+                RecognizedAudio audio = e.Result.Audio;
+                TimeSpan duration = audio.Duration;
+                // Osvaldo hace cosas muy raras
+                string path = Path.GetTempFileName();
+                using (Stream outputStream = new FileStream(path, FileMode.Create))
                 {
-                    richTextBox1.Text += " - error - " + res.ToString("X");
-                    //G.formulario_activo.manejar_comando(e.Result.Text);
-                    currentForm.manejar_comando(e.Result.Text);
-                    return;
+                    RecognizedAudio nameAudio = audio;
+                    nameAudio.WriteToWaveStream(outputStream);
+                    outputStream.Close();
                 }
-                if (res > 0)
+                int res = AV.avf_autenticar_WAV(autenticador, path);
+                File.Delete(path);
+
+
+                if (confidence > G.sensibilidad)
                 {
-                    richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
-                    currentForm.manejar_comando(e.Result.Text);
-                    //G.formulario_activo.manejar_comando(e.Result.Text);
-                }
-                else
-                {
-                    res = -res;
-                    richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
-                    currentForm.manejar_comando(e.Result.Text);
-                    //G.formulario_activo.manejar_comando(e.Result.Text);
+                    if (res < -10000)
+                    {
+                        richTextBox1.Text += " - error - " + res.ToString("X");
+                        currentForm.manejar_comando(e.Result.Text);
+                        return;
+                    }
+                    if (res > 0)
+                    {
+                        richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
+                        currentForm.manejar_comando(e.Result.Text);
+                    }
+                    else
+                    {
+                        res = -res;
+                        richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
+                        currentForm.manejar_comando(e.Result.Text);
+                    }
                 }
             }
 
@@ -204,5 +209,22 @@ namespace clienteMail.comando
         {
             G.sensibilidad = Convert.ToInt32(txtSensibilidad.Text.ToString());
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RichForm form1 = new entrenamiento.entrenamiento_1();
+            form1.Show();
+
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (disableBtn.Enabled)
+            {
+                recEngine.RecognizeAsyncStop();
+                disableBtn.Enabled = false;
+            }
+        }
+
     }
 }

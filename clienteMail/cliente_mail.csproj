@@ -93,6 +93,12 @@
     <Compile Include="contactos.Designer.cs">
       <DependentUpon>contactos.cs</DependentUpon>
     </Compile>
+    <Compile Include="entrenamiento\entrenamiento_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="entrenamiento\entrenamiento_1.Designer.cs">
+      <DependentUpon>entrenamiento_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="mail_enviado.cs" />
     <Compile Include="mensaje_new_update.cs">
       <SubType>Form</SubType>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="comando\comando.resx">
       <DependentUpon>comando.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="entrenamiento\entrenamiento_1.resx">
+      <DependentUpon>entrenamiento_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Globales.resx">
       <DependentUpon>Globales.cs</DependentUpon>

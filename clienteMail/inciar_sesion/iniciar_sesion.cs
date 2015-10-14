@@ -31,9 +31,12 @@ namespace clienteMail.inciar_sesion
             if (dr.Read())
             {
                 G.user = new User(dr.GetInt16(0));
+                // PENDIENTE: Buscar un .pav que se llame como mi cuenta de mail, si aparece, entonces entrené y abro form1
                 RichForm formulario_activo = new Form1();
                 formulario_activo.Show();
-                new comando.comando().Show();
+                G.comando_form = new comando.comando();
+                G.comando_form.Show();
+                // Si no apareció mi .pav, además de abrir comando, debo abrir entrenamiento
                 this.Hide();
             }
             else
@@ -48,6 +51,11 @@ namespace clienteMail.inciar_sesion
         private void button2_Click(object sender, EventArgs e)
         {
             new crear_cuenta.crear_cuenta().Show();
+        }
+
+        private void iniciar_sesion_Load(object sender, EventArgs e)
+        {
+
         }
 
     }
