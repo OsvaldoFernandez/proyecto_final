@@ -56,24 +56,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(204, 42);
             this.progressBar1.TabIndex = 1;
-            // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Size = new System.Drawing.Size(284, 261);
-            this.shapeContainer1.TabIndex = 2;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BorderColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rectangleShape1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.Location = new System.Drawing.Point(3, 3);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(278, 255);
+            
             // 
             // splashScreen
             // 
@@ -83,7 +66,6 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.shapeContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "splashScreen";
             this.ShowInTaskbar = false;
