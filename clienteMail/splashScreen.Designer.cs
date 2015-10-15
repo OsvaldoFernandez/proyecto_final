@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.SuspendLayout();
             // 
             // label1
@@ -64,8 +62,6 @@
             this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
             this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape1});
             this.shapeContainer1.Size = new System.Drawing.Size(284, 261);
             this.shapeContainer1.TabIndex = 2;
             this.shapeContainer1.TabStop = false;
@@ -104,7 +100,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
     }
 }
