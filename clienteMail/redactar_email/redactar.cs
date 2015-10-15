@@ -73,32 +73,42 @@ namespace clienteMail.redactar_email
                 
             client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
             client.EnableSsl = true;
-            client.Send(mail);
 
-            if (contactoID > 0)
+            try
             {
-                G.user.contacto_enviado(contactoID);
+                client.Send(mail);
+
+                if (contactoID > 0)
+                {
+                    G.user.contacto_enviado(contactoID);
+                }
+                if (asuntoID > 0)
+                {
+                    G.user.asunto_usado(asuntoID);
+                }
+                if (mensajeID > 0)
+                {
+                    G.user.mensaje_usado(mensajeID);
+                }
+
+                mail_enviado mailEnviado = new mail_enviado();
+                mailEnviado.__para = To;
+                mailEnviado.__asunto = Subject;
+                mailEnviado.__mensaje = Body;
+
+                G.user.guardarMail(mailEnviado);
+
+                t.Abort();
+
+                var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
+                form2.Show();
             }
-            if (asuntoID > 0)
+            catch
             {
-                G.user.asunto_usado(asuntoID);
+                t.Abort();
+                var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico. Vuelva a intentarlo más tarde.", "close");
+                form2.Show();
             }
-            if (mensajeID > 0)
-            {
-                G.user.mensaje_usado(mensajeID);
-            }
-
-            mail_enviado mailEnviado = new mail_enviado();
-            mailEnviado.__para = To;
-            mailEnviado.__asunto = Subject;
-            mailEnviado.__mensaje = Body;
-
-            G.user.guardarMail(mailEnviado);
-            
-            t.Abort();
-
-            var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
-            form2.Show();
         }
 
         private void adjBtn_Click_1(object sender, EventArgs e)

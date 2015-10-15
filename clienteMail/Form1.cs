@@ -15,6 +15,7 @@ using Email.Net.Pop3.Exceptions;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
+using clienteMail.inciar_sesion;
 
 namespace clienteMail
 {
@@ -198,12 +199,25 @@ namespace clienteMail
 
             private void Form1_Load(object sender, EventArgs e)
             {
+                this.Opacity = 100;
                 // create client and connect 
 
                 Thread t = new Thread(new ThreadStart(SplashScreen));
                 t.Start();
 
-                client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
+                try{
+                    client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
+                }
+                catch
+                {
+                    t.Abort();
+                    this.Opacity = 0;
+
+                    var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico.\n Vuelva a intentarlo más tarde.", "close");
+                    form2.Show();
+                    return;
+                }
+                
                 
                 client.Connected += new Pop3ClientEventHandler(client_Connected);
                 client.Authenticated += new Pop3ClientEventHandler(client_Authenticated);
@@ -216,28 +230,31 @@ namespace clienteMail
                 client.SSLInteractionType = EInteractionType.SSLPort;
 
                 recibidos = true;
-                this.actualizar();
-                btnRecibidos_Click(null, e);
-                t.Abort();
+                try
+                {
+                    this.actualizar();
+                    btnRecibidos_Click(null, e);
+                    t.Abort();
+                }
+                catch
+                {
+                    t.Abort();
+                    this.Opacity = 0;
+
+                    var iniciarSesion = new iniciar_sesion();
+                    iniciarSesion.Show();
+                    var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico.\n Vuelva a intentarlo más tarde.", "close");
+                    form2.Show();
+                    
+                    return;
+                }
+                
             }
 
             private void actualizar()
             {
                 messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
-                try
-                {
-                    /*loading loading_form = new loading();
-                    loading_form.Show();
-                    client.Login();
-                    loading_form.Close();*/
-
-                    client.Login();
-                }
-                catch
-                {
-                    MessageBox.Show("No hay conexión a Internet.");
-                    System.Environment.Exit(1);
-                }
+                client.Login();
             }
 
             private void getMails()
