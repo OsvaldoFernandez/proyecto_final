@@ -137,6 +137,7 @@
             this.Controls.Add(this.enableBtn);
             this.Controls.Add(this.richTextBox1);
             this.Name = "comando";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Reconocmiento";
             this.Load += new System.EventHandler(this.comando_Load);
             this.ResumeLayout(false);

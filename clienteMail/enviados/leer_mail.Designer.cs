@@ -213,7 +213,7 @@
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(715, 542);
             this.webBrowser.TabIndex = 1;
-           // 
+            // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +230,7 @@
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.webBrowser);
             this.Name = "leer_mail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Leer Email";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.leer_mail_Load);

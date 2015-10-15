@@ -245,6 +245,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "crear_cuenta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrarme";
             this.Load += new System.EventHandler(this.crear_cuenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPic)).EndInit();

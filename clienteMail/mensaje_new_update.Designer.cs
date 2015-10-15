@@ -100,6 +100,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
             this.Name = "mensaje_new_update";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo mensaje";
             this.ResumeLayout(false);
             this.PerformLayout();

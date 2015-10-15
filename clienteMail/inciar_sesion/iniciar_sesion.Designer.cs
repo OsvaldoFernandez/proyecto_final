@@ -137,6 +137,7 @@
             this.Controls.Add(this.passtxt);
             this.Controls.Add(this.usertxt);
             this.Name = "iniciar_sesion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Speak Up! ";
             this.Load += new System.EventHandler(this.iniciar_sesion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -849,6 +849,7 @@
             this.Controls.Add(this.panel0);
             this.Controls.Add(this.dataAsuntos);
             this.Name = "asuntos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Asuntos";
             this.Load += new System.EventHandler(this.asuntos_Load);
             this.panel11.ResumeLayout(false);

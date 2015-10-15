@@ -229,6 +229,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmContacto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Contacto";
             this.Load += new System.EventHandler(this.frmContacto_Load);
             this.ResumeLayout(false);
