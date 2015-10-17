@@ -414,7 +414,7 @@ namespace clienteMail
             resetPanels();
             if ((new Label[] {index1, index2, index3, index4, index5, index6, index7, index8})[numero - 1].Visible)
             {
-                panel1.BackColor = varcolor;
+                this.Controls["panel"+numero].BackColor = varcolor;
                 dataMails.Rows[numero - 1].Selected = true;
             }
         }

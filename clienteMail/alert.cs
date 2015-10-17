@@ -24,13 +24,13 @@ namespace clienteMail
             if (type == "yesno")
             {
                 btnAceptar.Show();
-                btnCancelar.Text = "Cancelar";
+                btnCerrar.Text = "Cancelar";
             }
             else
             {
                 btnAceptar.Hide();
-                btnCancelar.Location = new Point(150, 60);
-                btnCancelar.Text = "Cerrar";
+                btnCerrar.Location = new Point(150, 60);
+                btnCerrar.Text = "Cerrar";
             }
         }
 
@@ -58,7 +58,7 @@ namespace clienteMail
                 case "aceptar":
                     btnAceptar_Click(null, null);
                     break;
-                case "cancelar":
+                case "cerrar":
                     btnCerrar_Click(null, null);
                     break;
                 default:
