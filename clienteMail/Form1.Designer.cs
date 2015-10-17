@@ -143,8 +143,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(785, 71);
             this.panel8.TabIndex = 25;
-            this.panel8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.panel8.DoubleClick += new System.EventHandler(this.leerMail8);
             // 
             // mailDate8
             // 
@@ -156,8 +154,6 @@
             this.mailDate8.Size = new System.Drawing.Size(124, 25);
             this.mailDate8.TabIndex = 9;
             this.mailDate8.Text = "-emptylabel-";
-            this.mailDate8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.mailDate8.DoubleClick += new System.EventHandler(this.leerMail8);
             // 
             // mailSub8
             // 
@@ -169,8 +165,6 @@
             this.mailSub8.Size = new System.Drawing.Size(124, 25);
             this.mailSub8.TabIndex = 8;
             this.mailSub8.Text = "-emptylabel-";
-            this.mailSub8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.mailSub8.DoubleClick += new System.EventHandler(this.leerMail8);
             // 
             // index8
             // 
@@ -183,8 +177,6 @@
             this.index8.Size = new System.Drawing.Size(30, 32);
             this.index8.TabIndex = 4;
             this.index8.Text = "8";
-            this.index8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.index8.DoubleClick += new System.EventHandler(this.leerMail8);
             // 
             // mailRte8
             // 
@@ -196,8 +188,7 @@
             this.mailRte8.Size = new System.Drawing.Size(138, 30);
             this.mailRte8.TabIndex = 3;
             this.mailRte8.Text = "-emptylabel-";
-            this.mailRte8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.mailRte8.DoubleClick += new System.EventHandler(this.leerMail8);
+
             // 
             // pictureBox8
             // 
@@ -208,8 +199,6 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.seleccionarMail8);
-            this.pictureBox8.DoubleClick += new System.EventHandler(this.leerMail8);
             // 
             // panel7
             // 
@@ -224,8 +213,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(785, 71);
             this.panel7.TabIndex = 23;
-            this.panel7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.panel7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // mailDate7
             // 
@@ -237,8 +224,6 @@
             this.mailDate7.Size = new System.Drawing.Size(124, 25);
             this.mailDate7.TabIndex = 8;
             this.mailDate7.Text = "-emptylabel-";
-            this.mailDate7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.mailDate7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // mailSub7
             // 
@@ -250,8 +235,6 @@
             this.mailSub7.Size = new System.Drawing.Size(124, 25);
             this.mailSub7.TabIndex = 7;
             this.mailSub7.Text = "-emptylabel-";
-            this.mailSub7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.mailSub7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // index7
             // 
@@ -264,8 +247,6 @@
             this.index7.Size = new System.Drawing.Size(30, 32);
             this.index7.TabIndex = 4;
             this.index7.Text = "7";
-            this.index7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.index7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // mailRte7
             // 
@@ -277,8 +258,6 @@
             this.mailRte7.Size = new System.Drawing.Size(138, 30);
             this.mailRte7.TabIndex = 2;
             this.mailRte7.Text = "-emptylabel-";
-            this.mailRte7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.mailRte7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // pictureBox7
             // 
@@ -289,8 +268,6 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 1;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.seleccionarMail7);
-            this.pictureBox7.DoubleClick += new System.EventHandler(this.leerMail7);
             // 
             // panel6
             // 
@@ -305,8 +282,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(785, 71);
             this.panel6.TabIndex = 24;
-            this.panel6.Click += new System.EventHandler(this.seleccionarMail6);
-            this.panel6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // mailDate6
             // 
@@ -318,8 +293,6 @@
             this.mailDate6.Size = new System.Drawing.Size(124, 25);
             this.mailDate6.TabIndex = 7;
             this.mailDate6.Text = "-emptylabel-";
-            this.mailDate6.Click += new System.EventHandler(this.seleccionarMail6);
-            this.mailDate6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // mailSub6
             // 
@@ -331,8 +304,6 @@
             this.mailSub6.Size = new System.Drawing.Size(124, 25);
             this.mailSub6.TabIndex = 6;
             this.mailSub6.Text = "-emptylabel-";
-            this.mailSub6.Click += new System.EventHandler(this.seleccionarMail6);
-            this.mailSub6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // index6
             // 
@@ -345,8 +316,6 @@
             this.index6.Size = new System.Drawing.Size(30, 32);
             this.index6.TabIndex = 5;
             this.index6.Text = "6";
-            this.index6.Click += new System.EventHandler(this.seleccionarMail6);
-            this.index6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // mailRte6
             // 
@@ -358,8 +327,6 @@
             this.mailRte6.Size = new System.Drawing.Size(138, 30);
             this.mailRte6.TabIndex = 4;
             this.mailRte6.Text = "-emptylabel-";
-            this.mailRte6.Click += new System.EventHandler(this.seleccionarMail6);
-            this.mailRte6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // pictureBox6
             // 
@@ -370,7 +337,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 1;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.DoubleClick += new System.EventHandler(this.leerMail6);
             // 
             // panel5
             // 
@@ -385,8 +351,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(785, 71);
             this.panel5.TabIndex = 21;
-            this.panel5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.panel5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // mailDate5
             // 
@@ -398,8 +362,6 @@
             this.mailDate5.Size = new System.Drawing.Size(124, 25);
             this.mailDate5.TabIndex = 6;
             this.mailDate5.Text = "-emptylabel-";
-            this.mailDate5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.mailDate5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // mailSub5
             // 
@@ -411,8 +373,6 @@
             this.mailSub5.Size = new System.Drawing.Size(124, 25);
             this.mailSub5.TabIndex = 5;
             this.mailSub5.Text = "-emptylabel-";
-            this.mailSub5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.mailSub5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // index5
             // 
@@ -425,8 +385,6 @@
             this.index5.Size = new System.Drawing.Size(30, 32);
             this.index5.TabIndex = 4;
             this.index5.Text = "5";
-            this.index5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.index5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // mailRte5
             // 
@@ -438,8 +396,6 @@
             this.mailRte5.Size = new System.Drawing.Size(138, 30);
             this.mailRte5.TabIndex = 3;
             this.mailRte5.Text = "-emptylabel-";
-            this.mailRte5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.mailRte5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // pictureBox5
             // 
@@ -450,8 +406,6 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.seleccionarMail5);
-            this.pictureBox5.DoubleClick += new System.EventHandler(this.leerMail5);
             // 
             // panel4
             // 
@@ -466,8 +420,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(785, 71);
             this.panel4.TabIndex = 22;
-            this.panel4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.panel4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // mailDate4
             // 
@@ -479,8 +431,6 @@
             this.mailDate4.Size = new System.Drawing.Size(124, 25);
             this.mailDate4.TabIndex = 5;
             this.mailDate4.Text = "-emptylabel-";
-            this.mailDate4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.mailDate4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // mailSub4
             // 
@@ -492,8 +442,6 @@
             this.mailSub4.Size = new System.Drawing.Size(124, 25);
             this.mailSub4.TabIndex = 4;
             this.mailSub4.Text = "-emptylabel-";
-            this.mailSub4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.mailSub4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // index4
             // 
@@ -506,8 +454,6 @@
             this.index4.Size = new System.Drawing.Size(30, 32);
             this.index4.TabIndex = 4;
             this.index4.Text = "4";
-            this.index4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.index4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // mailRte4
             // 
@@ -519,8 +465,6 @@
             this.mailRte4.Size = new System.Drawing.Size(138, 30);
             this.mailRte4.TabIndex = 2;
             this.mailRte4.Text = "-emptylabel-";
-            this.mailRte4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.mailRte4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // pictureBox4
             // 
@@ -531,8 +475,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.seleccionarMail4);
-            this.pictureBox4.DoubleClick += new System.EventHandler(this.leerMail4);
             // 
             // panel3
             // 
@@ -547,8 +489,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(785, 71);
             this.panel3.TabIndex = 19;
-            this.panel3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.panel3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // mailDate3
             // 
@@ -560,8 +500,6 @@
             this.mailDate3.Size = new System.Drawing.Size(124, 25);
             this.mailDate3.TabIndex = 6;
             this.mailDate3.Text = "-emptylabel-";
-            this.mailDate3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.mailDate3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // mailSub3
             // 
@@ -573,8 +511,6 @@
             this.mailSub3.Size = new System.Drawing.Size(124, 25);
             this.mailSub3.TabIndex = 5;
             this.mailSub3.Text = "-emptylabel-";
-            this.mailSub3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.mailSub3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // index3
             // 
@@ -587,8 +523,6 @@
             this.index3.Size = new System.Drawing.Size(30, 32);
             this.index3.TabIndex = 4;
             this.index3.Text = "3";
-            this.index3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.index3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // mailRte3
             // 
@@ -600,8 +534,6 @@
             this.mailRte3.Size = new System.Drawing.Size(138, 30);
             this.mailRte3.TabIndex = 3;
             this.mailRte3.Text = "-emptylabel-";
-            this.mailRte3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.mailRte3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // pictureBox3
             // 
@@ -612,8 +544,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.seleccionarMail3);
-            this.pictureBox3.DoubleClick += new System.EventHandler(this.leerMail3);
             // 
             // panel2
             // 
@@ -628,8 +558,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(785, 71);
             this.panel2.TabIndex = 20;
-            this.panel2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.panel2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // mailDate2
             // 
@@ -641,8 +569,6 @@
             this.mailDate2.Size = new System.Drawing.Size(124, 25);
             this.mailDate2.TabIndex = 5;
             this.mailDate2.Text = "-emptylabel-";
-            this.mailDate2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.mailDate2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // mailSub2
             // 
@@ -654,8 +580,6 @@
             this.mailSub2.Size = new System.Drawing.Size(124, 25);
             this.mailSub2.TabIndex = 4;
             this.mailSub2.Text = "-emptylabel-";
-            this.mailSub2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.mailSub2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // index2
             // 
@@ -668,8 +592,6 @@
             this.index2.Size = new System.Drawing.Size(30, 32);
             this.index2.TabIndex = 3;
             this.index2.Text = "2";
-            this.index2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.index2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // mailRte2
             // 
@@ -681,8 +603,6 @@
             this.mailRte2.Size = new System.Drawing.Size(138, 30);
             this.mailRte2.TabIndex = 2;
             this.mailRte2.Text = "-emptylabel-";
-            this.mailRte2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.mailRte2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // pictureBox2
             // 
@@ -693,8 +613,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.seleccionarMail2);
-            this.pictureBox2.DoubleClick += new System.EventHandler(this.leerMail2);
             // 
             // panel1
             // 
@@ -709,8 +627,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(785, 71);
             this.panel1.TabIndex = 18;
-            this.panel1.Click += new System.EventHandler(this.seleccionarMail1);
-            this.panel1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
             // mailDate1
             // 
@@ -722,8 +638,6 @@
             this.mailDate1.Size = new System.Drawing.Size(124, 25);
             this.mailDate1.TabIndex = 4;
             this.mailDate1.Text = "-emptylabel-";
-            this.mailDate1.Click += new System.EventHandler(this.seleccionarMail1);
-            this.mailDate1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
             // mailSub1
             // 
@@ -735,8 +649,6 @@
             this.mailSub1.Size = new System.Drawing.Size(124, 25);
             this.mailSub1.TabIndex = 3;
             this.mailSub1.Text = "-emptylabel-";
-            this.mailSub1.Click += new System.EventHandler(this.seleccionarMail1);
-            this.mailSub1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
             // index1
             // 
@@ -749,8 +661,6 @@
             this.index1.Size = new System.Drawing.Size(30, 32);
             this.index1.TabIndex = 2;
             this.index1.Text = "1";
-            this.index1.Click += new System.EventHandler(this.seleccionarMail1);
-            this.index1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
             // mailRte1
             // 
@@ -762,7 +672,6 @@
             this.mailRte1.Size = new System.Drawing.Size(138, 30);
             this.mailRte1.TabIndex = 1;
             this.mailRte1.Text = "-emptylabel-";
-            this.mailRte1.Click += new System.EventHandler(this.seleccionarMail1);
             // 
             // pictureBox1
             // 
@@ -773,8 +682,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.seleccionarMail1);
-            this.pictureBox1.DoubleClick += new System.EventHandler(this.leerMail1);
             // 
             // panel10
             // 
