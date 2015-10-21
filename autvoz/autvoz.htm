@@ -1,0 +1,1083 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>autvoz.dll - documentación</title>
+    <style type="text/css">
+      body {
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+      }
+      p {
+        line-height: 125%;
+      }
+      p.contenido, .indice1 {
+        margin-left: 2em;
+      }
+      .indice2 {
+        margin-left: 4em;
+      }
+      p.codigo {
+        margin-left: 2em;
+        display: block;
+        border: 1px solid black;
+        font-family: monospace;
+      }
+      .dos_espacios {
+        position: relative;
+        left: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Documentación — autvoz.dll</h1>
+    <p class="contenido">
+      Esta biblioteca se ocupa de la autenticación de las personas por su voz. Define los objetos, estructuras, y funciones necesarias para
+      realizar tal tarea.
+    </p>
+    <p class="contenido">
+      Este archivo contiene la referencia definitiva de dicha biblioteca, y se estructura de la siguiente manera: en primer lugar, se describen
+      las características generales de la misma, definiendo y explicando los elementos que contiene, así como otras caracteristicas generales;
+      posteriormente, se describe cada objeto por separado, con sus funcionalidades y características; y finalmente, se describen todos los
+      valores de error que las llamadas a la biblioteca pueden retornar.
+    </p>
+    <p class="contenido">
+      Debe entenderse que por "objeto" se denota una entidad que se comporta como si fuera un objeto: la biblioteca está escrita en C, por lo
+      que no contiene realmente definiciones de clases en el sentido tradicional.
+    </p>
+    <p class="contenido">
+      Más allá de que la biblioteca esté escrita en C, también se provee una forma de llamarla desde C#. En esta documentación se describen
+      también las (pocas) diferencias que hay que tener en cuenta para utilizar la biblioteca desde una aplicación en C#.
+    </p>
+    <hr />
+    <h2>Índice</h2>
+    <p class="indice1"><a href="#generalidades">Generalidades</a></p>
+    <p class="indice1"><a href="#autenticador">Autenticador</a></p>
+    <p class="indice2"><a href="#avf_crear_autenticador">avf_crear_autenticador()</a></p>
+    <p class="indice2"><a href="#avf_destruir_autenticador">avf_destruir_autenticador()</a></p>
+    <p class="indice2"><a href="#avf_autenticar_WAV">avf_autenticar_WAV()</a></p>
+    <p class="indice2"><a href="#avf_obtener_informacion_autenticador">avf_obtener_informacion_autenticador()</a></p>
+    <p class="indice1"><a href="#entrenador">Entrenador</a></p>
+    <p class="indice2"><a href="#avf_crear_entrenador">avf_crear_entrenador()</a></p>
+    <p class="indice2"><a href="#avf_destruir_entrenador">avf_destruir_entrenador()</a></p>
+    <p class="indice2"><a href="#avf_agregar_muestra_WAV">avf_agregar_muestra_WAV()</a></p>
+    <p class="indice2"><a href="#avf_eliminar_muestra">avf_eliminar_muestra()</a></p>
+    <p class="indice2"><a href="#avf_iniciar_entrenamiento">avf_iniciar_entrenamiento()</a></p>
+    <p class="indice2"><a href="#avf_detener_entrenamiento">avf_detener_entrenamiento()</a></p>
+    <p class="indice2"><a href="#avf_estado_entrenamiento">avf_estado_entrenamiento()</a></p>
+    <p class="indice2"><a href="#avf_exportar_entrenamiento">avf_exportar_entrenamiento()</a></p>
+    <p class="indice1"><a href="#errores">Errores</a></p>
+    <p class="indice1"><a href="#csharp">Convenciones en C#</a></p>
+    <hr />
+    <a name="generalidades"></a>
+    <h2>Generalidades</h2>
+    <a name="objetos"></a>
+    <h4>Objetos</h4>
+    <p class="contenido">
+      La biblioteca define dos objetos: <a href="#autenticador">autenticador</a> y <a href="#entrenador">entrenador</a>. Un objeto autenticador
+      se encarga de autenticar la voz de una persona conocida en sonidos nuevos. Por otro lado, un objeto entrenador se ocupa de crear los perfiles
+      de autenticación: su función es, utilizando muestras cuya identidad se conoce, crear un perfil que permita posteriormente construir un
+      autenticador.
+    </p>
+    <a name="pym"></a>
+    <h4>Muestras y perfiles</h4>
+    <p class="contenido">
+      Un perfil de autenticación de voz (PAV), o simplemente perfil, representa el conjunto de información que un
+      <a href="#autenticador">autenticador</a> necesita para poder autenticar a una persona por su voz. Contiene las redes neuronales generadas por
+      el entrenador, así como cierta información auxiliar que permite su uso. El perfil se almacena en un archivo, con un formato determinado por
+      la biblioteca.
+    </p>
+    <p class="contenido">
+      Una muestra es un archivo de sonido con una grabación corta de la voz de una persona. Una muestra puede ser una muestra para autenticar (cuando
+      se desconoce su identidad), que se envía a un autenticador; o puede ser una muestra de entrenamiento o validación, que son muestras de identidad
+      conocida que se usan para realizar el entrenamiento. (Una muestra de entrenamiento se utiliza para el entrenamiento en sí, mientras que una de
+      validación se usa para controlar sus resultados.) Las muestras deben estar almacenadas en archivos WAV sin compresión, con una frecuencia de
+      muestreo que sea múltiplo de 4 Hz; además, deben contener al menos medio segundo de sonido. Si una muestra contiene más de un canal, los canales
+      se promedian y se genera un único canal para la utilización de la muestra.
+    </p>
+    <hr />
+    <a name="autenticador"></a>
+    <h2>Autenticador</h2>
+    <p class="contenido">
+      Un autenticador es un objeto que se dedica a la autenticación de la voz de una persona conocida. Se lo crea utilizando un
+      <a href="#pym">perfil de autenticación de voz</a>, y una vez creado permite autenticar una muestra de voz con respecto a la persona a quien
+      corresponde el perfil elegido.
+    </p>
+    <p class="contenido">
+      El autenticador unicamente almacena datos al crearse: más allá de la información del perfil, no almacena estado. Por lo tanto, la cantidad y
+      orden de las muestras que se autentiquen mediante él no afecta a su comportamiento. Un autenticador puede ser compartido entre threads sin
+      inconvenientes, ya que no realiza escrituras a memoria.
+    </p>
+    <p class="contenido">
+      A continuación se describen las funciones que se pueden aplicar a un autenticador.
+    </p>
+    <hr />
+    <a name="avf_crear_autenticador"></a>
+    <h3>avf_crear_autenticador()</h3>
+    <p class="codigo">
+      int avf_crear_autenticador(const wchar_t * archivo, void ** autenticador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función crea un autenticador. El autenticador se crea utilizando el archivo de perfil de autenticación de voz indicado.
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>archivo</code>: nombre y ubicación del archivo de perfil a cargar.</li>
+        <li><code>autenticador</code>: variable pasada por referencia (puntero) donde se almacenará el autenticador creado.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Si la función tiene éxito, almacena el autenticador creado en <code>*autenticador</code>. Si falla, el valor de
+      <code>*autenticador</code> queda indefinido.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+        <li>
+          <a href="#avs_formato_archivo_no_valido">AVS_FORMATO_ARCHIVO_NO_VALIDO</a>:
+          el archivo especificado no está en formato PAV.
+        </li>
+        <li>
+          <a href="#avs_archivo_inaccesible">AVS_ARCHIVO_INACCESIBLE</a>:
+          el archivo especificado no existe, o no se lo pudo leer.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_destruir_autenticador"></a>
+    <h3>avf_destruir_autenticador()</h3>
+    <p class="codigo">
+      int avf_destruir_autenticador(void * autenticador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función destruye un autenticador creado anteriormente por 
+      <a href="#avf_crear_autenticador">avf_crear_autenticador()</a>, y debe ser llamada al finalizar su uso.
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>autenticador</code>: autenticador a destruir.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Un autenticador sólo puede ser destruído si ningún otro thread lo está usando. En caso contrario, la
+      destrucción fallará y esta función devolverá <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>autenticador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el autenticador está actualmente siendo utilizado.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_autenticar_WAV"></a>
+    <h3>avf_autenticar_WAV()</h3>
+    <p class="codigo">
+      int avf_autenticar_WAV(void * autenticador, const wchar_t * archivoWAV);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función intenta autenticar una muestra de voz en formato WAV. El resultado de la función indicará si la voz
+      pertenece o no a la persona a la que pertenece el perfil con el cual se creó el autenticador.
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>autenticador</code>: autenticador que autenticará la muestra.</li>
+        <li><code>archivoWAV</code>: archivo que contiene la muestra a autenticar.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Si la función tiene éxito, retorna un valor entre -10000 y 10000 indicando el resultado de la autenticación. El
+      signo de este valor representa el resultado de la autenticación (positiva o negativa: un valor positivo indica
+      que la muestra pertenece a la persona), y su valor absoluto la confianza. Esta confianza puede ser interpretada
+      como un porcentaje si se la divide por 100: un valor de 8765 indica que la voz pertenece a la persona con una
+      confianza del 87,65%, y un valor de -1234 indica que la voz no pertenece a la persona con una confianza del
+      12,34%.<br />
+      Si la función falla, retorna un código de error (que es siempre menor que -10000).
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Más allá de que el resultado puede ser interpretado como un porcentaje, esto no indica que represente una
+      probabilidad. En particular, se pueden obtener valores de confianza menores al 50% (cosa que sería imposible si
+      dichos valores representaran probabilidades) sin que esto represente ningún error. La confianza de la
+      autenticación es un simple valor relativo, que permite comparar la certeza de una cierta autenticación contra
+      valores de referencia (o de otras autenticaciones), y que puede ser usado para ajustar la sensibilidad del
+      sistema que consume los servicios de esta biblioteca.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+        <li>
+          <a href="#avs_formato_archivo_no_valido">AVS_FORMATO_ARCHIVO_NO_VALIDO</a>:
+          el archivo especificado no está en formato WAV.
+        </li>
+        <li>
+          <a href="#avs_archivo_inaccesible">AVS_ARCHIVO_INACCESIBLE</a>:
+          el archivo especificado no existe, o no se lo pudo leer.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el autenticador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_muestreo_demasiado_bajo">AVS_MUESTREO_DEMASIADO_BAJO</a>:
+          la frecuencia de muestreo del archivo WAV seleccionado es demasiado baja como para procesarlo correctamente.
+        </li>
+        <li>
+          <a href="#avs_muestreo_no_es_multiplo_de_4_hz">AVS_MUESTREO_NO_ES_MULTIPLO_DE_4_HZ</a>:
+          la frecuencia de muestreo del archivo WAV seleccionado no es múltiplo de 4 Hz.
+        </li>
+        <li>
+          <a href="#avs_duracion_menor_a_medio_segundo">AVS_DURACION_MENOR_A_MEDIO_SEGUNDO</a>:
+          el archivo WAV seleccionado contiene menos de medio segundo de sonido.
+        </li>
+        <li>
+          <a href="#avs_error_creando_threads">AVS_ERROR_CREANDO_THREADS</a>:
+          no se pudieron crear los threads necesarios para completar la operación.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_obtener_informacion_autenticador"></a>
+    <h3>avf_obtener_informacion_autenticador()</h3>
+    <p class="codigo">
+      int avf_obtener_informacion_autenticador(void * autenticador, avt_informacion * informacion);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función obtiene información sobre un autenticador. La información se obtiene en una estructura
+      <code>avt_informacion</code>, que contiene los siguientes miembros:
+    </p>
+    <p class="codigo">
+      typedef struct {<br />
+      <span class="dos_espacios">
+        unsigned numero_redes;<br />
+        unsigned puntaje_promedio;<br />
+        unsigned muestras_entrenamiento;<br />
+        unsigned muestras_validacion;<br />
+      </span>
+      } avt_informacion;
+    </p>
+    <p class="contenido">
+      <ul> 
+        <li><code>numero_redes</code>: cantidad de redes que contiene el perfil (y por lo tanto, el autenticador).</li>
+        <li>
+          <code>puntaje_promedio</code>: puntaje promedio obtenido por las redes en el entrenamiento. Este valor se obtiene
+          premultiplicado por 1.000.000: un valor de 987654 indica un puntaje de 0,987654 (ó 98,7654%).
+        </li>
+        <li>
+          <code>muestras_entrenamiento</code>: cantidad de muestras de entrenamiento utilizadas por el entrenador para crear el
+          perfil. Este valor puede no ser exacto.
+        </li>
+        <li><code>muestras_validacion</code>: similar al anterior, respecto de las muestras de validación.</li>
+      </ul>
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>autenticador</code>: autenticador del cual se desea obtener información.</li>
+        <li>
+          <code>informacion</code>: variable pasada por referencia (puntero) apuntando a una estructura
+          <code>avt_informacion</code>, donde se almacenará la información obtenida del autenticador.
+        </li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Si la función tiene éxito, almacena la información del autenticador en <code>*informacion</code>. Si falla, el contenido de
+      la estructura en <code>*informacion</code> es indefinido.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el autenticador está en proceso de destrucción, o ya fue destruído.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="entrenador"></a>
+    <h2>Entrenador</h2>
+    <p class="contenido">
+      Un entrenador es un objeto que se crea con el fin de generar un <a href="#pym">perfil de autenticación de voz</a>. Para esto,
+      el entrenador recibe muestras (de las cuales su identidad se conoce), y luego se ejecuta, entrenándose utilizando estas muestras.
+    </p>
+    <p class="contenido">
+      Un entrenador está siempre en uno de tres posibles estados:
+      <ul>
+        <li>
+          En Construcción: el entrenador todavía no se ejecutó nunca. En este estado se pueden modificar (cargar y eliminar) las
+          muestras del entrenador. Se puede pasar de este estado al estado Ejecutando poniendo el entrenador a ejecutar.
+        </li>
+        <li>
+          Listo: el entrenador se ejecutó alguna vez, pero en este momento se encuentra detenido. Debe estar en este estado para poder
+          exportarlo (es decir, generar el archivo de perfil). Se puede volver al estado Ejecutando poniéndolo a ejecutar.
+        </li>
+        <li>
+          Ejecutando: el entrenador está en este momento entrenándose. En este estado no se puede realizar ninguna operación con él,
+          a excepción de detenerlo, que lo vuelve al estado Listo. (Se puede, sin embargo, consultar su estado.)
+        </li>
+      </ul>
+    </p>
+    <p class="contenido">
+      A continuación se describen las funciones que se pueden aplicar a un entrenador.
+    </p>
+    <hr />
+    <a name="avf_crear_entrenador"></a>
+    <h3>avf_crear_entrenador()</h3>
+    <p class="codigo">
+      int avf_crear_entrenador(void ** entrenador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función crea un entrenador nuevo. El entrenador se crea en estado En Construcción.
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: variable pasada por referencia (puntero) donde se almacenará el entrenador creado.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Si la función tiene éxito, almacena el entrenador creado en <code>*entrenador</code>. Si falla, el valor de
+      <code>*entrenador</code> queda indefinido.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>entrenador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_destruir_entrenador"></a>
+    <h3>avf_destruir_entrenador()</h3>
+    <p class="codigo">
+      int avf_destruir_entrenador(void * entrenador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función destruye un entrenador existente, y debe ser llamada al finalizar su uso.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      En Construcción, Listo
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador que se desea destruir.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Un entrenador sólo puede ser destruído cuando no está en uso por ningún otro thread.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>entrenador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado.
+        </li>
+        <li>
+          <a href="#avs_entrenador_ejecutando">AVS_ENTRENADOR_EJECUTANDO</a>:
+          el entrenador está en estado Ejecutando.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_agregar_muestra_WAV"></a>
+    <h3>avf_agregar_muestra_WAV()</h3>
+    <p class="codigo">
+      int avf_agregar_muestra_WAV(void * entrenador, int persona, int parametros, const wchar_t * archivoWAV);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función agrega una muestra, contenida en un archivo WAV, al entrenador.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      En Construcción
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+        <li>
+          <code>persona</code>: ID de la persona a la que corresponde la muestra. Debe ser 0 para la persona
+          a la que el perfil a crear corresponde (es decir, la persona que se desea autenticar), o algún otro
+          valor para otra persona. Como el entrenador utiliza este valor para optimizar el entrenamiento, se
+          recomienda elegir IDs distintos para muestras que correspondan a personas distintas, y el mismo ID
+          para muestras de la misma persona.
+        </li>
+        <li>
+          <code>parametros</code>: parámetros que indican qué función tendrá la muestra. Pueden ser
+          <code>AVP_MUESTRA_ENTRENAMIENTO</code>, indicando que la muestra se utilizará para entrenar el
+          entrenador; <code>AVP_MUESTRA_VALIDACION</code>, indicando que la muestra se utilizará para validar
+          y controlar el entrenamiento; o una combinación de ambas (separadas por un OR).
+        </li>
+        <li><code>archivoWAV</code>: ubicación del archivo a cargar.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna un ID de muestra no negativo si tiene éxito, o un código de error (negativo) si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      El entrenador necesita tanto muestras de la persona a autenticar (muestras positivas) como muestras de otras
+      personas (muestras negativas) para poder entrenarse; por lo tanto, ambos tipos de muestras deben ser cargados.
+      Además, necesita muestras (de ambos tipos) tanto de entrenamiento como de validación: si no se cargan muestras
+      de validación de alguno de los tipos, el entrenador utilizará las muestras de entrenamiento para validar. No
+      se recomienda hacer esto: si se desea utilizar una muestra para ambos propósitos, es posible especificar
+      <code>AVP_MUESTRA_ENTRENAMIENTO | AVP_MUESTRA_VALIDACION</code> como parámetros.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+        <li>
+          <a href="#avs_formato_archivo_no_valido">AVS_FORMATO_ARCHIVO_NO_VALIDO</a>:
+          el archivo especificado no está en formato WAV.
+        </li>
+        <li>
+          <a href="#avs_archivo_inaccesible">AVS_ARCHIVO_INACCESIBLE</a>:
+          el archivo especificado no existe, o no se lo pudo leer.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_muestreo_demasiado_bajo">AVS_MUESTREO_DEMASIADO_BAJO</a>:
+          la frecuencia de muestreo del archivo WAV seleccionado es demasiado baja como para procesarlo correctamente.
+        </li>
+        <li>
+          <a href="#avs_muestreo_no_es_multiplo_de_4_hz">AVS_MUESTREO_NO_ES_MULTIPLO_DE_4_HZ</a>:
+          la frecuencia de muestreo del archivo WAV seleccionado no es múltiplo de 4 Hz.
+        </li>
+        <li>
+          <a href="#avs_duracion_menor_a_medio_segundo">AVS_DURACION_MENOR_A_MEDIO_SEGUNDO</a>:
+          el archivo WAV seleccionado contiene menos de medio segundo de sonido.
+        </li>
+        <li>
+          <a href="#avs_argumento_no_valido">AVS_ARGUMENTO_NO_VALIDO</a>:
+          <code>parametros</code> no es uno de los valores permitidos.
+        </li>
+        <li>
+          <a href="#avs_entrenador_no_en_construccion">AVS_ENTRENADOR_NO_EN_CONSTRUCCION</a>:
+          el entrenador no está en estado En Construcción.
+        </li>
+        <li>
+          <a href="#avs_error_interno">AVS_ERROR_INTERNO</a>:
+          ocurrió un error interno de procesamiento al intentar agregar una muestra. Este error puede
+          ocurrir si se llama a esta función más de 2.147.483.648 veces para el mismo entrenador.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_eliminar_muestra"></a>
+    <h3>avf_eliminar_muestra()</h3>
+    <p class="codigo">
+      int avf_eliminar_muestra(void * entrenador, int muestra);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función elimina una muestra cargada en un entrenador.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      En Construcción
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+        <li><code>muestra</code>: ID de la muestra a eliminar.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      El ID de la muestra es el valor retornado por 
+      <a href="#avf_agregar_muestra_WAV">avf_agregar_muestra_WAV()</a> en una llamada satisfactoria.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>entrenador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_argumento_no_valido">AVS_ARGUMENTO_NO_VALIDO</a>:
+          <code>muestra</code> es negativo.
+        </li>
+        <li>
+          <a href="#avs_entrenador_no_en_construccion">AVS_ENTRENADOR_NO_EN_CONSTRUCCION</a>:
+          el entrenador no está en estado En Construcción.
+        </li>
+        <li>
+          <a href="#avs_muestra_no_existe">AVS_MUESTRA_NO_EXISTE</a>:
+          <code>muestra</code> no se corresponde con una muestra actualmente contenida en el entrenador.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_iniciar_entrenamiento"></a>
+    <h3>avf_iniciar_entrenamiento()</h3>
+    <p class="codigo">
+      int avf_iniciar_entrenamiento(void * entrenador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función inicia el entrenamiento de un entrenador. El entrenamiento se ejecutará en segundo
+      plano en forma continua hasta que sea detenido explicitamente por una llamada a
+      <a href="#avf_detener_entrenamiento">avf_detener_entrenamiento()</a>.<br />
+      Si esta función tiene éxito, el entrenador pasará al estado Ejecutando.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      En Construcción, Listo
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Esta función retorna en cuanto se crea el thread de control de entrenamiento, pero continúa
+      ejecutándose en segundo plano. Es altamente probable que el uso del procesador del sistema se
+      maximice durante el entrenamiento, porque es altamente demandante de CPU y se ejecuta en forma
+      altamente paralelizada. El entrenamiento no se detendrá por su cuenta: debe ser detenido manualmente
+      por la aplicación cuando se alcance el estado deseado.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>entrenador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_entrenador_ejecutando">AVS_ENTRENADOR_EJECUTANDO</a>:
+          el entrenador está en estado Ejecutando.
+        </li>
+        <li>
+          <a href="#avs_sin_muestras_entrenamiento">AVS_SIN_MUESTRAS_ENTRENAMIENTO</a>:
+          no hay ninguna muestra de entrenamiento (muestras marcadas como <code>AVP_MUESTRA_ENTRENAMIENTO</code>)
+          cargada en el entrenador.
+        </li>
+        <li>
+          <a href="#avs_faltan_muestras_positivas">AVS_FALTAN_MUESTRAS_POSITIVAS</a>:
+          no hay ninguna muestra de entrenamiento positiva (es decir, con un ID de persona igual a 0) cargada en
+          el entrenador.
+        </li>
+        <li>
+          <a href="#avs_faltan_muestras_negativas">AVS_FALTAN_MUESTRAS_NEGATIVAS</a>:
+          no hay ninguna muestra de entrenamiento negativa (es decir, con un ID de persona distinto de 0) cargada
+          en el entrenador.
+        </li>
+        <li>
+          <a href="#avs_error_creando_threads">AVS_ERROR_CREANDO_THREADS</a>:
+          no se pudieron crear los threads necesarios para completar la operación.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_detener_entrenamiento"></a>
+    <h3>avf_detener_entrenamiento()</h3>
+    <p class="codigo">
+      int avf_detener_entrenamiento(void * entrenador);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función detiene el entrenamiento de un entrenador. El entrenamiento se detiene lo antes posible,
+      y la función no retorna hasta que el entrenador esté detenido.<br />
+      Si esta función tiene éxito, el entrenador pasará al estado Listo.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      Ejecutando
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Esta función detendrá el entrenamiento, pero su estado actual se conserva en el entrenador. Por lo
+      tanto, el entrenamiento puede ser facilmente reanudado mediante una nueva llamada a
+      <a href="#avf_iniciar_entrenamiento">avf_iniciar_entrenamiento()</a>.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          <code>entrenador</code> es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_entrenador_no_esta_ejecutando">AVS_ENTRENADOR_NO_ESTA_EJECUTANDO</a>:
+          el entrenador no está en estado Ejecutando.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_estado_entrenamiento"></a>
+    <h3>avf_estado_entrenamiento()</h3>
+    <p class="codigo">
+      int avf_estado_entrenamiento(void * entrenador, avt_estado * estado);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función permite obtener el estado de un entrenador. De esta manera, se puede saber en qué
+      estado (de los tres posibles) se encuentra, y obtener varios parámetros relacionados a las muestras
+      que contiene y al estado de su entrenamiento (si existe). La información del estado se obtiene en
+      una estructura <code>avt_estado</code>, que contiene los siguientes miembros:
+    </p>
+    <p class="codigo">
+      typedef struct {<br />
+      <span class="dos_espacios">
+        int estado_general;<br />
+        unsigned redes_generadas;<br />
+        unsigned redes_satisfactorias;<br />
+        unsigned redes_descartadas;<br />
+        unsigned mejor_puntaje;<br />
+        unsigned puntaje_promedio;<br />
+        unsigned tiempo_transcurrido;<br />
+        unsigned muestras_entrenamiento_negativas;<br />
+        unsigned muestras_entrenamiento_positivas;<br />
+        unsigned muestras_validacion_negativas;<br />
+        unsigned muestras_validacion_positivas;<br />
+        unsigned muestras_totales;<br />
+      </span>
+      } avt_estado;
+    </p>
+    <p class="contenido">
+      <ul>
+        <li>
+          <code>estado_general</code>: indica el estado del entrenador: si el valor es negativo, el
+          entrenador está en estado En Construcción; si es cero, está Listo; y si es positivo, está
+          Ejecutando.
+        </li>
+        <li><code>redes_generadas</code>: cantidad de redes generadas por el entrenamiento.</li>
+        <li><code>redes_satisfactorias</code>: cantidad de redes que fueron entrenadas exitosamente.</li>
+        <li>
+          <code>redes_descartadas</code>: cantidad de redes que fueron entrenadas y fracasaron, y fueron
+          posteriormente descartadas.
+        </li>
+        <li>
+          <code>mejor_puntaje</code>: mejor puntaje obtenido por una red satisfactoria. El puntaje se
+          encuentra premultiplicado por 1.000.000: un valor de 987654 indica un puntaje de 0,987654
+          (ó 98,7654%).
+        </li>
+        <li>
+          <code>puntaje_promedio</code>: puntaje promedio de las redes satisfactorias, en el mismo
+          formato que el item anterior.
+        </li>
+        <li><code>tiempo_transcurrido</code>: tiempo total de entrenamiento, en milisegundos.</li>
+        <li>
+          <code>muestras_entrenamiento_negativas</code>, <code>muestras_entrenamiento_positivas</code>,
+          <code>muestras_validacion_negativas</code>, <code>muestras_validacion_positivas</code>:
+          cantidad de muestras de cada tipo cargadas en el entrenador.
+        </li>
+        <li><code>muestras_totales</code>: cantidad total de muestras cargadas en el entrenador.</li>
+      </ul>
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      En Construcción, Listo, Ejecutando
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+        <li>
+          <code>estado</code>: variable pasada por referencia (puntero) apuntando a una estructura
+          <code>avt_estado</code>, donde se almacenará la información de estado obtenida del entrenador.
+        </li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Esta función obtendrá información del entrenador independientemente de en qué estado se encuentre. Sin
+      embargo, algunos campos sólo tienen sentido para un entrenador que esta Listo o Ejecutando; éstos son
+      los campos referidos a cantidades de redes y puntajes. Para un entrenador En Construcción, todos esos
+      campos valdrán cero. Asimismo, para un entrenador que, pese a haberse entrenado, todavía no generó
+      ninguna red satisfactoria, los campos de puntaje valdrán cero.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="avf_exportar_entrenamiento"></a>
+    <h3>avf_exportar_entrenamiento()</h3>
+    <p class="codigo">
+      int avf_exportar_entrenamiento(void * entrenador, const wchar_t * archivo);
+    </p>
+    <h4>Descripción</h4>
+    <p class="contenido">
+      Esta función permite exportar el resultado del entrenamiento a un archivo de
+      <a href="#pym">perfil de autenticación de voz</a>, permitiendo su posterior uso mediante la
+      creación de un autenticador.
+    </p>
+    <h4>Estados permitidos</h4>
+    <p class="contenido">
+      Listo
+    </p>
+    <h4>Parámetros</h4>
+    <p class="contenido">
+      <ul>
+        <li><code>entrenador</code>: entrenador sobre el que se desea operar.</li>
+        <li><code>archivo</code>: nombre del archivo a generar (se recomienda usar la extensión .pav).</li>
+      </ul>
+    </p>
+    <h4>Valor de retorno</h4>
+    <p class="contenido">
+      Esta función retorna 0 (<a href="#avs_ok">AVS_OK</a>) si tiene éxito, o un código de error si falla.
+    </p>
+    <h4>Observaciones</h4>
+    <p class="contenido">
+      Esta función exportará las redes satisfactorias que haya generado el entrenamiento. Para esto, es
+      imprescindible que realmente haya redes satisfactorias; en caso contrario, la función fallará con
+      <a href="#avs_nada_para_exportar">AVS_NADA_PARA_EXPORTAR</a>. Por esto, es recomendable controlar el
+      estado del entrenamiento a la hora de realizar una exportación.
+    </p>
+    <h4>Errores posibles</h4>
+    <p class="contenido">
+      <ul>
+        <li>
+          <a href="#avs_puntero_nulo">AVS_PUNTERO_NULO</a>:
+          alguno de los parámetros es <code>NULL</code>.
+        </li>
+        <li>
+          <a href="#avs_sin_memoria">AVS_SIN_MEMORIA</a>:
+          la operación no se pudo completar por falta de memoria.
+        </li>
+        <li>
+          <a href="#avs_archivo_inaccesible">AVS_ARCHIVO_INACCESIBLE</a>:
+          no se pudo escribir el archivo especificado. También es posible que el archivo ya existiera y no se
+          lo haya podido eliminar.
+        </li>
+        <li>
+          <a href="#avs_objeto_ocupado">AVS_OBJETO_OCUPADO</a>:
+          el entrenador está actualmente siendo utilizado en forma incompatible por otro thread.
+        </li>
+        <li>
+          <a href="#avs_objeto_destruido">AVS_OBJETO_DESTRUIDO</a>:
+          el entrenador está en proceso de destrucción, o ya fue destruído.
+        </li>
+        <li>
+          <a href="#avs_entrenador_ejecutando">AVS_ENTRENADOR_EJECUTANDO</a>:
+          el entrenador está en estado Ejecutando.
+        </li>
+        <li>
+          <a href="#avs_entrenador_en_construccion">AVS_ENTRENADOR_EN_CONSTRUCCION</a>:
+          el entrenador está en estado En Construcción.
+        </li>
+        <li>
+          <a href="#avs_nada_para_exportar">AVS_NADA_PARA_EXPORTAR</a>:
+          no hay ninguna red satisfactoria para exportar, por lo que el perfil a crear resultaría vacío.
+        </li>
+        <li>
+          <a href="#avs_fallo_escritura_archivo">AVS_FALLO_ESCRITURA_ARCHIVO</a>:
+          una escritura en el archivo falló, por lo que quedó en un estado no válido.
+        </li>
+      </ul>
+    </p>
+    <hr />
+    <a name="errores"></a>
+    <h2>Errores</h2>
+    <p class="contenido">
+      A continuación se listan todos los errores que pueden retornar las funciones de la biblioteca. Cualquier
+      función puede retornar un error, que será uno de estos valores. Todos los códigos de error son valores
+      negativos fuera del rango de cualquier función (de hecho, todos los valores tienen los bits 31 y 15 en 1
+      y el bit 14 en 0); sin embargo, no se explicitan los valores exactos en la documentación para permitir
+      la posibilidad de cambiarlos si fuera necesario. Se recomienda siempre usar las constantes respectivas.
+    </p>
+    <a name="avs_ok"></a>
+    <h4>AVS_OK</h4>
+    <p class="contenido">
+      Este código indica que la función se ejecutó satisfactoriamente. No es un código de error, y tiene el
+      valor 0 (cero).
+    </p>
+    <a name="avs_puntero_nulo"></a>
+    <h4>AVS_PUNTERO_NULO</h4>
+    <p class="contenido">
+      Se pasó un puntero nulo a una función, cosa que no es válida.
+    </p>
+    <a name="avs_argumento_no_valido"></a>
+    <h4>AVS_ARGUMENTO_NO_VALIDO</h4>
+    <p class="contenido">
+      Alguno de los argumentos no está dentro del rango de valores permitidos para la función.
+    </p>
+    <a name="avs_archivo_inaccesible"></a>
+    <h4>AVS_ARCHIVO_INACCESIBLE</h4>
+    <p class="contenido">
+      No se pudo acceder al archivo especificado. (También se retorna este error cuando se intenta guardar un
+      archivo y esa operación es denegada.)
+    </p>
+    <a name="avs_formato_archivo_no_valido"></a>
+    <h4>AVS_FORMATO_ARCHIVO_NO_VALIDO</h4>
+    <p class="contenido">
+      El archivo especificado no tiene el formato que la operación requiere.
+    </p>
+    <a name="avs_duracion_menor_a_medio_segundo"></a>
+    <h4>AVS_DURACION_MENOR_A_MEDIO_SEGUNDO</h4>
+    <p class="contenido">
+      Se especificó un sonido como muestra que tiene una duración inferior a medio segundo.
+    </p>
+    <a name="avs_muestreo_demasiado_bajo"></a>
+    <h4>AVS_MUESTREO_DEMASIADO_BAJO</h4>
+    <p class="contenido">
+      El archivo de sonido especificado tiene un muestreo demasiado bajo como para contener apropiadamente una
+      grabación de la voz de una persona. (Actualmente este error se retorna para muestreos inferiores a 8 kHz.)
+    </p>
+    <a name="avs_muestreo_no_es_multiplo_de_4_hz"></a>
+    <h4>AVS_MUESTREO_NO_ES_MULTIPLO_DE_4_HZ</h4>
+    <p class="contenido">
+      La frecuencia de muestreo del archivo de sonido especificado no es múltiplo de 4 Hz.
+    </p>
+    <a name="avs_fallo_escritura_archivo"></a>
+    <h4>AVS_FALLO_ESCRITURA_ARCHIVO</h4>
+    <p class="contenido">
+      Una operación de escritura en el archivo no se pudo completar satisfactoriamente. El contenido del archivo
+      queda indefinido después de este error.
+    </p>
+    <a name="avs_entrenador_ejecutando"></a>
+    <h4>AVS_ENTRENADOR_EJECUTANDO</h4>
+    <p class="contenido">
+      La operación requiere que el entrenador esté En Construcción o Listo, pero está Ejecutando.
+    </p>
+    <a name="avs_entrenador_no_esta_ejecutando"></a>
+    <h4>AVS_ENTRENADOR_NO_ESTA_EJECUTANDO</h4>
+    <p class="contenido">
+      La operación requiere que el entrenador esté Ejecutando, pero no lo está.
+    </p>
+    <a name="avs_entrenador_no_en_construccion"></a>
+    <h4>AVS_ENTRENADOR_NO_EN_CONSTRUCCION</h4>
+    <p class="contenido">
+      La operación requiere que el entrenador esté En Construcción, pero no lo está.
+    </p>
+    <a name="avs_faltan_muestras_positivas"></a>
+    <h4>AVS_FALTAN_MUESTRAS_POSITIVAS</h4>
+    <p class="contenido">
+      Se requieren muestras positivas de entrenamiento para entrenar, pero el entrenador no tiene ninguna.
+    </p>
+    <a name="avs_faltan_muestras_negativas"></a>
+    <h4>AVS_FALTAN_MUESTRAS_NEGATIVAS</h4>
+    <p class="contenido">
+      Se requieren muestras negativas de entrenamiento para entrenar, pero el entrenador no tiene ninguna.
+    </p>
+    <a name="avs_entrenador_en_construccion"></a>
+    <h4>AVS_ENTRENADOR_EN_CONSTRUCCION</h4>
+    <p class="contenido">
+      La operación requiere que el entrenador esté Listo o Ejecutando, pero está En Construcción.
+    </p>
+    <a name="avs_sin_muestras_entrenamiento"></a>
+    <h4>AVS_SIN_MUESTRAS_ENTRENAMIENTO</h4>
+    <p class="contenido">
+      Se requieren muestras de entrenamiento para entrenar, pero el entrenador no tiene ninguna.
+    </p>
+    <a name="avs_muestra_no_existe"></a>
+    <h4>AVS_MUESTRA_NO_EXISTE</h4>
+    <p class="contenido">
+      Se intentó referir a un ID de muestra de una muestra que no existe en el entrenador.
+    </p>
+    <a name="avs_nada_para_exportar"></a>
+    <h4>AVS_NADA_PARA_EXPORTAR</h4>
+    <p class="contenido">
+      No hay ninguna red satisfactoria en el entrenador, por lo que no se puede exportar el perfil.
+    </p>
+    <a name="avs_error_interno"></a>
+    <h4>AVS_ERROR_INTERNO</h4>
+    <p class="contenido">
+      Una operación interna falló de una forma que la biblioteca no esperaba.
+    </p>
+    <a name="avs_objeto_ocupado"></a>
+    <h4>AVS_OBJETO_OCUPADO</h4>
+    <p class="contenido">
+      Se intentó acceder a un objeto de una forma que generaría conflictos con otro thread que está accediendo
+      al mismo.
+    </p>
+    <a name="avs_objeto_destruido"></a>
+    <h4>AVS_OBJETO_DESTRUIDO</h4>
+    <p class="contenido">
+      Se intentó acceder a un objeto que está siendo destruído por otro thread.
+    </p>
+    <a name="avs_error_creando_threads"></a>
+    <h4>AVS_ERROR_CREANDO_THREADS</h4>
+    <p class="contenido">
+      La biblioteca intentó crear un nuevo thread, pero la operación falló.
+    </p>
+    <a name="avs_sin_memoria"></a>
+    <h4>AVS_SIN_MEMORIA</h4>
+    <p class="contenido">
+      Una solicitud de memoria falló. Este error es irrecuperable.
+    </p>
+    <hr />
+    <a name="csharp"></a>
+    <h2>Convenciones en C#</h2>
+    <p class="contenido">
+      La interfaz expuesta en C# es idéntica a la interfaz en C, y la funcionalidad es la misma. Más allá de que
+      se podrían aprovechar las capacidades de objetos de C# para exponer una interfaz diferente, esto no se hizo
+      para evitar tener que mantener, probar y corregir dos interfaces para la misma biblioteca. Sin embargo,
+      debido a las diferencias entre los lenguajes, se realizaron pequeñas adaptaciones para poder acceder a esta
+      interfaz desde C#.
+    </p>
+    <p class="contenido">
+      En primer lugar, todos los elementos expuestos (tipos, funciones, constantes) están dentro de una clase
+      estática denominada AV. (Esta clase no está en ningún namespace porque funciona de por sí como un namespace
+      para la biblioteca.) Por lo tanto, se puede acceder a la constante <code>AV.AVS_OK</code>, a la función
+      <code>AV.avf_autenticar_WAV()</code>, o al tipo <code>AV.avt_estado</code>, por ejemplo.
+    </p>
+    <p class="contenido">
+      Por otro lado, se tuvieron que adaptar los tipos de datos utilizados. Los elementos que se declaran como
+      <code>unsigned</code> en C son naturalmente <code>uint</code> en C#. Los tipos declarados en C como
+      <code>const wchar_t *</code>, que representan cadenas de caracteres, son simplemente <code>string</code> en
+      C#. Los objetos (autenticadores y entrenadores), que se exponen como <code>void *</code> en C, deben ser
+      accedidos como <code>IntPtr</code> (<code>System.IntPtr</code>) en C#. Además, cuatro de las funciones
+      retornan valores en parámetros pasados por referencia, que se pasan como punteros en C — en C#, estos
+      parámetros son parámetros <code>out</code>.
+    </p>
+  </body>
+</html>

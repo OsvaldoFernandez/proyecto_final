@@ -1,0 +1,1 @@
+gcc -ggdb -shared -Wl,--add-stdcall-alias -Wno-multichar -Wl,--insert-timestamp -static-libgcc dll\*.c -o autvoz.dll
