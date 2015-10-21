@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Speech.Recognition;
+using System.Collections.Generic;
 
 public class RichForm : Form {
   public RichForm form_padre;
@@ -13,6 +14,19 @@ public class RichForm : Form {
   public virtual void agregar_mensaje(int id) {}
   public virtual void manejar_aceptar(string contexto) {}
   public virtual void manejar_cerrar(string contexto) {}
+
+  private void agregar_controles_de (Dictionary<string, Control> col, Control ctl) {
+    foreach (Control c in ctl.Controls) {
+      if ((c.Name != null) && (c.Name != "")) col.Add(c.Name, c);
+      agregar_controles_de(col, c);
+    }
+  }
+
+  public Dictionary<string, Control> Controles { get {
+    var col = new Dictionary<string, Control>();
+    agregar_controles_de(col, this);
+    return col;
+  }}
 }
 
 public class FormComandos : RichForm {
@@ -85,18 +99,20 @@ public class FormPaginado : FormComandos {
   protected void agregar_eventos (Action<int> manejador, bool doble_click, params string[] controles) {
     for (int i = 1; i <= 8; i ++) {
       int k = i;
-      foreach (string control in controles)
+      foreach (string control in controles) {
+        Control ctl = Controles[control + i.ToString()];
         if (doble_click)
-          Controls[control + i.ToString()].DoubleClick += (object sender, EventArgs e) => manejador(k);
+          ctl.DoubleClick += (object sender, EventArgs e) => manejador(k);
         else
-          Controls[control + i.ToString()].Click += (object sender, EventArgs e) => manejador(k);
+          ctl.Click += (object sender, EventArgs e) => manejador(k);
+      }
     }
   }
 
   protected virtual void seleccionar_elemento (int elemento, string control_validacion, string control_seleccion, DataGridView grilla) {
     this.resetPanels();
-    if (Controls[control_validacion + elemento.ToString()].Visible) {
-      Controls[control_seleccion + elemento.ToString()].BackColor = varcolor;
+    if (Controles[control_validacion + elemento.ToString()].Visible) {
+      Controles[control_seleccion + elemento.ToString()].BackColor = varcolor;
       grilla.Rows[elemento - 1].Selected = true;
     }
   }

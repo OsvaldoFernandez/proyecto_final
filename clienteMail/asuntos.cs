@@ -150,7 +150,7 @@ namespace clienteMail
             }
         }
 
-        private void resetPanels()
+        protected override void resetPanels()
         {
             base.resetPanels();
             for (int i = 0; i <= (dataAsuntos.RowCount - 2); i ++) dataAsuntos.Rows[i].Selected = false;
