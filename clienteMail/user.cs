@@ -10,6 +10,9 @@ public class User
     private string __mail, __password;
     private int __id;
 
+    // para las pruebas, cambiar para la version final
+    public string PAV = "osvaldo.pav";
+
     public string POP3server { get { return __pop3server; } }
     public string SMTPserver { get { return __smtpserver; } }
     public ushort POP3port { get { return __pop3port; } }
@@ -116,20 +119,11 @@ public class User
         int contacto_desde = (nro - 1) * 8;
         int contacto_hasta;
         if (nro * 8 < arrayContactos.Length)
-        {
-            contacto_hasta = nro * 8 -1;
-        }
+            contacto_hasta = nro * 8 - 1;
         else
-        {
             contacto_hasta = arrayContactos.Length-1;
-        }
 
-        for (int i = contacto_desde; i <= contacto_hasta; i++)
-        {
-
-            lista_contactos_pag.Add(arrayContactos[i]);
-        }
-
+        for (int i = contacto_desde; i <= contacto_hasta; i++) lista_contactos_pag.Add(arrayContactos[i]);
 
         return lista_contactos_pag.ToArray();
 
@@ -229,7 +223,6 @@ public class User
             dr.Close();
             dr.Dispose();
             cmd.Dispose();
-
         }
 
         return asunto;
@@ -269,19 +262,11 @@ public class User
         int asunto_desde = (nro - 1) * 8;
         int asunto_hasta;
         if (nro * 8 < arrayAsuntos.Length)
-        {
             asunto_hasta = nro * 8 - 1;
-        }
         else
-        {
             asunto_hasta = arrayAsuntos.Length - 1;
-        }
 
-        for (int i = asunto_desde; i <= asunto_hasta; i++)
-        {
-            lista_asuntos_pag.Add(arrayAsuntos[i]);
-        }
-
+        for (int i = asunto_desde; i <= asunto_hasta; i++) lista_asuntos_pag.Add(arrayAsuntos[i]);
 
         return lista_asuntos_pag.ToArray();
 
@@ -321,7 +306,6 @@ public class User
         cmd.ExecuteNonQuery();
 
         cmd.Dispose();
-
     }
 
     public void eliminar_asunto(int id)
@@ -363,7 +347,6 @@ public class User
             dr.Close();
             dr.Dispose();
             cmd.Dispose();
-
         }
 
         return mensaje;
@@ -403,22 +386,13 @@ public class User
         int mensaje_desde = (nro - 1) * 8;
         int mensaje_hasta;
         if (nro * 8 < arrayMensajes.Length)
-        {
             mensaje_hasta = nro * 8 - 1;
-        }
         else
-        {
             mensaje_hasta = arrayMensajes.Length - 1;
-        }
 
-        for (int i = mensaje_desde; i <= mensaje_hasta; i++)
-        {
-            lista_mensajes_pag.Add(arrayMensajes[i]);
-        }
-
+        for (int i = mensaje_desde; i <= mensaje_hasta; i++) lista_mensajes_pag.Add(arrayMensajes[i]);
 
         return lista_mensajes_pag.ToArray();
-
     }
 
     public void agregar_mensaje(Mensaje mensaje)
@@ -455,7 +429,6 @@ public class User
         cmd.ExecuteNonQuery();
 
         cmd.Dispose();
-
     }
 
     public void eliminar_mensaje(int id)
@@ -579,22 +552,12 @@ public class User
         int mail_desde = (nro - 1) * 8;
         int mail_hasta;
         if (nro * 8 < arrayMails.Length)
-        {
             mail_hasta = nro * 8 - 1;
-        }
         else
-        {
             mail_hasta = arrayMails.Length - 1;
-        }
 
-        for (int i = mail_desde; i <= mail_hasta; i++)
-        {
-
-            lista_mails_pag.Add(arrayMails[i]);
-        }
-
+        for (int i = mail_desde; i <= mail_hasta; i++) lista_mails_pag.Add(arrayMails[i]);
 
         return lista_mails_pag.ToArray();
-
     }
 }

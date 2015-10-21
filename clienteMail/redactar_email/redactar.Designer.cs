@@ -349,7 +349,6 @@
             this.Name = "redactar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Redactar";
-            this.Load += new System.EventHandler(this.redactar_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();

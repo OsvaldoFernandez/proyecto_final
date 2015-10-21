@@ -19,7 +19,7 @@ using clienteMail.inciar_sesion;
 
 namespace clienteMail
 {
-    public partial class Form1 : RichForm
+    public partial class Form1 : FormPaginado
     {
         Pop3Client client;
         bool authenticated = false;
@@ -27,16 +27,16 @@ namespace clienteMail
         Dictionary<int, Rfc822Message[]> messagesRecibidos = new Dictionary<int, Rfc822Message[]>();
         mail_enviado[] messagesEnviados = new mail_enviado[8];
         Dictionary<int, string> messageUIDLs = new Dictionary<int,string>();
-        int pagActual;
         int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
         uint ultimoRender; //que mails ya mostré o "renderice"
-        Color varcolor = Color.FromArgb(174, 225, 242);
 
         public Form1()
         {
             InitializeComponent();
-            agregar_eventos();
+            string[] controles = {"panel", "index", "mailSub", "mailRte", "mailDate", "pictureBox"};
+            agregar_eventos(seleccionarMail, false, controles);
+            agregar_eventos(leerMail, true, controles);
         }
 
         public void SplashScreen()
@@ -46,44 +46,22 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
-
-            switch (comando)
-            {
-                case "uno": case "dos": case "tres": case "cuatro": case "cinco": case "seis": case "siete": case "ocho":
-                    mailSelected = 1 + Array.IndexOf<string>(
-                        (new string[] {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"}),
-                        comando);
-                    seleccionarMail(mailSelected);
-                    leerMail(mailSelected);
-                    break;
-                case "contactos":
-                    btnContactos_Click(null, EventArgs.Empty);
-                    break;
-                case "asuntos":
-                    btnAsuntos_Click(null, EventArgs.Empty);
-                    break;
-                case "mensajes":
-                    btnMensajes_Click(null, EventArgs.Empty);
-                    break;
-                case "recibidos":
-                    btnRecibidos_Click(null, EventArgs.Empty);
-                    break;
-                case "enviados":
-                    btnEnviados_Click(null, EventArgs.Empty);
-                    break;
-                case "redactar":
-                    redactar_Click(null, EventArgs.Empty);
-                    break; 
-                case "anterior":
-                    if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);
-                    break;
-                case "siguiente":
-                    if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);
-                    break; 
-                case "actualizar":
-                    btnActualizar_Click(null, EventArgs.Empty);
-                    break;
-            }
+            manejar_comando_basico(comando,
+              (int numero) => {
+                mailSelected = numero;
+                seleccionarMail(numero);
+                leerMail(numero);
+              },
+              Comando.Evento("contactos", btnContactos_Click),
+              Comando.Evento("asuntos", btnAsuntos_Click),
+              Comando.Evento("mensajes", btnMensajes_Click),
+              Comando.Evento("recibidos", btnRecibidos_Click),
+              Comando.Evento("enviados", btnEnviados_Click),
+              Comando.Evento("redactar", redactar_Click),
+              new Comando("anterior", () => {if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);}),
+              new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);}),
+              Comando.Evento("actualizar", btnActualizar_Click)
+            );
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
@@ -401,22 +379,13 @@ namespace clienteMail
 
         private void resetPanels()
         {
-            bool oscuro = true;
-            foreach (Panel p in (new Panel[] {panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8})) {
-              p.BackColor = oscuro ? Color.FromArgb(241, 255, 255) : Color.White;
-              oscuro = !oscuro;
-            }
+            base.resetPanels();
             for (int i = 0; i < dataMails.RowCount; i++) dataMails.Rows[i].Selected = false;
         }
 
         private void seleccionarMail(int numero)
         {
-            resetPanels();
-            if ((new Label[] {index1, index2, index3, index4, index5, index6, index7, index8})[numero - 1].Visible)
-            {
-                this.Controls["panel"+numero].BackColor = varcolor;
-                dataMails.Rows[numero - 1].Selected = true;
-            }
+            seleccionar_elemento(numero, "index", "panel", dataMails);
         }
 
         public void leerMail(int numero) {
@@ -444,27 +413,5 @@ namespace clienteMail
             btnAnterior.ForeColor = sender.Equals(false) ? Color.Blue : Color.Red;
         }
 
-
-        // manejadores de eventos que no se pueden agregar directamente en el designer
-        public void agregar_eventos ()
-        {
-            Control[][] controles_mails = new Control[][] {
-              new Control[] {panel1, index1, mailDate1, mailSub1, mailRte1, pictureBox1},
-              new Control[] {panel2, index2, mailDate2, mailSub2, mailRte2, pictureBox2},
-              new Control[] {panel3, index3, mailDate3, mailSub3, mailRte3, pictureBox3},
-              new Control[] {panel4, index4, mailDate4, mailSub4, mailRte4, pictureBox4},
-              new Control[] {panel5, index5, mailDate5, mailSub5, mailRte5, pictureBox5},
-              new Control[] {panel6, index6, mailDate6, mailSub6, mailRte6, pictureBox6},
-              new Control[] {panel7, index7, mailDate7, mailSub7, mailRte7, pictureBox7},
-              new Control[] {panel8, index8, mailDate8, mailSub8, mailRte8, pictureBox8}
-            };
-            int num;
-            for (num = 1; num <= controles_mails.Length; num ++)
-              foreach (Control control in controles_mails[num - 1]) {
-                int k = num; // usar directamente num almacena una referencia a num, y num = 9 al salir del ciclo
-                control.Click += (object sender, EventArgs e) => seleccionarMail(k);
-                control.DoubleClick += (object sender, EventArgs e) => leerMail(k);
-              }
-        }
     }
 }

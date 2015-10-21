@@ -22,10 +22,7 @@ namespace clienteMail.crear_cuenta
             SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
             cmd.CommandText = "SELECT proveedor, servidor_pop3, puerto_pop3, servidor_smtp, puerto_smtp FROM Proveedor_mail";
             SQLiteDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                proveedor.Items.Add(dr.GetString(0));
-            }
+            while (dr.Read()) proveedor.Items.Add(dr.GetString(0));
             dr.Close();
             dr.Dispose();
             cmd.Dispose();

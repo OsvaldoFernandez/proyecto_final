@@ -35,7 +35,11 @@ namespace clienteMail.comando
         private void comando_Load(object sender, EventArgs e)
         {
             Choices comandos = new Choices();
-            comandos.Add(new string[] { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos", "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente", "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar" });
+            comandos.Add(new string[] {
+              "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos",
+              "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente",
+              "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar"
+            });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
             Grammar grammar = new Grammar(gBuilder);
@@ -43,7 +47,7 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            int rv = AV.avf_crear_autenticador("osvaldo.pav", out autenticador);
+            int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
             if (rv != 0) MessageBox.Show(rv.ToString("X"));
         }
 
@@ -101,9 +105,6 @@ namespace clienteMail.comando
                     }
                 }
             }
-
-
-
         }
 
         private void disableBtn_Click(object sender, EventArgs e)

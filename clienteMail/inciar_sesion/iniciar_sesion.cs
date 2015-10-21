@@ -52,11 +52,5 @@ namespace clienteMail.inciar_sesion
         {
             new crear_cuenta.crear_cuenta().Show();
         }
-
-        private void iniciar_sesion_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace clienteMail.redactar_email
 {
-    public partial class redactar : RichForm
+    public partial class redactar : FormComandos
     {
         private string To;
         private string Subject;
@@ -30,14 +30,7 @@ namespace clienteMail.redactar_email
             asuntoTxt.Text = asunto;
             toTxt.Text = para;
             webBrowser.DocumentText = mensaje;
-            if (mensaje != "")
-            {
-                webBrowser.Visible = true;
-            }
-            else
-            {
-                webBrowser.Visible = false;
-            }
+            webBrowser.Visible = mensaje != "";
         }
 
         public void SplashScreen()
@@ -47,7 +40,8 @@ namespace clienteMail.redactar_email
 
         private void enviarBtn_Click(object sender, EventArgs e)
         {
-            Regex reg = new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
+            // ver comentario en contacto_new_update.cs respecto de la expresion regular
+            Regex reg = new Regex(@"^[^ /?@\x00-\x1f()<>]+@([^. /?@\x00-\x1f()<>]+\.)*[a-zA-Z]{2,}\.?$");
 
             if (!reg.IsMatch(toTxt.Text))
             {
@@ -78,18 +72,9 @@ namespace clienteMail.redactar_email
             {
                 client.Send(mail);
 
-                if (contactoID > 0)
-                {
-                    G.user.contacto_enviado(contactoID);
-                }
-                if (asuntoID > 0)
-                {
-                    G.user.asunto_usado(asuntoID);
-                }
-                if (mensajeID > 0)
-                {
-                    G.user.mensaje_usado(mensajeID);
-                }
+                if (contactoID > 0) G.user.contacto_enviado(contactoID);
+                if (asuntoID > 0) G.user.asunto_usado(asuntoID);
+                if (mensajeID > 0) G.user.mensaje_usado(mensajeID);
 
                 mail_enviado mailEnviado = new mail_enviado();
                 mailEnviado.__para = To;
@@ -111,116 +96,64 @@ namespace clienteMail.redactar_email
             }
         }
 
-        private void adjBtn_Click_1(object sender, EventArgs e)
-        {
-            openFileDialog1.ShowDialog();
-            
-        }
-
-        private void toTxt_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void redactar_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnPara_Click(object sender, EventArgs e)
         {
-            var form = new contactos("redactar", this);
-            form.Show();
+            new contactos("redactar", this).Show();
         }
 
         private void btnAsunto_Click(object sender, EventArgs e)
         {
-            var form = new asuntos("redactar", this);
-            form.Show();
-
+            new asuntos("redactar", this).Show();
         }
 
         private void btnMensaje_Click(object sender, EventArgs e)
         {
-            var form = new mensajes("redactar", this);
-            form.Show();
+            new mensajes("redactar", this).Show();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            var form = new frmAlert(this, "Descartar", "Está seguro que desea descartar los cambios?", "yesno");
-            form.Show(this);
+            new frmAlert(this, "Descartar", "¿Está seguro que desea descartar los cambios?", "yesno").Show(this);
         }
 
         public override void manejar_comando(string comando)
         {
-
-            switch (comando)
-            {
-                case "para":
-                    btnPara_Click(null, null);
-                    break;
-                case "asuntos":
-                    btnAsunto_Click(null, null);
-                    break;
-                case "mensajes":
-                    btnMensaje_Click(null, null);
-                    break;
-                case "enviar":
-                    enviarBtn_Click(null, null);
-                    break;
-                case "cancelar":
-                    btnCancelar_Click(null, null);
-                    break;
-                default:
-                    break;
-            }
+            manejar_comando_basico(comando,
+              Comando.Evento("para", btnPara_Click),
+              Comando.Evento("asuntos", btnAsunto_Click),
+              Comando.Evento("mensajes", btnMensaje_Click),
+              Comando.Evento("enviar", enviarBtn_Click),
+              Comando.Evento("cancelar", btnCancelar_Click)
+            );
         }
 
         public override void agregar_contacto(int id_contacto)
         {
-                contactoID = id_contacto;
-                toTxt.Text = G.user.getContacto(id_contacto).Mail;
+            contactoID = id_contacto;
+            toTxt.Text = G.user.getContacto(id_contacto).Mail;
         }
 
         public override void agregar_asunto(int id_asunto)
         {
-            contactoID = id_asunto;
+            asuntoID = id_asunto;
             asuntoTxt.Text = G.user.getAsunto(id_asunto).Texto;
         }
 
         public override void agregar_mensaje(int id_mensaje)
         {
-            contactoID = id_mensaje;
+            mensajeID = id_mensaje;
             cuerpoTxt.Text = G.user.getMensaje(id_mensaje).Texto;
         }
 
         public override void manejar_aceptar(string contexto)
         {
-            if (contexto == "Descartar")
-            {
-                //Cuando se oprime aceptar en el alert de Descartar, esta ventana debería cerrarse
-                this.Close();
-            }
+            if (contexto == "Descartar") this.Close();
         }
 
         public override void manejar_cerrar(string contexto)
         {
-            if (contexto == "Mail enviado")
-            {
-                //Cuando se oprime cerrar en el alert de mail enviado, esta ventana debería cerrarse
-                this.Close();
-            }
-            if (contexto == "Descartar")
-            {
-                //Cuando se oprime cerrar en el alert de Descartar no debería pasar nada
-            }
-           
+            if (contexto == "Mail enviado") this.Close();
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-        }
-
     }
 }
 

@@ -9,17 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class contactos : RichForm
+    public partial class contactos : FormPaginado
     {
-        int pagActual = 1;
         string formAnterior;
         public int idSelected { get; set; }
-        Color varcolor = Color.FromArgb(174, 225, 242);
 
         public contactos(string llamadoDesde, RichForm formulario_padre)
         {
             InitializeComponent();
-            agregar_eventos();
+            agregar_eventos(seleccionar_contacto, false, "panel", "contactoNombre", "index", "contacto", "pictureBox");
             formAnterior = llamadoDesde;
             btnAceptar.Visible = llamadoDesde != "home";
             form_padre = formulario_padre;
@@ -29,7 +27,6 @@ namespace clienteMail
         {
             this.handlePaginacion();
         }
-
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -48,7 +45,6 @@ namespace clienteMail
                 G.user.eliminar_contacto(id);
                 this.actualizarContactos();
             }
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -156,57 +152,23 @@ namespace clienteMail
 
         private void resetPanels()
         {
-            bool oscuro = true;
-            foreach (Panel panel in new Panel[] {panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8}) {
-              panel.BackColor = oscuro ? Color.FromArgb(241, 255, 255) : Color.White;
-              oscuro = !oscuro;
-            }
-            for (int i = 0; i <= (dataContactos.RowCount - 2); i++) dataContactos.Rows[i].Selected = false;
+            base.resetPanels();
+            for (int i = 0; i <= (dataContactos.RowCount - 2); i ++) dataContactos.Rows[i].Selected = false;
         }
 
         private void seleccionar_contacto (int contacto) {
-          resetPanels();
-          if (Controls["index" + contacto.ToString()].Visible) {
-            Controls["panel" + contacto.ToString()].BackColor = varcolor;
-            dataContactos.Rows[contacto - 1].Selected = true;
-          }
+          seleccionar_elemento(contacto, "index", "panel", dataContactos);
         }
 
         public override void manejar_comando(string comando)
         {
-            switch (comando)
-            {
-                case "uno": case "dos": case "tres": case "cuatro": case "cinco": case "seis": case "siete": case "ocho":
-                    seleccionar_contacto(1 + Array.IndexOf<string>(
-                      new string[] {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"},
-                      comando
-                    ));
-                    break;
-                case "cerrar":
-                    btnVolver_Click(null, EventArgs.Empty);
-                    break;
-                case "aceptar":
-                    btnAceptar_Click(null, EventArgs.Empty);
-                    break;
-                case "eliminar":
-                    btnEliminar_Click(null, EventArgs.Empty);
-                    break;
-                case "anterior":
-                    if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);
-                    break;
-                case "siguiente":
-                    if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);
-                    break;
-            }
-        }
-
-        private void agregar_eventos () {
-          string[] nombres_controles = {"panel", "contactoNombre", "index", "contacto", "pictureBox"};
-          for (int i = 1; i <= 8; i ++) {
-            int k = i;
-            foreach (string nombre in nombres_controles)
-              Controls[nombre + i.ToString()].Click += (object sender, EventArgs e) => seleccionar_contacto(k);
-          }
+            manejar_comando_basico(comando, seleccionar_contacto,
+              Comando.Evento("cerrar", btnVolver_Click),
+              Comando.Evento("aceptar", btnAceptar_Click),
+              Comando.Evento("eliminar", btnEliminar_Click),
+              new Comando("anterior", () => {if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);}),
+              new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);})
+            );
         }
     }
 }

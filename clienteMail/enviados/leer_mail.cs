@@ -11,7 +11,7 @@ using Email.Net.Common.Collections;
 
 namespace clienteMail
 {
-    public partial class leer_mail : RichForm
+    public partial class leer_mail : FormComandos
     {
         mail_enviado message_actual;
         public leer_mail(mail_enviado message)
@@ -23,11 +23,6 @@ namespace clienteMail
             lblFrom.Text = "De: " + message.__para;
             lblAsunto.Text = "Asunto: " + message.__asunto;
             lblFecha.Text = "Fecha: " + message.__fecha_creacion.ToString();
-        }
-
-        private void leer_mail_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -46,7 +41,7 @@ namespace clienteMail
 
         private void btnReenviar_Click(object sender, EventArgs e)
         {
-            string asunto = "Fwk: " + message_actual.Asunto;
+            string asunto = "Fwd: " + message_actual.Asunto;
             string mensaje = message_actual.Mensaje;
             redactar_email.redactar form = new redactar_email.redactar(this, asunto, "", mensaje);
             form.Show();
@@ -54,52 +49,27 @@ namespace clienteMail
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            
             var form = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK)
             {
                 //BORRA MAIL
             } 
-                
         }
-
-
 
         public override void manejar_comando(string comando)
         {
-
-            switch (comando)
-            {
-                case "responder":
-                    btnResponder_Click(null, null);
-                    break;
-                case "reenviar":
-                    btnReenviar_Click(null, null);
-                    break;
-                case "eliminar":
-                    btnEliminar_Click(null, null);
-                    break;
-                case "cerrar":
-                    btnCerrar_Click(null, null);
-                    break;
-                default:
-                    break;
-            }
+            manejar_comando_basico(comando,
+              Comando.Evento("responder", btnResponder_Click),
+              Comando.Evento("reenviar", btnReenviar_Click),
+              Comando.Evento("eliminar", btnEliminar_Click),
+              Comando.Evento("cerrar", btnCerrar_Click)
+            );
         }
 
         public override void manejar_aceptar(string contexto)
         {
-            if (contexto == "Eliminar")
-            {
-                btnEliminar_Click(null, null);
-            }
+            if (contexto == "Eliminar") btnEliminar_Click(null, EventArgs.Empty);
         }
-
-        public override void manejar_cerrar(string contexto)
-        {
-            //Cuando se oprime cerrar en el alert de Eliminar no debería pasar nada
-        }
-
     }
 }

@@ -16,19 +16,16 @@ namespace clienteMail
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick (object sender, EventArgs e)
         {
             progressBar1.Increment(1);
-            if (progressBar1.Value == 100)
-            {
-                progressBar1.Value = 0;
-            }
+            if (progressBar1.Value == 100) progressBar1.Value = 0;
         }
 
-        private void splashScreen_Load(object sender, EventArgs e)
+        private void splashScreen_Load (object sender, EventArgs e)
         {
             timer1.Start();
-            timer1_Tick(null,null);
+            timer1_Tick(null, EventArgs.Empty);
         }
     }
 }

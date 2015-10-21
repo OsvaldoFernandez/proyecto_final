@@ -94,6 +94,9 @@
     <Compile Include="entrenamiento\entrenamiento_1.Designer.cs">
       <DependentUpon>entrenamiento_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mail_enviado.cs" />
     <Compile Include="mensaje_new_update.cs">
       <SubType>Form</SubType>
@@ -119,9 +122,7 @@
     <Compile Include="contacto_new_update.Designer.cs">
       <DependentUpon>contacto_new_update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Globales.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Globales.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

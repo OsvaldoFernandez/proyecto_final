@@ -9,16 +9,15 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class mensajes : RichForm
+    public partial class mensajes : FormPaginado
     {
-        int pagActual = 1;
         string formAnterior;
         public int idSelected { get; set; }
-        Color varcolor = Color.FromArgb(174, 225, 242);
 
         public mensajes(string llamadoDesde, RichForm formulario_padre)
         {
             InitializeComponent();
+            agregar_eventos(seleccionar_mensaje, false, "panel", "index", "mensaje", "pictureBox");
             formAnterior = llamadoDesde;
             btnAceptar.Visible = llamadoDesde != "home";
             form_padre = formulario_padre;
@@ -72,8 +71,6 @@ namespace clienteMail
             renderView();
         }
 
-
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
@@ -105,32 +102,7 @@ namespace clienteMail
 
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
-            int cant = (int)G.user.mensajes().Length;
-            int cantPaginas = cant/ 8;
-
-            if (G.user.mensajes().Length % 8 > 0 || cantPaginas == 0)
-            {
-                cantPaginas++;
-            }
-
-            lblPagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
-            if (pagActual == 1)
-            {
-                btnAnterior.Enabled = false;
-            }
-            else
-            {
-                btnAnterior.Enabled = true;
-            }
-
-            if (pagActual == cantPaginas || cant == 0)
-            {
-                btnSiguiente.Enabled = false;
-            }
-            else
-            {
-                btnSiguiente.Enabled = true;
-            }
+            actualizar_pagina(G.user.mensajes().Length, btnAnterior, btnSiguiente, lblPagina);
             this.actualizarMensajes();
         }
 
@@ -148,10 +120,7 @@ namespace clienteMail
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            if (formAnterior != "home")
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            }
+            if (formAnterior != "home") this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Close();
         }
 
@@ -160,191 +129,47 @@ namespace clienteMail
         private void renderView()
         {
             //clear labels 
-            int i = 1;
+            int i;
             for (i = 1; i <= 8; i++)
             {
-                string labelName = "mensaje" + i.ToString();
-                string containerName = "panel" + i.ToString();
-                string indexName = "pictureBox" + i.ToString();
-                string labelIndexName = "index" + i.ToString();
-                Control container = this.Controls[containerName];
-                Control ctn = container.Controls[labelName];
-                Control ctn3 = container.Controls[indexName];
-                Control ctn4 = container.Controls[labelIndexName];
-                ctn.Text = "";
-                ctn3.Hide();
-                ctn4.Hide();
+                string n = i.ToString();
+                Control container = this.Controls["panel" + n];
+                container.Controls["mensaje" + n].Text = "";
+                container.Controls["pictureBox" + n].Hide();
+                container.Controls["index" + n].Hide();
             }
             resetPanels();
             //rewrite labels
             i = 1;
             foreach (Mensaje mensaje in G.user.mensajesPag(pagActual))
             {
-                string labelName = "mensaje" + i.ToString();
-                string containerName = "panel" + i.ToString();
-                string indexName = "pictureBox" + i.ToString();
-                string labelIndexName = "index" + i.ToString();
-                Control container = this.Controls[containerName];
-                Control ctn = container.Controls[labelName];
-                Control ctn3 = container.Controls[indexName];
-                Control ctn4 = container.Controls[labelIndexName];
-                ctn.Text = mensaje.Texto;
-                ctn3.Show();
-                ctn4.Show();
-                i++;
+                string n = (i ++).ToString();
+                Control container = this.Controls["panel" + n];
+                container.Controls["mensaje" + n].Text = mensaje.Texto;
+                container.Controls["pictureBox" + n].Show();
+                container.Controls["index" + n].Show();
             }
         }
 
-        private void resetPanels()
+        protected override void resetPanels()
         {
-            panel1.BackColor = Color.FromArgb(241, 255, 255);
-            panel2.BackColor = Color.White;
-            panel3.BackColor = Color.FromArgb(241, 255, 255);
-            panel4.BackColor = Color.White;
-            panel5.BackColor = Color.FromArgb(241, 255, 255);
-            panel6.BackColor = Color.White;
-            panel7.BackColor = Color.FromArgb(241, 255, 255);
-            panel8.BackColor = Color.White;
-            int i = 0;
-            for (i = 0; i <= (dataMensajes.RowCount - 2); i++)
-            {
-                dataMensajes.Rows[i].Selected = false;
-            }
+            base.resetPanels();
+            for (int i = 0; i <= (dataMensajes.RowCount - 2); i++) dataMensajes.Rows[i].Selected = false;
         }
 
-        private void seleccionarMensaje1(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index1.Visible)
-            {
-                panel1.BackColor = varcolor;
-                dataMensajes.Rows[0].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje2(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index2.Visible)
-            {
-                panel2.BackColor = varcolor;
-                dataMensajes.Rows[1].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje3(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index3.Visible)
-            {
-                panel3.BackColor = varcolor;
-                dataMensajes.Rows[2].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje4(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index4.Visible)
-            {
-                panel4.BackColor = varcolor;
-                dataMensajes.Rows[3].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje5(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index5.Visible)
-            {
-                panel5.BackColor = varcolor;
-                dataMensajes.Rows[4].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje6(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index6.Visible)
-            {
-                panel6.BackColor = varcolor;
-                dataMensajes.Rows[5].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje7(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index7.Visible)
-            {
-                panel7.BackColor = varcolor;
-                dataMensajes.Rows[6].Selected = true;
-            }
-        }
-
-        private void seleccionarMensaje8(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index8.Visible)
-            {
-                panel8.BackColor = varcolor;
-                dataMensajes.Rows[7].Selected = true;
-            }
+        private void seleccionar_mensaje (int mensaje) {
+          seleccionar_elemento(mensaje, "index", "panel", dataMensajes);
         }
 
         public override void manejar_comando(string comando)
         {
-
-            switch (comando)
-            {
-                case "uno":
-                    seleccionarMensaje1(null, null);
-                    break;
-                case "dos":
-                    seleccionarMensaje2(null, null);
-                    break;
-                case "tres":
-                    seleccionarMensaje3(null, null);
-                    break;
-                case "cuatro":
-                    seleccionarMensaje4(null, null);
-                    break;
-                case "cinco":
-                    seleccionarMensaje5(null, null);
-                    break;
-                case "seis":
-                    seleccionarMensaje6(null, null);
-                    break;
-                case "siete":
-                    seleccionarMensaje7(null, null);
-                    break;
-                case "ocho":
-                    seleccionarMensaje8(null, null);
-                    break;
-                case "cerrar":
-                    btnVolver_Click(null, null);
-                    break;
-                case "aceptar":
-                    btnAceptar_Click(null, null);
-                    break;
-                case "eliminar":
-                    btnEliminar_Click(null, null);
-                    break;
-                case "anterior":
-                    if (btnAnterior.Enabled)
-                    {
-                        btnAnterior_Click(null, null);
-                    }
-                    break;
-                case "siguiente":
-                    if (btnSiguiente.Enabled)
-                    {
-                        btnSiguiente_Click(null, null);
-                    }
-                    break;
-                default:
-                    break;
-            }
+            manejar_comando_basico(comando, seleccionar_mensaje,
+              Comando.Evento("cerrar", btnVolver_Click),
+              Comando.Evento("aceptar", btnAceptar_Click),
+              Comando.Evento("eliminar", btnEliminar_Click),
+              new Comando("anterior", () => {if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);}),
+              new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);})
+            );
         }
     }
 }

@@ -67,7 +67,6 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.asuntos.resour
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.entrenamiento.entrenamiento_1.resources
-C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\RichForm.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.mensaje_new_update.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.mensajes.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.crear_cuenta.crear_cuenta.resources
@@ -82,3 +81,4 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.splashScreen.r
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\cliente_mail.csproj.GenerateResource.Cache
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.pdb
+C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\G.resources
