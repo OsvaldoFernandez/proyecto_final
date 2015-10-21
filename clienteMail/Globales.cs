@@ -6,30 +6,16 @@ using System.Speech.Recognition;
 
 public partial class RichForm : Form
 {
-    public virtual void manejar_comando(string comando)
-    {
-    }
-    public virtual void manejar_comando_entrenamiento(SpeechRecognizedEventArgs e)
-    {
-    }
-    public virtual void agregar_contacto(int id)
-    {
-    }
-    public virtual void agregar_asunto(int id)
-    {
-    }
-    public virtual void agregar_mensaje(int id)
-    {
-    }
-    public virtual void manejar_aceptar(string contexto)
-    {
-    }
-    public virtual void manejar_cerrar(string contexto)
-    {
-    }
     public RichForm form_padre;
-}
 
+    public virtual void manejar_comando(string comando) {}
+    public virtual void manejar_comando_entrenamiento(SpeechRecognizedEventArgs e) {}
+    public virtual void agregar_contacto(int id) {}
+    public virtual void agregar_asunto(int id) {}
+    public virtual void agregar_mensaje(int id) {}
+    public virtual void manejar_aceptar(string contexto) {}
+    public virtual void manejar_cerrar(string contexto) {}
+}
 
 public static class G
 {

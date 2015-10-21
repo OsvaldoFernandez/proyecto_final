@@ -19,16 +19,9 @@ namespace clienteMail
         public asuntos(string llamadoDesde, RichForm formulario_padre)
         {
             InitializeComponent();
+            agregar_eventos();
             formAnterior = llamadoDesde;
-            if (llamadoDesde == "home")
-            {
-                btnAceptar.Visible = false;
-            
-            }
-            else
-            {
-                btnAceptar.Visible = true;
-            }
+            btnAceptar.Visible = llamadoDesde != "home";
             form_padre = formulario_padre;
         }
 
@@ -37,16 +30,13 @@ namespace clienteMail
            this.handlePaginacion();
         }
 
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
             Int32 selectedRowCount = dataAsuntos.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
-            {
                 //no seleccionó a nadie.
                 this.Close();
-            }
 
             this.idSelected = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
             form_padre.agregar_asunto(this.idSelected);
@@ -62,22 +52,13 @@ namespace clienteMail
                 G.user.eliminar_asunto(id);
                 this.actualizarAsuntos();
             }
-
-        }
-
-        public override void manejar_cerrar(string contexto)
-        {
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             var form = new asunto_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                this.actualizarAsuntos();
-            }
+            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarAsuntos();
         }
 
         private void actualizarAsuntos()
@@ -106,10 +87,7 @@ namespace clienteMail
             int id = Convert.ToInt32(this.dataAsuntos.SelectedRows[0].Cells[2].Value);
             var form = new asunto_new_update(id, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                this.actualizarAsuntos();
-            }
+            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarAsuntos();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -128,32 +106,10 @@ namespace clienteMail
 
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
-            int cant = (int)G.user.asuntos().Length;
-            int cantPaginas = cant / 8;
-
-            if (G.user.asuntos().Length % 8 > 0)
-            {
-                cantPaginas++;
-            }
-
+            int cantPaginas = ((int) G.user.asuntos().Length + 7) / 8;
             lblPagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
-            if (pagActual == 1)
-            {
-                btnAnterior.Enabled = false;
-            }
-            else
-            {
-                btnAnterior.Enabled = true;
-            }
-
-            if (pagActual == cantPaginas || cant == 0)
-            {
-                btnSiguiente.Enabled = false;
-            }
-            else
-            {
-                btnSiguiente.Enabled = true;
-            }
+            btnAnterior.Enabled = pagActual != 1;
+            btnSiguiente.Enabled = (pagActual != cantPaginas) && (cantPaginas != 0);
             this.actualizarAsuntos();
         }
 
@@ -171,10 +127,7 @@ namespace clienteMail
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            if (formAnterior != "home")
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            }
+            if (formAnterior != "home") this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Close();
         }
 
@@ -186,190 +139,80 @@ namespace clienteMail
             int i = 1;
             for (i = 1; i <= 8; i++)
             {
-                string labelName = "asunto" + i.ToString();
-                string containerName = "panel" + i.ToString();
-                string indexName = "pictureBox" + i.ToString();
-                string labelIndexName = "index" + i.ToString();
-                Control container = this.Controls[containerName];
-                Control ctn = container.Controls[labelName];
-                Control ctn3 = container.Controls[indexName];
-                Control ctn4 = container.Controls[labelIndexName];
-                ctn.Text = "";
-                ctn3.Hide();
-                ctn4.Hide();
+                string n = i.ToString();
+                Control container = this.Controls["panel" + n];
+                container.Controls["asunto" + n].Text = "";
+                container.Controls["pictureBox" + n].Hide();
+                container.Controls["index" + n].Hide();
             }
             resetPanels();
             //rewrite labels
             i = 1;
             foreach (Asunto asunto in G.user.asuntosPag(pagActual))
             {
-                string labelName = "asunto" + i.ToString();
-                string containerName = "panel" + i.ToString();
-                string indexName = "pictureBox" + i.ToString();
-                string labelIndexName = "index" + i.ToString();
-                Control container = this.Controls[containerName];
-                Control ctn = container.Controls[labelName];
-                Control ctn3 = container.Controls[indexName];
-                Control ctn4 = container.Controls[labelIndexName];
-                ctn.Text = asunto.Texto;
-                ctn3.Show();
-                ctn4.Show();
-                i++;
+                string n = (i ++).ToString();
+                Control container = this.Controls["panel" + n];
+                container.Controls["asunto" + n].Text = asunto.Texto;
+                container.Controls["pictureBox" + n].Show();
+                container.Controls["index" + n].Show();
             }
         }
 
         private void resetPanels()
         {
-            panel1.BackColor = Color.FromArgb(241, 255, 255);
-            panel2.BackColor = Color.White;
-            panel3.BackColor = Color.FromArgb(241, 255, 255);
-            panel4.BackColor = Color.White;
-            panel5.BackColor = Color.FromArgb(241, 255, 255);
-            panel6.BackColor = Color.White;
-            panel7.BackColor = Color.FromArgb(241, 255, 255);
-            panel8.BackColor = Color.White;
-            int i = 0;
-            for (i = 0; i <= (dataAsuntos.RowCount - 2); i++)
-            {
+            bool oscuro = true;
+            foreach (Panel panel in (new Panel[] {panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8})) {
+                panel.BackColor = oscuro ? Color.FromArgb(241, 255, 255) : Color.White;
+                oscuro = !oscuro;
+            }
+            for (int i = 0; i <= (dataAsuntos.RowCount - 2); i++)
                 dataAsuntos.Rows[i].Selected = false;
-            }
         }
 
-        private void seleccionarAsunto1(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index1.Visible)
-            {
-                panel1.BackColor = varcolor;
-                dataAsuntos.Rows[0].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto2(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index2.Visible)
-            {
-                panel2.BackColor = varcolor;
-                dataAsuntos.Rows[1].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto3(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index3.Visible)
-            {
-                panel3.BackColor = varcolor;
-                dataAsuntos.Rows[2].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto4(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index4.Visible)
-            {
-                panel4.BackColor = varcolor;
-                dataAsuntos.Rows[3].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto5(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index5.Visible)
-            {
-                panel5.BackColor = varcolor;
-                dataAsuntos.Rows[4].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto6(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index6.Visible)
-            {
-                panel6.BackColor = varcolor;
-                dataAsuntos.Rows[5].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto7(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index7.Visible)
-            {
-                panel7.BackColor = varcolor;
-                dataAsuntos.Rows[6].Selected = true;
-            }
-        }
-
-        private void seleccionarAsunto8(object sender, EventArgs e)
-        {
-            resetPanels();
-            if (index8.Visible)
-            {
-                panel8.BackColor = varcolor;
-                dataAsuntos.Rows[7].Selected = true;
-            }
+        private void seleccionar_asunto (int asunto) {
+          resetPanels();
+          if (Controls["index" + asunto.ToString()].Visible) {
+            Controls["panel" + asunto.ToString()].BackColor = varcolor;
+            dataAsuntos.Rows[asunto - 1].Selected = true;
+          }
         }
 
         public override void manejar_comando(string comando)
         {
-
             switch (comando)
             {
-                case "uno":
-                    seleccionarAsunto1(null, null);
-                    break;
-                case "dos":
-                    seleccionarAsunto2(null, null);
-                    break;
-                case "tres":
-                    seleccionarAsunto3(null, null);
-                    break;
-                case "cuatro":
-                    seleccionarAsunto4(null, null);
-                    break;
-                case "cinco":
-                    seleccionarAsunto5(null, null);
-                    break;
-                case "seis":
-                    seleccionarAsunto6(null, null);
-                    break;
-                case "siete":
-                    seleccionarAsunto7(null, null);
-                    break;
-                case "ocho":
-                    seleccionarAsunto8(null, null);
+                case "uno": case "dos": case "tres": case "cuatro":
+                case "cinco": case "seis": case "siete": case "ocho":
+                    seleccionar_asunto(1 + Array.IndexOf<string> (
+                      new string[] {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"},
+                      comando
+                    ));
                     break;
                 case "cerrar":
-                    btnVolver_Click(null, null);
+                    btnVolver_Click(null, EventArgs.Empty);
                     break;
                 case "aceptar":
-                    btnAceptar_Click(null, null);
+                    btnAceptar_Click(null, EventArgs.Empty);
                     break;
                 case "eliminar":
-                    btnEliminar_Click(null, null);
+                    btnEliminar_Click(null, EventArgs.Empty);
                     break;
                 case "anterior":
-                    if (btnAnterior.Enabled)
-                    {
-                        btnAnterior_Click(null, null);
-                    }
+                    if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);
                     break;
                 case "siguiente":
-                    if (btnSiguiente.Enabled)
-                    {
-                        btnSiguiente_Click(null, null);
-                    }
-                    break;
-                default:
+                    if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);
                     break;
             }
         }
         
-
+        private void agregar_eventos () {
+          string[] nombres = {"panel", "index", "asunto", "pictureBox"};
+          for (int n = 1; n <= 8; n ++) {
+            int k = n;
+            foreach (string nombre in nombres)
+              Controls[nombre + n.ToString()].Click += (object sender, EventArgs e) => seleccionar_asunto(k);
+          }
+        }
     }
 }

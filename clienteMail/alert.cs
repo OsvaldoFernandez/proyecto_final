@@ -46,10 +46,6 @@ namespace clienteMail
             this.Close();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-        }
-
         public override void manejar_comando(string comando)
         {
 
@@ -61,14 +57,7 @@ namespace clienteMail
                 case "cerrar":
                     btnCerrar_Click(null, null);
                     break;
-                default:
-                    break;
             }
-        }
-
-        private void frmAlert_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

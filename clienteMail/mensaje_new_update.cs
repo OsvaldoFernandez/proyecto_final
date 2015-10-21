@@ -17,12 +17,10 @@ namespace clienteMail
         {
             InitializeComponent();
             form_padre = form_padre_actual;
-
             if (id > 0)
             {
                 Mensaje mensaje = G.user.getMensaje(id);
                 txtTexto.Text = mensaje.Texto;
-
                 this.Text = "Modificar mensaje";
             }
             ID = id;
@@ -40,9 +38,7 @@ namespace clienteMail
             mensaje.__texto = txtTexto.Text;
 
             if (ID == 0) //agregue
-            {
                 G.user.agregar_mensaje(mensaje);
-            }
             else //modifique
             {
                 mensaje.__id = ID;
@@ -52,10 +48,5 @@ namespace clienteMail
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-        }
-
     }
 }

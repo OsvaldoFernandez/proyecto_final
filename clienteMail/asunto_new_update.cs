@@ -63,18 +63,7 @@ namespace clienteMail
 
         private void txtTexto_TextChanged(object sender, EventArgs e)
         {
-            if (txtTexto.Text == "")
-            {
-                clear1.Visible = false;
-            }
-            else
-            {
-                clear1.Visible = true;
-            }
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
+            clear1.Visible = txtTexto.Text != "";
         }
 
     }

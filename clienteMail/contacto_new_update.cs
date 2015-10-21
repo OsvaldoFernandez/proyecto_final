@@ -33,22 +33,9 @@ namespace clienteMail
             ID = id;
         }
 
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            if (txtNombre.Text == "")
-            {
-                clear1.Visible = false;
-            }
-            else
-            {
-                clear1.Visible = true;
-            }
+            clear1.Visible = txtNombre.Text != "";
         }
 
         private void clear1_Click(object sender, EventArgs e)
@@ -59,14 +46,7 @@ namespace clienteMail
 
         private void txtApellido_TextChanged(object sender, EventArgs e)
         {
-            if (txtApellido.Text == "")
-            {
-                clear2.Visible = false;
-            }
-            else
-            {
-                clear2.Visible = true;
-            }
+            clear2.Visible = txtApellido.Text != "";
         }
 
         private void clear2_Click(object sender, EventArgs e)
@@ -77,14 +57,7 @@ namespace clienteMail
 
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
-            if (txtMail.Text == "")
-            {
-                clear3.Visible = false;
-            }
-            else
-            {
-                clear3.Visible = true;
-            }
+            clear3.Visible = txtMail.Text != "";
         }
 
         private void clear3_Click(object sender, EventArgs e)
@@ -93,9 +66,11 @@ namespace clienteMail
             clear3.Visible = false;
         }
 
-        private void btnGuardar_Click_1(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Regex reg = new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
+            // correcciones hechas sobre expresion regular, no permitia todos los casos
+            // cualquier direccion con caracteres por encima de U+007F no es aceptada (usar Punycode (RFC 3492))
+            Regex reg = new Regex(@"^[^ /?@\x00-\x1f()<>]+@([^. /?@\x00-\x1f()<>]+\.)*[a-zA-Z]{2,}\.?$");
             if (!reg.IsMatch(txtMail.Text))
             {
                 panel3.BackColor = Color.Red;
@@ -111,9 +86,7 @@ namespace clienteMail
             contacto.__mail = txtMail.Text;
 
             if (ID == 0) //agregue
-            {
                 G.user.agregar_contacto(contacto);
-            }
             else //modifique
             {
                 contacto.__id = ID;
@@ -123,16 +96,5 @@ namespace clienteMail
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-        }
-
-        private void frmContacto_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

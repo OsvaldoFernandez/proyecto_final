@@ -21,21 +21,15 @@ namespace clienteMail.comando
         public comando()
         {
             InitializeComponent();
-#if !DEBUG
-            Visible = false;
-#endif
-            
+            #if !DEBUG
+                Visible = false;
+            #endif
         }
 
         private void enableBtn_Click(object sender, EventArgs e)
         {
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
             disableBtn.Enabled = true;
-        }
-
-        public override void manejar_comando(string comando)
-        {
-           //NADA
         }
 
         private void comando_Load(object sender, EventArgs e)
@@ -67,111 +61,24 @@ namespace clienteMail.comando
                 if (pos < 0) break;
             }
             if (pos > 0) richTextBox1.Text = richTextBox1.Text.Substring(pos + 1);
-            switch (e.Result.Text)
-            {
-                case "uno":
-                    richTextBox1.Text += "\nUno";
-                    break;
-                case "dos":
-                    richTextBox1.Text += "\nDos";
-                    break;
-                case "tres":
-                    richTextBox1.Text += "\nTres";
-                    break;
-                case "cuatro":
-                    richTextBox1.Text += "\nCuatro";
-                    break;
-                case "cinco":
-                    richTextBox1.Text += "\nCinco";
-                    break;
-                case "seis":
-                    richTextBox1.Text += "\nSeis";
-                    break;
-                case "siete":
-                    richTextBox1.Text += "\nSiete";
-                    break;
-                case "ocho":
-                    richTextBox1.Text += "\nOcho";
-                    break;
-                case "nueve":
-                    richTextBox1.Text += "\nNueve";
-                    break;
-                case "contactos":
-                    richTextBox1.Text += "\nContactos";
-                    break;
-                case "asuntos":
-                    richTextBox1.Text += "\nAsuntos";
-                    break;
-                case "mensajes":
-                    richTextBox1.Text += "\nMensajes";
-                    break;
-                case "recibidos":
-                    richTextBox1.Text += "\nRecibidos";
-                    break;
-                case "enviados":
-                    richTextBox1.Text += "\nEnviados";
-                    break;
-                case "eliminar":
-                    richTextBox1.Text += "\nEliminar";
-                    break;
-                case "leer":
-                    richTextBox1.Text += "\nLeer";
-                    break;
-                case "redactar":
-                    richTextBox1.Text += "\nRedactar";
-                    break;
-                case "anterior":
-                    richTextBox1.Text += "\nAnterior";
-                    break;
-                case "siguiente":
-                    richTextBox1.Text += "\nSiguiente";
-                    break;
-                case "cerrar":
-                    richTextBox1.Text += "\nCerrar";
-                    break;
-                case "aceptar":
-                    richTextBox1.Text += "\nAceptar";
-                    break;
-                case "para":
-                    richTextBox1.Text += "\nPara";
-                    break;
-                case "enviar":
-                    richTextBox1.Text += "\nEnviar";
-                    break;
-                case "cancelar":
-                    richTextBox1.Text += "\nCancelar";
-                    break;
-                case "actualizar":
-                    richTextBox1.Text += "\nActualizar";
-                    break;
-            }
-
-            Console.WriteLine(e.Result.Confidence.ToString());
-
+            if (e.Result.Text != null) richTextBox1.Text += Environment.NewLine + char.ToUpperInvariant(e.Result.Text[0]) + e.Result.Text.Substring(1);
+            #if DEBUG
+                Console.WriteLine(e.Result.Confidence.ToString());
+            #endif
             float confidence = e.Result.Confidence * 100;
             richTextBox1.Text += string.Format(" ({0:0.00}%)", e.Result.Confidence * 100);
 
             if (currentForm.Name == "entrenamiento_1")
-            //Está en modo entrenamiento, no autenticar y mandar el SpeechRecognized entero
-            {
+                // Esta en modo entrenamiento, no autenticar y mandar el SpeechRecognized entero
                 currentForm.manejar_comando_entrenamiento(e);
-            }
             else
             {
-                // filtrar por e.Result.Confidence
-                RecognizedAudio audio = e.Result.Audio;
-                TimeSpan duration = audio.Duration;
-                // Osvaldo hace cosas muy raras
                 string path = Path.GetTempFileName();
-                using (Stream outputStream = new FileStream(path, FileMode.Create))
-                {
-                    RecognizedAudio nameAudio = audio;
-                    nameAudio.WriteToWaveStream(outputStream);
-                    outputStream.Close();
-                }
+                Stream outputStream = new FileStream(path, FileMode.Create);
+                e.Result.Audio.WriteToWaveStream(outputStream);
+                outputStream.Close();
                 int res = AV.avf_autenticar_WAV(autenticador, path);
                 File.Delete(path);
-
 
                 if (confidence > G.sensibilidad)
                 {
@@ -214,7 +121,6 @@ namespace clienteMail.comando
         {
             RichForm form1 = new entrenamiento.entrenamiento_1();
             form1.Show();
-
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

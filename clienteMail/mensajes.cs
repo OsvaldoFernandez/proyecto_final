@@ -20,15 +20,7 @@ namespace clienteMail
         {
             InitializeComponent();
             formAnterior = llamadoDesde;
-            if (llamadoDesde == "home")
-            {
-                btnAceptar.Visible = false;
-            
-            }
-            else
-            {
-                btnAceptar.Visible = true;
-            }
+            btnAceptar.Visible = llamadoDesde != "home";
             form_padre = formulario_padre;
         }
 
@@ -40,13 +32,10 @@ namespace clienteMail
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
-            Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            int selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount != 1)
-            {
                 //no seleccionó nada.
                 this.Close();
-            }
 
             this.idSelected = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
             form_padre.agregar_mensaje(this.idSelected);
@@ -62,22 +51,13 @@ namespace clienteMail
                 G.user.eliminar_mensaje(id);
                 this.actualizarMensajes();
             }
-
-        }
-
-        public override void manejar_cerrar(string contexto)
-        {
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             var form = new mensaje_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                this.actualizarMensajes();
-            }
+            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarMensajes();
         }
 
         private void actualizarMensajes()
@@ -97,7 +77,7 @@ namespace clienteMail
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowCount != 1)
+            if (selectedRowCount < 1)
             {
                 var form2 = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
                 form2.Show();
@@ -106,23 +86,20 @@ namespace clienteMail
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
             var form = new mensaje_new_update(id, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                this.actualizarMensajes();
-            }
+            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarMensajes();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Int32 selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowCount != 1)
+            if (selectedRowCount < 1)
             {
                 var form = new frmAlert(this, "Seleccionar mensaje", "Debe seleccionar un mensaje para eliminar", "close");
                 form.Show(this);
                 return;
             }
             int id = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
-            var form3 = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el contacto?", "yesno");
+            var form3 = new frmAlert(this, "Eliminar", "¿Está seguro que desea eliminar el contacto?", "yesno");
             form3.Show();
         }
 
@@ -369,17 +346,5 @@ namespace clienteMail
                     break;
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPagina_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

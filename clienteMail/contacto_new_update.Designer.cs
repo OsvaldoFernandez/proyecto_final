@@ -65,7 +65,6 @@
             this.label1.Size = new System.Drawing.Size(86, 25);
             this.label1.TabIndex = 10;
             this.label1.Text = "Nombre";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtApellido
             // 
@@ -129,7 +128,7 @@
             this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click_1);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // clear1
             // 
@@ -231,7 +230,6 @@
             this.Name = "frmContacto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Contacto";
-            this.Load += new System.EventHandler(this.frmContacto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

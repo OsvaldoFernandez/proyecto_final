@@ -351,7 +351,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(485, 71);
             this.panel1.TabIndex = 12;
-            this.panel1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // contactoNombre1
             // 
@@ -363,7 +362,6 @@
             this.contactoNombre1.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre1.TabIndex = 3;
             this.contactoNombre1.Text = "-emptylabel-";
-            this.contactoNombre1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // index1
             // 
@@ -376,7 +374,6 @@
             this.index1.Size = new System.Drawing.Size(30, 32);
             this.index1.TabIndex = 2;
             this.index1.Text = "1";
-            this.index1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // contacto1
             // 
@@ -388,7 +385,6 @@
             this.contacto1.Size = new System.Drawing.Size(138, 30);
             this.contacto1.TabIndex = 1;
             this.contacto1.Text = "-emptylabel-";
-            this.contacto1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // pictureBox1
             // 
@@ -399,7 +395,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.seleccionarContacto1);
             // 
             // panel2
             // 
@@ -413,7 +408,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(485, 71);
             this.panel2.TabIndex = 13;
-            this.panel2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // contactoNombre2
             // 
@@ -425,7 +419,6 @@
             this.contactoNombre2.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre2.TabIndex = 4;
             this.contactoNombre2.Text = "-emptylabel-";
-            this.contactoNombre2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // index2
             // 
@@ -438,7 +431,6 @@
             this.index2.Size = new System.Drawing.Size(30, 32);
             this.index2.TabIndex = 3;
             this.index2.Text = "2";
-            this.index2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // contacto2
             // 
@@ -450,7 +442,6 @@
             this.contacto2.Size = new System.Drawing.Size(138, 30);
             this.contacto2.TabIndex = 2;
             this.contacto2.Text = "-emptylabel-";
-            this.contacto2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // pictureBox2
             // 
@@ -461,7 +452,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.seleccionarContacto2);
             // 
             // panel3
             // 
@@ -475,7 +465,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(485, 71);
             this.panel3.TabIndex = 13;
-            this.panel3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // contactoNombre3
             // 
@@ -487,7 +476,6 @@
             this.contactoNombre3.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre3.TabIndex = 5;
             this.contactoNombre3.Text = "-emptylabel-";
-            this.contactoNombre3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // index3
             // 
@@ -500,7 +488,6 @@
             this.index3.Size = new System.Drawing.Size(30, 32);
             this.index3.TabIndex = 4;
             this.index3.Text = "3";
-            this.index3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // contacto3
             // 
@@ -512,7 +499,6 @@
             this.contacto3.Size = new System.Drawing.Size(138, 30);
             this.contacto3.TabIndex = 3;
             this.contacto3.Text = "-emptylabel-";
-            this.contacto3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // pictureBox3
             // 
@@ -523,7 +509,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.seleccionarContacto3);
             // 
             // panel4
             // 
@@ -537,7 +522,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(485, 71);
             this.panel4.TabIndex = 14;
-            this.panel4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // contactoNombre4
             // 
@@ -549,7 +533,6 @@
             this.contactoNombre4.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre4.TabIndex = 4;
             this.contactoNombre4.Text = "-emptylabel-";
-            this.contactoNombre4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // index4
             // 
@@ -562,7 +545,6 @@
             this.index4.Size = new System.Drawing.Size(30, 32);
             this.index4.TabIndex = 4;
             this.index4.Text = "4";
-            this.index4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // contacto4
             // 
@@ -574,7 +556,6 @@
             this.contacto4.Size = new System.Drawing.Size(138, 30);
             this.contacto4.TabIndex = 2;
             this.contacto4.Text = "-emptylabel-";
-            this.contacto4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // pictureBox4
             // 
@@ -585,7 +566,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.seleccionarContacto4);
             // 
             // panel5
             // 
@@ -599,7 +579,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(485, 71);
             this.panel5.TabIndex = 14;
-            this.panel5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // contactoNombre5
             // 
@@ -611,7 +590,6 @@
             this.contactoNombre5.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre5.TabIndex = 5;
             this.contactoNombre5.Text = "-emptylabel-";
-            this.contactoNombre5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // index5
             // 
@@ -624,7 +602,6 @@
             this.index5.Size = new System.Drawing.Size(30, 32);
             this.index5.TabIndex = 4;
             this.index5.Text = "5";
-            this.index5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // contacto5
             // 
@@ -636,7 +613,6 @@
             this.contacto5.Size = new System.Drawing.Size(138, 30);
             this.contacto5.TabIndex = 3;
             this.contacto5.Text = "-emptylabel-";
-            this.contacto5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // pictureBox5
             // 
@@ -647,7 +623,6 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.seleccionarContacto5);
             // 
             // panel6
             // 
@@ -661,7 +636,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(485, 71);
             this.panel6.TabIndex = 15;
-            this.panel6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // contactoNombre6
             // 
@@ -673,7 +647,6 @@
             this.contactoNombre6.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre6.TabIndex = 6;
             this.contactoNombre6.Text = "-emptylabel-";
-            this.contactoNombre6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // index6
             // 
@@ -686,7 +659,6 @@
             this.index6.Size = new System.Drawing.Size(30, 32);
             this.index6.TabIndex = 5;
             this.index6.Text = "6";
-            this.index6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // contacto6
             // 
@@ -698,7 +670,6 @@
             this.contacto6.Size = new System.Drawing.Size(138, 30);
             this.contacto6.TabIndex = 4;
             this.contacto6.Text = "-emptylabel-";
-            this.contacto6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // pictureBox6
             // 
@@ -709,7 +680,6 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 1;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.seleccionarContacto6);
             // 
             // panel7
             // 
@@ -723,7 +693,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(485, 71);
             this.panel7.TabIndex = 15;
-            this.panel7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // contactoNombre7
             // 
@@ -735,7 +704,6 @@
             this.contactoNombre7.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre7.TabIndex = 7;
             this.contactoNombre7.Text = "-emptylabel-";
-            this.contactoNombre7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // index7
             // 
@@ -748,7 +716,6 @@
             this.index7.Size = new System.Drawing.Size(30, 32);
             this.index7.TabIndex = 4;
             this.index7.Text = "7";
-            this.index7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // contacto7
             // 
@@ -760,7 +727,6 @@
             this.contacto7.Size = new System.Drawing.Size(138, 30);
             this.contacto7.TabIndex = 2;
             this.contacto7.Text = "-emptylabel-";
-            this.contacto7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // pictureBox7
             // 
@@ -771,7 +737,6 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 1;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.seleccionarContacto7);
             // 
             // panel8
             // 
@@ -785,7 +750,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(485, 71);
             this.panel8.TabIndex = 16;
-            this.panel8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // contactoNombre8
             // 
@@ -797,7 +761,6 @@
             this.contactoNombre8.Size = new System.Drawing.Size(124, 25);
             this.contactoNombre8.TabIndex = 8;
             this.contactoNombre8.Text = "-emptylabel-";
-            this.contactoNombre8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // index8
             // 
@@ -810,7 +773,6 @@
             this.index8.Size = new System.Drawing.Size(30, 32);
             this.index8.TabIndex = 4;
             this.index8.Text = "8";
-            this.index8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // contacto8
             // 
@@ -822,7 +784,6 @@
             this.contacto8.Size = new System.Drawing.Size(138, 30);
             this.contacto8.TabIndex = 3;
             this.contacto8.Text = "-emptylabel-";
-            this.contacto8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // pictureBox8
             // 
@@ -833,7 +794,6 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 2;
             this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.seleccionarContacto8);
             // 
             // panel10
             // 
