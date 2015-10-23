@@ -49,7 +49,6 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensaje_new
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensaje_new_update.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensajes.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
-C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
@@ -82,3 +81,4 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\cliente_mail.csproj.Genera
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\G.resources
+C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\G.resources

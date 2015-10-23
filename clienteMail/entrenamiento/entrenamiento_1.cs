@@ -29,6 +29,23 @@ namespace clienteMail.entrenamiento
             dataGridView1.Rows.Add("Siete", "pendiente", "7_1");
             dataGridView1.Rows.Add("Ocho", "pendiente", "8_1");
             dataGridView1.Rows.Add("Nueve", "pendiente", "9_1");
+            dataGridView1.Rows.Add("Contactos", "pendiente", "con_1");
+            dataGridView1.Rows.Add("Asuntos", "pendiente", "asu_1");
+            dataGridView1.Rows.Add("Mensajes", "pendiente", "men_1");
+            dataGridView1.Rows.Add("Recibidos", "pendiente", "rec_1");
+            dataGridView1.Rows.Add("Enviados", "pendiente", "env_1");
+            dataGridView1.Rows.Add("Eliminar", "pendiente", "eli_1");
+            dataGridView1.Rows.Add("Actualizar", "pendiente", "act_1");
+            dataGridView1.Rows.Add("Redactar", "pendiente", "red_1");
+            dataGridView1.Rows.Add("Anterior", "pendiente", "ant_1");
+            dataGridView1.Rows.Add("Siguiente", "pendiente", "sig_1");
+            dataGridView1.Rows.Add("Aceptar", "pendiente", "ace_1");
+            dataGridView1.Rows.Add("Para", "pendiente", "par_1");
+            dataGridView1.Rows.Add("Enviar", "pendiente", "env_1");
+            dataGridView1.Rows.Add("Cerrar", "pendiente", "cer_1");
+            dataGridView1.Rows.Add("Cancelar", "pendiente", "can_1");
+            dataGridView1.Rows.Add("Responder", "pendiente", "res_1");
+            dataGridView1.Rows.Add("Reenviar", "pendiente", "ree_1");
             dataGridView1.Rows.Add("Uno", "pendiente", "1_2");
             dataGridView1.Rows.Add("Dos", "pendiente", "2_2");
             dataGridView1.Rows.Add("Tres", "pendiente", "3_2");
@@ -38,6 +55,23 @@ namespace clienteMail.entrenamiento
             dataGridView1.Rows.Add("Siete", "pendiente", "7_2");
             dataGridView1.Rows.Add("Ocho", "pendiente", "8_2");
             dataGridView1.Rows.Add("Nueve", "pendiente", "9_2");
+            dataGridView1.Rows.Add("Contactos", "pendiente", "con_2");
+            dataGridView1.Rows.Add("Asuntos", "pendiente", "asu_2");
+            dataGridView1.Rows.Add("Mensajes", "pendiente", "men_2");
+            dataGridView1.Rows.Add("Recibidos", "pendiente", "rec_2");
+            dataGridView1.Rows.Add("Enviados", "pendiente", "env_2");
+            dataGridView1.Rows.Add("Eliminar", "pendiente", "eli_2");
+            dataGridView1.Rows.Add("Actualizar", "pendiente", "act_2");
+            dataGridView1.Rows.Add("Redactar", "pendiente", "red_2");
+            dataGridView1.Rows.Add("Anterior", "pendiente", "ant_2");
+            dataGridView1.Rows.Add("Siguiente", "pendiente", "sig_2");
+            dataGridView1.Rows.Add("Aceptar", "pendiente", "ace_2");
+            dataGridView1.Rows.Add("Para", "pendiente", "par_2");
+            dataGridView1.Rows.Add("Enviar", "pendiente", "env_2");
+            dataGridView1.Rows.Add("Cerrar", "pendiente", "cer_2");
+            dataGridView1.Rows.Add("Cancelar", "pendiente", "can_2");
+            dataGridView1.Rows.Add("Responder", "pendiente", "res_2");
+            dataGridView1.Rows.Add("Reenviar", "pendiente", "ree_2");
             dataGridView1.Rows.Add("Uno", "pendiente", "1_3");
             dataGridView1.Rows.Add("Dos", "pendiente", "2_3");
             dataGridView1.Rows.Add("Tres", "pendiente", "3_3");
@@ -47,6 +81,23 @@ namespace clienteMail.entrenamiento
             dataGridView1.Rows.Add("Siete", "pendiente", "7_3");
             dataGridView1.Rows.Add("Ocho", "pendiente", "8_3");
             dataGridView1.Rows.Add("Nueve", "pendiente", "9_3");
+            dataGridView1.Rows.Add("Contactos", "pendiente", "con_3");
+            dataGridView1.Rows.Add("Asuntos", "pendiente", "asu_3");
+            dataGridView1.Rows.Add("Mensajes", "pendiente", "men_3");
+            dataGridView1.Rows.Add("Recibidos", "pendiente", "rec_3");
+            dataGridView1.Rows.Add("Enviados", "pendiente", "env_3");
+            dataGridView1.Rows.Add("Eliminar", "pendiente", "eli_3");
+            dataGridView1.Rows.Add("Actualizar", "pendiente", "act_3");
+            dataGridView1.Rows.Add("Redactar", "pendiente", "red_3");
+            dataGridView1.Rows.Add("Anterior", "pendiente", "ant_3");
+            dataGridView1.Rows.Add("Siguiente", "pendiente", "sig_3");
+            dataGridView1.Rows.Add("Aceptar", "pendiente", "ace_3");
+            dataGridView1.Rows.Add("Para", "pendiente", "par_3");
+            dataGridView1.Rows.Add("Enviar", "pendiente", "env_3");
+            dataGridView1.Rows.Add("Cerrar", "pendiente", "cer_3");
+            dataGridView1.Rows.Add("Cancelar", "pendiente", "can_3");
+            dataGridView1.Rows.Add("Responder", "pendiente", "res_3");
+            dataGridView1.Rows.Add("Reenviar", "pendiente", "ree_3");
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
@@ -95,6 +146,7 @@ namespace clienteMail.entrenamiento
                 else
                 {
                     dataGridView1.Rows[index + 1].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = index +1;
                 }
             }
 
