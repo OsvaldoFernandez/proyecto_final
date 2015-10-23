@@ -54,7 +54,7 @@ namespace clienteMail
                 case "aceptar":
                     btnAceptar_Click(null, null);
                     break;
-                case "cerrar":
+                case "cerrar": case "cancelar":
                     btnCerrar_Click(null, null);
                     break;
             }

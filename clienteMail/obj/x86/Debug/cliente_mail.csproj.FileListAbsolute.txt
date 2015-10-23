@@ -50,7 +50,6 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.mensajes.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.comando.comando.resources
-C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.splashScreen.resources
@@ -82,3 +81,4 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\G.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\G.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\G.resources

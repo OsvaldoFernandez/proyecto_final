@@ -153,7 +153,7 @@
             this.MinimizeBox = false;
             this.Name = "entrenamiento_1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "entrenamiento_1";
+            this.Text = "Entrenamiento";
             this.Load += new System.EventHandler(this.entrenamiento_1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cafe)).EndInit();
