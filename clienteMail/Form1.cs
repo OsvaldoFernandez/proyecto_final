@@ -99,6 +99,10 @@ namespace clienteMail
             renderView();
         }
 
+        void Form1_FormClosed (object sender, System.Windows.Forms.FormClosedEventArgs e) {
+          Environment.Exit(0);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Opacity = 100;
@@ -223,19 +227,7 @@ namespace clienteMail
             if (this.dataMails.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 int index = Convert.ToInt32(this.dataMails.Rows[e.RowIndex].Cells["index"].Value);
-                mail_enviado message = new mail_enviado();
-                if (recibidos)
-                {
-                    Rfc822Message message_rfc = messagesRecibidos[pagActual][index];
-                    message.__mensaje = message_rfc.Text.ToString();
-                    message.__from = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
-                    message.__asunto = message_rfc.Subject.ToString();
-                    message.__fecha_creacion = message_rfc.Date.ToLocalTime();
-                }
-                else
-                    message = messagesEnviados[index];
-
-                (new leer_mail(message)).Show();
+                leerMail(index);
             }
         }
 
@@ -258,22 +250,23 @@ namespace clienteMail
                 btnEnviados_Click(null, e);
         }
 
+        private void actualizar_vista () {
+          if (recibidos)
+            showRecibidos();
+          else
+            showEnviados();
+        }
+
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             pagActual++;
-            if (recibidos)
-                this.showRecibidos();
-            else
-                this.showEnviados();
+            actualizar_vista();
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
             pagActual--;
-            if (recibidos)
-                this.showRecibidos();
-            else
-                this.showEnviados();
+            actualizar_vista();
         }
 
         private void handlePaginacion()
@@ -294,11 +287,10 @@ namespace clienteMail
 
         private void handlePaginacionEnviados() 
         {
-            int cant = (int) G.user.mailsEnviados().Length;
-            int cantPaginas = (cant + 7) / 8;
+            int cantPaginas = (G.user.cantidad_mails_enviados() + 7) / 8;
             lblPagina.Text = "Página " + pagActual.ToString();
             btnAnterior.Enabled = pagActual != 1;
-            btnSiguiente.Enabled = !(pagActual == cantPaginas || cant == 0);
+            btnSiguiente.Enabled = !(pagActual == cantPaginas || cantPaginas == 0);
         }       
 
         private void btnContactos_Click(object sender, EventArgs e)
@@ -391,19 +383,21 @@ namespace clienteMail
         public void leerMail(int numero) {
             if ((new Label[] {index1, index2, index3, index4, index5, index6, index7, index8})[numero - 1].Visible)
             {
-                mail_enviado message = new mail_enviado();
+                mail_enviado message;
                 if (recibidos)
                 {
                     Rfc822Message message_rfc = messagesRecibidos[pagActual][numero - 1];
+                    message = new mail_enviado();
                     message.__mensaje = message_rfc.Text.ToString();
                     message.__para = message_rfc.From.GetEmailString().Replace("<", "").Replace(">", "");
                     message.__asunto = message_rfc.Subject.ToString();
                     message.__fecha_creacion = message_rfc.Date.ToLocalTime();
+                    message.__uidl = messageUIDLs[numero];
                 }
                 else
                     message = messagesEnviados[numero - 1];
 
-                leer_mail form = new leer_mail(message);
+                leer_mail form = new leer_mail(message, this);
                 form.Show();
             }
         }
@@ -413,5 +407,18 @@ namespace clienteMail
             btnAnterior.ForeColor = sender.Equals(false) ? Color.Blue : Color.Red;
         }
 
+        public bool eliminar_mail (string UIDL) {
+          // ...
+          throw new NotImplementedException();
+        }
+
+        public bool eliminar_mail (int ID) {
+          if (!G.user.eliminar_mail_enviado(ID)) return false;
+          if (((G.user.cantidad_mails_enviados() % 8) == 1) && btnAnterior.Enabled)
+            btnAnterior_Click(null, EventArgs.Empty);
+          else
+            actualizar_vista();
+          return true;
+        }
     }
 }

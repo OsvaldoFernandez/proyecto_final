@@ -1040,6 +1040,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente mail";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosed += Form1_FormClosed;
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();

@@ -560,4 +560,14 @@ public class User
 
         return lista_mails_pag.ToArray();
     }
+
+    public int cantidad_mails_enviados () {
+      // ...
+      throw new NotImplementedException();
+    }
+
+    public bool eliminar_mail_enviado (int ID) {
+      // ...
+      throw new NotImplementedException();
+    }
 }

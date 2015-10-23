@@ -14,11 +14,13 @@ namespace clienteMail
     public partial class leer_mail : FormComandos
     {
         mail_enviado message_actual;
-        public leer_mail(mail_enviado message)
+        Form1 padre;
+        public leer_mail(mail_enviado message, Form1 form_padre)
         {
             InitializeComponent();
             webBrowser.DocumentText = message.Mensaje;
             message_actual = message;
+            padre = form_padre;
 
             lblFrom.Text = "De: " + message.__para;
             lblAsunto.Text = "Asunto: " + message.__asunto;
@@ -49,12 +51,15 @@ namespace clienteMail
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            var form = new frmAlert(this, "Eliminar", "Está seguro que desea eliminar el mail?", "yesno");
+            var form = new frmAlert(this, "Eliminar", "¿Está seguro que desea eliminar el mail?", "yesno");
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK)
-            {
-                //BORRA MAIL
-            } 
+            if (vr != System.Windows.Forms.DialogResult.OK) return;
+            bool estado;
+            if (message_actual.UIDL == null)
+              estado = padre.eliminar_mail(message_actual.ID);
+            else
+              estado = padre.eliminar_mail(message_actual.UIDL);
+            if (estado) this.Close();
         }
 
         public override void manejar_comando(string comando)
