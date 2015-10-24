@@ -57,6 +57,7 @@ namespace clienteMail
               Comando.Evento("mensajes", btnMensajes_Click),
               Comando.Evento("recibidos", btnRecibidos_Click),
               Comando.Evento("enviados", btnEnviados_Click),
+              Comando.Evento("enviar", btnEnviados_Click),
               Comando.Evento("redactar", redactar_Click),
               new Comando("anterior", () => {if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);}),
               new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);}),

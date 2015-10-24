@@ -126,7 +126,7 @@ namespace clienteMail.comando
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RichForm form1 = new entrenamiento.entrenamiento_1();
+            RichForm form1 = new entrenamiento.entrenamiento_1("perfil.pav");
             form1.Show();
         }
 
