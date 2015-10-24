@@ -82,7 +82,7 @@ namespace clienteMail.redactar_email
                 mailEnviado.__asunto = Subject;
                 mailEnviado.__mensaje = Body;
 
-                G.user.guardarMail(mailEnviado);
+                G.user.guardarMailEnviado(mailEnviado);
 
                 carg.Detener();
 

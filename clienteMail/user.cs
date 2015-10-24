@@ -487,7 +487,7 @@ public class User
         cmd.Dispose();
     }
 
-    public void guardarMail(mail_enviado mail)
+    public void guardarMailEnviado(mail_enviado mail)
     {
         SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
         cmd.CommandText = "insert into Mails_enviados(usuario_id, para, asunto, mensaje, fecha_creacion) values(?, ?, ?, ?, datetime('now'))";
@@ -570,6 +570,155 @@ public class User
       int cantidad = (int) (long) cmd.ExecuteScalar();
       cmd.Dispose();
       return cantidad;
+    }
+
+    public void guardarMailRecibido(mail_recibido mail)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "insert into Mails_recibidos(usuario_id, uidl, remitente_nombre, remitente_mail, asunto, mensaje, fecha) values(?, ?, ?, ?, ?, ?, ?)";
+
+        SQLiteParameter paramId = new SQLiteParameter();
+        cmd.Parameters.Add(paramId);
+        paramId.Value = this.ID;
+
+        SQLiteParameter paramUidl = new SQLiteParameter();
+        cmd.Parameters.Add(paramUidl);
+        paramUidl.Value = mail.UIDL;
+
+        SQLiteParameter paramRemitente_nombre = new SQLiteParameter();
+        cmd.Parameters.Add(paramRemitente_nombre);
+        paramRemitente_nombre.Value = mail.Remitente_nombre;
+
+        SQLiteParameter paramRemitente_mail = new SQLiteParameter();
+        cmd.Parameters.Add(paramRemitente_mail);
+        paramRemitente_mail.Value = mail.Remitente_mail;
+
+        SQLiteParameter paramAsunto = new SQLiteParameter();
+        cmd.Parameters.Add(paramAsunto);
+        paramAsunto.Value = mail.Asunto;
+
+        SQLiteParameter paramMensaje = new SQLiteParameter();
+        cmd.Parameters.Add(paramMensaje);
+        paramMensaje.Value = mail.Mensaje;
+
+        SQLiteParameter paramFecha = new SQLiteParameter();
+        cmd.Parameters.Add(paramFecha);
+        paramFecha.Value = mail.Fecha;
+
+        cmd.ExecuteNonQuery();
+
+        cmd.Dispose();
+    }
+
+    public mail_recibido getMailRecibidoByUidl(string uidl)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT uidl, remitente_nombre, remitente_mail, asunto, mensaje, fecha, id FROM Mails_recibidos WHERE uidl = ? limit 1";
+
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = uidl;
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        mail_recibido mail = new mail_recibido();
+
+        try
+        {
+            if (!dr.Read()) throw new Exception("mail no guardado aun");
+
+            mail.__uidl = dr.GetString(0);
+            mail.__remitente_nombre = dr.GetString(1);
+            mail.__remitente_mail = dr.GetString(2);
+            mail.__asunto = dr.GetString(3);
+            mail.__mensaje = dr.GetString(4);
+            mail.__fecha = dr.GetDateTime(5);
+            mail.__id = dr.GetInt32(6);
+        }
+        finally
+        {
+            dr.Close();
+            dr.Dispose();
+            cmd.Dispose();
+        }
+
+        return mail;
+    }
+
+    public mail_recibido[] mailsRecibidos()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT uidl, remitente_nombre, remitente_mail, asunto, mensaje, fecha, id FROM Mails_recibidos WHERE usuario_id = ? AND asunto is not null order by fecha desc";
+        
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = this.ID;
+
+        SQLiteDataReader dr = cmd.ExecuteReader();
+
+        List<mail_recibido> lista_mails = new List<mail_recibido>();
+
+        while (dr.Read())
+        {
+            mail_recibido mail = new mail_recibido();
+            mail.__uidl = dr.GetString(0);
+            mail.__remitente_nombre = dr.GetString(1);
+            mail.__remitente_mail = dr.GetString(2);
+            mail.__asunto = dr.GetString(3);
+            mail.__mensaje = dr.GetString(4);
+            mail.__fecha = dr.GetDateTime(5);
+            mail.__id = dr.GetInt32(6);
+            lista_mails.Add(mail);
+        }
+
+        dr.Close();
+        dr.Dispose();
+        cmd.Dispose();
+
+        return lista_mails.ToArray();
+    }
+
+
+    public mail_recibido[] mailRecibidoPag(int nro)
+    {
+        List<mail_recibido> lista_mails_pag = new List<mail_recibido>();
+        mail_recibido[] arrayMails = this.mailsRecibidos();
+
+        int mail_desde = (nro - 1) * 8;
+        int mail_hasta;
+        if (nro * 8 < arrayMails.Length)
+            mail_hasta = nro * 8 - 1;
+        else
+            mail_hasta = arrayMails.Length - 1;
+
+        for (int i = mail_desde; i <= mail_hasta; i++) lista_mails_pag.Add(arrayMails[i]);
+
+        return lista_mails_pag.ToArray();
+    }
+
+    public int cantidad_mails_recibidos()
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT IFNULL(COUNT(*), 0) FROM Mails_recibidos WHERE usuario_id = ? and asunto is not null";
+        SQLiteParameter param = new SQLiteParameter();
+        param.Value = this.ID;
+        cmd.Parameters.Add(param);
+        int cantidad = (int)(long)cmd.ExecuteScalar();
+        cmd.Dispose();
+        return cantidad;
+    }
+
+    public bool exists_mailRecibido(string uidl)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "SELECT COUNT(*) FROM Mails_recibidos WHERE uidl = ?";
+
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = uidl;
+        long cant = (long)cmd.ExecuteScalar();
+        cmd.Dispose();
+        
+        return cant > 0;
     }
 
     public bool eliminar_mail_enviado (int ID) {
