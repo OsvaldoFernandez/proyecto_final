@@ -99,6 +99,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mail_enviado.cs" />
+    <Compile Include="mail_recibido.cs" />
     <Compile Include="mensaje_new_update.cs">
       <SubType>Form</SubType>
     </Compile>
