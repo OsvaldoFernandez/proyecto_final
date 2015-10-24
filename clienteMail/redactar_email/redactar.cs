@@ -50,8 +50,9 @@ namespace clienteMail.redactar_email
                 return;
             }
 
-            Thread t = new Thread(new ThreadStart(SplashScreen));
-            t.Start();
+            Cargando carg = new Cargando();
+            carg.Ejecutar();
+
             To = toTxt.Text;
             Subject = asuntoTxt.Text;
             Body = cuerpoTxt.Text + "<br><br>" + webBrowser.DocumentText;
@@ -83,15 +84,15 @@ namespace clienteMail.redactar_email
 
                 G.user.guardarMail(mailEnviado);
 
-                t.Abort();
+                carg.Detener();
 
                 var form2 = new frmAlert(this, "Mail enviado", "El mail ha sido enviado exitosamente", "close");
                 form2.Show();
             }
             catch
             {
-                t.Abort();
-                var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico. Vuelva a intentarlo más tarde.", "close");
+                carg.Detener();
+                var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico. \nVuelva a intentarlo más tarde.", "close");
                 form2.Show();
             }
         }

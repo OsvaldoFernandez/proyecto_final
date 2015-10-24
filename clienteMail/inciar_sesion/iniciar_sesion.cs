@@ -52,5 +52,11 @@ namespace clienteMail.inciar_sesion
         {
             new crear_cuenta.crear_cuenta().Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            G.comando_form = new comando.comando();
+            G.comando_form.Show();
+        }
     }
 }

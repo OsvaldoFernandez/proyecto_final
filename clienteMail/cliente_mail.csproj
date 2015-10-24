@@ -75,6 +75,7 @@
       <DependentUpon>asunto_new_update.cs</DependentUpon>
     </Compile>
     <Compile Include="autvoz.cs" />
+    <Compile Include="Cargando.cs" />
     <Compile Include="comando\comando.cs">
       <SubType>Form</SubType>
     </Compile>

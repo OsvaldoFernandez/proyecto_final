@@ -108,8 +108,8 @@ namespace clienteMail
             this.Opacity = 100;
             // create client and connect 
 
-            Thread t = new Thread(new ThreadStart(SplashScreen));
-            t.Start();
+            Cargando carg = new Cargando();
+            carg.Ejecutar();
 
             try 
             {
@@ -117,7 +117,7 @@ namespace clienteMail
             }
             catch
             {
-                t.Abort();
+                carg.Detener();
                 this.Opacity = 0;
 
                 var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico.\n Vuelva a intentarlo más tarde.", "close");
@@ -146,11 +146,11 @@ namespace clienteMail
             {
                 this.actualizar();
                 btnRecibidos_Click(null, e);
-                t.Abort();
+                carg.Detener();
             }
             catch
             {
-                t.Abort();
+                carg.Detener();
                 this.Opacity = 0;
 
                 var iniciarSesion = new iniciar_sesion();
