@@ -562,8 +562,14 @@ public class User
     }
 
     public int cantidad_mails_enviados () {
-      // ...
-      throw new NotImplementedException();
+      SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+      cmd.CommandText = "SELECT IFNULL(COUNT(*), 0) FROM Mails_enviados WHERE usuario_id = ?";
+      SQLiteParameter param = new SQLiteParameter();
+      param.Value = this.ID;
+      cmd.Parameters.Add(param);
+      int cantidad = (int) (long) cmd.ExecuteScalar();
+      cmd.Dispose();
+      return cantidad;
     }
 
     public bool eliminar_mail_enviado (int ID) {
