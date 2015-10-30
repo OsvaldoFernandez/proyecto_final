@@ -33,11 +33,6 @@ namespace clienteMail.redactar_email
             webBrowser.Visible = mensaje != "";
         }
 
-        public void SplashScreen()
-        {
-            Application.Run(new splashScreen());
-        }
-
         private void enviarBtn_Click(object sender, EventArgs e)
         {
             // ver comentario en contacto_new_update.cs respecto de la expresion regular
@@ -95,6 +90,7 @@ namespace clienteMail.redactar_email
                 var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico. \nVuelva a intentarlo más tarde.", "close");
                 form2.Show();
             }
+                
         }
 
         private void btnPara_Click(object sender, EventArgs e)

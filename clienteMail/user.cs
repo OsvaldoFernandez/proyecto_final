@@ -721,8 +721,28 @@ public class User
         return cant > 0;
     }
 
-    public bool eliminar_mail_enviado (int ID) {
-      // ...
-      throw new NotImplementedException();
+    public void eliminar_mail_recibido(string uidl)
+    {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "DELETE FROM Mails_recibidos WHERE uidl = ?";
+
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = uidl;
+
+        cmd.ExecuteNonQuery();
+        cmd.Dispose();
+    }
+
+    public void eliminar_mail_enviado (int ID) {
+        SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+        cmd.CommandText = "DELETE FROM Mails_enviados WHERE id = ?";
+
+        SQLiteParameter param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = ID;
+
+        cmd.ExecuteNonQuery();
+        cmd.Dispose();
     }
 }

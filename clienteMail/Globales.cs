@@ -1,5 +1,11 @@
 ﻿using System;
 using System.Data.SQLite;
+using Email.Net;
+using Email.Net.Common;
+using Email.Net.Pop3;
+using Email.Net.Common.Configurations;
+using Email.Net.Common.Collections;
+using Email.Net.Pop3.Exceptions;
 
 public static class G
 {
@@ -23,5 +29,28 @@ public static class G
         SQLiteCommand cmd = new SQLiteCommand(consulta, conexion);
         cmd.ExecuteNonQuery();
         cmd.Dispose();
+    }
+
+    public static Pop3Client crear_cliente()
+    {
+        Pop3Client client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
+        
+        #if DEBUG
+                client.Connected += ((Pop3Client c) => Console.WriteLine("Cliente conectado"));
+                client.Authenticated += ((Pop3Client c) => Console.WriteLine("Cliente autenticado"));
+                client.MessageReceived += ((Pop3Client c, Rfc822Message m) =>
+                    Console.WriteLine("Mensaje recibido: {0}", m.Subject));
+                client.Completed += ((Pop3Client c) => Console.WriteLine("Operacion completada"));
+                client.Quit += ((Pop3Client c) => Console.WriteLine("Cliente cerrado"));
+                client.BrokenMessage += ((Pop3Client c, Pop3MessageInfo i, string err, Rfc822Message m) =>
+                    Console.WriteLine("Mensaje {0} no valido: {1}", i.Number, err));
+                client.MessageDeleted += ((Pop3Client c, uint n) => Console.WriteLine("Mensaje {0} borrado", n));
+        #endif
+
+        client.SSLInteractionType = EInteractionType.SSLPort;
+
+        client.Login();
+
+        return client;
     }
 }

@@ -52,14 +52,7 @@ namespace clienteMail
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var form = new frmAlert(this, "Eliminar", "¿Está seguro que desea eliminar el mail?", "yesno");
-            DialogResult vr = form.ShowDialog(this);
-            if (vr != System.Windows.Forms.DialogResult.OK) return;
-            bool estado;
-            if (message_actual.UIDL == null)
-              estado = padre.eliminar_mail(message_actual.ID);
-            else
-              estado = padre.eliminar_mail(message_actual.UIDL);
-            if (estado) this.Close();
+            form.Show();
         }
 
         public override void manejar_comando(string comando)
@@ -74,7 +67,14 @@ namespace clienteMail
 
         public override void manejar_aceptar(string contexto)
         {
-            if (contexto == "Eliminar") btnEliminar_Click(null, EventArgs.Empty);
+            if (contexto == "Eliminar")
+            {
+                if (message_actual.UIDL == null)
+                    padre.eliminar_mail(message_actual.ID);
+                else
+                    padre.eliminar_mail(message_actual.UIDL);
+                this.Close();
+            }
         }
     }
 }

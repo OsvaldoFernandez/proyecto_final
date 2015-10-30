@@ -22,14 +22,12 @@ namespace clienteMail
     public partial class Form1 : FormPaginado
     {
         Pop3Client client;
-        bool authenticated = false;
 
         mail_recibido[] messagesRecibidos = new mail_recibido[8];
         mail_enviado[] messagesEnviados = new mail_enviado[8];
         Dictionary<int, string> messageUIDLs = new Dictionary<int,string>();
         int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
-        uint ultimoRender; //que mails ya mostré o "renderice"
         int lastPageRecibidos;
 
         public Form1()
@@ -67,7 +65,6 @@ namespace clienteMail
             pagActual = 1;
             lblTitle.Text = "Recibidos";
 
-            ultimoRender = Convert.ToUInt32(client.GetStatistic().CountMessages);
             dataMails.Columns[2].HeaderText = "De";
 
             this.showRecibidos();
@@ -105,45 +102,13 @@ namespace clienteMail
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Opacity = 100;
-            // create client and connect 
 
             Cargando carg = new Cargando();
             carg.Ejecutar();
-
-            try 
-            {
-                client = new Pop3Client(G.user.POP3server, G.user.POP3port, G.user.Mail, G.user.Password);
-            }
-            catch
-            {
-                carg.Detener();
-                this.Opacity = 0;
-
-                var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico.\n Vuelva a intentarlo más tarde.", "close");
-                form2.Show();
-                return;
-            }
-                
-            client.Authenticated += ((Pop3Client c) => this.authenticated = true);
-
-            #if DEBUG
-                client.Connected += ((Pop3Client c) => Console.WriteLine("Cliente conectado"));
-                client.Authenticated += ((Pop3Client c) => Console.WriteLine("Cliente autenticado"));
-                client.MessageReceived += ((Pop3Client c, Rfc822Message m) =>
-                    Console.WriteLine("Mensaje recibido: {0}", m.Subject));
-                client.Completed += ((Pop3Client c) => Console.WriteLine("Operacion completada"));
-                client.Quit += ((Pop3Client c) => Console.WriteLine("Cliente cerrado"));
-                client.BrokenMessage += ((Pop3Client c, Pop3MessageInfo i, string err, Rfc822Message m) =>
-                    Console.WriteLine("Mensaje {0} no valido: {1}", i.Number, err));
-                client.MessageDeleted += ((Pop3Client c, uint n) => Console.WriteLine("Mensaje {0} borrado", n));
-            #endif
-
-            client.SSLInteractionType = EInteractionType.SSLPort;
-
             recibidos = true;
             try
             {
-                this.actualizar();
+                pagActual = 1;
                 btnRecibidos_Click(null, e);
                 carg.Detener();
             }
@@ -162,12 +127,6 @@ namespace clienteMail
                 
         }
 
-        private void actualizar()
-        {
-            pagActual = 1;
-            client.Login();
-        }
-
         private void getMails()
         {
             Rfc822Message message;
@@ -179,6 +138,8 @@ namespace clienteMail
                 Cargando carg = new Cargando();
                 carg.Ejecutar();
                 //sincronización mails.
+
+                client = G.crear_cliente();
 
                 Pop3MessageUIDInfoCollection messageUIDs = client.GetAllUIDMessages();
                 uint i = 1;
@@ -207,7 +168,7 @@ namespace clienteMail
                     }
                     i++;
                 }
-
+                client.Logout();
                 carg.Detener();
             }
         }
@@ -251,7 +212,7 @@ namespace clienteMail
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            this.actualizar();
+            pagActual = 1;
             if (recibidos)
             {
                 btnRecibidos_Click(null, e);
@@ -418,17 +379,26 @@ namespace clienteMail
         }
 
         public bool eliminar_mail (string UIDL) {
-          // ...
-          throw new NotImplementedException();
+            client = G.crear_cliente();
+
+
+            var response = client.DeleteMessage(1);
+            Console.WriteLine(response.Type);
+            /*if (response.Type == EPop3ResponseType.OK)
+                messageTextBox.AppendText("\r\n Message deleted. \r\n");*/
+            //client.DeleteMessage(Convert.ToUInt32(UIDL));
+            G.user.eliminar_mail_recibido(UIDL);
+
+            client.Logout();
+            return true;
         }
 
-        public bool eliminar_mail (int ID) {
-          if (!G.user.eliminar_mail_enviado(ID)) return false;
+        public void eliminar_mail (int ID) {
+            G.user.eliminar_mail_enviado(ID);
           if (((G.user.cantidad_mails_enviados() % 8) == 1) && btnAnterior.Enabled)
             btnAnterior_Click(null, EventArgs.Empty);
           else
-            actualizar_vista();
-          return true;
+              actualizar_vista();
         }
     }
 }
