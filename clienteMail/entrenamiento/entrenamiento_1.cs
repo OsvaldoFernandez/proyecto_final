@@ -179,7 +179,7 @@ namespace clienteMail.entrenamiento
               rv = AV.avf_estado_entrenamiento(entrenador, out estado);
               if (rv != 0) continue;
               uint segundos_restantes = (limite_tiempo - estado.tiempo_transcurrido) / 1000;
-              if (segundos_restantes > 999999999u) segundos_restantes = 0;
+              if (segundos_restantes > 9999999u) segundos_restantes = 0;
               uint minutos_restantes = segundos_restantes / 60;
               segundos_restantes %= 60;
               label2.Text = "La operación tardará aproximadamente 20 minutos. Restan " + minutos_restantes.ToString() + ":" + segundos_restantes.ToString("00");
