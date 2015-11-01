@@ -92,7 +92,6 @@
             this.txtSensibilidad.Name = "txtSensibilidad";
             this.txtSensibilidad.Size = new System.Drawing.Size(100, 20);
             this.txtSensibilidad.TabIndex = 5;
-            this.txtSensibilidad.TextChanged += new System.EventHandler(this.txtSensibilidad_TextChanged);
             // 
             // label2
             // 

@@ -26,6 +26,20 @@ namespace clienteMail.comando
             #endif
         }
 
+        public override void actualizar_estado_microfono(bool estado)
+        {
+            if (estado)
+            {
+                recEngine.RecognizeAsync(RecognizeMode.Multiple);
+                disableBtn.Enabled = true;
+            }
+            else
+            {
+                recEngine.RecognizeAsyncStop();
+                disableBtn.Enabled = false;
+            }
+        }
+
         private void enableBtn_Click(object sender, EventArgs e)
         {
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
@@ -87,6 +101,7 @@ namespace clienteMail.comando
 
                 if (confidence > G.sensibilidad)
                 {
+                    G.confianza_autenticacion = (int)res / 100;
                     if (res < -10000)
                     {
                         richTextBox1.Text += " - error - " + res.ToString("X");
@@ -99,7 +114,7 @@ namespace clienteMail.comando
                         currentForm.manejar_comando(e.Result.Text);
                     }
                     else
-                    {
+                    { 
                         res = -res;
                         richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
                         currentForm.manejar_comando(e.Result.Text);

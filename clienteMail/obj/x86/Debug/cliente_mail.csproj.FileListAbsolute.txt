@@ -25,7 +25,6 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.crear_cuenta.crear_cuenta.resources
 C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\clienteMail.exe
 C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\clienteMail.pdb
-C:\utn-proyecto\proyecto_final\clienteMail\bin\Debug\Email.NET.xml
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.crear_cuenta.crear_cuenta.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmContacto.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
