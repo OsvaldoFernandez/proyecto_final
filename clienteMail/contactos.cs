@@ -77,7 +77,7 @@ namespace clienteMail
             int id = Convert.ToInt32(this.dataContactos.SelectedRows[0].Cells[3].Value);
             var form = new frmContacto(id, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarContactos();
+            if (vr == System.Windows.Forms.DialogResult.OK) this.handlePaginacion();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
