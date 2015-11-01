@@ -442,14 +442,15 @@ namespace clienteMail
         {
             pictureBox10.Visible = false;
             pictureBox11.Visible = true;
-            G.comando_form.actualizar_estado_microfono(true);
+            G.comando_form.actualizar_estado_microfono(false);
+
         }
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
             pictureBox11.Visible = false;
             pictureBox10.Visible = true;
-            G.comando_form.actualizar_estado_microfono(false);
+            G.comando_form.actualizar_estado_microfono(true);
         }
     }
 }

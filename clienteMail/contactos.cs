@@ -97,6 +97,10 @@ namespace clienteMail
         private void handlePaginacion() //se llama siempre que cambia la variable pagActual
         {
             int cantPaginas = ((int) G.user.contactos().Length + 7) / 8;
+            if (G.user.contactos().Length == 0)
+            {
+                cantPaginas = 1;
+            }
             lblPagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
             btnAnterior.Enabled = pagActual != 1;
             btnSiguiente.Enabled = (pagActual != cantPaginas) && (cantPaginas != 0);

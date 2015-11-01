@@ -965,7 +965,6 @@
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 11;
             this.pictureBox11.TabStop = false;
-            this.pictureBox11.Visible = false;
             this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox10
@@ -977,6 +976,7 @@
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 10;
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Visible = false;
             this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // lblTitle

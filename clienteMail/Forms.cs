@@ -62,6 +62,7 @@ public class FormPaginado : FormComandos {
 
   protected void actualizar_pagina (int cantidad_elementos, Button boton_anterior, Button boton_siguiente, Label numero_pagina) {
     int cantPaginas = (cantidad_elementos + 7) / 8;
+    if (cantidad_elementos == 0) cantPaginas = 1;
     numero_pagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
     boton_anterior.Enabled = pagActual != 1;
     boton_siguiente.Enabled = (cantPaginas != 0) && (pagActual != cantPaginas);

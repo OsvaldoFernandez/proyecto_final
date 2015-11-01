@@ -94,6 +94,8 @@ namespace clienteMail.crear_cuenta
             paramContrasena.Value = contrasena.Text;
             cmd.ExecuteNonQuery();
             cmd.Dispose();
+            RichForm form1 = new entrenamiento.entrenamiento_1("perfil.pav");
+            form1.Show();
         }
 
         private void proveedor_SelectedIndexChanged(object sender, EventArgs e)
