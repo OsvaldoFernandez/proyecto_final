@@ -47,19 +47,14 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            try
-            {
-                int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
-
-                if (rv != 0) MessageBox.Show(rv.ToString("X"));
-
-            }
-            catch { };
+            int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
+            if (rv != 0) MessageBox.Show(rv.ToString("X"));
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             RichForm currentForm = (RichForm)Form.ActiveForm;
+            if (currentForm == null) return;
             txtFormActivo.Text += currentForm.Text + '\n';
             int pos = -1;
             for (int linea = 0; linea < 15; linea++)
