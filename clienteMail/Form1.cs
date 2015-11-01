@@ -27,7 +27,6 @@ namespace clienteMail
         mail_enviado[] messagesEnviados = new mail_enviado[8];
         int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
-        int lastPageRecibidos;
 
         public Form1()
         {
@@ -39,6 +38,19 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
+            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
+            {
+                Console.WriteLine("OK");
+                autenticacion_ok.Visible = true;
+                autenticacion_mal.Visible = false;
+            }
+            else
+            {
+                Console.WriteLine("mal");
+                autenticacion_mal.Visible = true;
+                autenticacion_ok.Visible = false;
+            }
+
             manejar_comando_basico(comando,
               (int numero) => {
                 mailSelected = numero;
@@ -56,6 +68,7 @@ namespace clienteMail
               new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);}),
               Comando.Evento("actualizar", btnActualizar_Click)
             );
+
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
@@ -413,6 +426,32 @@ namespace clienteMail
             btnAnterior_Click(null, EventArgs.Empty);
           else
               actualizar_vista();
+        }
+
+        private void trackAutenticacion_Scroll(object sender, EventArgs e)
+        {
+            G.sensibilidad_autenticacion = trackAutenticacion.Value;
+            Console.WriteLine(G.sensibilidad_autenticacion);
+        }
+
+        private void trackComando_Scroll(object sender, EventArgs e)
+        {
+            G.sensibilidad = trackComando.Value;
+            Console.WriteLine(G.sensibilidad);
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            pictureBox10.Visible = false;
+            pictureBox11.Visible = true;
+            G.comando_form.actualizar_estado_microfono(true);
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            pictureBox11.Visible = false;
+            pictureBox10.Visible = true;
+            G.comando_form.actualizar_estado_microfono(false);
         }
     }
 }

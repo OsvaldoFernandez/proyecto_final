@@ -14,6 +14,7 @@ public class RichForm : Form {
   public virtual void agregar_mensaje(int id) {}
   public virtual void manejar_aceptar(string contexto) {}
   public virtual void manejar_cerrar(string contexto) {}
+  public virtual void actualizar_estado_microfono(bool estado) {}
 
   private void agregar_controles_de (Dictionary<string, Control> col, Control ctl) {
     foreach (Control c in ctl.Controls) {

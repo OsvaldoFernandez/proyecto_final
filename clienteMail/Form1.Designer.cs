@@ -90,8 +90,12 @@
             this.redactar = new System.Windows.Forms.Button();
             this.btnEnviados = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.trackAutenticacion = new System.Windows.Forms.TrackBar();
+            this.trackComando = new System.Windows.Forms.TrackBar();
+            this.autenticacion_ok = new System.Windows.Forms.PictureBox();
+            this.autenticacion_mal = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -122,8 +126,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel0.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackAutenticacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackComando)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -188,7 +194,6 @@
             this.mailRte8.Size = new System.Drawing.Size(138, 30);
             this.mailRte8.TabIndex = 3;
             this.mailRte8.Text = "-emptylabel-";
-
             // 
             // pictureBox8
             // 
@@ -868,8 +873,12 @@
             // panel0
             // 
             this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
-            this.panel0.Controls.Add(this.pictureBox13);
-            this.panel0.Controls.Add(this.pictureBox12);
+            this.panel0.Controls.Add(this.label4);
+            this.panel0.Controls.Add(this.label1);
+            this.panel0.Controls.Add(this.trackAutenticacion);
+            this.panel0.Controls.Add(this.trackComando);
+            this.panel0.Controls.Add(this.autenticacion_ok);
+            this.panel0.Controls.Add(this.autenticacion_mal);
             this.panel0.Controls.Add(this.pictureBox11);
             this.panel0.Controls.Add(this.pictureBox10);
             this.panel0.Controls.Add(this.lblTitle);
@@ -881,35 +890,83 @@
             this.panel0.Size = new System.Drawing.Size(1009, 70);
             this.panel0.TabIndex = 13;
             // 
-            // pictureBox13
+            // label4
             // 
-            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(814, 12);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox13.TabIndex = 13;
-            this.pictureBox13.TabStop = false;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(796, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 21);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Comando";
             // 
-            // pictureBox12
+            // label1
             // 
-            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(860, 12);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox12.TabIndex = 12;
-            this.pictureBox12.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(667, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 21);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Persona";
+            // 
+            // trackAutenticacion
+            // 
+            this.trackAutenticacion.LargeChange = 1;
+            this.trackAutenticacion.Location = new System.Drawing.Point(653, 34);
+            this.trackAutenticacion.Maximum = 100;
+            this.trackAutenticacion.Minimum = -100;
+            this.trackAutenticacion.Name = "trackAutenticacion";
+            this.trackAutenticacion.Size = new System.Drawing.Size(117, 45);
+            this.trackAutenticacion.TabIndex = 15;
+            this.trackAutenticacion.Scroll += new System.EventHandler(this.trackAutenticacion_Scroll);
+            // 
+            // trackComando
+            // 
+            this.trackComando.LargeChange = 1;
+            this.trackComando.Location = new System.Drawing.Point(783, 37);
+            this.trackComando.Maximum = 100;
+            this.trackComando.Name = "trackComando";
+            this.trackComando.Size = new System.Drawing.Size(117, 45);
+            this.trackComando.TabIndex = 14;
+            this.trackComando.Value = 75;
+            this.trackComando.Scroll += new System.EventHandler(this.trackComando_Scroll);
+            // 
+            // autenticacion_ok
+            // 
+            this.autenticacion_ok.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_ok.Image")));
+            this.autenticacion_ok.Location = new System.Drawing.Point(906, 12);
+            this.autenticacion_ok.Name = "autenticacion_ok";
+            this.autenticacion_ok.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_ok.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_ok.TabIndex = 13;
+            this.autenticacion_ok.TabStop = false;
+            this.autenticacion_ok.Visible = false;
+            // 
+            // autenticacion_mal
+            // 
+            this.autenticacion_mal.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_mal.Image")));
+            this.autenticacion_mal.Location = new System.Drawing.Point(906, 12);
+            this.autenticacion_mal.Name = "autenticacion_mal";
+            this.autenticacion_mal.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_mal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_mal.TabIndex = 12;
+            this.autenticacion_mal.TabStop = false;
+            this.autenticacion_mal.Visible = false;
             // 
             // pictureBox11
             // 
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(906, 12);
+            this.pictureBox11.Location = new System.Drawing.Point(952, 12);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(40, 40);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 11;
             this.pictureBox11.TabStop = false;
+            this.pictureBox11.Visible = false;
+            this.pictureBox11.Click += new System.EventHandler(this.pictureBox11_Click);
             // 
             // pictureBox10
             // 
@@ -920,6 +977,7 @@
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 10;
             this.pictureBox10.TabStop = false;
+            this.pictureBox10.Click += new System.EventHandler(this.pictureBox10_Click);
             // 
             // lblTitle
             // 
@@ -1040,7 +1098,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente mail";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.FormClosed += Form1_FormClosed;
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
@@ -1069,8 +1126,10 @@
             this.panel10.PerformLayout();
             this.panel0.ResumeLayout(false);
             this.panel0.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackAutenticacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackComando)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
@@ -1152,10 +1211,14 @@
         private System.Windows.Forms.Label mailDate2;
         private System.Windows.Forms.Label mailDate1;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.PictureBox autenticacion_ok;
+        private System.Windows.Forms.PictureBox autenticacion_mal;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.TrackBar trackComando;
+        private System.Windows.Forms.TrackBar trackAutenticacion;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
     }
 }
 

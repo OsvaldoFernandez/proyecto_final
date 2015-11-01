@@ -76,5 +76,10 @@ namespace clienteMail
                 this.Close();
             }
         }
+
+        private void leer_mail_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
