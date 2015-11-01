@@ -40,13 +40,11 @@ namespace clienteMail
         {
             if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
             {
-                Console.WriteLine("OK");
                 autenticacion_ok.Visible = true;
                 autenticacion_mal.Visible = false;
             }
             else
             {
-                Console.WriteLine("mal");
                 autenticacion_mal.Visible = true;
                 autenticacion_ok.Visible = false;
             }
