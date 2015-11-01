@@ -55,7 +55,7 @@ namespace clienteMail
         {
             var form = new asunto_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
-            if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarAsuntos();
+            if (vr == System.Windows.Forms.DialogResult.OK) this.handlePaginacion();
         }
 
         private void actualizarAsuntos()
