@@ -25,7 +25,6 @@ namespace clienteMail
 
         mail_recibido[] messagesRecibidos = new mail_recibido[8];
         mail_enviado[] messagesEnviados = new mail_enviado[8];
-        Dictionary<int, string> messageUIDLs = new Dictionary<int,string>();
         int mailSelected;
         bool recibidos; //true: recibidos. false: enviados.
         int lastPageRecibidos;
@@ -380,16 +379,28 @@ namespace clienteMail
 
         public bool eliminar_mail (string UIDL) {
             client = G.crear_cliente();
-
-
-            var response = client.DeleteMessage(1);
-            Console.WriteLine(response.Type);
+            Pop3MessageUIDInfoCollection messageUIDs = client.GetAllUIDMessages();
+            uint i = 1;
+            foreach (Pop3MessageUIDInfo uidInfo in messageUIDs)
+            {
+                if (uidInfo.UniqueNumber == UIDL)
+                {
+                    var response = client.DeleteMessage(i);
+                    Console.WriteLine(response.Type);
+                }
+                i++;
+            }
+            
             /*if (response.Type == EPop3ResponseType.OK)
                 messageTextBox.AppendText("\r\n Message deleted. \r\n");*/
             //client.DeleteMessage(Convert.ToUInt32(UIDL));
             G.user.eliminar_mail_recibido(UIDL);
 
             client.Logout();
+            if (((G.user.cantidad_mails_recibidos() % 8) == 1) && btnAnterior.Enabled)
+                btnAnterior_Click(null, EventArgs.Empty);
+            else
+                actualizar_vista();
             return true;
         }
 
