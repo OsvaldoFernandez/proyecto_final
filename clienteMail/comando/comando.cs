@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,20 +26,6 @@ namespace clienteMail.comando
             #endif
         }
 
-        public override void actualizar_estado_microfono(bool estado)
-        {
-            if (estado)
-            {
-                recEngine.RecognizeAsync(RecognizeMode.Multiple);
-                disableBtn.Enabled = true;
-            }
-            else
-            {
-                recEngine.RecognizeAsyncStop();
-                disableBtn.Enabled = false;
-            }
-        }
-
         private void enableBtn_Click(object sender, EventArgs e)
         {
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
@@ -61,19 +47,14 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            try
-            {
-                int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
-
-                if (rv != 0) MessageBox.Show(rv.ToString("X"));
-
-            }
-            catch { };
+            int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
+            if (rv != 0) MessageBox.Show(rv.ToString("X"));
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             RichForm currentForm = (RichForm)Form.ActiveForm;
+            if (currentForm == null) return;
             txtFormActivo.Text += currentForm.Text + '\n';
             int pos = -1;
             for (int linea = 0; linea < 15; linea++)
@@ -109,19 +90,16 @@ namespace clienteMail.comando
                     if (res < -10000)
                     {
                         richTextBox1.Text += " - error - " + res.ToString("X");
-                        G.confianza_autenticacion = (int)res / 100;
                         currentForm.manejar_comando(e.Result.Text);
                         return;
                     }
-                    if (res > G.sensibilidad_autenticacion * 100)
+                    if (res > 0)
                     {
                         richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
-                        G.confianza_autenticacion = (int)res / 100;
                         currentForm.manejar_comando(e.Result.Text);
                     }
                     else
                     {
-                        G.confianza_autenticacion = (int)res / 100;
                         res = -res;
                         richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
                         currentForm.manejar_comando(e.Result.Text);
@@ -154,11 +132,6 @@ namespace clienteMail.comando
                 recEngine.RecognizeAsyncStop();
                 disableBtn.Enabled = false;
             }
-        }
-
-        private void txtSensibilidad_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
     }
