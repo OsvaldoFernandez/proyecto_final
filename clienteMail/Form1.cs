@@ -378,22 +378,23 @@ namespace clienteMail
         }
 
         public bool eliminar_mail (string UIDL) {
-            client = G.crear_cliente();
+            Cargando carg = new Cargando();
+            carg.Ejecutar();
+            
+            client = G.crear_cliente(); 
             Pop3MessageUIDInfoCollection messageUIDs = client.GetAllUIDMessages();
             uint i = 1;
             foreach (Pop3MessageUIDInfo uidInfo in messageUIDs)
             {
                 if (uidInfo.UniqueNumber == UIDL)
                 {
-                    var response = client.DeleteMessage(i);
-                    Console.WriteLine(response.Type);
+                    client.DeleteMessage(i);
+                    break;
                 }
                 i++;
             }
+            client.Logout();
             
-            /*if (response.Type == EPop3ResponseType.OK)
-                messageTextBox.AppendText("\r\n Message deleted. \r\n");*/
-            //client.DeleteMessage(Convert.ToUInt32(UIDL));
             G.user.eliminar_mail_recibido(UIDL);
 
             client.Logout();
@@ -401,6 +402,8 @@ namespace clienteMail
                 btnAnterior_Click(null, EventArgs.Empty);
             else
                 actualizar_vista();
+
+            carg.Detener();
             return true;
         }
 
