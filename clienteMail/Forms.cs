@@ -28,6 +28,24 @@ public class RichForm : Form {
     agregar_controles_de(col, this);
     return col;
   }}
+
+  private void InitializeComponent()
+  {
+            this.SuspendLayout();
+            // 
+            // RichForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "RichForm";
+            this.Load += new System.EventHandler(this.RichForm_Load);
+            this.ResumeLayout(false);
+
+  }
+
+  private void RichForm_Load(object sender, EventArgs e)
+  {
+
+  }
 }
 
 public class FormComandos : RichForm {

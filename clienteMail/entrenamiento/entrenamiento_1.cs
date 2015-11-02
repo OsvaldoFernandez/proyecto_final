@@ -23,9 +23,10 @@ namespace clienteMail.entrenamiento
             InitializeComponent();
             int rv = AV.avf_crear_entrenador(out entrenador);
             if (rv == AV.AVS_SIN_MEMORIA) {
-              MessageBox.Show("No hay memoria disponible, por favor cierre algunas aplicaciones y reinteéntelo más tarde", "Error",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
-              throw new OutOfMemoryException();
+                errorlabel.Text = "No hay memoria disponible, por favor cierre \nalgunas aplicaciones y reinteéntelo más tarde";
+                errorlabel.Visible = true;
+                errorpanel.Visible = true;
+                throw new OutOfMemoryException();
             }
             if (rv != 0) throw new InvalidOperationException();
             this.perfil = perfil;
@@ -77,6 +78,7 @@ namespace clienteMail.entrenamiento
             dataGridView1.Rows[0].Selected = true;
             siguiente_comando = dataGridView1[0, 0].Value.ToString().ToUpperInvariant();
             fila = 0;
+            pausaBtn.Visible = true;
         }
 
         public override void manejar_comando_entrenamiento(SpeechRecognizedEventArgs e)
@@ -111,22 +113,35 @@ namespace clienteMail.entrenamiento
                     Environment.Exit(1);
                     return;
                   case AV.AVS_FORMATO_ARCHIVO_NO_VALIDO:
-                    MessageBox.Show("La grabación está dañada. Por favor, reintente la operación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorlabel.Text = "La grabación está dañada. \nPor favor, reintente la operación.";
+                    errorlabel.Visible = true;
+                    errorpanel.Visible = true;
                     return;
                   case AV.AVS_ARCHIVO_INACCESIBLE:
-                    MessageBox.Show("No se pudo acceder a la voz grabada. Por favor, verifique que se pueda escribir en el disco y reintente la operación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorlabel.Text = "No se pudo acceder a la voz grabada. \nPor favor, verifique que se pueda escribir en el disco \ny reintente la operación.";
+                    errorlabel.Visible = true;
+                    errorpanel.Visible = true;
                     return;
                   case AV.AVS_MUESTREO_DEMASIADO_BAJO: case AV.AVS_MUESTREO_NO_ES_MULTIPLO_DE_4_HZ:
-                    MessageBox.Show("La grabación no puede ser utilizada por la aplicación. Por favor, utilice otro micrófono y reinicie el proceso de entrenamiento.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorlabel.Text = "La grabación no puede ser utilizada por la aplicación. \n Por favor, utilice otro micrófono y \nreinicie el proceso de entrenamiento.";
+                    errorlabel.Visible = true;
+                    errorpanel.Visible = true;
                     return;
                   case AV.AVS_DURACION_MENOR_A_MEDIO_SEGUNDO:
-                    MessageBox.Show("La grabación es demasiado corta. Se necesita una grabación de al menos medio segundo. Por favor, grabe el comando nuevamente, hablando lento y claro.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorlabel.Text = "La grabación es demasiado corta. \nSe necesita una grabación de al menos medio segundo. \nPor favor, grabe el comando nuevamente, hablando lento y claro.";
+                    errorlabel.Visible = true;
+                    errorpanel.Visible = true;
                     return;
                   default:
                     if (resultado >= 0) break;
-                    MessageBox.Show("Ocurrió un error inesperado, por favor reintente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorlabel.Text = "Ocurrió un error inesperado, por favor reintente.";
+                    errorlabel.Visible = true;
+                    errorpanel.Visible = true;
                     return;
                 }
+
+                errorlabel.Visible = false;
+                errorpanel.Visible = false;
                            
                 dataGridView1[1, fila].Value = "Reconocido";
                 dataGridView1.ClearSelection();
@@ -137,6 +152,7 @@ namespace clienteMail.entrenamiento
                     label2.Visible = true;
                     label2.Text = "La operación tardará aproximadamente 20 minutos";
                     dataGridView1.Visible = false;
+                    pausaBtn.Visible = false;
                     cafe.Visible = true;
                     G.comando_form.Close();
                     entrenar();
@@ -161,7 +177,9 @@ namespace clienteMail.entrenamiento
               rv = AV.avf_agregar_muestra_WAV(entrenador, persona, archivo.Contains("_3") ? AV.AVP_MUESTRA_VALIDACION :
                    (AV.AVP_MUESTRA_ENTRENAMIENTO | AV.AVP_MUESTRA_VALIDACION), archivo);
               if (rv < 0) {
-                MessageBox.Show("ERROR!!!!!!!!!!!!!!");
+                errorlabel.Text = "Ocurrio un error mientras se reconocían sus comandos \nPor favor, reinicie el entrenamiento";
+                errorlabel.Visible = true;
+                errorpanel.Visible = true;
                 return;
               }
               Application.DoEvents();
@@ -193,7 +211,9 @@ namespace clienteMail.entrenamiento
                 Environment.Exit(1);
                 return;
               case AV.AVS_ARCHIVO_INACCESIBLE: case AV.AVS_FALLO_ESCRITURA_ARCHIVO:
-                MessageBox.Show("No se pudo generar el archivo de perfil", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorlabel.Text = "No se pudo generar el archivo de perfil";
+                errorlabel.Visible = true;
+                errorpanel.Visible = true;
                 return;
               case AV.AVS_NADA_PARA_EXPORTAR:
                 continuar = true;
@@ -208,6 +228,21 @@ namespace clienteMail.entrenamiento
           AV.avf_destruir_entrenador(entrenador);
           entrenador = IntPtr.Zero;
           this.Close();
+        }
+
+        private void pausaBtn_Click(object sender, EventArgs e)
+        {
+            if (pausaBtn.Text == "Pausar")
+            {
+                pausaBtn.Text = "Reaundar";
+                G.comando_form.actualizar_estado_microfono(false);
+            }
+            else
+            {
+                pausaBtn.Text = "Pausar";
+                G.comando_form.actualizar_estado_microfono(true);
+            }
+                 
         }
     }
 }
