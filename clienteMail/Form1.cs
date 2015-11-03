@@ -53,7 +53,6 @@ namespace clienteMail
               (int numero) => {
                 mailSelected = numero;
                 seleccionarMail(numero);
-                leerMail(numero);
               },
               Comando.Evento("contactos", btnContactos_Click),
               Comando.Evento("asuntos", btnAsuntos_Click),
@@ -66,6 +65,11 @@ namespace clienteMail
               new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);}),
               Comando.Evento("actualizar", btnActualizar_Click)
             );
+
+            if (comando == "leer" & mailSelected >= 1)
+            {
+                leerMail(mailSelected);
+            }
 
         }
 
@@ -451,6 +455,11 @@ namespace clienteMail
             pictureBox11.Visible = false;
             pictureBox10.Visible = true;
             G.comando_form.actualizar_estado_microfono(true);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

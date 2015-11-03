@@ -52,7 +52,7 @@ namespace clienteMail.comando
             comandos.Add(new string[] {
               "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos",
               "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente",
-              "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar"
+              "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar", "leer"
             });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);
