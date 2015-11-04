@@ -272,8 +272,10 @@ namespace clienteMail
         {
             lblPagina.Text = "Página " + pagActual.ToString();
             btnAnterior.Enabled = pagActual != 1;
+            btnAnterior.Visible = pagActual != 1;
             int cantPaginas = (G.user.cantidad_mails_recibidos() + 7) / 8;
             btnSiguiente.Enabled = !(pagActual == cantPaginas || cantPaginas == 0);
+            btnSiguiente.Visible = !(pagActual == cantPaginas || cantPaginas == 0);
         }
 
         private void handlePaginacionEnviados() 
@@ -281,7 +283,9 @@ namespace clienteMail
             int cantPaginas = (G.user.cantidad_mails_enviados() + 7) / 8;
             lblPagina.Text = "Página " + pagActual.ToString();
             btnAnterior.Enabled = pagActual != 1;
+            btnAnterior.Visible = pagActual != 1;
             btnSiguiente.Enabled = !(pagActual == cantPaginas || cantPaginas == 0);
+            btnSiguiente.Visible = !(pagActual == cantPaginas || cantPaginas == 0);
         }       
 
         private void btnContactos_Click(object sender, EventArgs e)

@@ -83,7 +83,9 @@ public class FormPaginado : FormComandos {
     if (cantidad_elementos == 0) cantPaginas = 1;
     numero_pagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
     boton_anterior.Enabled = pagActual != 1;
+    boton_anterior.Visible = pagActual != 1;
     boton_siguiente.Enabled = (cantPaginas != 0) && (pagActual != cantPaginas);
+    boton_siguiente.Visible = (cantPaginas != 0) && (pagActual != cantPaginas);
   }
 
   protected virtual void resetPanels () {

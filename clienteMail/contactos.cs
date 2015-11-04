@@ -111,7 +111,9 @@ namespace clienteMail
             }
             lblPagina.Text = "Página " + pagActual.ToString() + " de " + cantPaginas.ToString();
             btnAnterior.Enabled = pagActual != 1;
+            btnAnterior.Visible = pagActual != 1;
             btnSiguiente.Enabled = (pagActual != cantPaginas) && (cantPaginas != 0);
+            btnSiguiente.Visible = (pagActual != cantPaginas) && (cantPaginas != 0);
             this.actualizarContactos();
         }
 
