@@ -26,15 +26,21 @@ namespace clienteMail
         private void mensajes_Load(object sender, EventArgs e)
         {
            this.handlePaginacion();
+           autenticacion_mal.Visible = false;
+           autenticacion_ok.Visible = false;
+        }
+
+        private void mensajes_Deactivate(Object sender, EventArgs e)
+        {
+            autenticacion_mal.Visible = false;
+            autenticacion_ok.Visible = false;
         }
 
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             int selectedRowCount = dataMensajes.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowCount != 1)
-                //no seleccionó nada.
-                this.Close();
+            if (selectedRowCount != 1 || btnAceptar.Visible == false) return;
 
             this.idSelected = Convert.ToInt32(this.dataMensajes.SelectedRows[0].Cells[2].Value);
             form_padre.agregar_mensaje(this.idSelected);
@@ -163,6 +169,17 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
+            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
+            {
+                autenticacion_ok.Visible = true;
+                autenticacion_mal.Visible = false;
+            }
+            else
+            {
+                autenticacion_mal.Visible = true;
+                autenticacion_ok.Visible = false;
+            };
+
             manejar_comando_basico(comando, seleccionar_mensaje,
               Comando.Evento("cerrar", btnVolver_Click),
               Comando.Evento("aceptar", btnAceptar_Click),

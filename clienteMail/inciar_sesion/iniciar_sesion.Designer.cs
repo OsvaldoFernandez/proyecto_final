@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,9 +48,7 @@
             this.usertxt.Name = "usertxt";
             this.usertxt.Size = new System.Drawing.Size(384, 28);
             this.usertxt.TabIndex = 0;
-            #if DEBUG
             this.usertxt.Text = "proyectofinalgrupo512@gmail.com";
-            #endif
             // 
             // passtxt
             // 
@@ -63,9 +60,7 @@
             this.passtxt.PasswordChar = '*';
             this.passtxt.Size = new System.Drawing.Size(384, 28);
             this.passtxt.TabIndex = 1;
-            #if DEBUG
             this.passtxt.Text = "proyecto123";
-            #endif
             // 
             // button1
             // 
@@ -127,16 +122,6 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(17, 488);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(169, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Entrenar offline";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // iniciar_sesion
             // 
             this.AcceptButton = this.button1;
@@ -144,7 +129,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(413, 530);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -152,6 +136,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.passtxt);
             this.Controls.Add(this.usertxt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "iniciar_sesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Speak Up! ";
@@ -170,6 +157,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button3;
     }
 }

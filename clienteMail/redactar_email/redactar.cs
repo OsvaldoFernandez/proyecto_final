@@ -115,6 +115,18 @@ namespace clienteMail.redactar_email
 
         public override void manejar_comando(string comando)
         {
+
+            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
+            {
+                autenticacion_ok.Visible = true;
+                autenticacion_mal.Visible = false;
+            }
+            else
+            {
+                autenticacion_mal.Visible = true;
+                autenticacion_ok.Visible = false;
+            };
+
             manejar_comando_basico(comando,
               Comando.Evento("para", btnPara_Click),
               Comando.Evento("asuntos", btnAsunto_Click),
@@ -122,6 +134,12 @@ namespace clienteMail.redactar_email
               Comando.Evento("enviar", enviarBtn_Click),
               Comando.Evento("cancelar", btnCancelar_Click)
             );
+        }
+
+        private void redactar_Deactivate(Object sender, EventArgs e)
+        {
+            autenticacion_mal.Visible = false;
+            autenticacion_ok.Visible = false;
         }
 
         public override void agregar_contacto(int id_contacto)
@@ -150,6 +168,12 @@ namespace clienteMail.redactar_email
         public override void manejar_cerrar(string contexto)
         {
             if (contexto == "Mail enviado") this.Close();
+        }
+
+        private void redactar_Load(object sender, EventArgs e)
+        {
+            autenticacion_mal.Visible = false;
+            autenticacion_ok.Visible = false;
         }
     }
 }

@@ -63,6 +63,8 @@
             this.mensaje1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel0 = new System.Windows.Forms.Panel();
+            this.autenticacion_ok = new System.Windows.Forms.PictureBox();
+            this.autenticacion_mal = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblPagina = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,6 +99,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel0.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataMensajes)).BeginInit();
             this.panel8.SuspendLayout();
@@ -468,6 +472,8 @@
             // panel0
             // 
             this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
+            this.panel0.Controls.Add(this.autenticacion_ok);
+            this.panel0.Controls.Add(this.autenticacion_mal);
             this.panel0.Controls.Add(this.pictureBox9);
             this.panel0.Controls.Add(this.lblPagina);
             this.panel0.Controls.Add(this.label1);
@@ -475,6 +481,28 @@
             this.panel0.Name = "panel0";
             this.panel0.Size = new System.Drawing.Size(1009, 70);
             this.panel0.TabIndex = 19;
+            // 
+            // autenticacion_ok
+            // 
+            this.autenticacion_ok.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_ok.Image")));
+            this.autenticacion_ok.Location = new System.Drawing.Point(941, 15);
+            this.autenticacion_ok.Name = "autenticacion_ok";
+            this.autenticacion_ok.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_ok.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_ok.TabIndex = 31;
+            this.autenticacion_ok.TabStop = false;
+            this.autenticacion_ok.Visible = false;
+            // 
+            // autenticacion_mal
+            // 
+            this.autenticacion_mal.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_mal.Image")));
+            this.autenticacion_mal.Location = new System.Drawing.Point(941, 15);
+            this.autenticacion_mal.Name = "autenticacion_mal";
+            this.autenticacion_mal.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_mal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_mal.TabIndex = 30;
+            this.autenticacion_mal.TabStop = false;
+            this.autenticacion_mal.Visible = false;
             // 
             // pictureBox9
             // 
@@ -764,10 +792,13 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel0);
             this.Controls.Add(this.dataMensajes);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "mensajes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mensajes";
+            this.Deactivate += new System.EventHandler(this.mensajes_Deactivate);
             this.Load += new System.EventHandler(this.mensajes_Load);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -787,6 +818,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel0.ResumeLayout(false);
             this.panel0.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataMensajes)).EndInit();
             this.panel8.ResumeLayout(false);
@@ -859,5 +892,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn hidden_id;
         private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox autenticacion_ok;
+        private System.Windows.Forms.PictureBox autenticacion_mal;
     }
 }

@@ -141,6 +141,12 @@ namespace clienteMail
                 
         }
 
+        private void Form1_Deactivate(Object sender, EventArgs e)
+        {
+            autenticacion_mal.Visible = false;
+            autenticacion_ok.Visible = false;
+        }
+
         private void getMails()
         {
             Rfc822Message message;

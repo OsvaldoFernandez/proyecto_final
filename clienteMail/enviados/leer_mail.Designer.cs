@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(leer_mail));
             this.panel10 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -38,7 +39,11 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblAsunto = new System.Windows.Forms.Label();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.autenticacion_ok = new System.Windows.Forms.PictureBox();
+            this.autenticacion_mal = new System.Windows.Forms.PictureBox();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).BeginInit();
             this.SuspendLayout();
             // 
             // panel10
@@ -166,24 +171,53 @@
             this.webBrowser.Size = new System.Drawing.Size(715, 542);
             this.webBrowser.TabIndex = 1;
             // 
+            // autenticacion_ok
+            // 
+            this.autenticacion_ok.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_ok.Image")));
+            this.autenticacion_ok.Location = new System.Drawing.Point(921, 12);
+            this.autenticacion_ok.Name = "autenticacion_ok";
+            this.autenticacion_ok.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_ok.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_ok.TabIndex = 24;
+            this.autenticacion_ok.TabStop = false;
+            this.autenticacion_ok.Visible = false;
+            // 
+            // autenticacion_mal
+            // 
+            this.autenticacion_mal.Image = ((System.Drawing.Image)(resources.GetObject("autenticacion_mal.Image")));
+            this.autenticacion_mal.Location = new System.Drawing.Point(922, 12);
+            this.autenticacion_mal.Name = "autenticacion_mal";
+            this.autenticacion_mal.Size = new System.Drawing.Size(40, 40);
+            this.autenticacion_mal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.autenticacion_mal.TabIndex = 23;
+            this.autenticacion_mal.TabStop = false;
+            this.autenticacion_mal.Visible = false;
+            // 
             // leer_mail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(973, 713);
+            this.Controls.Add(this.autenticacion_ok);
+            this.Controls.Add(this.autenticacion_mal);
             this.Controls.Add(this.lblAsunto);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblFrom);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.webBrowser);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "leer_mail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Leer Email";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Deactivate += new System.EventHandler(this.leer_mail_Deactivate);
             this.Load += new System.EventHandler(this.leer_mail_Load);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_ok)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.autenticacion_mal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,6 +235,8 @@
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblAsunto;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.PictureBox autenticacion_ok;
+        private System.Windows.Forms.PictureBox autenticacion_mal;
 
     }
 }

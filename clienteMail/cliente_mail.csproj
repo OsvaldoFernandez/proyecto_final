@@ -39,6 +39,9 @@
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon reduzx.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Email.NET, Version=1.0.0.33423, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -232,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bandeja_entrada\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon reduzx.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

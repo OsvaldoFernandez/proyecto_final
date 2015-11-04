@@ -174,7 +174,7 @@
             this.pausaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pausaBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pausaBtn.ForeColor = System.Drawing.Color.White;
-            this.pausaBtn.Location = new System.Drawing.Point(126, 148);
+            this.pausaBtn.Location = new System.Drawing.Point(56, 148);
             this.pausaBtn.Name = "pausaBtn";
             this.pausaBtn.Size = new System.Drawing.Size(193, 30);
             this.pausaBtn.TabIndex = 14;
@@ -197,7 +197,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
-            this.MinimizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "entrenamiento_1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrenamiento";
