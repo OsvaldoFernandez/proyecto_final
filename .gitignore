@@ -3,6 +3,7 @@
 [Tt]humbs.db
 
 /clienteMail/obj
+/clienteMail/bin/*/clienteMail.db3
 
  
 #Visual Studio Files
