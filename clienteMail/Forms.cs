@@ -63,12 +63,39 @@ public class FormComandos : RichForm {
     }
   }
 
+  protected struct ComandoEquivalente {
+    string _comando;
+    string _equivalencia;
+
+    public ComandoEquivalente (string comando, string equivalencia) {
+      _comando = comando;
+      _equivalencia = equivalencia;
+    }
+
+    public string comando { get {
+      return _comando;
+    }}
+
+    public string equivalencia { get {
+      return _equivalencia;
+    }}
+  }
+
+  protected static readonly ComandoEquivalente[] comandos_equivalentes = new ComandoEquivalente[] {
+    new ComandoEquivalente("enviar", "enviados"),
+    new ComandoEquivalente("enviados", "enviar")
+  };
+
   protected bool manejar_comando_basico (string comando, params Comando[] comandos_posibles) {
     if (comando == null) return true;
     foreach (Comando c in comandos_posibles) {
       if (c.nombre != comando) continue;
       if (c.evento != null) c.evento();
       return true;
+    }
+    foreach (ComandoEquivalente eq in comandos_equivalentes) {
+      if (eq.comando != comando) continue;
+      if (manejar_comando_basico(eq.equivalencia, comandos_posibles)) return true;
     }
     return false;
   }
