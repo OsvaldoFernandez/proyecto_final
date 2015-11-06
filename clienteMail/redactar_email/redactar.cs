@@ -62,7 +62,7 @@ namespace clienteMail.redactar_email
             SmtpClient client = new SmtpClient(G.user.SMTPserver, G.user.SMTPport);
                 
             client.Credentials = new System.Net.NetworkCredential(G.user.Mail, G.user.Password);
-            client.EnableSsl = true;
+            client.EnableSsl = G.user.SMTPssl;
 
             try
             {

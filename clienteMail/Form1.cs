@@ -466,10 +466,5 @@ namespace clienteMail
             pictureBox10.Visible = true;
             G.comando_form.actualizar_estado_microfono(true);
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -56,7 +56,6 @@ C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.entrenamiento.entrenamiento_1.resources
 C:\Users\a\Desktop\proyecto\clienteMail\bin\Debug\clienteMail.exe
 C:\Users\a\Desktop\proyecto\clienteMail\bin\Debug\clienteMail.pdb
-C:\Users\a\Desktop\proyecto\clienteMail\bin\Debug\Email.NET.xml
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\cliente_mail.csprojResolveAssemblyReference.cache
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.frmAlert.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
@@ -105,3 +104,4 @@ C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\cliente_
 C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\clienteMail.exe
 C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
+C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\RichForm.resources

@@ -49,7 +49,7 @@ public static class G
                 client.MessageDeleted += ((Pop3Client c, uint n) => Console.WriteLine("Mensaje {0} borrado", n));
         #endif
 
-        client.SSLInteractionType = EInteractionType.SSLPort;
+        client.SSLInteractionType = user.POP3ssl ? EInteractionType.SSLPort : EInteractionType.Plain;
 
         client.Login();
 
