@@ -34,6 +34,8 @@ namespace clienteMail
             string[] controles = {"panel", "index", "mailSub", "mailRte", "mailDate", "pictureBox"};
             agregar_eventos(seleccionarMail, false, controles);
             agregar_eventos(leerMail, true, controles);
+            lblPer.Text = "(" + G.sensibilidad_autenticacion.ToString() + "%)";
+            lblComando.Text = "(" + G.sensibilidad.ToString() + "%)";
         }
 
         public override void manejar_comando(string comando)
@@ -119,6 +121,9 @@ namespace clienteMail
 
             Cargando carg = new Cargando();
             carg.Ejecutar();
+
+
+
             recibidos = true;
             try
             {
@@ -443,13 +448,13 @@ namespace clienteMail
         private void trackAutenticacion_Scroll(object sender, EventArgs e)
         {
             G.sensibilidad_autenticacion = trackAutenticacion.Value;
-            Console.WriteLine(G.sensibilidad_autenticacion);
+            lblPer.Text = "(" + G.sensibilidad_autenticacion.ToString() + "%)";
         }
 
         private void trackComando_Scroll(object sender, EventArgs e)
         {
             G.sensibilidad = trackComando.Value;
-            Console.WriteLine(G.sensibilidad);
+            lblComando.Text = "(" + G.sensibilidad.ToString() + "%)";
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
@@ -465,6 +470,11 @@ namespace clienteMail
             pictureBox11.Visible = false;
             pictureBox10.Visible = true;
             G.comando_form.actualizar_estado_microfono(true);
+        }
+
+        private void panel0_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

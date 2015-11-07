@@ -105,3 +105,4 @@ C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\clienteM
 C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\RichForm.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources

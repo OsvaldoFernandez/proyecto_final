@@ -91,7 +91,7 @@
             this.btnEnviados = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPersona2 = new System.Windows.Forms.Label();
             this.trackAutenticacion = new System.Windows.Forms.TrackBar();
             this.trackComando = new System.Windows.Forms.TrackBar();
             this.autenticacion_ok = new System.Windows.Forms.PictureBox();
@@ -108,6 +108,9 @@
             this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblPersona = new System.Windows.Forms.Label();
+            this.lblComando = new System.Windows.Forms.Label();
+            this.lblPer = new System.Windows.Forms.Label();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel7.SuspendLayout();
@@ -721,7 +724,7 @@
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button3.Size = new System.Drawing.Size(193, 25);
             this.button3.TabIndex = 10;
-            this.button3.Text = "Números del 1 al 8";
+            this.button3.Text = "Número del mail";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // label3
@@ -873,8 +876,11 @@
             // panel0
             // 
             this.panel0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(183)))), ((int)(((byte)(248)))));
+            this.panel0.Controls.Add(this.lblPer);
+            this.panel0.Controls.Add(this.lblComando);
+            this.panel0.Controls.Add(this.lblPersona);
             this.panel0.Controls.Add(this.label4);
-            this.panel0.Controls.Add(this.label1);
+            this.panel0.Controls.Add(this.lblPersona2);
             this.panel0.Controls.Add(this.trackAutenticacion);
             this.panel0.Controls.Add(this.trackComando);
             this.panel0.Controls.Add(this.autenticacion_ok);
@@ -889,33 +895,34 @@
             this.panel0.Name = "panel0";
             this.panel0.Size = new System.Drawing.Size(1009, 70);
             this.panel0.TabIndex = 13;
+            this.panel0.Paint += new System.Windows.Forms.PaintEventHandler(this.panel0_Paint);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(796, 4);
+            this.label4.Location = new System.Drawing.Point(779, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 21);
             this.label4.TabIndex = 17;
             this.label4.Text = "Comando";
             // 
-            // label1
+            // lblPersona2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(667, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 21);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Persona";
+            this.lblPersona2.AutoSize = true;
+            this.lblPersona2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblPersona2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblPersona2.Location = new System.Drawing.Point(654, 4);
+            this.lblPersona2.Name = "lblPersona2";
+            this.lblPersona2.Size = new System.Drawing.Size(67, 21);
+            this.lblPersona2.TabIndex = 16;
+            this.lblPersona2.Text = "Persona";
             // 
             // trackAutenticacion
             // 
             this.trackAutenticacion.LargeChange = 1;
-            this.trackAutenticacion.Location = new System.Drawing.Point(653, 34);
+            this.trackAutenticacion.Location = new System.Drawing.Point(646, 37);
             this.trackAutenticacion.Maximum = 100;
             this.trackAutenticacion.Minimum = -100;
             this.trackAutenticacion.Name = "trackAutenticacion";
@@ -1077,6 +1084,32 @@
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
             // 
+            // lblPersona
+            // 
+            this.lblPersona.AutoSize = true;
+            this.lblPersona.Location = new System.Drawing.Point(721, 21);
+            this.lblPersona.Name = "lblPersona";
+            this.lblPersona.Size = new System.Drawing.Size(0, 13);
+            this.lblPersona.TabIndex = 18;
+            // 
+            // lblComando
+            // 
+            this.lblComando.AutoSize = true;
+            this.lblComando.Location = new System.Drawing.Point(866, 21);
+            this.lblComando.Name = "lblComando";
+            this.lblComando.Size = new System.Drawing.Size(21, 13);
+            this.lblComando.TabIndex = 19;
+            this.lblComando.Text = "(%)";
+            // 
+            // lblPer
+            // 
+            this.lblPer.AutoSize = true;
+            this.lblPer.Location = new System.Drawing.Point(727, 21);
+            this.lblPer.Name = "lblPer";
+            this.lblPer.Size = new System.Drawing.Size(21, 13);
+            this.lblPer.TabIndex = 20;
+            this.lblPer.Text = "(%)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1221,7 +1254,10 @@
         private System.Windows.Forms.TrackBar trackComando;
         private System.Windows.Forms.TrackBar trackAutenticacion;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPersona2;
+        private System.Windows.Forms.Label lblComando;
+        private System.Windows.Forms.Label lblPersona;
+        private System.Windows.Forms.Label lblPer;
     }
 }
 

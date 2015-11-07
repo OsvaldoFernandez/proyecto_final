@@ -800,7 +800,7 @@
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button3.Size = new System.Drawing.Size(193, 25);
             this.button3.TabIndex = 10;
-            this.button3.Text = "Números del 1 al 8";
+            this.button3.Text = "Número del contacto";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // btnSiguiente
