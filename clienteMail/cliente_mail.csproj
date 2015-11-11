@@ -168,6 +168,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="asuntos.resx">
       <DependentUpon>asuntos.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="asunto_new_update.resx">
       <DependentUpon>asunto_new_update.cs</DependentUpon>
@@ -177,6 +178,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="entrenamiento\entrenamiento_1.resx">
       <DependentUpon>entrenamiento_1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms.resx">
       <DependentUpon>Forms.cs</DependentUpon>
@@ -189,24 +191,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mensajes.resx">
       <DependentUpon>mensajes.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="crear_cuenta\crear_cuenta.resx">
       <DependentUpon>crear_cuenta.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="contacto_new_update.resx">
       <DependentUpon>contacto_new_update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="contactos.resx">
       <DependentUpon>contactos.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="enviados\leer_mail.resx">
       <DependentUpon>leer_mail.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="inciar_sesion\iniciar_sesion.resx">
       <DependentUpon>iniciar_sesion.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

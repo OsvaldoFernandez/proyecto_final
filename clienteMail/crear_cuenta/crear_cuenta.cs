@@ -193,8 +193,20 @@ namespace clienteMail.crear_cuenta
             paramContrasena.Value = contrasena.Text;
             cmd.ExecuteNonQuery();
             cmd.Dispose();
-            RichForm form1 = new entrenamiento.entrenamiento_1("perfil.pav");
-            form1.Show();
+
+            // CONSIGO MI ID, seteo mi global user
+            SQLiteCommand cmd2 = new SQLiteCommand(G.conexion_principal);
+            cmd2.CommandText = "select id, servidor_smtp, servidor_pop3, puerto_smtp, puerto_pop3 from usuario where mail == ?";
+            SQLiteParameter paramMail2 = new SQLiteParameter();
+            cmd2.Parameters.Add(paramMail2);
+            paramMail2.Value = mail.Text;
+            SQLiteDataReader dr2 = cmd2.ExecuteReader();
+            if (dr2.Read())
+            {
+                G.user = new User(dr2.GetInt16(0));
+                RichForm form1 = new entrenamiento.entrenamiento_1(G.user.ID.ToString() + ".pav");
+                form1.Show();
+            }
         }
 
         private void proveedor_SelectedIndexChanged(object sender, EventArgs e)

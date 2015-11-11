@@ -20,7 +20,7 @@ namespace clienteMail.iniciar_sesion
         private void button1_Click(object sender, EventArgs e)
         {
             SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
-            cmd.CommandText = "select id, servidor_smtp, servidor_pop3, puerto_smtp, puerto_pop3 from usuario where mail == ? and contrasena == ? ";
+            cmd.CommandText = "select id, servidor_smtp, servidor_pop3, puerto_smtp, puerto_pop3, perfil from usuario where mail == ? and contrasena == ? ";
             SQLiteParameter paramMail = new SQLiteParameter();
             cmd.Parameters.Add(paramMail);
             paramMail.Value = usertxt.Text;
@@ -31,12 +31,21 @@ namespace clienteMail.iniciar_sesion
             if (dr.Read())
             {
                 G.user = new User(dr.GetInt16(0));
-                // PENDIENTE: Buscar un .pav que se llame como mi cuenta de mail, si aparece, entonces entrené y abro form1
-                RichForm formulario_activo = new Form1();
-                formulario_activo.Show();
-                G.comando_form = new comando.comando();
-                G.comando_form.Show();
-                // Si no apareció mi .pav, además de abrir comando, debo abrir entrenamiento
+                if (dr.IsDBNull(5))
+                {
+                    // NO HAY UN PERFIL PAV PARA ESTA PERSONA.. DEBER DE ENTRENAR
+                    RichForm form1 = new entrenamiento.entrenamiento_1(G.user.ID.ToString() + ".pav");
+                    form1.Show();
+                }
+                else
+                {
+                    //TENIA UN PERFIL, ENTONCES LO SETEO COMO GLOBAL DEL USER PARA QUE COMANDO LO USE
+                    G.user.PAV = dr.GetString(5);
+                    RichForm formulario_activo = new Form1();
+                    formulario_activo.Show();
+                    G.comando_form = new comando.comando();
+                    G.comando_form.Show();
+                }
                 this.Hide();
             }
             else
@@ -57,6 +66,11 @@ namespace clienteMail.iniciar_sesion
         {
             G.comando_form = new comando.comando();
             G.comando_form.Show();
+        }
+
+        private void iniciar_sesion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

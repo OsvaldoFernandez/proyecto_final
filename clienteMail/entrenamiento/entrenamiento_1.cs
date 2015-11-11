@@ -8,6 +8,7 @@ using System.Linq;
 using System.Speech.Recognition;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace clienteMail.entrenamiento
 {
@@ -205,7 +206,7 @@ namespace clienteMail.entrenamiento
               if (estado.tiempo_transcurrido > limite_tiempo) break;
             }
             AV.avf_detener_entrenamiento(entrenador);
-            rv = AV.avf_exportar_entrenamiento(entrenador, "perfiles\\" + perfil);
+            rv = AV.avf_exportar_entrenamiento(entrenador, perfil);
             switch (rv) {
               case AV.AVS_SIN_MEMORIA:
                 Environment.Exit(1);
@@ -219,7 +220,23 @@ namespace clienteMail.entrenamiento
                 continuar = true;
                 break;
               default:
+                // EXITOSO 
                 continuar = false;
+                // SETEARLE A MI USUARIO ACTUAL EL PERFIL QUE GENERÉ
+                SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
+                cmd.CommandText = "UPDATE Usuario SET perfil= ? WHERE id=? ";
+                SQLiteParameter paramPerfil = new SQLiteParameter();
+                cmd.Parameters.Add(paramPerfil);
+                paramPerfil.Value = perfil;
+                SQLiteParameter paramID = new SQLiteParameter();
+                cmd.Parameters.Add(paramID);
+                paramID.Value = G.user.ID;
+                //ARRANCAR EL FORM1 COMO LO HARIA NORMALMENTE
+                G.user.PAV = perfil;
+                RichForm formulario_activo = new Form1();
+                formulario_activo.Show();
+                G.comando_form = new comando.comando();
+                G.comando_form.Show();
                 break;
             }
             if (continuar)
