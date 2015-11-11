@@ -37,7 +37,6 @@ C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.pdb
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.frmContacto.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\cliente_mail.csprojResolveAssemblyReference.cache
-C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asunto_new_update.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.asuntos.resources
@@ -106,3 +105,4 @@ C:\Users\Julian\Desktop\proyecto_final-master\clienteMail\obj\x86\Debug\clienteM
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
+C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.iniciar_sesion.iniciar_sesion.resources

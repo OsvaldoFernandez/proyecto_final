@@ -1,4 +1,4 @@
-﻿namespace clienteMail.inciar_sesion
+﻿namespace clienteMail.iniciar_sesion
 {
     partial class iniciar_sesion
     {

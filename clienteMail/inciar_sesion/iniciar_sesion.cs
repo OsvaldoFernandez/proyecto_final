@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
-namespace clienteMail.inciar_sesion
+namespace clienteMail.iniciar_sesion
 {
     public partial class iniciar_sesion : Form
     {

@@ -50,9 +50,9 @@ namespace clienteMail.comando
         {
             Choices comandos = new Choices();
             comandos.Add(new string[] {
-              "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "contactos", "asuntos",
+              "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos",
               "mensajes", "recibidos", "enviados", "eliminar", "actualizar", "redactar", "anterior", "siguiente",
-              "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar", "leer"
+              "aceptar", "para", "enviar", "cerrar", "cancelar", "responder", "reenviar", "leer", "cerrar sesión"
             });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(comandos);

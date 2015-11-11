@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Text.RegularExpressions;
 
 namespace clienteMail.crear_cuenta
 {
     public partial class crear_cuenta : Form
     {
+        Color colorFondo = Color.FromArgb(61, 183, 248);
         public crear_cuenta()
         {
             InitializeComponent();
@@ -32,9 +34,93 @@ namespace clienteMail.crear_cuenta
             puertosmtp.Enabled = false;
             servidorpop3.Enabled = false;
             servidorsmtp.Enabled = false;
+
+            this.resetPanels();
         }
 
+        private void resetPanels()
+        {
+            panel1.BackColor = colorFondo;
+            panel2.BackColor = colorFondo;
+            panel3.BackColor = colorFondo;
+            panel4.BackColor = colorFondo;
+            panel5.BackColor = colorFondo;
+            panel6.BackColor = colorFondo;
+            panel7.BackColor = colorFondo;
+            lblError.Visible = false;
+        }
 
+        private bool errorForm()
+        {
+            bool error = false;
+            this.resetPanels();
+
+            if (proveedor.SelectedItem == null)
+            {
+                error = true;
+                panel1.BackColor = Color.Red;
+            }
+
+            Regex reg = new Regex(@"^[^ /?@\x00-\x1f()<>]+@([^. /?@\x00-\x1f()<>]+\.)*[a-zA-Z]{2,}\.?$");
+            if (!reg.IsMatch(mail.Text))
+            {
+                error = true;
+                panel3.BackColor = Color.Red;
+            }
+
+            if (contrasena.Text.Length == 0)
+            {
+                error = true;
+                panel2.BackColor = Color.Red;
+            }
+
+            if ((string)proveedor.SelectedItem == "Otro")
+            {
+                //valido tambien los campos del "otro" proveedor
+                if (servidorpop3.Text.Length == 0)
+                {
+                    error = true;
+                    panel4.BackColor = Color.Red;
+                }
+                
+                ushort puerto;
+                bool excpop3 = false;
+                try{
+                    puerto = ushort.Parse(puertopop3.Text);
+                } catch{
+                    excpop3 =true;
+                }
+
+                if (puertopop3.Text.Length == 0 || excpop3)
+                {
+                    error = true;
+                    panel5.BackColor = Color.Red;
+                }
+                if (servidorsmtp.Text.Length == 0)
+                {
+                    error = true;
+                    panel6.BackColor = Color.Red;
+                }
+
+                bool excsmtp = false;
+                try
+                {
+                    puerto = ushort.Parse(puertosmtp.Text);
+                }
+                catch
+                {
+                    excsmtp = true;
+                }
+
+                if (puertosmtp.Text.Length == 0 || excsmtp)
+                {
+                    error = true;
+                    panel7.BackColor = Color.Red;
+                }
+            }
+
+            return error;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -42,12 +128,14 @@ namespace clienteMail.crear_cuenta
             ushort puertoPOP3, puertoSMTP;
             bool sslPOP3, sslSMTP;
             SQLiteCommand cmd = null;
-            if (proveedor.SelectedItem == null)
+
+            if (this.errorForm())
             {
-                MessageBox.Show("Proveedor inválido");
+                lblError.Visible = true;
                 return;
             }
-            else if ((string) proveedor.SelectedItem == "Otro")
+
+            else if ((string)proveedor.SelectedItem == "Otro")
             {
                 servidorPOP3 = servidorpop3.Text;
                 servidorSMTP = servidorsmtp.Text;
@@ -68,8 +156,8 @@ namespace clienteMail.crear_cuenta
                 dr.Read();
                 servidorPOP3 = dr.GetString(0);
                 servidorSMTP = dr.GetString(3);
-                puertoPOP3 = (ushort) dr.GetInt16(1);
-                puertoSMTP = (ushort) dr.GetInt16(4);
+                puertoPOP3 = (ushort)dr.GetInt16(1);
+                puertoSMTP = (ushort)dr.GetInt16(4);
                 sslPOP3 = dr.GetBoolean(2);
                 sslSMTP = dr.GetBoolean(5);
                 dr.Close();
@@ -129,6 +217,22 @@ namespace clienteMail.crear_cuenta
                 this.Width = 420;
                 logoPic.Location = new Point(116, -35);
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new iniciar_sesion.iniciar_sesion().Show();
         }
 
     }

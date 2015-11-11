@@ -90,6 +90,9 @@
             this.redactar = new System.Windows.Forms.Button();
             this.btnEnviados = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
+            this.lblPer = new System.Windows.Forms.Label();
+            this.lblComando = new System.Windows.Forms.Label();
+            this.lblPersona = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblPersona2 = new System.Windows.Forms.Label();
             this.trackAutenticacion = new System.Windows.Forms.TrackBar();
@@ -108,9 +111,7 @@
             this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblPersona = new System.Windows.Forms.Label();
-            this.lblComando = new System.Windows.Forms.Label();
-            this.lblPer = new System.Windows.Forms.Label();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel7.SuspendLayout();
@@ -694,6 +695,7 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(225)))), ((int)(((byte)(242)))));
+            this.panel10.Controls.Add(this.btnCerrar);
             this.panel10.Controls.Add(this.button3);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.btnAnterior);
@@ -897,6 +899,32 @@
             this.panel0.TabIndex = 13;
             this.panel0.Paint += new System.Windows.Forms.PaintEventHandler(this.panel0_Paint);
             // 
+            // lblPer
+            // 
+            this.lblPer.AutoSize = true;
+            this.lblPer.Location = new System.Drawing.Point(727, 21);
+            this.lblPer.Name = "lblPer";
+            this.lblPer.Size = new System.Drawing.Size(21, 13);
+            this.lblPer.TabIndex = 20;
+            this.lblPer.Text = "(%)";
+            // 
+            // lblComando
+            // 
+            this.lblComando.AutoSize = true;
+            this.lblComando.Location = new System.Drawing.Point(866, 21);
+            this.lblComando.Name = "lblComando";
+            this.lblComando.Size = new System.Drawing.Size(21, 13);
+            this.lblComando.TabIndex = 19;
+            this.lblComando.Text = "(%)";
+            // 
+            // lblPersona
+            // 
+            this.lblPersona.AutoSize = true;
+            this.lblPersona.Location = new System.Drawing.Point(721, 21);
+            this.lblPersona.Name = "lblPersona";
+            this.lblPersona.Size = new System.Drawing.Size(0, 13);
+            this.lblPersona.TabIndex = 18;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -1084,31 +1112,20 @@
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
             // 
-            // lblPersona
+            // btnCerrar
             // 
-            this.lblPersona.AutoSize = true;
-            this.lblPersona.Location = new System.Drawing.Point(721, 21);
-            this.lblPersona.Name = "lblPersona";
-            this.lblPersona.Size = new System.Drawing.Size(0, 13);
-            this.lblPersona.TabIndex = 18;
-            // 
-            // lblComando
-            // 
-            this.lblComando.AutoSize = true;
-            this.lblComando.Location = new System.Drawing.Point(866, 21);
-            this.lblComando.Name = "lblComando";
-            this.lblComando.Size = new System.Drawing.Size(21, 13);
-            this.lblComando.TabIndex = 19;
-            this.lblComando.Text = "(%)";
-            // 
-            // lblPer
-            // 
-            this.lblPer.AutoSize = true;
-            this.lblPer.Location = new System.Drawing.Point(727, 21);
-            this.lblPer.Name = "lblPer";
-            this.lblPer.Size = new System.Drawing.Size(21, 13);
-            this.lblPer.TabIndex = 20;
-            this.lblPer.Text = "(%)";
+            this.btnCerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+            this.btnCerrar.FlatAppearance.BorderSize = 2;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.ForeColor = System.Drawing.Color.White;
+            this.btnCerrar.Location = new System.Drawing.Point(12, 513);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(193, 30);
+            this.btnCerrar.TabIndex = 13;
+            this.btnCerrar.Text = "Cerrar sesión";
+            this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // Form1
             // 
@@ -1258,6 +1275,7 @@
         private System.Windows.Forms.Label lblComando;
         private System.Windows.Forms.Label lblPersona;
         private System.Windows.Forms.Label lblPer;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
 

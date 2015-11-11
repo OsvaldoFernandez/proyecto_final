@@ -15,7 +15,6 @@ using Email.Net.Pop3.Exceptions;
 using System.Reflection;
 using System.Globalization;
 using System.Threading;
-using clienteMail.inciar_sesion;
 
 namespace clienteMail
 {
@@ -65,7 +64,8 @@ namespace clienteMail
               Comando.Evento("redactar", redactar_Click),
               new Comando("anterior", () => {if (btnAnterior.Enabled) btnAnterior_Click(null, EventArgs.Empty);}),
               new Comando("siguiente", () => {if (btnSiguiente.Enabled) btnSiguiente_Click(null, EventArgs.Empty);}),
-              Comando.Evento("actualizar", btnActualizar_Click)
+              Comando.Evento("actualizar", btnActualizar_Click),
+              Comando.Evento("cerrar sesión", btnCerrar_Click)
             );
 
             if (comando == "leer" & mailSelected >= 1)
@@ -136,8 +136,7 @@ namespace clienteMail
                 carg.Detener();
                 this.Opacity = 0;
 
-                var iniciarSesion = new iniciar_sesion();
-                iniciarSesion.Show();
+                new iniciar_sesion.iniciar_sesion().Show();
                 var form2 = new frmAlert(this, "Error", "Hubo un inconveniente técnico.\n Vuelva a intentarlo más tarde.", "close");
                 form2.Show();
                     
@@ -475,6 +474,12 @@ namespace clienteMail
         private void panel0_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            new iniciar_sesion.iniciar_sesion().Show();
         }
     }
 }
