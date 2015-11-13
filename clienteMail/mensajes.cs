@@ -63,14 +63,14 @@ namespace clienteMail
             var form = new mensaje_new_update(0, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarMensajes();
+            handlePaginacion();
         }
 
         private void actualizarMensajes()
         {
             this.dataMensajes.Rows.Clear();
             int i = 1;
-            foreach (Mensaje mensaje in G.user.mensajesPag(pagActual))
-            {
+            foreach (Mensaje mensaje in G.user.mensajesPag(pagActual)) {
                 this.dataMensajes.Rows.Add(i, mensaje.Texto, mensaje.ID);
                 i++;
             }
@@ -169,16 +169,7 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
-            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
-            {
-                autenticacion_ok.Visible = true;
-                autenticacion_mal.Visible = false;
-            }
-            else
-            {
-                autenticacion_mal.Visible = true;
-                autenticacion_ok.Visible = false;
-            };
+            actualizar_banderas(autenticacion_ok, autenticacion_mal);
 
             manejar_comando_basico(comando, seleccionar_mensaje,
               Comando.Evento("cerrar", btnVolver_Click),

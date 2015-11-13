@@ -52,7 +52,10 @@ public class User
             __smtpssl = dr.GetBoolean(5);
             __mail = dr.GetString(6);
             __password = dr.GetString(7);
-            __perfil = dr.GetString(8);
+            if (dr.IsDBNull(8))
+              __perfil = null;
+            else
+              __perfil = dr.GetString(8);
         }
         finally
         {
@@ -724,11 +727,14 @@ public class User
     public bool exists_mailRecibido(string uidl)
     {
         SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
-        cmd.CommandText = "SELECT COUNT(*) FROM Mails_recibidos WHERE uidl = ?";
+        cmd.CommandText = "SELECT COUNT(*) FROM Mails_recibidos WHERE uidl = ? AND usuario_id = ?";
 
         SQLiteParameter param = new SQLiteParameter();
         cmd.Parameters.Add(param);
         param.Value = uidl;
+        param = new SQLiteParameter();
+        cmd.Parameters.Add(param);
+        param.Value = ID;
         long cant = (long)cmd.ExecuteScalar();
         cmd.Dispose();
         

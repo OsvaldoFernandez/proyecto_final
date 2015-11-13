@@ -14,6 +14,9 @@ namespace clienteMail.entrenamiento
 {
     public partial class entrenamiento_1 : RichForm
     {
+        public readonly int minutos_entrenamiento = 20;
+        public readonly int segundos_entrenamiento = 0;
+
         IntPtr entrenador = IntPtr.Zero;
         string siguiente_comando = null;
         int fila = -1;
@@ -31,6 +34,10 @@ namespace clienteMail.entrenamiento
             }
             if (rv != 0) throw new InvalidOperationException();
             this.perfil = perfil;
+            G.crear_form_comando();
+            #if DEBUG
+              G.comando_form.Show();
+            #endif
         }
 
         ~ entrenamiento_1 () {
@@ -49,7 +56,6 @@ namespace clienteMail.entrenamiento
               dataGridView1.Rows.Add("Seis", "pendiente", "6_" + iteracion.ToString());
               dataGridView1.Rows.Add("Siete", "pendiente", "7_" + iteracion.ToString());
               dataGridView1.Rows.Add("Ocho", "pendiente", "8_" + iteracion.ToString());
-              dataGridView1.Rows.Add("Nueve", "pendiente", "9_" + iteracion.ToString());
               dataGridView1.Rows.Add("Contactos", "pendiente", "con_" + iteracion.ToString());
               dataGridView1.Rows.Add("Asuntos", "pendiente", "asu_" + iteracion.ToString());
               dataGridView1.Rows.Add("Mensajes", "pendiente", "men_" + iteracion.ToString());
@@ -62,7 +68,6 @@ namespace clienteMail.entrenamiento
               dataGridView1.Rows.Add("Siguiente", "pendiente", "sig_" + iteracion.ToString());
               dataGridView1.Rows.Add("Aceptar", "pendiente", "ace_" + iteracion.ToString());
               dataGridView1.Rows.Add("Para", "pendiente", "par_" + iteracion.ToString());
-              dataGridView1.Rows.Add("Enviar", "pendiente", "env_" + iteracion.ToString());
               dataGridView1.Rows.Add("Cerrar", "pendiente", "cer_" + iteracion.ToString());
               dataGridView1.Rows.Add("Cancelar", "pendiente", "can_" + iteracion.ToString());
               dataGridView1.Rows.Add("Responder", "pendiente", "res_" + iteracion.ToString());
@@ -80,6 +85,7 @@ namespace clienteMail.entrenamiento
             siguiente_comando = dataGridView1[0, 0].Value.ToString().ToUpperInvariant();
             fila = 0;
             pausaBtn.Visible = true;
+            G.comando_form.actualizar_estado_microfono(true);
         }
 
         public override void manejar_comando_entrenamiento(SpeechRecognizedEventArgs e)
@@ -170,7 +176,10 @@ namespace clienteMail.entrenamiento
 
         void entrenar () {
           int rv, persona = 0;
-          label2.Text = "La operación tardará aproximadamente 20 minutos. Preparando...";
+          label2.Text = "La operación tardará aproximadamente " + minutos_entrenamiento.ToString() + 
+                            ((segundos_entrenamiento == 0) ? "" : (":" + segundos_entrenamiento.ToString("00"))) +
+                            " minutos. Preparando...";
+          G.comando_form.actualizar_estado_microfono(false);
           Application.DoEvents();
           foreach (string subdir in Directory.EnumerateDirectories("aud")) {
             persona ++;
@@ -189,7 +198,7 @@ namespace clienteMail.entrenamiento
           bool continuar;
           uint limite_tiempo = 0;
           do {
-            limite_tiempo += 1200000; // 20 min
+            limite_tiempo += (uint) ((60 * minutos_entrenamiento + segundos_entrenamiento) * 1000);
             AV.avf_iniciar_entrenamiento(entrenador);
             AV.avt_estado estado;
             while (true) {
@@ -201,7 +210,9 @@ namespace clienteMail.entrenamiento
               if (segundos_restantes > 9999999u) segundos_restantes = 0;
               uint minutos_restantes = segundos_restantes / 60;
               segundos_restantes %= 60;
-              label2.Text = "La operación tardará aproximadamente 20 minutos. Restan " + minutos_restantes.ToString() + ":" + segundos_restantes.ToString("00");
+              label2.Text = "La operación tardará aproximadamente " + minutos_entrenamiento.ToString() + 
+                            ((segundos_entrenamiento == 0) ? "" : (":" + segundos_entrenamiento.ToString("00"))) +
+                            " minutos. Restan " + minutos_restantes.ToString() + ":" + segundos_restantes.ToString("00");
               if (estado.redes_satisfactorias >= 8) break;
               if (estado.tiempo_transcurrido > limite_tiempo) break;
             }
@@ -236,26 +247,34 @@ namespace clienteMail.entrenamiento
                 RichForm formulario_activo = new Form1();
                 formulario_activo.Show();
                 G.comando_form = new comando.comando();
-                G.comando_form.Show();
+                #if DEBUG
+                  G.comando_form.Show();
+                #endif
                 break;
             }
             if (continuar)
-              continuar = MessageBox.Show("El entrenamiento no generó suficiente información. ¿Desea continuar por 20 minutos más?", "Falta información", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes;
+              continuar = MessageBox.Show("El entrenamiento no generó suficiente información. ¿Desea continuar por "
+                                          + minutos_entrenamiento.ToString() + 
+                                          ((segundos_entrenamiento == 0) ? "" : (":" + segundos_entrenamiento.ToString("00"))) +
+                                          " minutos más?", "Falta información", MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                          ) == System.Windows.Forms.DialogResult.Yes;
           } while (continuar);
           AV.avf_destruir_entrenador(entrenador);
           entrenador = IntPtr.Zero;
+          new Form1().Show();
+          G.comando_form = new comando.comando();
+          #if DEBUG
+            G.comando_form.Show();
+          #endif
           this.Close();
         }
 
         private void pausaBtn_Click(object sender, EventArgs e)
         {
-            if (pausaBtn.Text == "Pausar")
-            {
+            if (pausaBtn.Text == "Pausar") {
                 pausaBtn.Text = "Reaundar";
                 G.comando_form.actualizar_estado_microfono(false);
-            }
-            else
-            {
+            } else {
                 pausaBtn.Text = "Pausar";
                 G.comando_form.actualizar_estado_microfono(true);
             }

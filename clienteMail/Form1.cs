@@ -38,16 +38,7 @@ namespace clienteMail
 
         public override void manejar_comando(string comando)
         {
-            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
-            {
-                autenticacion_ok.Visible = true;
-                autenticacion_mal.Visible = false;
-            }
-            else
-            {
-                autenticacion_mal.Visible = true;
-                autenticacion_ok.Visible = false;
-            }
+            actualizar_banderas(autenticacion_ok, autenticacion_mal);
 
             manejar_comando_basico(comando,
               (int numero) => {
@@ -66,12 +57,7 @@ namespace clienteMail
               Comando.Evento("actualizar", btnActualizar_Click),
               Comando.Evento("cerrar sesión", btnCerrar_Click)
             );
-
-            if (comando == "leer" & mailSelected >= 1)
-            {
-                leerMail(mailSelected);
-            }
-
+            if (comando == "leer" & mailSelected >= 1) leerMail(mailSelected);
         }
 
         private void btnRecibidos_Click(object sender, EventArgs e)
@@ -121,17 +107,12 @@ namespace clienteMail
             Cargando carg = new Cargando();
             carg.Ejecutar();
 
-
-
             recibidos = true;
-            try
-            {
+            try {
                 pagActual = 1;
                 btnRecibidos_Click(null, e);
                 carg.Detener();
-            }
-            catch
-            {
+            } catch {
                 carg.Detener();
                 this.Opacity = 0;
 
@@ -164,6 +145,13 @@ namespace clienteMail
 
                 client = G.crear_cliente();
 
+                int ciclos = 0;
+                while (client.ConnectionState != EPop3ConnectionState.Authenticated) {
+                  Thread.Sleep(100);
+                  ciclos ++;
+                  if (ciclos > 120) break;
+                }
+
                 Pop3MessageUIDInfoCollection messageUIDs = client.GetAllUIDMessages();
                 uint i = 1;
                 foreach (Pop3MessageUIDInfo uidInfo in messageUIDs)
@@ -178,13 +166,9 @@ namespace clienteMail
                         mailRecibido.__remitente_nombre = message.From.DisplayName.ToString();
                         mailRecibido.__remitente_mail = message.From.Address.ToString();
                         if (message.From.Address == client.Username)
-                        {
                             mailRecibido.__asunto = null;
-                        }
                         else
-                        {
                             mailRecibido.__asunto = message.Subject.ToString();
-                        }
                         mailRecibido.__mensaje = message.Text.ToString();
                         mailRecibido.__fecha = message.Date.ToLocalTime();
                         G.user.guardarMailRecibido(mailRecibido);
@@ -233,13 +217,10 @@ namespace clienteMail
             (new redactar_email.redactar(this)).Show();
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
+        private void btnActualizar_Click(object sender, EventArgs e) {
             pagActual = 1;
             if (recibidos)
-            {
                 btnRecibidos_Click(null, e);
-            }
             else
                 btnEnviados_Click(null, e);
         }
@@ -251,14 +232,12 @@ namespace clienteMail
             showEnviados();
         }
 
-        private void btnSiguiente_Click(object sender, EventArgs e)
-        {
+        private void btnSiguiente_Click(object sender, EventArgs e) {
             pagActual++;
             actualizar_vista();
         }
 
-        private void btnAnterior_Click(object sender, EventArgs e)
-        {
+        private void btnAnterior_Click(object sender, EventArgs e) {
             pagActual--;
             actualizar_vista();
         }
@@ -361,7 +340,7 @@ namespace clienteMail
                     container.Controls["mailSub" + n].Text = message.Asunto.ToString();
                     container.Controls["pictureBox" + n].Show();
                     container.Controls["index" + n].Show();
-                    container.Controls["mailDate" + n].Text = message.Fecha_creacion.ToString();
+                    container.Controls["mailDate" + n].Text = message.Fecha_creacion.ToString("dd/MM/yyyy, HH:mm");
                     index++;
                 }
             }
@@ -468,11 +447,6 @@ namespace clienteMail
             pictureBox11.Visible = false;
             pictureBox10.Visible = true;
             G.comando_form.actualizar_estado_microfono(true);
-        }
-
-        private void panel0_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

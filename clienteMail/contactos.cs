@@ -60,14 +60,14 @@ namespace clienteMail
             var form = new frmContacto(0, this);
             DialogResult vr = form.ShowDialog(this);
             if (vr == System.Windows.Forms.DialogResult.OK) this.actualizarContactos();
+            handlePaginacion();
         }
 
         private void actualizarContactos()
         {
             this.dataContactos.Rows.Clear();
             int i = 1;
-            foreach (Contacto con in G.user.contactosPag(pagActual))
-            {
+            foreach (Contacto con in G.user.contactosPag(pagActual)) {
                 this.dataContactos.Rows.Add(i, con.Mail, con.Nombre + " " + con.Apellido, con.ID);
                 i++;
             }
@@ -177,16 +177,7 @@ namespace clienteMail
         public override void manejar_comando(string comando)
         {
 
-            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
-            {
-                autenticacion_ok.Visible = true;
-                autenticacion_mal.Visible = false;
-            }
-            else
-            {
-                autenticacion_mal.Visible = true;
-                autenticacion_ok.Visible = false;
-            };
+            actualizar_banderas(autenticacion_ok, autenticacion_mal);
 
             manejar_comando_basico(comando, seleccionar_contacto,
               Comando.Evento("cerrar", btnVolver_Click),

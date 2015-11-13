@@ -81,6 +81,18 @@ public class FormComandos : RichForm {
     }
     return false;
   }
+
+  protected void actualizar_banderas (Control bandera_positiva, Control bandera_negativa) {
+    if (G.confianza_autenticacion == AV.AVS_PUNTERO_NULO)
+      bandera_negativa.Visible = bandera_positiva.Visible = false;
+    else if (G.confianza_autenticacion >= (100 * G.sensibilidad_autenticacion)) {
+      bandera_positiva.Visible = true;
+      bandera_negativa.Visible = false;
+    } else {
+      bandera_positiva.Visible = false;
+      bandera_negativa.Visible = true;
+    }
+  }
 }
 
 public class FormPaginado : FormComandos {

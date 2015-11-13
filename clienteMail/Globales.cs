@@ -15,7 +15,12 @@ public static class G
     public static int sensibilidad = 75;
     public static int sensibilidad_autenticacion = 0;
     public static int confianza_autenticacion;
-    public static RichForm comando_form;
+    public static RichForm comando_form = null;
+
+    public static void crear_form_comando () {
+      if (comando_form != null) return;
+      comando_form = new clienteMail.comando.comando();
+    }
 
     public static SQLiteConnection abrir_conexion(string ubicacion, bool solo_lectura)
     {

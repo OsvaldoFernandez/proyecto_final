@@ -113,6 +113,7 @@
       this.De = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Asunto = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.button1 = new System.Windows.Forms.Button();
       this.panel8.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
       this.panel7.SuspendLayout();
@@ -696,6 +697,7 @@
       // panel10
       // 
       this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(225)))), ((int)(((byte)(242)))));
+      this.panel10.Controls.Add(this.button1);
       this.panel10.Controls.Add(this.btnCerrar);
       this.panel10.Controls.Add(this.button3);
       this.panel10.Controls.Add(this.label3);
@@ -763,7 +765,7 @@
       this.btnAnterior.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnAnterior.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnAnterior.ForeColor = System.Drawing.Color.White;
-      this.btnAnterior.Location = new System.Drawing.Point(12, 207);
+      this.btnAnterior.Location = new System.Drawing.Point(12, 223);
       this.btnAnterior.Name = "btnAnterior";
       this.btnAnterior.Size = new System.Drawing.Size(93, 30);
       this.btnAnterior.TabIndex = 6;
@@ -793,7 +795,7 @@
       this.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnSiguiente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnSiguiente.ForeColor = System.Drawing.Color.White;
-      this.btnSiguiente.Location = new System.Drawing.Point(112, 207);
+      this.btnSiguiente.Location = new System.Drawing.Point(112, 223);
       this.btnSiguiente.Name = "btnSiguiente";
       this.btnSiguiente.Size = new System.Drawing.Size(93, 30);
       this.btnSiguiente.TabIndex = 5;
@@ -838,7 +840,7 @@
       this.btnRecibidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnRecibidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnRecibidos.ForeColor = System.Drawing.Color.White;
-      this.btnRecibidos.Location = new System.Drawing.Point(12, 111);
+      this.btnRecibidos.Location = new System.Drawing.Point(12, 139);
       this.btnRecibidos.Name = "btnRecibidos";
       this.btnRecibidos.Size = new System.Drawing.Size(193, 30);
       this.btnRecibidos.TabIndex = 2;
@@ -883,7 +885,7 @@
       this.btnEnviados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.btnEnviados.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.btnEnviados.ForeColor = System.Drawing.Color.White;
-      this.btnEnviados.Location = new System.Drawing.Point(12, 148);
+      this.btnEnviados.Location = new System.Drawing.Point(12, 176);
       this.btnEnviados.Name = "btnEnviados";
       this.btnEnviados.Size = new System.Drawing.Size(193, 30);
       this.btnEnviados.TabIndex = 3;
@@ -914,7 +916,6 @@
       this.panel0.Name = "panel0";
       this.panel0.Size = new System.Drawing.Size(1009, 70);
       this.panel0.TabIndex = 13;
-      this.panel0.Paint += new System.Windows.Forms.PaintEventHandler(this.panel0_Paint);
       // 
       // btnHistorial
       // 
@@ -1144,6 +1145,23 @@
       this.Fecha.Name = "Fecha";
       this.Fecha.ReadOnly = true;
       // 
+      // button1
+      // 
+      this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(204)))), ((int)(((byte)(245)))));
+      this.button1.Enabled = false;
+      this.button1.FlatAppearance.BorderSize = 0;
+      this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button1.ForeColor = System.Drawing.Color.White;
+      this.button1.Location = new System.Drawing.Point(12, 91);
+      this.button1.Margin = new System.Windows.Forms.Padding(0);
+      this.button1.Name = "button1";
+      this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+      this.button1.Size = new System.Drawing.Size(193, 25);
+      this.button1.TabIndex = 14;
+      this.button1.Text = "Leer";
+      this.button1.UseVisualStyleBackColor = false;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1167,6 +1185,7 @@
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Cliente mail";
       this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
+      this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.panel8.ResumeLayout(false);
       this.panel8.PerformLayout();
@@ -1294,6 +1313,7 @@
         private System.Windows.Forms.Label lblPer;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnHistorial;
+        private System.Windows.Forms.Button button1;
     }
 }
 

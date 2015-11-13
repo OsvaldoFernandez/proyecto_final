@@ -14,13 +14,11 @@ namespace clienteMail.crear_cuenta
     public partial class crear_cuenta : Form
     {
         Color colorFondo = Color.FromArgb(61, 183, 248);
-        public crear_cuenta()
-        {
+        public crear_cuenta() {
             InitializeComponent();
         }
 
-        private void crear_cuenta_Load(object sender, EventArgs e)
-        {
+        private void crear_cuenta_Load(object sender, EventArgs e) {
             SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
             cmd.CommandText = "SELECT proveedor FROM Proveedor_mail";
             SQLiteDataReader dr = cmd.ExecuteReader();
@@ -38,8 +36,7 @@ namespace clienteMail.crear_cuenta
             this.resetPanels();
         }
 
-        private void resetPanels()
-        {
+        private void resetPanels() {
             panel1.BackColor = colorFondo;
             panel2.BackColor = colorFondo;
             panel3.BackColor = colorFondo;
@@ -55,65 +52,54 @@ namespace clienteMail.crear_cuenta
             bool error = false;
             this.resetPanels();
 
-            if (proveedor.SelectedItem == null)
-            {
+            if (proveedor.SelectedItem == null) {
                 error = true;
                 panel1.BackColor = Color.Red;
             }
 
             Regex reg = new Regex(@"^[^ /?@\x00-\x1f()<>]+@([^. /?@\x00-\x1f()<>]+\.)*[a-zA-Z]{2,}\.?$");
-            if (!reg.IsMatch(mail.Text))
-            {
+            if (!reg.IsMatch(mail.Text)) {
                 error = true;
                 panel3.BackColor = Color.Red;
             }
 
-            if (contrasena.Text.Length == 0)
-            {
+            if (contrasena.Text.Length == 0) {
                 error = true;
                 panel2.BackColor = Color.Red;
             }
 
-            if ((string)proveedor.SelectedItem == "Otro")
-            {
+            if ((string)proveedor.SelectedItem == "Otro") {
                 //valido tambien los campos del "otro" proveedor
-                if (servidorpop3.Text.Length == 0)
-                {
+                if (servidorpop3.Text.Length == 0) {
                     error = true;
                     panel4.BackColor = Color.Red;
                 }
                 
                 ushort puerto;
                 bool excpop3 = false;
-                try{
+                try {
                     puerto = ushort.Parse(puertopop3.Text);
-                } catch{
+                } catch {
                     excpop3 =true;
                 }
 
-                if (puertopop3.Text.Length == 0 || excpop3)
-                {
+                if (puertopop3.Text.Length == 0 || excpop3) {
                     error = true;
                     panel5.BackColor = Color.Red;
                 }
-                if (servidorsmtp.Text.Length == 0)
-                {
+                if (servidorsmtp.Text.Length == 0) {
                     error = true;
                     panel6.BackColor = Color.Red;
                 }
 
                 bool excsmtp = false;
-                try
-                {
+                try {
                     puerto = ushort.Parse(puertosmtp.Text);
-                }
-                catch
-                {
+                } catch {
                     excsmtp = true;
                 }
 
-                if (puertosmtp.Text.Length == 0 || excsmtp)
-                {
+                if (puertosmtp.Text.Length == 0 || excsmtp) {
                     error = true;
                     panel7.BackColor = Color.Red;
                 }
@@ -129,23 +115,17 @@ namespace clienteMail.crear_cuenta
             bool sslPOP3, sslSMTP;
             SQLiteCommand cmd = null;
 
-            if (this.errorForm())
-            {
+            if (this.errorForm()) {
                 lblError.Visible = true;
                 return;
-            }
-
-            else if ((string)proveedor.SelectedItem == "Otro")
-            {
+            } else if ((string)proveedor.SelectedItem == "Otro") {
                 servidorPOP3 = servidorpop3.Text;
                 servidorSMTP = servidorsmtp.Text;
                 puertoPOP3 = ushort.Parse(puertopop3.Text);
                 puertoSMTP = ushort.Parse(puertosmtp.Text);
                 sslPOP3 = sslpop3.Checked;
                 sslSMTP = sslsmtp.Checked;
-            }
-            else
-            {
+            } else {
                 cmd = new SQLiteCommand(G.conexion_principal);
                 cmd.CommandText = "SELECT servidor_pop3, puerto_pop3, ssl_pop3, servidor_smtp, puerto_smtp, ssl_smtp " +
                                   "FROM Proveedor_mail WHERE proveedor = ?";
@@ -201,18 +181,16 @@ namespace clienteMail.crear_cuenta
             cmd2.Parameters.Add(paramMail2);
             paramMail2.Value = mail.Text;
             SQLiteDataReader dr2 = cmd2.ExecuteReader();
-            if (dr2.Read())
-            {
+            if (dr2.Read()) {
                 G.user = new User(dr2.GetInt16(0));
-                RichForm form1 = new entrenamiento.entrenamiento_1(G.user.ID.ToString() + ".pav");
-                form1.Show();
+                (new entrenamiento.entrenamiento_1(G.user.ID.ToString() + ".pav")).Show();
             }
+            Close();
         }
 
         private void proveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (proveedor.SelectedItem.ToString() == "Otro")
-            {
+            if (proveedor.SelectedItem.ToString() == "Otro") {
                 puertopop3.Enabled = true;
                 puertosmtp.Enabled = true;
                 servidorpop3.Enabled = true;

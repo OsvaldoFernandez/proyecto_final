@@ -21,33 +21,6 @@ namespace clienteMail.comando
         public comando()
         {
             InitializeComponent();
-            #if !DEBUG
-                Visible = false;
-            #endif
-        }
-
-        public override void actualizar_estado_microfono(bool estado)
-        {
-            if (estado)
-            {
-                recEngine.RecognizeAsync(RecognizeMode.Multiple);
-                disableBtn.Enabled = true;
-            }
-            else
-            {
-                recEngine.RecognizeAsyncStop();
-                disableBtn.Enabled = false;
-            }
-        }
-
-        private void enableBtn_Click(object sender, EventArgs e)
-        {
-            recEngine.RecognizeAsync(RecognizeMode.Multiple);
-            disableBtn.Enabled = true;
-        }
-
-        private void comando_Load(object sender, EventArgs e)
-        {
             Choices comandos = new Choices();
             comandos.Add(new string[] {
               "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "contactos", "asuntos",
@@ -61,12 +34,41 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            int rv = AV.avf_crear_autenticador("perfiles\\" + G.user.PAV, out autenticador);
-            if (rv != 0) {
+            if ((Form.ActiveForm.Name == "crear_cuenta") || (Form.ActiveForm.Name == "entrenamiento_1")) return;
+            int rv;
+            if (G.user.PAV != null)
+              rv = AV.avf_crear_autenticador("perfiles\\" + G.user.PAV, out autenticador);
+            else
+              rv = AV.AVS_PUNTERO_NULO;
+            if ((rv != 0) && (rv != AV.AVS_PUNTERO_NULO)) {
               MessageBox.Show("Hubo un error cargando su perfil de autenticación de voz. Por favor, cree la cuenta nuevamente." +
                               " (0x" + rv.ToString("X8") + ")", "Error cargando cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
               Environment.Exit(1);
             }
+        }
+
+        public override void actualizar_estado_microfono(bool estado)
+        {
+            if (estado) {
+                recEngine.RecognizeAsync(RecognizeMode.Multiple);
+                disableBtn.Enabled = true;
+            } else {
+                recEngine.RecognizeAsyncStop();
+                disableBtn.Enabled = false;
+            }
+        }
+
+        private void enableBtn_Click(object sender, EventArgs e)
+        {
+            recEngine.RecognizeAsync(RecognizeMode.Multiple);
+            disableBtn.Enabled = true;
+        }
+
+        private void comando_Load(object sender, EventArgs e)
+        {
+            #if !DEBUG
+                Visible = false;
+            #endif
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -106,20 +108,19 @@ namespace clienteMail.comando
                 if (confidence > G.sensibilidad)
                 {
                     G.registrar_comando(e.Result.Text, e.Result.Confidence, (double) res / 10000.0);
-                    G.confianza_autenticacion = (int)res / 100;
-                    if (res < -10000)
-                    {
+                    G.confianza_autenticacion = res;
+                    if (res == AV.AVS_PUNTERO_NULO) {
+                      currentForm.manejar_comando(e.Result.Text);
+                      return;
+                    } else if (res < -10000) {
                         richTextBox1.Text += " - error - " + res.ToString("X");
                         currentForm.manejar_comando(e.Result.Text);
                         return;
                     }
-                    if (res > 0)
-                    {
+                    if (res > 0) {
                         richTextBox1.Text += " - Autenticado - " + (((double)res) / 100).ToString("0.00") + "%";
                         currentForm.manejar_comando(e.Result.Text);
-                    }
-                    else
-                    { 
+                    } else { 
                         res = -res;
                         richTextBox1.Text += " - Acceso denegado - " + (((double)res) / 100).ToString("0.00") + "%";
                         currentForm.manejar_comando(e.Result.Text);

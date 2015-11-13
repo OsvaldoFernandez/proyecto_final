@@ -168,17 +168,7 @@ namespace clienteMail
         
         public override void manejar_comando(string comando)
         {
-
-            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
-            {
-                autenticacion_ok.Visible = true;
-                autenticacion_mal.Visible = false;
-            }
-            else
-            {
-                autenticacion_mal.Visible = true;
-                autenticacion_ok.Visible = false;
-            };
+            actualizar_banderas(autenticacion_ok, autenticacion_mal);
 
             manejar_comando_basico(comando, seleccionar_asunto,
               Comando.Evento("cerrar", btnVolver_Click),

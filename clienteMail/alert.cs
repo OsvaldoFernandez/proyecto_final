@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace clienteMail
 {
-    public partial class frmAlert : RichForm
+    public partial class frmAlert : FormComandos
     {
         public string res;
         public string contexto;
@@ -55,16 +55,7 @@ namespace clienteMail
         public override void manejar_comando(string comando)
         {
 
-            if (G.confianza_autenticacion > G.sensibilidad_autenticacion)
-            {
-                autenticacion_ok.Visible = true;
-                autenticacion_mal.Visible = false;
-            }
-            else
-            {
-                autenticacion_mal.Visible = true;
-                autenticacion_ok.Visible = false;
-            };
+            actualizar_banderas(autenticacion_ok, autenticacion_mal);
 
             switch (comando)
             {
