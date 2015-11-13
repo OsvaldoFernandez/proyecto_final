@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.Data.SQLite;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
+using System.Globalization;
+using System.Threading;
 using Email.Net;
 using Email.Net.Common;
 using Email.Net.Pop3;
 using Email.Net.Common.Configurations;
 using Email.Net.Common.Collections;
 using Email.Net.Pop3.Exceptions;
-using System.Reflection;
-using System.Globalization;
-using System.Threading;
+
 
 namespace clienteMail
 {
@@ -480,6 +479,65 @@ namespace clienteMail
         {
             this.Close();
             new iniciar_sesion.iniciar_sesion().Show();
+        }
+
+        private void btnHistorial_Click (object sender, EventArgs e) {
+          int actual = 0;
+          while (mostrar_historial(actual, 20)) actual += 20;
+        }
+
+        private bool mostrar_historial (int inicio, int cantidad) {
+          int rc = 0;
+          string historial = "";
+          SQLiteCommand stmt = new SQLiteCommand(G.conexion_principal);
+          stmt.CommandText = "SELECT hora, comando, conf_rec, conf_aut FROM Comando WHERE Usuario = ? ORDER BY hora DESC LIMIT ?, ?";
+          SQLiteParameter param = new SQLiteParameter();
+          stmt.Parameters.Add(param);
+          param.Value = G.user.ID;
+          param = new SQLiteParameter();
+          stmt.Parameters.Add(param);
+          param.Value = inicio;
+          param = new SQLiteParameter();
+          stmt.Parameters.Add(param);
+          param.Value = cantidad;
+          SQLiteDataReader dr = stmt.ExecuteReader();
+          while (dr.Read()) {
+            if (rc != 0) historial += Environment.NewLine;
+            rc ++;
+            historial += linea_historial(dr.GetInt64(0), dr.GetString(1), dr.GetDouble(2), dr.GetDouble(3));
+          }
+          dr.Close();
+          dr.Dispose();
+          stmt.Dispose();
+          if (rc == 0) {
+            MessageBox.Show((inicio == 0) ? "No hay comandos en el historial" : "No hay más entradas en el historial",
+                            "Historial de comandos de voz", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+          } else if (rc < cantidad) {
+            MessageBox.Show(historial, "Historial de comandos de voz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
+          }
+          return MessageBox.Show(
+            historial + Environment.NewLine + Environment.NewLine + "¿Desea ver las siguientes " + cantidad.ToString() + " entradas?",
+            "Historial de comandos de voz", MessageBoxButtons.YesNo, MessageBoxIcon.Information
+          ) == DialogResult.Yes;
+        }
+
+        private string linea_historial (long hora, string comando, double confianza_reconocimiento, double confianza_autenticacion) {
+          return string.Format(CultureInfo.InvariantCulture, "[{0:d/M/yyy H:mm:ss}] {1} ({2}), {3}",
+                               DateTime.FromFileTimeUtc(hora).ToLocalTime(), comando,
+                               convertir_numero_a_porcentaje(confianza_reconocimiento),
+                               (confianza_autenticacion < -1) ? "error de autenticación" :
+                               string.Format("{0} ({1})", (confianza_autenticacion > 0) ? "autenticado" : "denegado",
+                                                           convertir_numero_a_porcentaje(Math.Abs(confianza_autenticacion))
+                               )
+          );
+        }
+
+        private string convertir_numero_a_porcentaje (double numero) {
+          if (numero < 0) return "-" + convertir_numero_a_porcentaje(-numero);
+          int p = (int) (numero * 10000 + 0.5);
+          return string.Format("{0},{1:00}%", p / 100, p % 100);
         }
     }
 }

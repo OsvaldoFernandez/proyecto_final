@@ -55,4 +55,27 @@ public static class G
 
         return client;
     }
+
+    public static void registrar_comando (string comando, double confianza_reconocimiento, double confianza_autenticacion) {
+      if (user == null) return;
+      SQLiteCommand cmd = new SQLiteCommand(conexion_principal);
+      cmd.CommandText = "INSERT INTO Comando (usuario, hora, comando, conf_rec, conf_aut) VALUES (?, ?, ?, ?, ?)";
+      SQLiteParameter param = new SQLiteParameter();
+      cmd.Parameters.Add(param);
+      param.Value = user.ID;
+      param = new SQLiteParameter();
+      cmd.Parameters.Add(param);
+      param.Value = DateTime.Now.ToFileTimeUtc();
+      param = new SQLiteParameter();
+      cmd.Parameters.Add(param);
+      param.Value = comando;
+      param = new SQLiteParameter();
+      cmd.Parameters.Add(param);
+      param.Value = confianza_reconocimiento;
+      param = new SQLiteParameter();
+      cmd.Parameters.Add(param);
+      param.Value = confianza_autenticacion;
+      cmd.ExecuteNonQuery();
+      cmd.Dispose();
+    }
 }

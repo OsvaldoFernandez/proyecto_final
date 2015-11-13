@@ -67,7 +67,6 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.frmContacto.re
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.Form1.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.contactos.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.leer_mail.resources
-C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.inciar_sesion.iniciar_sesion.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.Properties.Resources.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.redactar_email.redactar.resources
 C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.splashScreen.resources
@@ -106,3 +105,4 @@ C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\RichForm.resources
 C:\utn-proyecto\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.iniciar_sesion.iniciar_sesion.resources
 C:\Users\Osvaldo\Documents\proyecto_final\clienteMail\obj\x86\Debug\clienteMail.iniciar_sesion.iniciar_sesion.resources
+C:\Users\a\Desktop\proyecto\clienteMail\obj\x86\Debug\clienteMail.iniciar_sesion.iniciar_sesion.resources

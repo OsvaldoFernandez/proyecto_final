@@ -10,9 +10,7 @@ public class User
     private bool __pop3ssl, __smtpssl;
     private string __mail, __password;
     private int __id;
-
-    // para las pruebas, cambiar para la version final
-    public string PAV = "osvaldo.pav";
+    private string __perfil;
 
     public string POP3server { get { return __pop3server; } }
     public string SMTPserver { get { return __smtpserver; } }
@@ -23,11 +21,20 @@ public class User
     public string Mail { get { return __mail; } }
     public string Password { get { return __password; } }
     public int ID { get { return __id; } }
+    
+    public string PAV { 
+      get { 
+        return __perfil; 
+      } 
+      internal set {
+        __perfil = value;
+      }
+    }
 
     public User(int id)
     {
         SQLiteCommand cmd = new SQLiteCommand(G.conexion_principal);
-        cmd.CommandText = "SELECT servidor_pop3, puerto_pop3, ssl_pop3, servidor_smtp, puerto_smtp, ssl_smtp, mail, contrasena " + 
+        cmd.CommandText = "SELECT servidor_pop3, puerto_pop3, ssl_pop3, servidor_smtp, puerto_smtp, ssl_smtp, mail, contrasena, perfil " + 
                           "FROM Usuario WHERE id = ?";
         SQLiteParameter param = new SQLiteParameter();
         cmd.Parameters.Add(param);
@@ -45,6 +52,7 @@ public class User
             __smtpssl = dr.GetBoolean(5);
             __mail = dr.GetString(6);
             __password = dr.GetString(7);
+            __perfil = dr.GetString(8);
         }
         finally
         {

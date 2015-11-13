@@ -61,8 +61,12 @@ namespace clienteMail.comando
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            int rv = AV.avf_crear_autenticador(G.user.PAV, out autenticador);
-            if (rv != 0) MessageBox.Show(rv.ToString("X"));
+            int rv = AV.avf_crear_autenticador("perfiles\\" + G.user.PAV, out autenticador);
+            if (rv != 0) {
+              MessageBox.Show("Hubo un error cargando su perfil de autenticación de voz. Por favor, cree la cuenta nuevamente." +
+                              " (0x" + rv.ToString("X8") + ")", "Error cargando cuenta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              Environment.Exit(1);
+            }
         }
 
         void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -101,6 +105,7 @@ namespace clienteMail.comando
 
                 if (confidence > G.sensibilidad)
                 {
+                    G.registrar_comando(e.Result.Text, e.Result.Confidence, (double) res / 10000.0);
                     G.confianza_autenticacion = (int)res / 100;
                     if (res < -10000)
                     {
@@ -148,6 +153,5 @@ namespace clienteMail.comando
                 disableBtn.Enabled = false;
             }
         }
-
     }
 }
